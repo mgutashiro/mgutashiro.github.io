@@ -1,5 +1,5 @@
 // src/app.js
-import './style.css'; // or './css/layout.css' if that's where your CSS is
+import './css/layout.css'; // or './css/layout.css' if that's where your CSS is
 import { initPreloader } from './loader.js';
 import { initOnboarding } from './onboarding.js';
 import { initMain } from './main.js';
