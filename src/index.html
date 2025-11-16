@@ -5,16 +5,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- to ensure good scaling on mobile device -->
 	
     <title> Graveyard Chemist Website</title>
 	
 	<!-- Link to CSS files -->
-	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-	<style>
-		body { margin: 0; }
-	</style>
-	
+	<link rel="stylesheet" href="'./style.css">
 </head>
 
 
@@ -22,31 +17,31 @@
 	<!-- ============================= -->
 	<!-- for 5 sec preloader   -->
 	<!-- ============================= -->
-	<div id="preloader" aria-live="polite">
+	<!-- <div id="preloader" aria-live="polite">
 		<div class="loader-grid"><!-- 4×4 grid defined in layout.css -->
-    		<pre id="bootText" class="boot" aria-label="Boot messages"></pre>
-    		<div id="hexLoader" class="hexbar" aria-label="Loading progress">
-				<div class="loading-title ff-nes" aria-hidden="true">Loading &hellip;</div>
-      			<div class="tray" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
-        			<div class="hexrow">
-          				<span class="hex"></span>
+    		<!-- <pre id="bootText" class="boot" aria-label="Boot messages"></pre> -->
+    		<!-- <div id="hexLoader" class="hexbar" aria-label="Loading progress"> -->
+				<!-- <div class="loading-title ff-nes" aria-hidden="true">Loading &hellip;</div> -->
+      			<!-- <div class="tray" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"> -->
+        			<!-- <div class="hexrow"> -->
+          				<!-- <span class="hex"></span> -->
+						<!-- <span class="hex"></span> -->
+						<!-- <span class="hex"></span>
 						<span class="hex"></span>
 						<span class="hex"></span>
-						<span class="hex"></span>
-						<span class="hex"></span>
-						<span class="hex"></span>
-        			</div>
-      			</div>
-    		</div>
+						<span class="hex"></span> -->
+        			<!-- </div> -->
+      			<!-- </div> -->
+    		<!-- </div> -->
 
-  		</div>
-	</div>
+  		<!-- </div> -->
+	<!-- </div> --> 
 		
 	
 	<!-- ================================ -->
 	<!-- About This Site Instruction Part -->
 	<!-- ================================ -->
-	<div id="onboarding" hidden role="dialog" aria-modal="true">
+	<!-- <div id="onboarding" hidden role="dialog" aria-modal="true">
 		<div class="ob-grid ob-grid-4x4">
    			<pre id="ob-typed" class="boot ob-cell ob-typed"></pre>
     		<section class="ob-rhyme ob-cell" aria-label="How to explore">
@@ -64,7 +59,7 @@
 				alt="Moomin animation">
 			
 		</div>
-	</div>
+	</div> -->
 	
 	
 		
@@ -79,15 +74,8 @@
     	<h1 class="site-title">Graveyard Chemist's Playground!</h1>
   	</header>
 
-  	<main id="room" aria-label="3D room">
-    	<canvas id="experience-canvas" class="experience-canvas"></canvas>
-	</main>
-	
-	
-    <!-- ============================= -->
-    <!-- vite entry              -->
-    <!-- ============================= -->
-    <script type="module" src="js/app.js"></script>
+  	<canvas class="webgl"></canvas>
+	<script type="module" src="./script.js"></script>   
 </body>
 </html>
 		
