@@ -1,6 +1,6 @@
 import './styles/tokens.css'
 import './styles/components.css'
-import '../pages/home/home.css'
+import '/pages/homepage/home.css'
 
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'

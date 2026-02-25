@@ -11,6 +11,12 @@ html, body {
   pointer-events: none; /* lets you scroll/click the HTML */
 }
 
+#root canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 #page-home {
   position: relative;
   z-index: 1;
