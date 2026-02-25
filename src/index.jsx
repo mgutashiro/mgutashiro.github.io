@@ -85,20 +85,26 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
   <>
-    {/* DOM behavior controller (doesn't render anything) */}
+    <Canvas id="r3f-canvas" camera={{ fov: 42, near: 0.1, far: 200, position: [6.5, -0.8, 9.5] }}>
+      <Experience />
+    </Canvas>
     <HomeDOMEffects />
 
-    {/* WebGL */}
-    <Canvas
-        id="r3f-canvas"
-        camera={{
-            fov: 42,
-            near: 0.1,
-            far: 200,
-            position: [6.5, -0.8, 9.5],
-        }}
-    >
-    <Experience />
-    </Canvas>
+    <main id="page-home">
+      <section id="intro"><h1>Intro</h1></section>
+      <section id="about">
+        <h2>About</h2>
+        <p style={{ maxWidth: 600 }}>
+            {Array.from({ length: 80 }).map((_, i) => (
+            <span key={i}>line {i}<br/></span>
+            ))}
+        </p>
+      </section>
+      <section id="spec"><h2>Spec</h2></section>
+      <section id="dft"><h2>DFT</h2></section>
+      <section id="portfolio"><h2>Portfolio</h2></section>
+      <section id="meme"><h2>Meme</h2></section>
+
+    </main>
   </>
 )

@@ -2,6 +2,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 /* ====== R3F BACKGROUND LAYER ======
@@ -10,10 +11,11 @@ html, body {
    - We no longer treat #root as the background layer
 */
 #r3f-canvas {
-  position: fixed !important;
+  position: fixed;
   inset: 0;
-  width: 100vw !important;
-  height: 100vh !important;
+  width: 100vw;
+  height: 100vh;  
+  display: block;
 
   z-index: 0;
   pointer-events: none; /* HTML stays clickable */
@@ -37,9 +39,8 @@ html, body {
   height: 100vh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
-
-  /* optional: avoids iOS rubber-band showing black behind */
-  background: var(--bg);
+  pointer-events: auto;
+  background: transparent;
 }
 
 /* sections */
@@ -60,6 +61,7 @@ html, body {
   transition: opacity 120ms linear, transform 120ms linear;
 
   will-change: opacity, transform;
+  background: transparent;
 }
 
 /* Don't fade the last section (section 6) */
@@ -86,16 +88,16 @@ html, body {
   }
 }
 
-#about { background: var(--bg); }
+#about { background: transparent }
 
 #spec {
-  background: var(--surface);
+  background: transparent
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
 #dft {
-  background: var(--surface-2);
+  background: transparent
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -103,5 +105,5 @@ html, body {
 #portfolio { background: var(--bg); }
 
 #meme {
-  background: color-mix(in oklab, var(--c-shadow) 70%, var(--c-ink));
+  background: transparent
 }
