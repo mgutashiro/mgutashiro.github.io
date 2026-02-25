@@ -1,2 +1,27 @@
-import { defineConfig } from 'vite';
-export default defineConfig({ base: '/' }); // user site: mgu0625.github.io
+import { defineConfig, transformWithEsbuild } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  base: '/',        // user site = root
+  publicDir: false,
+
+  plugins: [
+    react(),
+    {
+      name: 'load+transform-js-files-as-jsx',
+      async transform(code, id) {
+        if (!id.match(/src\/.*\.js$/)) return null
+        return transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          jsx: 'automatic',
+        })
+      },
+    },
+  ],
+
+  build: {
+    outDir: 'docs',
+    emptyOutDir: true,
+    sourcemap: true,
+  },
+})

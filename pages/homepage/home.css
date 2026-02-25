@@ -1,0 +1,64 @@
+html, body {
+  height: 100%;
+}
+
+#root {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none; /* lets you scroll/click the HTML */
+}
+
+#page-home {
+  position: relative;
+  z-index: 1;
+}
+
+#page-home > section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+
+  padding: 5rem 3.5rem;
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+}
+
+/* Section theming */
+#intro {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  #intro {
+    grid-template-columns: 1fr;
+    grid-template-rows: 380px auto;
+  }
+}
+
+#about { background: var(--bg); }
+
+#spec {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#dft {
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#portfolio { background: var(--bg); }
+
+#meme {
+  background: color-mix(in oklab, var(--c-shadow) 70%, var(--c-ink));
+}

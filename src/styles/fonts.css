@@ -1,0 +1,87 @@
+/* fonts used for entire website */
+/* all are available via google fonts */
+
+/* Montserrat Hero Typeface */
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/monsterrat/Montserrat-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/monsterrat/Montserrat-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/monsterrat/Montserrat-Black.ttf") format("ttf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Comorant Mystic Typeface */
+@font-face {
+  font-family: "Cormorant";
+  src: url("./assets/fonts/comorant/Cormorant-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant";
+  src: url("./assets/fonts/comorant/Cormorant-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant";
+  src: url("./assets/fonts/comorant/Cormorant-Italic.ttf") format("ttf");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Space Grotesk for Tech Writing Typeface */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-Medium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Baloo 2 for jester pop typeface */
+@font-face {
+  font-family: "Baloo 2";
+  src: url("./assets/fonts/baloo2/Baloo2-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Baloo 2";
+  src: url("./assets/fonts/baloo2/Baloo2-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

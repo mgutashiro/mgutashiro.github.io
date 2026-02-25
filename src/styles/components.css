@@ -1,0 +1,139 @@
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--w-black);
+  margin: 0;
+}
+
+/* Utility classes you can reuse everywhere */
+.font-hero { font-family: var(--font-hero); }
+.font-mystic { font-family: var(--font-mystic); }
+.font-tech { font-family: var(--font-tech); }
+.font-jester { font-family: var(--font-jester); }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+a { color: var(--accent-2); }
+a:hover { color: var(--accent); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* reusable surfaces */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2);
+}
+
+.surface-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2);
+}
+
+/* buttons */
+.btn {
+  border: 1px solid var(--border-strong);
+  background: color-mix(in oklab, var(--primary) 40%, var(--bg));
+  color: var(--text);
+  border-radius: var(--radius-1);
+}
+
+.btn--neon {
+  border-color: color-mix(in oklab, var(--accent-2) 55%, var(--bg));
+  box-shadow: var(--glow-cyan);
+}
+
+.badge--metal {
+  background: color-mix(in oklab, var(--metal) 22%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--metal) 45%, var(--bg));
+  color: var(--text);
+}
+
+/* ====== PAGE LAYOUT / SNAP SECTIONS ====== */
+#page-home{
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+#page-home > section{
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 5rem 3.5rem;
+  box-sizing: border-box;
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+}
+
+/* ====== TYPOGRAPHY ====== */
+h1{
+  font-family: var(--font-display); /* “Graveyard” vibe */
+  font-weight: var(--w-black);
+  letter-spacing: 0.5px;
+}
+
+h2{
+  font-family: var(--font-heading);
+  font-weight: var(--w-black);
+  letter-spacing: 0.4px;
+}
+
+p{
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  max-width: 65ch;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* ====== SECTION THEMING ====== */
+#intro{
+  background: var(--grad-elevator);
+}
+
+#about{
+  background: var(--bg);
+}
+
+#spec{
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#dft{
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#portfolio{
+  background: var(--bg);
+}
+
+#meme{
+  background: color-mix(in oklab, var(--c-shadow) 70%, var(--c-ink));
+}
