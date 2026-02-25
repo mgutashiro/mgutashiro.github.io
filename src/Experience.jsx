@@ -12,48 +12,103 @@ const materialHex = new THREE.MeshMatcapMaterial()
 
 export default function Experience() {
   const hexes = useRef([])
+  const titleGroup = useRef()
 
+  // scroll refs (no React state = no rerender spam)
+  const scroll01 = useRef(0)          // 0..1 for section1->section2 fade
+  const atBottom = useRef(false)
+  const returnTimer = useRef(null)
 
-  const [matcapTitle] = useMatcapTexture('C98D7F_3B0B0B_A97667_94433F', 256)
+  const [matcapTitle]  = useMatcapTexture('C98D7F_3B0B0B_A97667_94433F', 256)
   const [matcapPortal] = useMatcapTexture('9650CA_46236A_7239A6_633492', 256)
-  const [matcapHexes] = useMatcapTexture('C98D7F_3B0B0B_A97667_94433F', 256)
+  const [matcapHexes]  = useMatcapTexture('C98D7F_3B0B0B_A97667_94433F', 256)
 
+  // --- materials ---
   useEffect(() => {
     matcapTitle.colorSpace = THREE.SRGBColorSpace
-    matcapTitle.needsUpdate = true
+    materialTitle.color.setScalar(0.75)
     materialTitle.matcap = matcapTitle
+    materialTitle.transparent = true
+    materialTitle.depthWrite = false
     materialTitle.needsUpdate = true
   }, [matcapTitle])
 
   useEffect(() => {
     matcapPortal.colorSpace = THREE.SRGBColorSpace
-    matcapPortal.needsUpdate = true
     materialPortal.matcap = matcapPortal
+    materialPortal.color.setScalar(0.8)
+    materialPortal.transparent = true
+    materialPortal.depthWrite = false
     materialPortal.needsUpdate = true
   }, [matcapPortal])
 
   useEffect(() => {
     matcapHexes.colorSpace = THREE.SRGBColorSpace
-    matcapHexes.needsUpdate = true
     materialHex.matcap = matcapHexes
     materialHex.needsUpdate = true
   }, [matcapHexes])
 
-  const hexGeometry = useMemo(() => new THREE.CylinderGeometry(0.22, 0.22, 0.12, 6, 1), [])
+  // --- hexes ---
+  const hexGeometry = useMemo(
+    () => new THREE.CylinderGeometry(0.22, 0.22, 0.12, 6, 1),
+    []
+  )
 
   const hexData = useMemo(() => {
-    const count = 90
-    return [...Array(count)].map(() => ({
-      position: [(Math.random() - 0.5) * 10, (Math.random() - 0.5) * 6, -1.5 - Math.random() * 4],
+  const count = 150 // <-- more hexagons (was 90)
+
+  // no-hex zone in world space (tune these)
+  const avoid = {
+    xMin: -10,
+    xMax: -2.2,   // everything left of this is “avoid”
+    yMin: -2.0,
+    yMax:  1.4,
+    zMin: -6,
+    zMax:  1,
+  }
+
+  const inAvoid = (x, y, z) =>
+    x >= avoid.xMin && x <= avoid.xMax &&
+    y >= avoid.yMin && y <= avoid.yMax &&
+    z >= avoid.zMin && z <= avoid.zMax
+
+  const out = []
+  const maxTries = 30
+
+  for (let i = 0; i < count; i++) {
+    let pos
+    let tries = 0
+    const spread = (range, power = 1.0) => {
+      // power > 1 biases toward center; power < 1 biases toward edges
+      const r = (Math.random() * 2 - 1)
+      return Math.sign(r) * Math.pow(Math.abs(r), power) * range
+    }
+
+    do {
+      const x = spread(5.5, 0.9)  // a bit edge-friendly
+      const y = spread(4.8, 0.85) // helps fill top/bottom
+      const z = -1.5 - Math.random() * 4
+      pos = [x, y, z]
+      tries++
+    } while (tries < maxTries && inAvoid(pos[0], pos[1], pos[2]))
+
+    out.push({
+      position: pos,
       rotation: [Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI],
-      scale: 0.35 + Math.random() * 0.45,
+      scale: 0.30 + Math.random() * 0.55,
       spin: (Math.random() * 0.6 + 0.15) * (Math.random() < 0.5 ? -1 : 1),
       bob: 0.4 + Math.random() * 0.9,
-      bobOffset: Math.random() * Math.PI * 2
-    }))
-  }, [])
+      bobOffset: Math.random() * Math.PI * 2,
+    })
+  }
 
+  return out
+}, [])
+
+
+  // --- render loop ---
   useFrame((state, delta) => {
+    // hex motion
     const t = state.clock.elapsedTime
     for (let i = 0; i < hexes.current.length; i++) {
       const h = hexes.current[i]
@@ -63,24 +118,50 @@ export default function Experience() {
       h.rotation.x += delta * d.spin * 0.35
       h.position.y = d.position[1] + Math.sin(t * 0.8 + d.bobOffset) * 0.15 * d.bob
     }
+
+    // title fade based on scroll progress
+    if (!titleGroup.current) return
+
+    const p = scroll01.current                // 0..1
+    const eased = p * p * (3 - 2 * p)         // smoothstep
+
+    const alpha = 1 - eased
+    materialTitle.opacity = alpha
+    materialPortal.opacity = alpha
+
+    // small “lift and shrink” as it fades
+    const s = 1 - eased * 0.08
+    titleGroup.current.scale.setScalar(s)
+    titleGroup.current.position.y = eased * 0.35
+
+    // optional perf: hide when basically gone
+    titleGroup.current.visible = alpha > 0.02
   })
 
-  return <>
-      <OrbitControls makeDefault enablePan={false} />
+  return (
+    <>
+      <OrbitControls
+        makeDefault
+        minDistance={6}
+        enablePan={false}
+        enableZoom={false}
+        enableRotate={false}
+        enableDamping={false}
+      />
 
       <Center>
-        <group>
+        <group ref={titleGroup}>
           <Text3D
             material={materialTitle}
             font={fontBlackUrl}
-            size={0.75}
+            size={0.7}
             height={0.18}
             curveSegments={12}
             bevelEnabled
             bevelThickness={0.018}
             bevelSize={0.012}
             bevelSegments={4}
-            position={[0, 0.22, 0]}
+            position={[-1.3, 0.22, -0.5]}
           >
             {`GRAVEYARD CHEMIST`}
           </Text3D>
@@ -95,9 +176,9 @@ export default function Experience() {
             bevelThickness={0.014}
             bevelSize={0.01}
             bevelSegments={3}
-            position={[0, -0.48, 0.02]}
+            position={[3, -0.6, -0.5]}
           >
-            {`P O R T A L`}
+            {`PORTAL`}
           </Text3D>
         </group>
       </Center>
@@ -114,4 +195,5 @@ export default function Experience() {
         />
       ))}
     </>
+  )
 }

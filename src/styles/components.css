@@ -1,45 +1,139 @@
+/* Smooth anchor scrolling (safe with snap; snap still wins for big sections) */
+html { scroll-behavior: smooth; }
 
-html {
-  scroll-behavior: smooth;
-}
-
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
   margin: 0;
+  overflow-x: hidden;
+
   font-family: var(--font-body);
   font-weight: var(--w-regular);
-  overflow-x: hidden;
+
+  background: var(--bg);
+  color: var(--text);
 }
 
+/* Headings */
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: var(--w-black);
   margin: 0;
 }
 
-/* Utility classes you can reuse everywhere */
-.font-hero { font-family: var(--font-hero); }
-.font-mystic { font-family: var(--font-mystic); }
-.font-tech { font-family: var(--font-tech); }
-.font-jester { font-family: var(--font-jester); }
-
-html, body {
-  background: var(--bg);
-  color: var(--text);
+/* Typography overrides */
+h1 {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  letter-spacing: 0.5px;
 }
 
+h2 {
+  font-family: var(--font-heading);
+  font-weight: var(--w-black);
+  letter-spacing: 0.4px;
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  max-width: 65ch;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* Links */
 a { color: var(--accent-2); }
 a:hover { color: var(--accent); }
 
+/* HR */
 hr {
   border: 0;
   border-top: 1px solid var(--border);
 }
 
-/* reusable surfaces */
+/* Utility font classes */
+.font-hero   { font-family: var(--font-hero); }
+.font-mystic { font-family: var(--font-mystic); }
+.font-tech   { font-family: var(--font-tech); }
+.font-jester { font-family: var(--font-jester); }
+
+/* ==========================================================================
+   WebGL BACKGROUND LAYER
+   Editing notes:
+   - #root contains the <canvas> from r3f.
+   - It must be fixed and behind the HTML.
+   - pointer-events:none keeps HTML clickable/scrollable.
+   ========================================================================== */
+
+#root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 0;
+  pointer-events: none;
+
+  /* Helps minimizes GPU/compositing flicker */
+  transform: translateZ(0);
+}
+
+#root canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ==========================================================================
+   PAGE LAYER 
+   - #page-home is the scroll-snap container.
+   - must sit above the canvas (z-index:1).
+   ========================================================================== */
+
+#page-home {
+  position: relative;
+  z-index: 1;
+
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+
+  /* Prevent weird stacking-context surprises */
+  isolation: isolate;
+}
+
+/* sections must be transparent so 3D is visible behind */
+#page-home > section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+
+  padding: 5rem 3.5rem;
+  box-sizing: border-box;
+
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+
+  /* do not paint over the canvas */
+  background: transparent;
+}
+
+/* Keep section direct text above any internal decorative layers */
+#page-home > section > h1,
+#page-home > section > h2,
+#page-home > section > p,
+#page-home > section > a {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   SURFACES / PANELS
+   - Use these inside a section to create readable blocks.
+   - Do NOT set section backgrounds anymore (they would cover the canvas).
+   ========================================================================== */
+
 .surface {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -52,12 +146,38 @@ hr {
   border-radius: var(--radius-2);
 }
 
-/* buttons */
+/* Glass / frosted panel (recommended for intro text) */
+.panel {
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+  border-radius: var(--radius-2);
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Optional stronger panel for busy backgrounds */
+.panel--solid {
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 1px solid var(--border-strong);
   background: color-mix(in oklab, var(--primary) 40%, var(--bg));
   color: var(--text);
+
   border-radius: var(--radius-1);
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  gap: 0.5rem;
 }
 
 .btn--neon {
@@ -65,75 +185,36 @@ hr {
   box-shadow: var(--glow-cyan);
 }
 
+/* Badges */
 .badge--metal {
   background: color-mix(in oklab, var(--metal) 22%, var(--bg));
   border: 1px solid color-mix(in oklab, var(--metal) 45%, var(--bg));
   color: var(--text);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
 }
 
-/* ====== PAGE LAYOUT / SNAP SECTIONS ====== */
-#page-home{
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-}
+/* ==========================================================================
+   SECTION-SPECIFIC LAYOUT (structure, not backgrounds)
+   - Keeping the intro grid layout here.
+   - If you want "elevator gradient" or surface blocks, apply them to a .panel
+     inside the section, not the section itself.
+   ========================================================================== */
 
-#page-home > section{
-  min-height: 100vh;
-  scroll-snap-align: start;
-  padding: 5rem 3.5rem;
-  box-sizing: border-box;
+#intro {
+  position: relative;
+  overflow: hidden;
+
   display: grid;
-  align-content: center;
-  gap: 1rem;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  gap: 2rem;
 }
 
-/* ====== TYPOGRAPHY ====== */
-h1{
-  font-family: var(--font-display); /* “Graveyard” vibe */
-  font-weight: var(--w-black);
-  letter-spacing: 0.5px;
+@media (max-width: 900px) {
+  #intro {
+    grid-template-columns: 1fr;
+    grid-template-rows: 380px auto;
+  }
 }
 
-h2{
-  font-family: var(--font-heading);
-  font-weight: var(--w-black);
-  letter-spacing: 0.4px;
-}
-
-p{
-  font-family: var(--font-body);
-  font-weight: var(--w-regular);
-  max-width: 65ch;
-  line-height: 1.6;
-  color: var(--text-dim);
-}
-
-/* ====== SECTION THEMING ====== */
-#intro{
-  background: var(--grad-elevator);
-}
-
-#about{
-  background: var(--bg);
-}
-
-#spec{
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-#dft{
-  background: var(--surface-2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-#portfolio{
-  background: var(--bg);
-}
-
-#meme{
-  background: color-mix(in oklab, var(--c-shadow) 70%, var(--c-ink));
-}

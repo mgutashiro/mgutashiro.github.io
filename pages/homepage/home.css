@@ -1,41 +1,78 @@
+/* Make sure the document can size to viewport */
 html, body {
   height: 100%;
+  margin: 0;
 }
 
-#root {
-  position: fixed;
+/* ====== R3F BACKGROUND LAYER ======
+   IMPORTANT:
+   - This assumes your <Canvas> has id="r3f-canvas"
+   - We no longer treat #root as the background layer
+*/
+#r3f-canvas {
+  position: fixed !important;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw !important;
+  height: 100vh !important;
+
   z-index: 0;
-  pointer-events: none; /* lets you scroll/click the HTML */
+  pointer-events: none; /* HTML stays clickable */
+
+  /* Helps some GPUs avoid flicker issues */
+  transform: translateZ(0);
 }
 
-#root canvas {
-  width: 100%;
-  height: 100%;
+/* Make sure the actual canvas fills the fixed layer */
+#r3f-canvas > canvas {
   display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
+/* ====== HTML CONTENT LAYER ====== */
 #page-home {
   position: relative;
   z-index: 1;
+
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+
+  /* optional: avoids iOS rubber-band showing black behind */
+  background: var(--bg);
 }
 
+/* sections */
 #page-home > section {
   min-height: 100vh;
   scroll-snap-align: start;
 
   padding: 5rem 3.5rem;
+  box-sizing: border-box;
+
   display: grid;
   align-content: center;
   gap: 1rem;
+
+  /* --- fade system (JS sets --fade from 0..1) --- */
+  opacity: var(--fade, 1);
+  transform: translateY(calc((1 - var(--fade, 1)) * -24px));
+  transition: opacity 120ms linear, transform 120ms linear;
+
+  will-change: opacity, transform;
+}
+
+/* Don't fade the last section (section 6) */
+#page-home > section:last-child {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Section theming */
 #intro {
   position: relative;
   overflow: hidden;
+
   display: grid;
   grid-template-columns: 40% 60%;
   align-items: center;
