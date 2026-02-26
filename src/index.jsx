@@ -91,20 +91,36 @@ root.render(
     <HomeDOMEffects />
 
     <main id="page-home">
-      <section id="intro"><h1>Intro</h1></section>
-      <section id="about">
-        <h2>About</h2>
-        <p style={{ maxWidth: 600 }}>
-            {Array.from({ length: 80 }).map((_, i) => (
-            <span key={i}>line {i}<br/></span>
-            ))}
-        </p>
-      </section>
-      <section id="spec"><h2>Spec</h2></section>
-      <section id="dft"><h2>DFT</h2></section>
-      <section id="portfolio"><h2>Portfolio</h2></section>
-      <section id="meme"><h2>Meme</h2></section>
+        <section id="about">
+            <div class="panel">
+            <h2>About</h2>
+            </div>
+        </section>
 
-    </main>
+        <section id="spec">
+            <div class="panel">
+            <h2>Spec</h2>
+            </div>
+        </section>
+
+        <section id="dft">
+            <div class="panel">
+            <h2>DFT</h2>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="panel">
+            <h2>Portfolio</h2>
+            </div>
+        </section>
+
+        <section id="meme">
+            <div class="panel">
+            <h2>Meme</h2>
+            </div>
+        </section>
+
+        </main>
   </>
 )

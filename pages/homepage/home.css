@@ -2,7 +2,9 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  overflow-y: auto;
+  /* overflow: hidden; */
+  scroll-snap-type: y mandatory;
 }
 
 /* ====== R3F BACKGROUND LAYER ====== */
@@ -18,6 +20,7 @@ html, body {
 
   /* Helps some GPUs avoid flicker issues */
   transform: translateZ(0);
+  touch-action: none;
 }
 
 /* Make sure the actual canvas fills the fixed layer */
@@ -31,12 +34,9 @@ html, body {
 #page-home {
   position: relative;
   z-index: 1;
-
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
   pointer-events: auto;
   background: transparent;
+  /* touch-action: pan-y;  */
 }
 
 /* sections */
@@ -45,11 +45,12 @@ html, body {
   scroll-snap-align: start;
 
   padding: 5rem 3.5rem;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 
   display: grid;
   align-content: center;
-  gap: 1rem;
+  /* gap: 1rem; */
+  padding: 5rem 3.5rem;
 
   /* --- fade system (JS sets --fade from 0..1) --- */
   opacity: var(--fade, 1);

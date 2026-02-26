@@ -73,7 +73,7 @@ hr {
   height: 100vh;
 
   z-index: 0;
-  pointer-events: none;
+  pointer-events: auto;
 
   /* Helps minimizes GPU/compositing flicker */
   transform: translateZ(0);
@@ -148,14 +148,18 @@ hr {
 
 /* Glass / frosted panel (recommended for intro text) */
 .panel {
-  background: color-mix(in oklab, var(--bg) 70%, transparent);
-  border: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
-  border-radius: var(--radius-2);
-  padding: 1.25rem 1.5rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
+  max-width: 900px;
+  width: 100%;
 
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2);
+
+  padding: 2rem;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 /* Optional stronger panel for busy backgrounds */
 .panel--solid {
   background: color-mix(in oklab, var(--bg) 88%, transparent);

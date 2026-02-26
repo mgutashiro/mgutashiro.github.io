@@ -55,55 +55,71 @@ export default function Experience() {
   )
 
   const hexData = useMemo(() => {
-  const count = 150 // <-- more hexagons (was 90)
+    const count = 150
+    const out = []
+    const maxTries = 30
 
-  // no-hex zone in world space (tune these)
-  const avoid = {
-    xMin: -10,
-    xMax: -2.2,   // everything left of this is “avoid”
-    yMin: -2.0,
-    yMax:  1.4,
-    zMin: -6,
-    zMax:  1,
-  }
+    // --------------------------------------------------
+    // 1) MAKE A TEMP CAMERA THAT MATCHES YOUR REAL ONE
+    // --------------------------------------------------
+    const cam = new THREE.PerspectiveCamera(42, 1, 0.1, 200)
+    cam.position.set(6.5, -0.8, 9.5)
+    cam.lookAt(0, 0, 0)
+    cam.updateMatrixWorld()
+    cam.updateProjectionMatrix()
 
-  const inAvoid = (x, y, z) =>
-    x >= avoid.xMin && x <= avoid.xMax &&
-    y >= avoid.yMin && y <= avoid.yMax &&
-    z >= avoid.zMin && z <= avoid.zMax
+    const v = new THREE.Vector3()
 
-  const out = []
-  const maxTries = 30
+    // --------------------------------------------------
+    // 2) SCREEN-SPACE AVOID CHECK
+    //    (left 40% of the VIEWPORT)
+    // --------------------------------------------------
+    const inAvoidScreenLeft = (x, y, z) => {
+      v.set(x, y, z).project(cam)   // project into NDC space (-1..1)
+      const screenX = (v.x + 1) / 2 // convert to 0..1 screen
+      return screenX < 0.15         // left 40% = avoid
+    }
 
-  for (let i = 0; i < count; i++) {
-    let pos
-    let tries = 0
-    const spread = (range, power = 1.0) => {
-      // power > 1 biases toward center; power < 1 biases toward edges
+    // --------------------------------------------------
+    // 3) HELPER TO SPREAD HEXES NICELY
+    // --------------------------------------------------
+    const spread = (range, power = 0.9) => {
       const r = (Math.random() * 2 - 1)
       return Math.sign(r) * Math.pow(Math.abs(r), power) * range
     }
 
-    do {
-      const x = spread(5.5, 0.9)  // a bit edge-friendly
-      const y = spread(4.8, 0.85) // helps fill top/bottom
-      const z = -1.5 - Math.random() * 4
-      pos = [x, y, z]
-      tries++
-    } while (tries < maxTries && inAvoid(pos[0], pos[1], pos[2]))
+    // --------------------------------------------------
+    // 4) GENERATE POSITIONS
+    // --------------------------------------------------
+    for (let i = 0; i < count; i++) {
+      let pos
+      let tries = 0
 
-    out.push({
-      position: pos,
-      rotation: [Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI],
-      scale: 0.30 + Math.random() * 0.55,
-      spin: (Math.random() * 0.6 + 0.15) * (Math.random() < 0.5 ? -1 : 1),
-      bob: 0.4 + Math.random() * 0.9,
-      bobOffset: Math.random() * Math.PI * 2,
-    })
-  }
+      do {
+        const x = spread(6.2, 0.9)
+        const y = spread(6.2, 0.85)  // fills top/bottom
+        const z = -1.5 - Math.random() * 4
+        pos = [x, y, z]
+        tries++
+      }
+      while (tries < maxTries && inAvoidScreenLeft(pos[0], pos[1], pos[2]))
 
-  return out
-}, [])
+      out.push({
+        position: pos,
+        rotation: [
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI
+        ],
+        scale: 0.30 + Math.random() * 0.55,
+        spin: (Math.random() * 0.6 + 0.15) * (Math.random() < 0.5 ? -1 : 1),
+        bob: 0.4 + Math.random() * 0.9,
+        bobOffset: Math.random() * Math.PI * 2,
+      })
+    }
+
+    return out
+  }, [])
 
 
   // --- render loop ---
@@ -116,7 +132,9 @@ export default function Experience() {
       const d = hexData[i]
       h.rotation.y += delta * d.spin
       h.rotation.x += delta * d.spin * 0.35
-      h.position.y = d.position[1] + Math.sin(t * 0.8 + d.bobOffset) * 0.15 * d.bob
+      const baseY = d.position[1]
+      const bobY = Math.sin(t * 0.8 + d.bobOffset) * 0.15 * d.bob
+      h.position.y = THREE.MathUtils.clamp(baseY + bobY, -7.5, 7.5)
     }
 
     // title fade based on scroll progress
@@ -142,11 +160,10 @@ export default function Experience() {
     <>
       <OrbitControls
         makeDefault
-        minDistance={6}
         enablePan={false}
         enableZoom={false}
         enableRotate={false}
-        enableDamping={false}
+        enabled={false}
       />
 
       <Center>
