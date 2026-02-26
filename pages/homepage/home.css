@@ -5,11 +5,7 @@ html, body {
   overflow: hidden;
 }
 
-/* ====== R3F BACKGROUND LAYER ======
-   IMPORTANT:
-   - This assumes your <Canvas> has id="r3f-canvas"
-   - We no longer treat #root as the background layer
-*/
+/* ====== R3F BACKGROUND LAYER ====== */
 #r3f-canvas {
   position: fixed;
   inset: 0;
@@ -91,13 +87,13 @@ html, body {
 #about { background: transparent }
 
 #spec {
-  background: transparent
+  background: transparent;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
 #dft {
-  background: transparent
+  background: transparent;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
