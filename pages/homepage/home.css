@@ -26,8 +26,10 @@ html, body {
 /* Make sure the actual canvas fills the fixed layer */
 #r3f-canvas > canvas {
   display: block;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  pointer-events: none;
 }
 
 /* ====== HTML CONTENT LAYER ====== */

@@ -60,7 +60,7 @@ export default function Experience() {
     const maxTries = 30
 
     // --------------------------------------------------
-    // 1) MAKE A TEMP CAMERA THAT MATCHES YOUR REAL ONE
+    // 1) setting up camera temp that matches the real camera
     // --------------------------------------------------
     const cam = new THREE.PerspectiveCamera(42, 1, 0.1, 200)
     cam.position.set(6.5, -0.8, 9.5)
@@ -71,17 +71,17 @@ export default function Experience() {
     const v = new THREE.Vector3()
 
     // --------------------------------------------------
-    // 2) SCREEN-SPACE AVOID CHECK
-    //    (left 40% of the VIEWPORT)
+    // 2) avoid screen-space 
+    //    leaving right ~15 % vacent
     // --------------------------------------------------
     const inAvoidScreenLeft = (x, y, z) => {
       v.set(x, y, z).project(cam)   // project into NDC space (-1..1)
       const screenX = (v.x + 1) / 2 // convert to 0..1 screen
-      return screenX < 0.15         // left 40% = avoid
+      return screenX < 0.15         // left 15% = avoid
     }
 
     // --------------------------------------------------
-    // 3) HELPER TO SPREAD HEXES NICELY
+    // 3) spreading the hexes
     // --------------------------------------------------
     const spread = (range, power = 0.9) => {
       const r = (Math.random() * 2 - 1)
@@ -89,7 +89,7 @@ export default function Experience() {
     }
 
     // --------------------------------------------------
-    // 4) GENERATE POSITIONS
+    // 4) generating hexes positions
     // --------------------------------------------------
     for (let i = 0; i < count; i++) {
       let pos
@@ -97,7 +97,7 @@ export default function Experience() {
 
       do {
         const x = spread(6.2, 0.9)
-        const y = spread(6.2, 0.85)  // fills top/bottom
+        const y = spread(6.2, 0.85)  // filling top to bottom
         const z = -1.5 - Math.random() * 4
         pos = [x, y, z]
         tries++
@@ -125,6 +125,9 @@ export default function Experience() {
   // --- render loop ---
   useFrame((state, delta) => {
     // hex motion
+    anchor.current.position.copy(camera.position)
+    anchor.current.quaternion.copy(camera.quaternion)
+    
     const t = state.clock.elapsedTime
     for (let i = 0; i < hexes.current.length; i++) {
       const h = hexes.current[i]
@@ -200,17 +203,21 @@ export default function Experience() {
         </group>
       </Center>
 
-      {hexData.map((d, i) => (
-        <mesh
-          key={i}
-          ref={(el) => (hexes.current[i] = el)}
-          geometry={hexGeometry}
-          material={materialHex}
-          position={d.position}
-          rotation={d.rotation}
-          scale={d.scale}
-        />
-      ))}
+      {/* HEX FIELD */}
+      <group ref={anchor}>
+        {hexData.map((d, i) => (
+          <mesh
+            key={i}
+            ref={(el) => (hexes.current[i] = el)}
+            geometry={hexGeometry}
+            material={materialHex}
+            position={d.position}
+            rotation={d.rotation}
+            scale={d.scale}
+          />
+        ))}
+      </group>
+
     </>
   )
 }
