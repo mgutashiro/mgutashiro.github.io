@@ -1,4 +1,5 @@
 import { Suspense, useMemo } from 'react';
+import { resolveVisualComponent } from '../visuals/registry/visualFallbacks';
 import { visualRegistry } from '../visuals/registry/visualRegistry';
 
 export default function SpecVisualPanel({
@@ -12,7 +13,12 @@ export default function SpecVisualPanel({
     return `${mode}:${sectionId}:${panelId}`;
   }, [mode, sectionId, panel]);
 
-  const VisualComponent = visualRegistry[visualId];
+  const VisualComponent = resolveVisualComponent({
+    registry: visualRegistry,
+    sectionId,
+    panelId: panel?.id,
+    mode,
+  });
 
   return (
     <aside className="specVisualPanel">
