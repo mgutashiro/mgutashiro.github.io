@@ -1,52 +1,63 @@
-/* Smooth anchor scrolling (safe with snap; snap still wins for big sections) */
+/* base / document rules */
+/* set global behavior + prevent browser defaults */
 html { scroll-behavior: smooth; }
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%; 
+  margin: 0;
+}
 
 body {
-  margin: 0;
-  overflow-x: hidden;
 
   font-family: var(--font-body);
   font-weight: var(--w-regular);
 
   background: var(--bg);
   color: var(--text);
+  overflow-x: hidden;
 }
 
+/* Setting Typography elements */
 /* Headings */
 h1, h2, h3 {
-  font-family: var(--font-heading);
-  font-weight: var(--w-black);
+  font-family: var(--font-mystique);
   margin: 0;
 }
 
 /* Typography overrides */
 h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-weight: var(--w-black);
   letter-spacing: 0.5px;
 }
 
 h2 {
-  font-family: var(--font-heading);
-  font-weight: var(--w-black);
+  font-weight: var(--w-semibold);
   letter-spacing: 0.4px;
 }
 
+h3 {
+  font-weight: var(--w-medium);
+  letter-spacing: 0.3px;
+}
+
 p {
-  font-family: var(--font-body);
-  font-weight: var(--w-regular);
   max-width: 65ch;
   line-height: 1.6;
   color: var(--text-dim);
+  white-space: pre-line;
 }
 
-/* Links */
-a { color: var(--accent-2); }
-a:hover { color: var(--accent); }
+.p.kaomiji {
+  font-family: var(--font-JP), sans-seriff;
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+  line-height: 1;
+  display: inline-block;
+  transform: translateY(0.02em);
+}
 
-/* HR */
+/* horizontal rule aka thematic break */
 hr {
   border: 0;
   border-top: 1px solid var(--border);
@@ -58,82 +69,7 @@ hr {
 .font-tech   { font-family: var(--font-tech); }
 .font-jester { font-family: var(--font-jester); }
 
-/* ==========================================================================
-   WebGL BACKGROUND LAYER
-   Editing notes:
-   - #root contains the <canvas> from r3f.
-   - It must be fixed and behind the HTML.
-   - pointer-events:none keeps HTML clickable/scrollable.
-   ========================================================================== */
-
-#root {
-  position: relative;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-
-  z-index: 0;
-  /* pointer-events: auto; */
-
-  /* Helps minimizes GPU/compositing flicker */
-  transform: translateZ(0);
-}
-
-#root canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* ==========================================================================
-   PAGE LAYER 
-   - #page-home is the scroll-snap container.
-   - must sit above the canvas (z-index:1).
-   ========================================================================== */
-
-#page-home {
-  position: relative;
-  z-index: 1;
-
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-
-  /* Prevent weird stacking-context surprises */
-  isolation: isolate;
-}
-
-/* sections must be transparent so 3D is visible behind */
-#page-home > section {
-  min-height: 100vh;
-  scroll-snap-align: start;
-
-  padding: 5rem 3.5rem;
-  box-sizing: border-box;
-
-  display: grid;
-  align-content: center;
-  gap: 1rem;
-
-  /* do not paint over the canvas */
-  background: transparent;
-}
-
-/* Keep section direct text above any internal decorative layers */
-#page-home > section > h1,
-#page-home > section > h2,
-#page-home > section > p,
-#page-home > section > a {
-  position: relative;
-  z-index: 2;
-}
-
-/* ==========================================================================
-   SURFACES / PANELS
-   - Use these inside a section to create readable blocks.
-   - Do NOT set section backgrounds anymore (they would cover the canvas).
-   ========================================================================== */
-
+/* UI Surfaces Primitives(reusable design components) */
 .surface {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -146,79 +82,46 @@ hr {
   border-radius: var(--radius-2);
 }
 
-/* Glass / frosted panel (recommended for intro text) */
-.panel {
-  max-width: 900px;
-  width: 100%;
-
-  background: color-mix(in oklab, var(--bg) 70%, transparent);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-2);
-
-  padding: 2rem;
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-/* Optional stronger panel for busy backgrounds */
 .panel--solid {
   background: color-mix(in oklab, var(--bg) 88%, transparent);
 }
 
-/* ==========================================================================
-   BUTTONS
-   ========================================================================== */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid var(--border-strong);
-  background: color-mix(in oklab, var(--primary) 40%, var(--bg));
-  color: var(--text);
-
-  border-radius: var(--radius-1);
-  padding: 0.65rem 1rem;
-  text-decoration: none;
-  gap: 0.5rem;
+/* WebGL / Canvas Layering (site infrastructure) + UI on top */
+/* React mount container: keep simple */
+#root {
+  min-height: 100vh;
 }
 
-.btn--neon {
-  border-color: color-mix(in oklab, var(--accent-2) 55%, var(--bg));
-  box-shadow: var(--glow-cyan);
+/* the R3F canvas wrapper */
+#webgl {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* Badges */
-.badge--metal {
-  background: color-mix(in oklab, var(--metal) 22%, var(--bg));
-  border: 1px solid color-mix(in oklab, var(--metal) 45%, var(--bg));
-  color: var(--text);
-  border-radius: 999px;
-  padding: 0.25rem 0.6rem;
+#webgl canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
-/* ==========================================================================
-   SECTION-SPECIFIC LAYOUT (structure, not backgrounds)
-   - Keeping the intro grid layout here.
-   - If you want "elevator gradient" or surface blocks, apply them to a .panel
-     inside the section, not the section itself.
-   ========================================================================== */
-
-#intro {
+/* UI layer (HTML sections, SVG frames, text, buttons) */
+.uiLayer {
   position: relative;
-  overflow: hidden;
-
-  display: grid;
-  grid-template-columns: 40% 60%;
-  align-items: center;
-  gap: 2rem;
+  z-index: 1;
 }
 
+.textBlock {
+  white-space: pre-line;
+}
+
+
+/* responsive overrides */
 @media (max-width: 900px) {
   #intro {
     grid-template-columns: 1fr;
-    grid-template-rows: 380px auto;
+    grid-template-rows: auto auto;
   }
 }
 

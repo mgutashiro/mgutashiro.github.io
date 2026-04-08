@@ -1,5 +1,6 @@
 import { defineConfig, transformWithEsbuild } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   base: '/',             // ✅ user site root
@@ -14,6 +15,7 @@ export default defineConfig({
         return transformWithEsbuild(code, id, { loader: 'jsx', jsx: 'automatic' })
       },
     },
+    svgr()
   ],
 
   build: {
