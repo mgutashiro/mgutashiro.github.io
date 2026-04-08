@@ -1,3 +1,10 @@
+/**
+ * Normalizes text and content blocks for rendering.
+ * Trims strings and ensures consistent structure.
+ *
+ * Helps keep spec content clean and predictable.
+ */
+
 export function normalizeTextBlock(text = '') {
   return text.trim();
 }

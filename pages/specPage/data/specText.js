@@ -1,3 +1,12 @@
+/**
+ * Main content source for all spectroscopy sections.
+ * Defines text, panels, modes, equations, and bullets.
+ *
+ * Structured for data-driven rendering across spec components.
+ *
+ * Includes helper to fetch section by id.
+ */
+
 export const spectroscopyText = [
   {
     id: 'what-is-spectroscopy',

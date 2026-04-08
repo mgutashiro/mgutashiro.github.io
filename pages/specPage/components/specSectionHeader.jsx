@@ -1,3 +1,10 @@
+/**
+ * Displays section title (label + hook).
+ * Optionally includes mode toggle (friends / colleague).
+ *
+ * Keeps header layout consistent across sections.
+ */
+
 import SpecModeToggle from './specModeToggle';
 
 export default function SpecSectionHeader({ label, hook, mode, onModeChange, showToggle = true }) {

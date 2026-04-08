@@ -1,3 +1,10 @@
+/**
+ * Maps section + panel → visual components (lazy-loaded).
+ * Organized by mode (friends / colleague).
+ *
+ * Used to dynamically load visuals for each panel.
+ */
+
 import { lazy } from 'react';
 
 const shared = (loader) => ({

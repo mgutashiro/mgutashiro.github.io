@@ -1,3 +1,8 @@
+/**
+ * Manages current explanation mode (friends / colleague).
+ * Provides mode state and setter for toggling.
+ */
+
 import { useState } from 'react';
 import { defaultMode } from '../data/specModes';
 

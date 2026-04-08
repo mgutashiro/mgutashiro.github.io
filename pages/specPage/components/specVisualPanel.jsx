@@ -1,3 +1,11 @@
+/**
+ * Renders the visual companion for each section panel.
+ * Dynamically resolves visuals from registry (mode + section + panel).
+ *
+ * Uses Suspense for lazy loading.
+ * Falls back to loading or placeholder if no visual exists.
+ */
+
 import { Suspense, useMemo } from 'react';
 import { resolveVisualComponent } from '../visuals/registry/visualFallbacks';
 import { visualRegistry } from '../visuals/registry/visualRegistry';

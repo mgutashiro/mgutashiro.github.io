@@ -1,3 +1,13 @@
+/**
+ * Core section layout for spec page.
+ * - Renders header, text panel, and visual panel
+ * - Supports mode switching (friends / colleague)
+ * - Handles multi-panel navigation (next, back, dots)
+ *
+ * Resets panel index on section or mode change.
+ * Optionally includes a demo link at the bottom.
+ */
+
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SpecSectionHeader from './SpecSectionHeader';

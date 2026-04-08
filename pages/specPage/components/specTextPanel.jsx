@@ -1,3 +1,11 @@
+/**
+ * Renders text content for a section panel.
+ * Supports paragraphs, equations (KaTeX), and bullet lists.
+ *
+ * Handles both string and structured content (blocks).
+ * Uses normalization helpers for consistent rendering.
+ */
+
 import EquationBlock from './EquationBlock';
 import BulletList from './BulletList';
 import {

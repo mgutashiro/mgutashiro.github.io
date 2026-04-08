@@ -1,3 +1,11 @@
+/**
+ * Defines visual configurations for each spectroscopy section.
+ * Maps section → visual type, parts, and metadata.
+ *
+ * Used to drive visual rendering and instrument layouts.
+ * Includes helper to fetch config by section id.
+ */
+
 export const spectroscopyVisuals = {
   landing: {
     kind: 'hero',

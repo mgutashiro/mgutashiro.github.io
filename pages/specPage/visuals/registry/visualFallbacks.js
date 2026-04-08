@@ -1,3 +1,10 @@
+/**
+ * Resolves visual component from registry.
+ * Matches by section + panel + mode.
+ *
+ * Includes fallback logic between modes if exact match is missing.
+ */
+
 export function resolveVisualComponent({
   registry,
   sectionId,
