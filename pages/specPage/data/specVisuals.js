@@ -16,8 +16,13 @@ export const spectroscopyVisuals = {
   'what-is-spectroscopy': {
     kind: 'concept',
     title: 'What Is Spectroscopy',
-    visualType: 'placeholder',
-    parts: []
+    parts: [
+      {
+        id: 'quantized-light',
+        heading: 'Quantized Interaction',
+        visualKey: 'quantized-light',
+      },
+    ]
   },
 
   'what-all-instruments-have-in-common': {

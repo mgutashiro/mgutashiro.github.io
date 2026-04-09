@@ -62,15 +62,17 @@
 .specSectionHook {
     font-family: var(--font-heading);
     font-weight: var(--w-medium);
-    font-size: clamp(1.85rem, 2.2vw, 2.45rem);
-    line-height: 1.06;
-    letter-spacing: 0.06em;
+    font-size: clamp(1.9rem, 2.4vw, 2.9rem);
+    line-height: 1.08;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: color-mix(in oklab, var(--text) 78%, var(--accent) 22%);
     opacity: 0.95;
-    max-width: 14ch;
+
+    max-width: 28ch;
     min-width: 0;
-    flex: 1 1 auto;
+    flex: 1 1 760px;
+    text-wrap: balance;
 }
 
 .specSectionBody {
@@ -102,13 +104,15 @@
 }
 
 .specPanelHeading {
-    font-size: clamp(2.2rem, 3vw, 2.9rem);
-    line-height: 1.08;
+    font-size: clamp(2.5rem, 3.1vw, 3.5rem);
+    line-height: 1.16;
     font-family: var(--font-display);
-    letter-spacing: 0.01em;
+    letter-spacing: 0.04em;
     color: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
     text-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-2), transparent 70%);
-    max-width: 12ch;
+
+    max-width: 20ch;
+    text-wrap: balance;
 }
 
 
@@ -350,13 +354,21 @@
         padding: 4.5rem 0;
     }
 
-    .specPanelHeading {
-        font-size: clamp(3.8rem, 7.5vw, 6.4rem);
-        line-height: 1.02;
-        font-family: var(--font-display);
-        letter-spacing: 0.01em;
-        color: var(--c-ink);
-        text-shadow: 0 0 20px color-mix(in oklab, var(--c-glow-2), transparent 70%);
+     .specPanelHeading {
+        font-size: clamp(2.2rem, 8vw, 3.2rem);
+        line-height: 1.12;
+        letter-spacing: 0.035em;
+        color: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
+        text-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-2), transparent 70%);
+        max-width: 14ch;
+    }
+
+    .specSectionHook {
+        font-size: clamp(1.5rem, 6.5vw, 2.2rem);
+        line-height: 1.08;
+        letter-spacing: 0.1em;
+        max-width: 16ch;
+        flex: 1 1 auto;
     }
 
     .specParagraph {

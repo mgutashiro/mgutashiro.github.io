@@ -1,0 +1,127 @@
+.qiSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.qiSideLabel,
+.qiEnergyLabel,
+.qiFrequencyLabel {
+  font-family: var(--font-tech);
+  fill: color-mix(in oklab, var(--text) 74%, var(--accent) 26%);
+  font-size: 16px;
+}
+
+.qiSideLabel {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.qiEnergyLabel {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+
+
+.qiLevel {
+  stroke: color-mix(in oklab, var(--text) 48%, transparent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.qiField {
+  fill: none;
+  stroke: var(--c-glow-3);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.96;
+}
+
+
+.qiElectron {
+  fill: color-mix(in oklab, var(--text) 68%, var(--c-glow-1) 32%);
+  animation: qiElectronCycle 4.6s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.qiEmissionDot {
+  fill: color-mix(in oklab, var(--text) 92%, var(--c-glow-1) 8%);
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 4px color-mix(in oklab, var(--text) 38%, transparent))
+    drop-shadow(0 0 10px color-mix(in oklab, var(--c-glow-1) 22%, transparent));
+}
+
+.qiVisual .visualCaption {
+  color: color-mix(in oklab, var(--text) 55%, transparent);
+  font-size: 16px;
+  opacity: 1;
+}
+
+@keyframes qiElectronCycle { 
+  0% { 
+    transform: translateY(0px) scale(1); 
+    opacity: 0.95; 
+    filter: none; 
+  } 
+  14% { 
+    transform: translateY(0px) scale(1); 
+    opacity: 0.95; 
+    filter: none; 
+  } 
+  30% { 
+    transform: translateY(-128px) scale(1.02); 
+    opacity: 0.9; 
+    filter: none; 
+  } 
+  42% { 
+    transform: translateY(-128px) scale(1.03); 
+    opacity: 0.92; 
+    filter: none; 
+  } 
+  52% { 
+    transform: translateY(-58px) scale(1.06); 
+    opacity: 1; 
+    filter: drop-shadow( 
+      0 0 8px color-mix(in oklab, var(--c-glow-1) 68%, 
+      transparent) 
+    ); 
+  } 
+  62% { 
+    transform: translateY(-42px) scale(1.09); 
+    opacity: 1; 
+    filter: drop-shadow( 
+      0 0 10px color-mix(in oklab, var(--c-glow-1) 72%, transparent) 
+    ); 
+  } 
+  72% { 
+    transform: translateY(-24px) scale(1.11); 
+    opacity: 1; 
+    filter: drop-shadow( 
+      0 0 12px color-mix(in oklab, var(--c-glow-1) 76%, transparent) 
+    ); 
+  } 
+  82% { 
+    transform: translateY(-8px) scale(1.09); 
+    opacity: 1; 
+    filter: drop-shadow( 
+      0 0 10px color-mix(in oklab, var(--c-glow-1) 72%, transparent) 
+    ); 
+  } 
+  90% { 
+    transform: translateY(0px) scale(1.05); 
+    opacity: 1; 
+    filter: drop-shadow( 
+      0 0 8px color-mix(in oklab, var(--c-glow-1) 66%, transparent) 
+    ); 
+  } 
+  100% { 
+    transform: translateY(0px) scale(1); opacity: 0.95; 
+    filter: none; 
+  } 
+}

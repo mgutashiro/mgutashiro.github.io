@@ -9,10 +9,9 @@
  */
 
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import SpecSectionHeader from './SpecSectionHeader';
 import SpecTextPanel from './SpecTextPanel';
-import SpecVisualPanel from './SpecVisualPanel';
+import SpecVisualPanel from './specVisualPanel';
 
 
 export default function SpecSection({
@@ -20,6 +19,7 @@ export default function SpecSection({
   mode,
   setMode,
   showToggle = true,
+  // isActiveSection = false,
 }) {
   const content = section?.modes?.[mode];
   const panels = useMemo(() => content?.panels ?? [], [content]);
@@ -147,7 +147,7 @@ export default function SpecSection({
       {hasDemo && (
         <footer className="specSectionBottom">
           <a
-            to={demoHref}
+            href={demoHref}
             className="demoLink"
             aria-label={demoLabel}
           >

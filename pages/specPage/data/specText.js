@@ -25,7 +25,7 @@ export const spectroscopyText = [
           {
             id: `interaction`,
             heading: `When light touches matter`,
-            body: `When it touches matter, even something as small as a molecule, it doesn’t leave things untouched; energy is exchanged, motion begins, and something shifts, even if we can’t see it with our eyes.`,
+            body: `When light touches matter, even something as small as a molecule, it doesn’t leave things untouched; energy is exchanged, motion begins, and something shifts, even if we can’t see it with our eyes.`,
             visualKey: 'interaction'
           },
           {

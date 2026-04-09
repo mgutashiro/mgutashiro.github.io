@@ -1,0 +1,532 @@
+.interactionVisualShell {
+    --scene-h: clamp(250px, 34vw, 330px);
+    --matter-size: clamp(132px, 24vw, 184px);
+    --cycle: 5.2s;
+    --beam-thickness: 3px;
+    --beam-soft: color-mix(in oklab, var(--c-glow-1) 36%, transparent);
+    --beam-bright: color-mix(in oklab, var(--c-glow-1) 80%, white 20%);
+    --sphere-edge: color-mix(in oklab, var(--c-glow-2) 42%, white 12%);
+    --sphere-fill: color-mix(in oklab, var(--c-primary-2) 54%, var(--c-ink) 46%);
+}
+
+.interactionCard {
+    position: relative;
+    min-height: var(--scene-h);
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+    background:
+        radial-gradient(circle at 18% 30%, color-mix(in oklab, var(--c-glow-1) 12%, transparent), transparent 34%),
+        radial-gradient(circle at 78% 52%, color-mix(in oklab, var(--c-glow-2) 10%, transparent), transparent 40%),
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--c-ink) 86%, var(--c-primary-2) 14%),
+            color-mix(in oklab, var(--c-shadow) 82%, var(--c-ink) 18%)
+        );
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, white 5%, transparent),
+        0 18px 34px rgba(0, 0, 0, 0.24);
+    padding: clamp(1.1rem, 2.6vw, 1.6rem);
+}
+
+.interactionCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            color-mix(in oklab, white 4%, transparent) 50%,
+            transparent 100%
+        );
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.interactionAmbient {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(14px);
+    opacity: 0.36;
+    pointer-events: none;
+}
+
+.interactionAmbient--one {
+    width: 140px;
+    height: 140px;
+    left: 5%;
+    top: 12%;
+    background: color-mix(in oklab, var(--c-glow-1) 24%, transparent);
+    animation: interactionAmbientFloatA 8s ease-in-out infinite;
+}
+
+.interactionAmbient--two {
+    width: 110px;
+    height: 110px;
+    right: 8%;
+    bottom: 10%;
+    background: color-mix(in oklab, var(--c-glow-2) 20%, transparent);
+    animation: interactionAmbientFloatB 9s ease-in-out infinite;
+}
+
+.interactionStage {
+    position: relative;
+    z-index: 1;
+    min-height: calc(var(--scene-h) - 52px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--matter-size);
+    align-items: center;
+    gap: 0;
+}
+
+.interactionBeamZone {
+    position: relative;
+    min-height: 126px;
+    margin-right: calc(var(--matter-size) * -0.42);
+    z-index: 1;
+}
+
+.interactionBeamLine--base {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, var(--beam-soft) 80%, white 20%) 18%,
+        color-mix(in oklab, var(--beam-soft) 100%, white 0%) 70%,
+        transparent 100%
+    );
+    opacity: 0.8;
+}
+
+.interactionBeamLine--glow {
+    height: var(--beam-thickness);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, var(--beam-bright) 44%, transparent) 18%,
+        color-mix(in oklab, var(--beam-bright) 84%, white 16%) 72%,
+        transparent 100%
+    );
+    filter: blur(6px);
+    opacity: 0.82;
+    animation: beamHum var(--cycle) ease-in-out infinite;
+}
+
+
+.interactionPhoton {
+  position: absolute;
+  top: 50%;
+  left: -8%;
+  z-index: 1;
+  width: clamp(82px, 14vw, 120px);
+  height: 6px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--c-glow-1) 30%, transparent) 18%,
+    color-mix(in oklab, var(--c-glow-1) 78%, white 22%) 58%,
+    white 76%,
+    transparent 100%
+  );
+  filter:
+    blur(1.5px)
+    drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 42%, transparent))
+    drop-shadow(0 0 16px color-mix(in oklab, var(--c-glow-1) 18%, transparent));
+  opacity: 0;
+  animation: photonTravel var(--cycle) cubic-bezier(0.32, 0.08, 0.22, 0.98) infinite;
+}
+
+.interactionBeamLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  border-radius: 999px;
+}
+
+.interactionMatter {
+    position: relative;
+    width: var(--matter-size);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    z-index: 3;
+    animation: sphereFloat 7s ease-in-out infinite;
+}
+
+.interactionAura,
+.interactionRipple,
+.interactionSphere {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.interactionAura {
+  position: absolute;
+  inset: -12%;
+  z-index: 4;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--c-glow-2) 14%, transparent) 0%,
+      color-mix(in oklab, var(--c-glow-1) 10%, transparent) 35%,
+      transparent 72%
+    );
+  filter: blur(12px);
+  opacity: 0.28;
+  animation: auraPulse var(--cycle) ease-in-out infinite;
+}
+
+.interactionRipple {
+  position: absolute;
+  inset: -8%;
+  z-index: 5;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--c-glow-1) 32%, transparent);
+  opacity: 0;
+}
+
+.interactionRipple--1 {
+    animation: rippleExpand var(--cycle) ease-out infinite;
+}
+
+.interactionRipple--2 {
+    animation: rippleExpand var(--cycle) ease-out infinite 0.22s;
+}
+
+.interactionRipple--3 {
+    animation: rippleExpand var(--cycle) ease-out infinite 0.44s;
+}
+
+.interactionSphere {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, var(--sphere-edge) 70%, transparent);
+    background:
+        radial-gradient(circle at 34% 30%, color-mix(in oklab, white 16%, transparent), transparent 20%),
+        radial-gradient(
+        circle at 50% 45%,
+        color-mix(in oklab, var(--sphere-fill) 82%, var(--c-ink) 18%),
+        color-mix(in oklab, var(--c-primary-2) 58%, var(--c-shadow) 42%) 68%,
+        var(--c-shadow) 100%
+        );
+    box-shadow:
+        inset 0 0 24px color-mix(in oklab, var(--c-glow-2) 14%, transparent),
+        inset 0 -12px 26px rgba(0, 0, 0, 0.2),
+        0 0 22px color-mix(in oklab, var(--c-glow-2) 10%, transparent);
+    transform-origin: center;
+    animation:
+        spherePulse var(--cycle) cubic-bezier(0.22, 0.78, 0.2, 1) infinite,
+        sphereFlash var(--cycle) cubic-bezier(0.22, 0.78, 0.2, 1) infinite;
+}
+
+
+.interactionSphereHighlight {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.28), transparent 18%),
+        radial-gradient(circle at 44% 40%, rgba(255, 255, 255, 0.08), transparent 24%);
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.interactionCaption {
+    position: relative;
+    z-index: 1;
+    margin: 0.6rem 0 0;
+    max-width: 52ch;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: color-mix(in oklab, var(--text) 84%, var(--c-glow-1) 16%);
+    opacity: 0.9;
+}
+
+/* animations */
+
+@keyframes beamHum {
+    0%, 100% {
+        opacity: 0.58;
+        filter: blur(6px);
+    }
+    30% {
+        opacity: 0.85;
+        filter: blur(7px);
+    }
+    48% {
+        opacity: 1;
+        filter: blur(8px);
+    }
+}
+
+@keyframes photonTravel {
+    0%, 10% {
+        left: -1%;
+        opacity: 0;
+    }
+
+    14% {
+        opacity: 1;
+    }
+
+    18% {
+        left: 0%;
+        opacity: 0.95;
+    }
+
+    45% {
+        left: calc(100% - 34px);
+        opacity: 1;
+    }
+
+    50% {
+        left: calc(100% - 8px);
+        opacity: 0.25;
+    }
+
+    54%, 100% {
+        left: calc(100% - 8px);
+        opacity: 0;
+    }
+}
+
+@keyframes impactBloom {
+    0%, 42% {
+        opacity: 0;
+        transform: translate(22%, -50%) scale(0.18);
+    }
+
+    48% {
+        opacity: 1;
+        transform: translate(22%, -50%) scale(1);
+    }
+
+    58% {
+        opacity: 0.54;
+        transform: translate(22%, -50%) scale(1.45);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(22%, -50%) scale(1.8);
+    }
+}
+
+@keyframes auraPulse {
+    0%, 42% {
+        opacity: 0.16;
+        transform: scale(0.96);
+    }
+
+    49% {
+        opacity: 0.28;
+        transform: scale(1.01);
+    }
+
+    55% {
+        opacity: 0.46;
+        transform: scale(1.06);
+    }
+
+    64% {
+        opacity: 0.26;
+        transform: scale(1.1);
+    }
+
+    74%, 100% {
+        opacity: 0.16;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes rippleExpand {
+    0%, 44% {
+        opacity: 0;
+        transform: scale(0.82);
+    }
+
+    52% {
+        opacity: 0.42;
+        transform: scale(0.98);
+    }
+
+    64% {
+        opacity: 0.18;
+        transform: scale(1.2);
+    }
+
+    82%, 100% {
+        opacity: 0;
+        transform: scale(1.42);
+    }
+}
+
+@keyframes sphereFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes sphereCoreWake {
+    0%, 38% {
+        opacity: 0.22;
+        transform: scale(0.92);
+    }
+
+    50% {
+        opacity: 0.72;
+        transform: scale(1.1);
+    }
+
+    65% {
+        opacity: 0.44;
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 0.26;
+        transform: scale(0.96);
+    }
+}
+
+@keyframes interactionAmbientFloatA {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(8px, -6px, 0);
+    }
+}
+
+@keyframes interactionAmbientFloatB {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(-10px, 8px, 0);
+    }
+}
+
+@keyframes sphereFlash {
+    0%, 42% {
+        box-shadow:
+        inset 0 0 24px color-mix(in oklab, var(--c-glow-2) 14%, transparent),
+        inset 0 -12px 26px rgba(0, 0, 0, 0.2),
+        0 0 22px color-mix(in oklab, var(--c-glow-2) 10%, transparent);
+        filter: brightness(1);
+    }
+
+    48% {
+        box-shadow:
+        inset 0 0 32px color-mix(in oklab, var(--c-glow-1) 20%, transparent),
+        inset 0 0 46px color-mix(in oklab, var(--c-glow-2) 16%, transparent),
+        0 0 28px color-mix(in oklab, var(--c-glow-1) 14%, transparent);
+        filter: brightness(1.04);
+    }
+
+    54% {
+        box-shadow:
+        inset 0 0 38px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
+        inset 0 0 56px color-mix(in oklab, var(--c-glow-2) 20%, transparent),
+        0 0 34px color-mix(in oklab, var(--c-glow-1) 18%, transparent);
+        filter: brightness(1.08);
+    }
+
+    62% {
+        box-shadow:
+        inset 0 0 28px color-mix(in oklab, var(--c-glow-2) 16%, transparent),
+        inset 0 -12px 26px rgba(0, 0, 0, 0.2),
+        0 0 24px color-mix(in oklab, var(--c-glow-2) 12%, transparent);
+        filter: brightness(1.03);
+    }
+
+    72%, 100% {
+        box-shadow:
+        inset 0 0 24px color-mix(in oklab, var(--c-glow-2) 14%, transparent),
+        inset 0 -12px 26px rgba(0, 0, 0, 0.2),
+        0 0 22px color-mix(in oklab, var(--c-glow-2) 10%, transparent);
+        filter: brightness(1);
+    }
+}
+
+@keyframes spherePulse {
+  0%, 42% {
+    transform: scale(1);
+  }
+
+  46% {
+    transform: scale(0.985);
+  }
+
+  54% {
+    transform: scale(1.12);
+  }
+
+  60% {
+    transform: scale(1.145);
+  }
+
+  68% {
+    transform: scale(1.06);
+  }
+
+  78%, 100% {
+    transform: scale(1);
+  }
+}
+
+/* responsive */
+@media (max-width: 700px) {
+    .interactionStage {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 1.2rem;
+    }
+
+    .interactionBeamZone {
+        width: 100%;
+        min-height: 94px;
+    }
+
+    .interactionMatter {
+        width: clamp(124px, 38vw, 170px);
+    }
+
+    .interactionCaption {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .interactionAmbient,
+    .interactionBeamLine--glow,
+    .interactionPhoton,
+    .interactionAura,
+    .interactionRipple,
+    .interactionSphere,
+    .interactionMote {
+        animation: none !important;
+    }
+
+    .interactionPhoton,
+    .interactionRipple {
+        opacity: 0.75;
+    }
+}

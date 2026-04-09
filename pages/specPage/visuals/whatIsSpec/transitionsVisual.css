@@ -1,0 +1,560 @@
+.transitionsVisual {
+    --level-f: 30%;
+    --level-i: 54%;
+    --level-ghost: 78%;
+
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    border-radius: 26px;
+    border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    background:
+        radial-gradient(circle at 64% 42%, color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%, transparent 36%),
+        radial-gradient(circle at 22% 70%, color-mix(in oklab, var(--c-glow-1) 10%, transparent) 0%, transparent 28%),
+        linear-gradient(180deg, color-mix(in oklab, white 3%, transparent), transparent 34%),
+        color-mix(in oklab, var(--c-ink) 93%, black 7%);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, white 3%, transparent),
+        inset 0 -24px 40px color-mix(in oklab, black 22%, transparent);
+}
+
+.tvAmbientGlow,
+.tvScanline,
+.tvEventSvg,
+.tvLadder,
+.tvBadge,
+.tvOperator {
+    position: absolute;
+}
+
+.tvAmbientGlow {
+    inset: 0;
+    background:
+        radial-gradient(circle at 52% 50%, color-mix(in oklab, var(--c-glow-2) 16%, transparent) 0%, transparent 20%),
+        radial-gradient(circle at 56% 56%, color-mix(in oklab, var(--c-glow-1) 12%, transparent) 0%, transparent 22%);
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+.tvScanline {
+    inset: 0;
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            color-mix(in oklab, white 4%, transparent) 50%,
+            transparent 100%
+        );
+    background-size: 100% 7px;
+    opacity: 0.12;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.tvLadder {
+    inset: 0;
+    pointer-events: none;
+}
+
+.tvLevel {
+    position: absolute;
+    left: 7%;
+    width: 29%;
+    top: var(--level-y);
+    transform: translateY(-50%);
+    border-top: 1px solid color-mix(in oklab, var(--text) 32%, transparent);
+    opacity: 0.24;
+}
+
+.tvLevel::after {
+    content: '';
+    position: absolute;
+    inset: -7px -4px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, var(--c-glow-2) 65%, white 35%) 55%,
+        transparent 100%
+    );
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.tvLevelLabel {
+    position: absolute;
+    right: -1.15rem;
+    top: 50%;
+    transform: translate(100%, -50%);
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--text) 74%, var(--c-glow-1) 26%);
+    white-space: nowrap;
+}
+
+.tvLevel--ghost {
+    opacity: 0.12;
+}
+
+.tvPopulation {
+    position: absolute;
+    left: 31%;
+    top: var(--level-i);
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: color-mix(in oklab, white 88%, var(--c-glow-1) 12%);
+    box-shadow:
+        0 0 0 5px color-mix(in oklab, var(--c-glow-1) 16%, transparent),
+        0 0 18px color-mix(in oklab, var(--c-glow-1) 50%, transparent);
+    transition:
+        top 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        background 240ms ease,
+        box-shadow 240ms ease,
+        opacity 240ms ease;
+}
+
+/* phase-based dot position */
+.transitionsVisual[data-phase='absorption'] .tvPopulation {
+    top: var(--level-f);
+    background: color-mix(in oklab, white 68%, var(--c-glow-2) 32%);
+    box-shadow:
+        0 0 0 6px color-mix(in oklab, var(--c-glow-2) 18%, transparent),
+        0 0 20px color-mix(in oklab, var(--c-glow-2) 56%, transparent);
+}
+
+.transitionsVisual[data-phase='emission'] .tvPopulation {
+    top: var(--level-i);
+    background: color-mix(in oklab, white 92%, var(--c-glow-1) 8%);
+    box-shadow:
+        0 0 0 5px color-mix(in oklab, var(--c-glow-1) 16%, transparent),
+        0 0 18px color-mix(in oklab, var(--c-glow-1) 44%, transparent);
+}
+
+.transitionsVisual[data-phase='scattering'] .tvPopulation {
+    top: var(--level-i);
+    animation: tvScatterPopulation 900ms ease-in-out both;
+}
+
+/* level emphasis */
+.transitionsVisual[data-phase='absorption'] .tvLevel--i {
+    opacity: 0.52;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvLevel--f {
+    opacity: 1;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvLevel--f::after {
+    opacity: 0.78;
+    animation: tvLineGlow 640ms ease-out both;
+}
+
+.transitionsVisual[data-phase='emission'] .tvLevel--f {
+    opacity: 0.9;
+}
+
+.transitionsVisual[data-phase='emission'] .tvLevel--i {
+    opacity: 1;
+}
+
+.transitionsVisual[data-phase='emission'] .tvLevel--i::after {
+    opacity: 0.72;
+    animation: tvLineGlow 640ms ease-out 120ms both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvLevel--i {
+    opacity: 1;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvLevel--i::after {
+    opacity: 0.62;
+    animation: tvLineGlow 760ms ease-out both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvLevel--f {
+    opacity: 0.34;
+}
+
+.tvOperator {
+    left: 45%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-tech);
+    font-size: 0.84rem;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--text) 60%, var(--c-glow-2) 40%);
+    opacity: 0.18;
+    text-shadow: 0 0 0 transparent;
+    pointer-events: none;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvOperator,
+.transitionsVisual[data-phase='emission'] .tvOperator,
+.transitionsVisual[data-phase='scattering'] .tvOperator {
+    opacity: 0.72;
+    animation: tvOperatorPulse 820ms ease-out both;
+}
+
+.tvEventSvg {
+    left: 32%;
+    right: 21%;
+    top: 12%;
+    bottom: 10%;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.tvEventGroup {
+    opacity: 0;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvEventGroup--absorption,
+.transitionsVisual[data-phase='emission'] .tvEventGroup--emission,
+.transitionsVisual[data-phase='scattering'] .tvEventGroup--scattering {
+    opacity: 1;
+}
+
+.tvPhotonTrail,
+.tvArrowStem,
+.tvArrowHead,
+.tvScatterPath {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+}
+
+.tvPhotonTrail {
+    stroke-width: 2.2;
+    stroke: color-mix(in oklab, var(--c-glow-2) 52%, var(--c-glow-1) 48%);
+}
+
+.tvArrowStem,
+.tvArrowHead {
+    stroke-width: 4;
+    stroke: color-mix(in oklab, white 54%, var(--c-glow-2) 46%);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 40%, transparent));
+}
+
+.tvScatterPath {
+    stroke-width: 2.5;
+    stroke: color-mix(in oklab, var(--c-glow-1) 55%, var(--c-glow-3) 45%);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 32%, transparent));
+}
+
+.tvPhotonOrb {
+    fill: #f5f7ff;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    filter: drop-shadow(0 0 10px color-mix(in oklab, white 40%, var(--c-glow-1) 60%));
+}
+
+.tvEventFlash,
+.tvInteractionRing,
+.tvInteractionCore {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.tvEventFlash,
+.tvInteractionRing {
+    fill: none;
+    stroke-width: 3;
+    stroke: color-mix(in oklab, white 46%, var(--c-glow-2) 54%);
+}
+
+.tvInteractionCore {
+    fill: color-mix(in oklab, white 78%, var(--c-glow-1) 22%);
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--c-glow-1) 44%, transparent));
+}
+
+/* absorption */
+.transitionsVisual[data-phase='absorption'] .tvPhotonTrail--absorption {
+    opacity: 0.95;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: tvDrawPath 420ms ease-out both;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvPhotonOrb--absorption {
+    animation: tvPhotonIn 520ms cubic-bezier(0.18, 0.88, 0.3, 1) 70ms both;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvArrowStem--up,
+.transitionsVisual[data-phase='absorption'] .tvArrowHead--up {
+    opacity: 1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: tvDrawPath 620ms cubic-bezier(0.25, 0.85, 0.3, 1) 150ms both;
+}
+
+.transitionsVisual[data-phase='absorption'] .tvEventFlash {
+    animation: tvFlash 560ms ease-out 180ms both;
+}
+
+/* emission */
+.transitionsVisual[data-phase='emission'] .tvArrowStem--down,
+.transitionsVisual[data-phase='emission'] .tvArrowHead--down {
+    opacity: 1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: tvDrawPath 620ms cubic-bezier(0.25, 0.85, 0.3, 1) both;
+}
+
+.transitionsVisual[data-phase='emission'] .tvPhotonTrail--emission {
+    opacity: 0.9;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: tvDrawPath 500ms ease-out 190ms both;
+}
+
+.transitionsVisual[data-phase='emission'] .tvPhotonOrb--emission {
+    animation: tvPhotonOut 620ms cubic-bezier(0.18, 0.88, 0.3, 1) 150ms both;
+}
+
+.transitionsVisual[data-phase='emission'] .tvEventFlash {
+    animation: tvFlash 520ms ease-out both;
+}
+
+/* scattering */
+.transitionsVisual[data-phase='scattering'] .tvPhotonTrail--scatter-in {
+    opacity: 0.95;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: tvDrawPath 380ms ease-out both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvPhotonOrb--scatter-in {
+    animation: tvPhotonScatterIn 420ms cubic-bezier(0.18, 0.88, 0.3, 1) both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvInteractionRing {
+    animation: tvRingBloom 720ms ease-out 160ms both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvInteractionCore {
+    animation: tvCorePulse 620ms ease-out 120ms both;
+}
+
+.transitionsVisual[data-phase='scattering'] .tvScatterPath {
+    opacity: 1;
+    stroke-dasharray: 170;
+    stroke-dashoffset: 170;
+    animation: tvDrawPath 640ms ease-out 220ms both;
+}
+
+.tvBadge {
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(170px, 24%);
+    padding: 0.95rem 1rem;
+    border-radius: 18px;
+    border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+    background: color-mix(in oklab, var(--c-ink) 84%, black 16%);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, white 3%, transparent),
+        0 0 22px color-mix(in oklab, var(--c-glow-2) 10%, transparent);
+    animation: tvBadgeIn 340ms ease-out both;
+}
+
+.tvBadgeLabel {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--text) 88%, var(--c-glow-2) 12%);
+}
+
+.tvBadgeSub {
+    margin-top: 0.32rem;
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--text) 58%, var(--c-glow-1) 42%);
+}
+
+/* keyframes */
+@keyframes tvDrawPath {
+    from {
+        stroke-dashoffset: 170;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes tvPhotonIn {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(0.45);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-96px) scale(1);
+    }
+}
+
+@keyframes tvPhotonOut {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(0.6);
+    }
+    16% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(100px) translateY(-4px) scale(0.95);
+    }
+}
+
+@keyframes tvPhotonScatterIn {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(0.5);
+    }
+    18% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateX(-102px) scale(0.9);
+    }
+}
+
+@keyframes tvFlash {
+    0% {
+        opacity: 0;
+        transform: scale(0.25);
+    }
+    35% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.45);
+    }
+}
+
+@keyframes tvRingBloom {
+    0% {
+        opacity: 0;
+        transform: scale(0.28);
+    }
+    35% {
+        opacity: 0.85;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+@keyframes tvCorePulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.55);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.18;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes tvScatterPopulation {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    22% {
+        transform: translate(-46%, -50%) scale(1.14);
+    }
+    48% {
+        transform: translate(-53%, -50%) scale(0.94);
+    }
+    70% {
+        transform: translate(-49%, -50%) scale(1.08);
+    }
+}
+
+@keyframes tvLineGlow {
+    0% {
+        opacity: 0;
+        transform: scaleX(0.76);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes tvOperatorPulse {
+    0% {
+        opacity: 0.16;
+        transform: translate(-50%, -50%) scale(0.98);
+        text-shadow: 0 0 0 transparent;
+    }
+    36% {
+        opacity: 0.84;
+        text-shadow: 0 0 14px color-mix(in oklab, var(--c-glow-2) 26%, transparent);
+    }
+    100% {
+        opacity: 0.72;
+        transform: translate(-50%, -50%) scale(1);
+        text-shadow: 0 0 10px color-mix(in oklab, var(--c-glow-2) 14%, transparent);
+    }
+}
+
+@keyframes tvBadgeIn {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-50% + 8px));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 900px) {
+    .tvBadge {
+        width: 140px;
+        right: 4.5%;
+        padding: 0.8rem 0.9rem;
+    }
+
+    .tvEventSvg {
+        left: 33%;
+        right: 18%;
+    }
+
+    .tvOperator {
+        left: 47%;
+        top: 40%;
+        font-size: 0.76rem;
+    }
+
+    .tvLevel {
+        width: 27%;
+    }
+}

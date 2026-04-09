@@ -5,6 +5,23 @@
  * Used to dynamically load visuals for each panel.
  */
 
+import DualNatureVisual from '../whatIsSpec/dual-natureVisual.jsx';
+import SourceVisual from '../commonFramework/sourceVisual.jsx';
+import WhiteLightSplittingVisual from '../uvvis/white-light-splittingVisual.jsx';
+import ExcitedStateVisual from '../fluorescence/excited-stateVisual.jsx';
+import HiddenMotionVisual from '../nmr/hidden-motionVisual.jsx';
+import AfterExcitationVisual from '../epr/after-excitationVisual.jsx'
+import pumpVisual from '../ultrafast/pumpVisual.jsx'
+
+import QuantizedInteractionVisual from '../whatIsSpec/quantized-lightVisual.jsx';
+import FieldStatesVisual from '../commonFramework/field-statesVisual.jsx'
+import ResonantExcitationVisual from '../uvvis/resonant-excitationVisual.jsx'
+import KashaRelaxationVisual from '../fluorescence/kasha-relaxationVisual.jsx'
+import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx'
+import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx'
+import DeltaAVisual from '../ultrafast/delta-aVisual.jsx'
+
+
 import { lazy } from 'react';
 
 const shared = (loader) => ({
@@ -15,9 +32,7 @@ const shared = (loader) => ({
 export const visualRegistry = {
     'what-is-spectroscopy': {
         'dual-nature': {
-            friends: lazy(() =>
-                import('../whatIsSpec/dual-natureVisual.jsx')
-            ),
+            friends: DualNatureVisual,
         },
 
         'interaction': {
@@ -33,9 +48,7 @@ export const visualRegistry = {
         },
 
         'quantized-light': {
-            colleague: lazy(() =>
-                import('../whatIsSpec/quantized-lightVisual.jsx')
-            ),
+            colleague: QuantizedInteractionVisual,
         },
 
         'transitions': {
@@ -53,9 +66,7 @@ export const visualRegistry = {
 
     'what-all-instruments-have-in-common': {
         'source': {
-            friends: lazy(() =>
-                import('../commonFramework/sourceVisual.jsx')
-            ),
+            friends: SourceVisual,
         },
 
         'sample': {
@@ -71,9 +82,7 @@ export const visualRegistry = {
         },
 
         'field-states': {
-            colleague: lazy(() =>
-                import('../commonFramework/field-statesVisual.jsx')
-            ),
+            colleague: FieldStatesVisual,
         },
 
         'coupling': {
@@ -92,9 +101,7 @@ export const visualRegistry = {
 
     'uv-vis': {
         'white-light-splitting': {
-            friends: lazy(() =>
-                import('../uvvis/white-light-splittingVisual.jsx')
-            ),
+            friends: WhiteLightSplittingVisual,
         },
 
         'absorption': {
@@ -116,9 +123,7 @@ export const visualRegistry = {
         },
 
         'resonant-excitation': {
-            colleague: lazy(() =>
-                import('../uvvis/resonant-excitationVisual.jsx')
-            ),
+            colleague: ResonantExcitationVisual,
         },
 
         'beer-lambert': {
@@ -136,9 +141,7 @@ export const visualRegistry = {
 
     'fluorescence': {
         'excited-state': {
-            friends: lazy(() =>
-                import('../fluorescence/excited-stateVisual.jsx')
-            ),
+            friends: ExcitedStateVisual,
         },
 
         'relaxation': {
@@ -154,13 +157,11 @@ export const visualRegistry = {
         },
 
         'kasha-relaxation': {
-            colleague: lazy(() =>
-                import('../fluorescence/kasha-relaxationVisual.jsx')
-            ),
+            colleague: KashaRelaxationVisual
         },
 
         'quantum-yield': {
-            colleagye: lazy(() =>
+            colleague: lazy(() =>
                 import('../fluorescence/quantum-yieldVisual.jsx')
             ),
         },
@@ -174,9 +175,7 @@ export const visualRegistry = {
 
     'nmr': {
         'hidden-motion': {
-            friends: lazy(() =>
-                import('../nmr/hidden-motionVisual.jsx')
-            ),
+            friends: HiddenMotionVisual
         },
 
         'alignment': {
@@ -187,7 +186,7 @@ export const visualRegistry = {
 
         'precession': {
             friends: lazy(() =>
-                import(',,.nmr/precessionVisual.jsx')
+                import('../nmr/precessionVisual.jsx')
             ),
         },
 
@@ -198,9 +197,7 @@ export const visualRegistry = {
         },
 
         'zeeman-splitting': {
-            colleague: lazy(() =>
-                import('../nmr/zeeman-splittingVisual.jsx')
-            ),
+            colleague: ZeemanSplittingVisual
         },
 
         'larmor-precession': {
@@ -218,9 +215,7 @@ export const visualRegistry = {
 
     'epr': {
         'after-excitation': {
-            friends: lazy(() =>
-                import('../epr/after-excitationVisual.jsx')
-            ),
+            friends: AfterExcitationVisual,
         },
 
         'spin-appears': {
@@ -242,9 +237,7 @@ export const visualRegistry = {
         },
 
         'spin-hamiltonian': {
-            colleague: lazy(() =>
-                import('../epr/spin-hamiltonianVisual.jsx')
-            ),
+            colleague: SpinHamiltonianVisual
         },
 
         'spin-dynamics': {
@@ -256,9 +249,7 @@ export const visualRegistry = {
 
     'ultrafast-ta': {
         'pump': {
-            friends: lazy(() =>
-                import('../ultrafast/pumpVisual.jsx')
-            ),
+            friends: pumpVisual
         },
 
         'delay': {
@@ -280,9 +271,7 @@ export const visualRegistry = {
         },
 
         'delta-a': {
-            colleague: lazy(() =>
-                import('../ultrafast/delta-aVisual.jsx')
-            ),
+            colleague: DeltaAVisual
         },
 
         'spectral-contributions': {
