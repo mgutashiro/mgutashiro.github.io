@@ -30,19 +30,12 @@ const RAW = [
         ctaLabel: "Enter the Calc",
     },
     {
-        id: "portfolio",
-        label: "Portfolio",
-        route: "/pages/portfolioPage",
+        id: "philosophy",
+        label: "Philosophy",
+        route: "/pages/VelvetRuinsPage",
         hasFrame: true,
         hasCTA: true,
-        ctaLabel: "See the Work",
-    },
-    {
-        id: "meme",
-        label: "Meme",
-        route: null,
-        hasFrame: false,
-        hasCTA: false,
+        ctaLabel: "Coming Soon!",
     },
 ]
 

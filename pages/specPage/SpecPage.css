@@ -5,52 +5,52 @@
     background: var(--c-ink);
     color: var(--text);
     font-family: var(--font-tech);
-    padding-bottom: 4rem;
 }
 
-.specLanding,
-.specSection {
+.specpageLanding,
+.specpageSection {
     width: min(1200px, 92vw);
     margin: 0 auto;
 }
 
-.specLanding {
+.specpageLanding {
     min-height: 100vh;
     display: grid;
     place-items: center;
-    padding: 6rem 0;
+    padding: 0;
 }
 
-.specLandingInner {
+.specpageLandingInner {
     max-width: 760px;
 }
 
-.specLandingTitle {
+.specpageLandingTitle {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 5rem);
     line-height: 1.05;
     margin: 0.5rem 0 1rem;
 }
 
-.specLandingBody {
+.specpageLandingBody {
     max-width: 62ch;
     line-height: 1.7;
     opacity: 0.9;
 }
 
-.specSection {
+.specpageSection {
     padding: 6rem 0;
     border-top: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
 }
 
-.specSectionHeader {
+.specpageSectionHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
-.specSectionLabel {
+.specpageSectionLabel {
     font-family: var(--font-jester);
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -59,7 +59,7 @@
     margin: 0 0 0.5rem;
 }
 
-.specSectionHook {
+.specpageSectionHook {
     font-family: var(--font-heading);
     font-weight: var(--w-medium);
     font-size: clamp(1.9rem, 2.4vw, 2.9rem);
@@ -75,68 +75,81 @@
     text-wrap: balance;
 }
 
-.specSectionBody {
+.specpageParagraph--note {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    opacity: 0.72;
+    font-style: italic;
+    margin-top: 0.35rem;
+}
+
+.specpageSectionBody {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
     gap: 2rem;
-    align-items: stretch;
+    align-items: start;
 }
 
-.specTextPanel,
-.specVisualPanel {
+.specpageTextPanel,
+.specpageVisualPanel {
     border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
     border-radius: 24px;
-    padding: 1.35rem;
+    padding: 1rem;
     background: color-mix(in oklab, var(--c-ink) 88%, var(--text) 12%);
-    min-height: 100%;
+    min-height: auto;
 }
 
-.specTextPanel {
+.specpageTextPanel {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.specVisualPanel {
+.specpageVisualPanel {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.specPanelHeading {
+.specpagePanelHeading {
     font-size: clamp(2.5rem, 3.1vw, 3.5rem);
-    line-height: 1.16;
+    line-height: 1.12;
     font-family: var(--font-display);
     letter-spacing: 0.04em;
     color: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
     text-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-2), transparent 70%);
 
-    max-width: 20ch;
-    text-wrap: balance;
+    max-width: 26ch;
+    text-wrap: pretty;
+    text-align: center;
+    text-justify: inter-word;
 }
 
 
-.specParagraph {
+.specpageParagraph {
     font-family: var(--font-tech);
     white-space: pre-line;
     line-height: 1.8;
     margin: 0 0 1rem;
-    opacity: 0.96;
+    color: color-mix(in oklab, var(--text-dim) 88%, var(--c-glow-2) 12%);
+    opacity: 0.9;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-.specParagraph:last-child {
+.specpageParagraph:last-child {
     margin-bottom: 0;
 }
 
 .equationBlock {
     font-family: var(--font-jester);
-    padding: 0.85rem 1rem;
+    padding: 0.8rem 1rem;
     border-radius: 16px;
     margin: 1rem 0;
-    background: color-mix(in oklab, var(--c-primary-2) 70%, var(--c-ink) 30%);
+    background: color-mix(in oklab, var(--c-primary-2) 70%, var(--c-shadow) 30%);
     overflow-x: auto;
     font-size: 1.25rem;
-    text-align: center;
+    text-align: justify;
 }
 
 .bulletList {
@@ -149,7 +162,7 @@
     line-height: 1.65;
 }
 
-.specModeToggle {
+.specpageModeToggle {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -157,10 +170,10 @@
     flex: 0 0 auto;
 }
 
-.specModeButton {
+.specpageModeButton {
     border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
     background: transparent;
-    color: white;
+    color: var(--text);
     border-radius: 999px;
     padding: 0.55rem 0.95rem;
     cursor: pointer;
@@ -171,29 +184,29 @@
         box-shadow 180ms ease;
 }
 
-.specModeButton:hover {
+.specpageModeButton:hover {
     transform: translateY(-1px);
     border-color: color-mix(in oklab, var(--text) 24%, transparent);
 }
 
-.specModeButton.is-active {
+.specpageModeButton.is-active {
     background: color-mix(in oklab, var(--c-glow-2) 25%, transparent);
     box-shadow: var(--glow-violet);
 }
 
-.specVisualEyebrow {
+.specpageVisualEyebrow {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.75rem;
     opacity: 0.7;
 }
 
-.specVisualParts {
+.specpageVisualParts {
     margin: 1rem 0 0;
     padding-left: 1.2rem;
 }
 
-.specVisualParts li {
+.specpageVisualParts li {
     margin-bottom: 0.5rem;
 }
 
@@ -201,28 +214,29 @@
 /* PANEL CONTROLS */
 /* -------------------------- */
 
-.specPanelControls {
+.specpagePanelControls {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    margin-top: 1.15rem;
+    margin-top: auto;
+    padding-top: 1.15rem;
 }
 
-.specPanelArrowRow {
+.specpagePanelArrowRow {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
 }
 
-.specPanelCounter {
+.specpagePanelCounter {
     font-size: 0.9rem;
     letter-spacing: 0.04em;
     opacity: 0.75;
     white-space: nowrap;
 }
 
-.specPanelButton {
+.specpagePanelButton {
     border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
     background: color-mix(in oklab, var(--c-ink) 85%, var(--text) 15%);
     color: var(--text);
@@ -240,19 +254,19 @@
         box-shadow 180ms ease;
 }
 
-.specPanelButton:hover:not(:disabled) {
+.specpagePanelButton:hover:not(:disabled) {
     transform: translateY(-1px);
     border-color: color-mix(in oklab, var(--text) 24%, transparent);
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--text) 6%, transparent);
 }
 
-.specPanelButton:disabled {
+.specpagePanelButton:disabled {
     opacity: 0.38;
     cursor: not-allowed;
     transform: none;
 }
 
-.specPanelDots {
+.specpagePanelDots {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,7 +274,7 @@
     flex-wrap: wrap;
 }
 
-.specPanelDot {
+.specpagePanelDot {
     width: 0.95rem;
     height: 0.95rem;
     border-radius: 999px;
@@ -277,12 +291,12 @@
         box-shadow 180ms ease;
 }
 
-.specPanelDot:hover {
+.specpagePanelDot:hover {
     transform: scale(1.08);
     border-color: color-mix(in oklab, var(--text) 28%, transparent);
 }
 
-.specPanelDotInner {
+.specpagePanelDotInner {
     width: 0.42rem;
     height: 0.42rem;
     border-radius: 999px;
@@ -294,13 +308,13 @@
         background 180ms ease;
 }
 
-.specPanelDot.is-active {
+.specpagePanelDot.is-active {
     border-color: color-mix(in oklab, var(--c-glow-2) 55%, var(--text) 20%);
     background: color-mix(in oklab, var(--c-glow-2) 10%, transparent);
     box-shadow: var(--glow-violet);
 }
 
-.specPanelDot.is-active .specPanelDotInner {
+.specpagePanelDot.is-active .specpagePanelDotInner {
     opacity: 1;
     transform: scale(1.15);
     background: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
@@ -310,7 +324,7 @@
 /* OPTIONAL VISUAL PLACEHOLDER */
 /* -------------------------- */
 
-.specVisualPlaceholder {
+.specpageVisualPlaceholder {
     display: grid;
     gap: 0.5rem;
     min-height: 260px;
@@ -322,39 +336,39 @@
 /* -------------------------- */
 
 @media (max-width: 900px) {
-    .specSectionHeader {
+    .specpageSectionHeader {
         flex-direction: column;
     }
 
-    .specSectionBody {
+    .specpageSectionBody {
         grid-template-columns: 1fr;
     }
 
-    .specTextPanel,
-    .specVisualPanel {
+    .specpageTextPanel,
+    .specpageVisualPanel {
         padding: 1.1rem;
     }
 
-    .specPanelArrowRow {
+    .specpagePanelArrowRow {
         gap: 0.75rem;
     }
 
-    .specPanelButton {
+    .specpagePanelButton {
         min-width: auto;
         flex: 1 1 0;
     }
 }
 
 @media (max-width: 560px) {
-    .specSection {
+    .specpageSection {
         padding: 4.5rem 0;
     }
 
-    .specLanding {
+    .specpageLanding {
         padding: 4.5rem 0;
     }
 
-     .specPanelHeading {
+     .specpagePanelHeading {
         font-size: clamp(2.2rem, 8vw, 3.2rem);
         line-height: 1.12;
         letter-spacing: 0.035em;
@@ -363,7 +377,7 @@
         max-width: 14ch;
     }
 
-    .specSectionHook {
+    .specpageSectionHook {
         font-size: clamp(1.5rem, 6.5vw, 2.2rem);
         line-height: 1.08;
         letter-spacing: 0.1em;
@@ -371,18 +385,18 @@
         flex: 1 1 auto;
     }
 
-    .specParagraph {
+    .specpageParagraph {
         line-height: 1.72;
     }
 
-    .specPanelArrowRow {
+    .specpagePanelArrowRow {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .specPanelCounter {
+    .specpagePanelCounter {
         width: 100%;
-        text-align: center;
+        text-align: justify;
         order: -1;
     }
 }

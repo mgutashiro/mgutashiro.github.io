@@ -1,0 +1,525 @@
+/* stage layout */
+.SVStage {
+    position: relative;
+    width: 100%;
+    height: clamp(210px, 22vw, 310px);
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+.SVBackground {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 12% 50%,
+            color-mix(in oklab, var(--c-glow-2) 14%, transparent) 0%,
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 46% 50%,
+            color-mix(in oklab, var(--c-glow-1) 7%, transparent) 0%,
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--c-primary-2) 58%, var(--c-ink)) 0%,
+            color-mix(in oklab, var(--c-shadow) 88%, var(--c-ink)) 54%,
+            color-mix(in oklab, var(--c-primary-2) 34%, var(--c-ink)) 100%
+        );
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, var(--text) 12%, transparent),
+        inset 0 16px 40px color-mix(in oklab, var(--c-ink) 55%, transparent),
+        0 18px 50px color-mix(in oklab, var(--c-shadow) 42%, transparent);
+}
+
+/* for faint overlay on top of bkgd to give glassy polished look */
+.SVBackground::before {
+    content:"";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in oklab, var(--text) 3%, transparent) 0%,
+            transparent 12%,
+            transparent 88%,
+            color-mix(in oklab, var(--text) 2%, transparent) 100%
+        );
+    mix-blend-mode: screen;
+    opacity: 0.65;
+}
+
+.SVSVG {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(92%, 680px);
+    height: clamp(150px, 18vw, 240px);
+
+    transform: translate(-50%, -50%);
+    display: block;
+    overflow: visible;
+}
+
+/* visual polish */
+.SVSource, SVEmission, SVAmbient {
+    isolation: isolate;
+}
+
+.SVSourceShell,
+.SVHaloOuter,
+.SVHaloInner,
+.SVSourceCore,
+.SVAperture,
+.SVSpark,
+.SVBeamGlow,
+.SVBeamRibbon,
+.SVBeamPulse,
+.SVResidualLink {
+    vector-effect: non-scaling-stroke;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+ 
+/* Source Body */
+.SVSourceShell {
+    opacity: 0.98;
+    paint-order: stroke-fill;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 14%, transparent));
+}
+
+.SVHaloOuter {
+    mix-blend-mode: screen;
+    animation: svHaloOuterBreath 4.8s ease-in-out infinite;
+}
+
+.SVHaloInner {
+    mix-blend-mode: screen;
+    animation: svHaloInnerBreath 4.8s ease-in-out infinite;
+}
+
+.SVSourceCore {
+    mix-blend-mode: screen;
+    animation: svCorePulse 4.8s ease-in-out infinite;
+}
+
+.SVAperture {
+    mix-blend-mode: screen;
+    animation: svAperturePulse 4.8s ease-in-out infinite;
+}
+
+.SVSpart {
+    mix-blend-mode: screen;
+}
+
+.SVSpark:nth-of-type(1) {
+    animation: svSparkFloat1 4.8s ease-in-out infinite;
+}
+
+.SVSpark:nth-of-type(2) {
+    animation: svSparkFloat2 4.8s ease-in-out infinite;
+}
+
+.SVSpark:nth-of-type(3) {
+    animation: svSparkFloat3 4.8s ease-in-out infinite;
+}
+
+.SVSpark:nth-of-type(4) {
+    animation: svSparkFloat4 4.8s ease-in-out infinite;
+}
+
+/* beam */
+.SVBeamGlow,
+.SVBeamRibbon,
+.SVBeamCore {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    mix-blend-mode: screen;
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+}
+
+.SVBeamGlow {
+    animation: svBeamRibbonFlow 4.8s ease-in-out infinite;
+}
+
+.SVBeamRibbon {
+    animation: svBeamRibbonFlow 4.8s ease-in-out infinite;
+}
+
+.SVBeamCore {
+    animation: svBeamCoreFlow 4.8s ease-in-out infinite;
+}
+
+.SVBeamPulse {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    mix-blend-mode: screen;
+    stroke-dasharray: 48 520;
+    stroke-dashoffset: 568;
+    animation: svBeamPulseTravel 4.8s linear infinite;
+}
+
+.SVResidualLine {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    mix-blend-mode: screen;
+    stroke-dasharray: 470;
+    animation: svResidualLineFade 4.8s ease-in-out infinite;
+}
+
+/* labels */
+.SVLabels {
+    pointer-events: none;
+    isolation: isolate;
+}
+
+
+.SVLabelText {
+  font-family: var(--font-jester);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+
+  paint-order: stroke fill;
+  stroke: color-mix(in oklab, var(--c-ink) 88%, transparent);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.SVLabelText--source {
+  fill: color-mix(in oklab, var(--text) 78%, var(--c-glow-2) 22%);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--c-glow-2) 20%, transparent));
+  animation: svLabelFloatSource 4.8s ease-in-out infinite;
+}
+
+.SVLabelText--beam {
+  fill: color-mix(in oklab, var(--text) 82%, var(--c-glow-1) 18%);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--c-glow-1) 18%, transparent));
+  animation: svLabelFloatBeam 4.8s ease-in-out infinite;
+}
+
+.SVLabelTick {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.82;
+}
+
+/* motion */
+@keyframes svHaloOuterBreath {
+    0%, 16% {
+        opacity: 0.10;
+        transform: scale(0.96);
+    }
+    28% {
+        opacity: 0.34;
+        transform: scale(1);
+    }
+    44% {
+        opacity: 0.56;
+        transform: scale(1.03);
+    }
+    68% {
+        opacity: 0.20;
+        transform: scale(1.01);
+    }
+    100% {
+        opacity: 0.10;
+        transform: scale(0.96);
+    }
+}
+
+@keyframes svHaloInnerBreath {
+    0%, 14% {
+        opacity: 0.18;
+        transform: scale(0.97);
+    }
+    26% {
+        opacity: 0.52;
+        transform: scale(1);
+    }
+    42% {
+        opacity: 0.52;
+        transform: scale(1.02);
+    }
+    64% {
+        opacity: 0.26;
+        transform: scale(1.005);
+    }
+    100% {
+        opacity: 0.18;
+        transform: scale(0.97);
+    }
+}
+
+@keyframes svCorePulse {
+    0%, 14% {
+        opacity: 0.56;
+        transform: scale(0.985)
+    }
+    28% {
+        opacity: 0.94;
+        transform: scale(1.02)
+    }
+    42% {
+        opacity: 1;
+        transform: scale(1.035);
+    }
+    66% {
+        opacity: 0.64;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.56;
+        transform: scale(0.985);
+    }
+}
+
+@keyframes svAperturePulse {
+    0%, 16% {
+        opacity: 0.40;
+    }
+    28% {
+        opacity: 0.96;
+    }
+    44% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 0.58;
+    }
+    100% {
+        opacity: 0.40;
+    }
+}
+
+@keyframes svBeamGlowFlow {
+    0%, 18% {
+        opacity: 0;
+        stroke-dashoffset: 520;
+    }
+    36% {
+        opacity: 0.28;
+        stroke-dashoffset: 180;
+    }
+    50% {
+        opacity: 0.34;
+        stroke-dashoffset: 0;
+    }
+    74% {
+        opacity: 0.18;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -80;
+    }
+}
+
+@keyframes svBeamRibbonFlow {
+    0%, 20% {
+        opacity: 0;
+        stroke-dashoffset: 520;
+    }
+    38% {
+        opacity: 0.44;
+        stroke-dashoffset: 150;
+    }
+    52% {
+        opacity: 0.50;
+        stroke-dashoffset: 0;
+    }
+    74% {
+        opacity: 0.26;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -60;
+    }
+}
+
+@keyframes svBeamCoreFlow {
+    0%, 22% {
+        opacity: 0;
+        stroke-dashoffset: 520;
+    }
+    40% {
+        opacity: 0.82;
+        stroke-dashoffset: 130;
+    }
+    54% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+    76% {
+        opacity: 0.44;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -40;
+    }
+}
+
+@keyframes svBeamPulseTravel {
+  0%, 34% {
+    opacity: 0;
+    stroke-dashoffset: 568;
+  }
+  42% {
+    opacity: 0.78;
+  }
+  60% {
+    opacity: 1;
+    stroke-dashoffset: 250;
+  }
+  76% {
+    opacity: 0.42;
+    stroke-dashoffset: 20;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -120;
+  }
+}
+
+@keyframes svResidualLineFade {
+    0%, 34% {
+        opacity: 0;
+        stroke-dashoffset: 470;
+    }
+    52% {
+        opacity: 0.22;
+        stroke-dashoffset: 160;
+    }
+    68% {
+        opacity: 0.18;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -30;
+    }
+}
+
+@keyframes svSparkFloat1 {
+    0%, 18%, 100% {
+        opacity: 0.14;
+        transform: translate(0, 0) scale(0.9);
+    }
+    34% {
+        opacity: 0.72;
+        transform: translate(3px, -4px) scale(1.12);
+    }
+    58% {
+        opacity: 0.18;
+        transform: translate(5px, -7px) scale(0.96);
+    }
+}
+
+@keyframes svSparkFloat2 {
+    0%, 16%, 100% {
+        opacity: 0.10;
+        transform: translate(0, 0) scale(0.88);
+    }
+    30% {
+        opacity: 0.62;
+        transform: translate(-2px, -5px) scale(1.1);
+    }
+    56% {
+        opacity: 0.16;
+        transform: translate(-3px, -9px) scale(0.95);
+    }
+}
+
+@keyframes svSparkFloat3 {
+    0%, 18%, 100% {
+        opacity: 0.12;
+        transform: translate(0, 0) scale(0.9);
+    }
+    32% {
+        opacity: 0.68;
+        transform: translate(2px, 4px) scale(1.08);
+    }
+    58% {
+        opacity: 0.14;
+        transform: translate(4px, 8px) scale(0.94);
+    }
+}
+
+@keyframes svSparkFloat4 {
+    0%, 20%, 100% {
+        opacity: 0.08;
+        transform: translate(0, 0) scale(0.88);
+    }
+    34% {
+        opacity: 0.58;
+        transform: translate(-2px, 3px) scale(1.05);
+    }
+    56% {
+        opacity: 0.12;
+        transform: translate(-4px, 6px) scale(0.94);
+    }
+}
+
+@keyframes svLabelFloatSource {
+    0%, 18%, 100% {
+        opacity: 0.42;
+        transform: translateY(0px);
+    }
+    36% {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+    56% {
+        opacity: 0.78;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes svLabelFloatBeam {
+    0%, 28%, 100% {
+        opacity: 0.18;
+        transform: translateY(0px);
+    }
+    46% {
+        opacity: 0.82;
+        transform: translateY(-1px);
+    }
+    64% {
+        opacity: 0.72;
+        transform: translateY(0px);
+    }
+}
+
+/* mobile mode */
+@media (prefers-reduced-motion: reduce) {
+  .SVHaloOuter,
+  .SVHaloInner,
+  .SVSourceCore,
+  .SVAperture,
+  .SVSpark,
+  .SVBeamGlow,
+  .SVBeamRibbon,
+  .SVBeamCore,
+  .SVBeamPulse,
+  .SVResidualLine {
+    animation: none !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,503 @@
+/* frame */
+.DetectorVisualPanel {
+    position: relative;
+    width: 100%;
+}
+
+.DetectorVisualStage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 720 / 420;
+    min-height: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 76% 34%, color-mix(in oklab, var(--c-glow-2) 14%, transparent) 0%, transparent 34%),
+        radial-gradient(circle at 74% 78%, color-mix(in oklab, var(--c-glow-1) 12%, transparent) 0%, transparent 28%),
+        linear-gradient(180deg, color-mix(in oklab, var(--c-primary-2) 42%, var(--c-ink)) 0%, var(--c-ink) 62%, color-mix(in oklab, var(--c-shadow) 82%, var(--c-primary-2)) 100%);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, var(--text) 10%, transparent),
+        inset 0 0 30px color-mix(in oklab, var(--c-glow-2) 8%, transparent);
+}
+
+.DetectorVisualSVG {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* shared svg styling */
+.DetectorVisualBeamGlow,
+.DetectorVisualBeamCore,
+.DetectorVisualBeamBand,
+.DetectorVisualSlit,
+.DetectorVisualSensor,
+.DetectorVisualSignalBaseline,
+.DetectorVisualSignalTraceGlow,
+.DetectorVisualSignalTrace,
+.DetectorVisualSignalTick,
+.DetectorVisualTraceLink,
+.DetectorVisualLabelTick,
+.DetectorVisualArrivalRing {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* gradient stops */
+.DetectorVisualStop--beamA,
+.DetectorVisualStop--traceA {
+    stop-color: color-mix(in oklab, var(--c-glow-2) 82%, var(--text) 18%);
+}
+
+.DetectorVisualStop--beamB,
+.DetectorVisualStop--traceB {
+    stop-color: color-mix(in oklab, var(--c-glow-3) 68%, var(--text) 32%);
+}
+
+.DetectorVisualStop--beamC,
+.DetectorVisualStop--traceC {
+    stop-color: color-mix(in oklab, var(--c-glow-1) 84%, var(--text) 16%);
+}
+
+/* atmosphere */
+.DetectorVisualBackGlow {
+    fill: color-mix(in oklab, var(--c-glow-2) 12%, transparent);
+    filter: url(#DetectorVisualBlurL);
+    opacity: 0.9;
+}
+
+.DetectorVisualGlowField {
+    fill: color-mix(in oklab, var(--c-glow-1) 10%, transparent);
+    filter: url(#DetectorVisualBlurL);
+    opacity: 0.78;
+}
+
+/* beam */
+.DetectorVisualBeamGlow {
+    stroke: url(#DetectorVisualBeamGrad);
+    stroke-width: 16;
+    opacity: 0.22;
+    filter: url(#DetectorVisualBlurL);
+    stroke-dasharray: 460;
+    stroke-dashoffset: 460;
+    animation: dvBeamDraw 8s infinite ease-in-out;
+}
+
+.DetectorVisualBeamCore {
+    stroke: url(#DetectorVisualBeamGrad);
+    stroke-width: 4.6;
+    opacity: 0.96;
+    stroke-dasharray: 460;
+    stroke-dashoffset: 460;
+    animation: dvBeamDraw 8s infinite ease-in-out;
+}
+
+.DetectorVisualBeamBand {
+    stroke: color-mix(in oklab, var(--c-glow-1) 56%, var(--text) 44%);
+    stroke-width: 1.6;
+    opacity: 0;
+    animation: dvBeamBand 8s infinite ease-in-out;
+}
+
+.DetectorVisualBeamBand--dim {
+    stroke: color-mix(in oklab, var(--c-glow-3) 38%, var(--text) 62%);
+    opacity: 0;
+    animation-delay: 0.12s;
+}
+
+/* arrival halo */
+.DetectorVisualArrivalCore {
+    fill: color-mix(in oklab, var(--text) 16%, var(--c-glow-1) 84%);
+    opacity: 0;
+    filter: url(#DetectorVisualS);
+    animation: dvArrivalCore 8s infinite ease-in-out;
+}
+
+.DetectorVisualArrivalHalo {
+    fill: color-mix(in oklab, var(--c-glow-2) 24%, transparent);
+    opacity: 0;
+    filter: url(#DetectorVisualBlurL);
+    animation: dvArrivalHalo 8s infinite ease-in-out;
+}
+
+.DetectorVisualArrivalRing {
+    stroke: color-mix(in oklab, var(--c-glow-1) 44%, var(--text) 56%);
+    stroke-width: 1.4;
+    opacity: 0;
+    animation: dvArrivalRing 8s infinite ease-in-out;
+}
+
+/* detector */
+.DetectorVisualBody {
+    fill: color-mix(in oklab, var(--c-shadow) 72%, var(--c-primary-2));
+    stroke: color-mix(in oklab, var(--text) 14%, var(--c-glow-2));
+    stroke-width: 1.2;
+}
+
+.DetectorVisualInner {
+    fill: color-mix(in oklab, var(--c-primary-2) 42%, var(--c-ink));
+    stroke: color-mix(in oklab, var(--c-glow-2) 24%, var(--text) 12%);
+    stroke-width: 1;
+}
+
+.DetectorVisualSlit {
+    stroke: color-mix(in oklab, var(--text) 42%, var(--c-glow-2) 58%);
+    stroke-width: 2.2;
+    opacity: 0.68;
+}
+
+.DetectorVisualSensor {
+    stroke: color-mix(in oklab, var(--c-glow-1) 74%, var(--text) 26%);
+    stroke-width: 3.2;
+    opacity: 0.2;
+    filter: url(#DetectorVisualS);
+    animation: dvSensorWake 8s infinite ease-in-out;
+}
+
+/* detector to signal bridge */
+.DetectorVisualTraceLink {
+    stroke: color-mix(in oklab, var(--c-glow-2) 52%, var(--text) 48%);
+    stroke-width: 2;
+    opacity: 0;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: dvLinkWrite 8s infinite ease-in-out;
+}
+
+/* signal baseline */
+.DetectorVisualSignalBaseline {
+    stroke: color-mix(in oklab, var(--text) 26%, var(--c-glow-2) 74%);
+    stroke-width: 1.2;
+    opacity: 0;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: dvBaseWrite 8s infinite ease-in-out;
+}
+
+/* simple trace */
+.DetectorVisualSignalTraceGlow {
+    stroke: url(#DetectorVisualTraceGrad);
+    stroke-width: 9;
+    opacity: 0;
+    filter: url(#DetectorVisualBlurL);
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: dvTraceWriteGlow 8s infinite ease-in-out;
+}
+
+.DetectorVisualSignalTrace {
+    stroke: url(#DetectorVisualTraceGrad);
+    stroke-width: 3.2;
+    opacity: 0;
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: dvTraceWrite 8s infinite ease-in-out;
+}
+
+.DetectorVisualSignalTick {
+    stroke: color-mix(in oklab, var(--text) 58%, var(--c-glow-1) 42%);
+    stroke-width: 1.4;
+    opacity: 0;
+    animation: dvTickReveal 8s infinite ease-in-out;
+}
+
+/* labels */
+.DetectorVisualLabelLayer {
+    pointer-events: none;
+}
+
+.DetectorVisualLabelText {
+    font-family: var(--font-jester);
+    font-size: 16px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+}
+
+.DetectorVisualLabelTick {
+    fill: none;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.DetectorVisualLabelText--incoming {
+    fill: url(#DetectorVisualBeamGrad);
+    opacity: 0;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 38%, transparent));
+    animation: dvIncomingLabel 8s infinite ease-in-out;
+}
+
+.DetectorVisualLabelText--detector {
+    fill: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+    opacity: 0.98;
+}
+
+.DetectorVisualLabelTick--detector {
+    stroke: color-mix(in oklab, var(--text) 48%, var(--c-glow-2) 52%);
+    opacity: 0.98;
+}
+
+.DetectorVisualLabelText--signal {
+    fill: url(#DetectorVisualTraceGrad);
+    opacity: 0;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 34%, transparent));
+    animation: dvSignalLabel 8s infinite ease-in-out;
+}
+
+.DetectorVisualLabelTick--signal {
+    stroke: color-mix(in oklab, var(--text) 44%, var(--c-glow-1) 56%);
+    opacity: 0;
+    animation: dvSignalLabel 8s infinite ease-in-out;
+}
+
+/* animation keyframes */
+@keyframes dvBeamDraw {
+    0%, 8% {
+        opacity: 0;
+        stroke-dashoffset: 460;
+    }
+    18%, 38% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+    74% {
+        opacity: 0.95;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -40;
+    }
+}
+
+@keyframes dvBeamBand {
+    0%, 16% {
+        opacity: 0;
+    }
+    24%, 46% {
+        opacity: 0.5;
+    }
+    70% {
+        opacity: 0.22;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes dvArrivalCore {
+    0%, 20% {
+        opacity: 0;
+        transform: scale(0.92);
+        transform-origin: 584px 154px;
+    }
+    28%, 38% {
+        opacity: 0.95;
+        transform: scale(1);
+        transform-origin: 584px 154px;
+    }
+    56% {
+        opacity: 0.38;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.08);
+        transform-origin: 584px 154px;
+    }
+}
+
+@keyframes dvArrivalHalo {
+    0%, 20% {
+        opacity: 0;
+        transform: scale(0.8);
+        transform-origin: 584px 154px;
+    }
+    30% {
+        opacity: 0.7;
+        transform: scale(1);
+        transform-origin: 584px 154px;
+    }
+    48% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.14);
+        transform-origin: 584px 154px;
+    }
+}
+
+@keyframes dvArrivalRing {
+    0%, 24% {
+        opacity: 0;
+        transform: scale(0.82);
+        transform-origin: 584px 154px;
+    }
+    34% {
+        opacity: 0.75;
+        transform: scale(1);
+        transform-origin: 584px 154px;
+    }
+    52% {
+        opacity: 0.16;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.16);
+        transform-origin: 584px 154px;
+    }
+}
+
+@keyframes dvSensorWake {
+    0%, 24% {
+        opacity: 0.18;
+    }
+    32%, 48% {
+        opacity: 0.96;
+    }
+    68% {
+        opacity: 0.46;
+    }
+    100% {
+        opacity: 0.18;
+    }
+}
+
+@keyframes dvLinkWrite {
+    0%, 32% {
+        opacity: 0;
+        stroke-dashoffset: 180;
+    }
+    40%, 54% {
+        opacity: 0.72;
+        stroke-dashoffset: 0;
+    }
+    74% {
+        opacity: 0.42;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -20;
+    }
+}
+
+@keyframes dvBaseWrite {
+    0%, 36% {
+        opacity: 0;
+        stroke-dashoffset: 220;
+    }
+    44%, 58% {
+        opacity: 0.65;
+        stroke-dashoffset: 0;
+    }
+    76% {
+        opacity: 0.34;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -20;
+    }
+}
+
+@keyframes dvTraceWrite {
+    0%, 42% {
+        opacity: 0;
+        stroke-dashoffset: 260;
+    }
+    52%, 72% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+    82% {
+        opacity: 0.94;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -18;
+    }
+}
+
+@keyframes dvTraceWriteGlow {
+    0%, 42% {
+        opacity: 0;
+        stroke-dashoffset: 260;
+    }
+    52% {
+        opacity: 0.5;
+        stroke-dashoffset: 0;
+    }
+    66% {
+        opacity: 0.88;
+    }
+    80% {
+        opacity: 0.42;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -18;
+    }
+}
+
+@keyframes dvTickReveal {
+    0%, 56% {
+        opacity: 0;
+    }
+    62%, 78% {
+        opacity: 0.78;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes dvIncomingLabel {
+    0%, 14% {
+        opacity: 0;
+    }
+    22%, 42% {
+        opacity: 0.92;
+    }
+    60% {
+        opacity: 0.55;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes dvSignalLabel {
+    0%, 52% {
+        opacity: 0;
+    }
+    62%, 80% {
+        opacity: 0.98;
+    }
+    90% {
+        opacity: 0.45;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* mobile mode */
+@media (prefers-reduced-motion: reduce) {
+    .DetectorVisualBeamGlow,
+    .DetectorVisualBeamCore,
+    .DetectorVisualBeamBand,
+    .DetectorVisualArrivalCore,
+    .DetectorVisualArrivalHalo,
+    .DetectorVisualArrivalRing,
+    .DetectorVisualSensor,
+    .DetectorVisualTraceLink,
+    .DetectorVisualSignalBaseline,
+    .DetectorVisualSignalTraceGlow,
+    .DetectorVisualSignalTrace,
+    .DetectorVisualSignalTick {
+        animation: none;
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+}

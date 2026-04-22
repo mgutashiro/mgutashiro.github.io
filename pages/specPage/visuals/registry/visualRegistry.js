@@ -5,16 +5,20 @@
  * Used to dynamically load visuals for each panel.
  */
 
-import DualNatureVisual from '../whatIsSpec/dual-natureVisual.jsx';
+import DualNatureVisual from '../whatIsSpec/dualNatureVisual.jsx';
+import QuantizedInteractionVisual from '../whatIsSpec/quantizedLightVisual.jsx';
+
 import SourceVisual from '../commonFramework/sourceVisual.jsx';
+import FieldMatterInteractionVisual from '../commonFramework/fieldMatterInteractionVisual.jsx'
+
 import WhiteLightSplittingVisual from '../uvvis/white-light-splittingVisual.jsx';
 import ExcitedStateVisual from '../fluorescence/excited-stateVisual.jsx';
 import HiddenMotionVisual from '../nmr/hidden-motionVisual.jsx';
 import AfterExcitationVisual from '../epr/after-excitationVisual.jsx'
 import pumpVisual from '../ultrafast/pumpVisual.jsx'
 
-import QuantizedInteractionVisual from '../whatIsSpec/quantized-lightVisual.jsx';
-import FieldStatesVisual from '../commonFramework/field-statesVisual.jsx'
+
+
 import ResonantExcitationVisual from '../uvvis/resonant-excitationVisual.jsx'
 import KashaRelaxationVisual from '../fluorescence/kasha-relaxationVisual.jsx'
 import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx'
@@ -59,7 +63,7 @@ export const visualRegistry = {
 
         'spectroscopic-observables': {
             colleague: lazy(() =>
-                import('../whatIsSpec/spectroscopic-observablesVisual.jsx')
+                import('../whatIsSpec/specObservablesVisual.jsx')
             ),
         },
     },
@@ -81,19 +85,19 @@ export const visualRegistry = {
             ),
         },
 
-        'field-states': {
-            colleague: FieldStatesVisual,
+        'field-matter-interaction': {
+            colleague: FieldMatterInteractionVisual,
         },
 
-        'coupling': {
+        'transition-probability-population': {
             colleague: lazy(() =>
-                import('../commonFramework/couplingVisual.jsx')
+                import('../commonFramework/transitionProbPopVisual.jsx')
             ),
         },
 
-        'shared-framework': {
+        'unified-spectroscopic-framework': {
             colleague: lazy(() =>
-                import('../commonFramework/shared-frameworkVisual.jsx')
+                import('../commonFramework/unifiedSpecFrameworkVisual.jsx')
             ),
         },
 

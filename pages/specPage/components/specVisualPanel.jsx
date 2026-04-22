@@ -6,7 +6,7 @@
  * Falls back to loading or placeholder if no visual exists.
  */
 
-import React, { Suspense, useMemo } from 'react';
+import React, {  Suspence, useMemo } from 'react';
 import { resolveVisualComponent } from '../visuals/registry/visualFallbacks';
 import { visualRegistry } from '../visuals/registry/visualRegistry';
 
@@ -16,18 +16,20 @@ export default function SpecVisualPanel({
   panel,
   panelIndex,
 }) {
+  const panelId = panel?.id ?? 'default';
+
   const visualId = useMemo(() => {
-    const panelId = panel?.id ?? 'default';
     return `${mode}:${sectionId}:${panelId}`;
   }, [mode, sectionId, panel]);
 
 
-    const VisualComponent = resolveVisualComponent({
+  const VisualComponent = resolveVisualComponent({
     registry: visualRegistry,
     sectionId,
     panelId: panel?.id,
     mode,
   });
+
 
   const looksRenderable =
     typeof VisualComponent === 'function' ||
@@ -35,7 +37,7 @@ export default function SpecVisualPanel({
 
   if (!VisualComponent) {
     return (
-      <aside className="specVisualPanel">
+      <aside className="specpageVisualPanel">
         <div className="specVisualStage">
           <VisualPlaceholder panel={panel} visualId={visualId} />
         </div>
@@ -45,8 +47,8 @@ export default function SpecVisualPanel({
 
   if (!looksRenderable) {
     return (
-      <aside className="specVisualPanel">
-        <div className="specVisualStage">
+      <aside className="specpageVisualPanel">
+        <div className="specpageVisualStage">
           <InvalidVisual
             panel={panel}
             visualId={visualId}
@@ -58,8 +60,8 @@ export default function SpecVisualPanel({
   }
 
   return (
-    <aside className="specVisualPanel">
-      <div className="specVisualStage">
+    <aside className="specpageVisualPanel">
+      <div className="specpageVisualStage">
         {VisualComponent ? (
           // <Suspense fallback={<VisualLoading panel={panel} />}>
             <VisualComponent
@@ -77,20 +79,11 @@ export default function SpecVisualPanel({
   );
 }
 
-// function VisualLoading({ panel }) {
-//   return (
-//     <div className="specVisualPlaceholder">
-//       <p className="specVisualEyebrow">Loading visual</p>
-//       <h3>{panel?.heading ?? 'Loading...'}</h3>
-//       <p>Preparing the companion graphic…</p>
-//     </div>
-//   );
-// }
 
 function VisualPlaceholder({ panel, visualId }) {
   return (
-    <div className="specVisualPlaceholder">
-      <p className="specVisualEyebrow">Visual placeholder</p>
+    <div className="specpageVisualPlaceholder">
+      <p className="specpageVisualEyebrow">Visual placeholder</p>
       <h3>{panel?.heading ?? 'Coming Soon'}</h3>
       <p>No visual has been assigned yet for:</p>
       <code>{visualId}</code>
@@ -100,8 +93,8 @@ function VisualPlaceholder({ panel, visualId }) {
 
 function InvalidVisual({ panel, visualId, visualComponent }) {
   return (
-    <div className="specVisualPlaceholder">
-      <p className="specVisualEyebrow">Invalid visual</p>
+    <div className="specpageVisualPlaceholder">
+      <p className="specpageVisualEyebrow">Invalid visual</p>
       <h3>{panel?.heading ?? 'Unknown panel'}</h3>
       <p>Resolved visual is not a valid React component.</p>
       <p>
@@ -138,8 +131,8 @@ class VisualErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="specVisualPlaceholder">
-          <p className="specVisualEyebrow">Visual crashed</p>
+        <div className="specpageVisualPlaceholder">
+          <p className="specpageVisualEyebrow">Visual crashed</p>
           <h3>{this.props.panel?.heading ?? 'Visual error'}</h3>
           <p>
             <strong>visualId:</strong> <code>{this.props.visualId}</code>
@@ -154,3 +147,4 @@ class VisualErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
+

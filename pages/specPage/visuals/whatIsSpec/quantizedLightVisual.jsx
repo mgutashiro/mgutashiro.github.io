@@ -1,5 +1,4 @@
-import '../shared/visualShared.css';
-import './quantized-lightVisual.css'
+import './quantizedLightVisual.css'
 
 const LEVEL_X1 = 74;
 const LEVEL_X2 = 290;
@@ -24,42 +23,32 @@ const WAVE_Y = E1_Y;
 const WAVE_AMPLITUDE = 20;
 
 const WAVE_PATH = `
-  M ${FIELD_LEFT_X} ${WAVE_Y}
-  C ${FIELD_LEFT_X + FIELD_SPAN * 0.08} ${WAVE_Y - WAVE_AMPLITUDE},
+    M ${FIELD_LEFT_X} ${WAVE_Y}
+    C ${FIELD_LEFT_X + FIELD_SPAN * 0.08} ${WAVE_Y - WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.17} ${WAVE_Y - WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.25} ${WAVE_Y}
-  C ${FIELD_LEFT_X + FIELD_SPAN * 0.33} ${WAVE_Y + WAVE_AMPLITUDE},
+    C ${FIELD_LEFT_X + FIELD_SPAN * 0.33} ${WAVE_Y + WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.42} ${WAVE_Y + WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.50} ${WAVE_Y}
-  C ${FIELD_LEFT_X + FIELD_SPAN * 0.58} ${WAVE_Y - WAVE_AMPLITUDE},
+    C ${FIELD_LEFT_X + FIELD_SPAN * 0.58} ${WAVE_Y - WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.67} ${WAVE_Y - WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.75} ${WAVE_Y}
-  C ${FIELD_LEFT_X + FIELD_SPAN * 0.83} ${WAVE_Y + WAVE_AMPLITUDE},
+    C ${FIELD_LEFT_X + FIELD_SPAN * 0.83} ${WAVE_Y + WAVE_AMPLITUDE},
     ${FIELD_LEFT_X + FIELD_SPAN * 0.92} ${WAVE_Y + WAVE_AMPLITUDE},
     ${FIELD_RIGHT_X} ${WAVE_Y}
 `;
 
-const MAG_CENTER_X = FIELD_CENTER_X + 24;
-const MAG_CENTER_Y = WAVE_Y + 2;
-const MAG_SCALE_X = 0.42;
-
-export default function QuantizedInteractionVisual() {
+export default function QuantizedInteractionVisualResponse() {
     return (
-        <div className="visualShell qiVisual">
-            <div className="visualStage qiStage" aria-label="Quantized interaction visual">
+        <div className="qiVisual">
+            <div className="qiAnimationStage" aria-label="Quantized interaction visual">
                 <svg
                     className="qiSvg"
-                    viewBox="0 0 720 430"
+                    viewBox="0 0 720 380"
                     role="img"
                     aria-labelledby="qiTitle qiDesc"
                 >
-                    <desc id="qiDesc">
-                        A resonant field promotes population from the ground state to the first excited
-                        state, followed by radiative relaxation and emitted radiation moving across the field.
-                    </desc>
-
                     <defs>
-
                         <filter id="qiSoftGlow" x="-8%" y="-8%" width="116%" height="116%">
                             <feGaussianBlur stdDeviation="1.2" result="blur" />
                             <feMerge>
@@ -175,7 +164,6 @@ export default function QuantizedInteractionVisual() {
                     </text>
                 </svg>
             </div>
-
             <div className="visualCaption">
                 The field promotes population from the ground state to an excited state. During
                 relaxation, emitted radiation propagates outward across the field region.

@@ -1,0 +1,601 @@
+:root {
+    --fmi-cycle: 3.4s
+}
+
+.FMIWrap {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.FMIFigureBackground {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-3);
+    overflow: hidden;
+
+    background: var(--grad-elevator);
+
+    border: 1px solid var(--border);
+    box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--text) 8%, transparent),
+        0 8px 24px color-mix(in oklab, var(--c-shadow) 40%, transparent);
+}
+
+
+.FMIFigureBackground::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--text) 8%, transparent),
+        transparent 30%
+    );
+}
+
+.FMIFigureBackground::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+        to right,
+        color-mix(in oklab, var(--border) 30%, transparent) 1px,
+        transparent 1px
+        ),
+        linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--border) 30%, transparent) 1px,
+        transparent 1px
+        );
+
+    background-size: 120px 120px;
+    opacity: 0.12;
+}
+
+.FMISVG {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* shared svg defaults */
+.FMIGuideLine,
+.FMIBracket,
+.FMIRail,
+.FMIResponseRail,
+.FMIFieldRibbon,
+.FMIFieldCore,
+.FMICoreAxis,
+.FMILabelTick,
+.FMICouplingRing,
+.FMIChamberOuter,
+.FMIChamberGlass,
+.FMIChamberReflect,
+.FMICoreHex {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* technical guide layer */
+.FMIGuideLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 18%, var(--text) 22%);
+    stroke-width: 1.15;
+    stroke-dasharray: 4 10;
+    opacity: 0.5;
+}
+
+.FMIBracket {
+    stroke: color-mix(in oklab, var(--c-glow-2) 28%, var(--text) 22%);
+    stroke-width: 1.4;
+    opacity: 0.7;
+}
+
+.FMISourceCore {
+    fill: color-mix(in oklab, var(--c-glow-1) 48%, var(--text) 52%);
+    opacity: 0.82;
+    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--c-glow-1) 35%, transparent));
+}
+
+/* chamber */
+.FMIChamberOuter {
+    fill: color-mix(in oklab, var(--surface) 86%, var(--c-shadow));
+    stroke: color-mix(in oklab, var(--c-glow-2) 24%, var(--border-strong) 76%);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-2) 10%, transparent));
+}
+
+.FMIChamberGlass {
+    fill: color-mix(in oklab, var(--text) 6%, var(--c-primary-2) 24%);
+    stroke: color-mix(in oklab, var(--text) 14%, var(--c-glow-1) 18%);
+    stroke-width: 1.2;
+    opacity: 0.96;
+}
+
+.FMIChamberReflect {
+    fill: color-mix(in oklab, white 16%, transparent);
+    opacity: 0.5;
+}
+
+.FMIChamberMountOuter {
+    fill: color-mix(in oklab, var(--c-metal-2) 72%, var(--c-shadow));
+    stroke: color-mix(in oklab, var(--c-metal-1) 65%, var(--text) 35%);
+    stroke-width: 1.2;
+}
+
+.FMIChamberMountInner {
+    fill: color-mix(in oklab, var(--c-metal-1) 78%, white 22%);
+    opacity: 0.9;
+}
+
+/* system rails + nodes */
+.FMIRail {
+    stroke-width: 2;
+    opacity: 0.28;
+}
+
+.FMINode {
+    fill: color-mix(in oklab, var(--c-glow-1) 58%, var(--text) 42%);
+    stroke: color-mix(in oklab, var(--text) 40%, var(--c-glow-2) 60%);
+    stroke-width: 0.8;
+}
+
+.FMIHamiltonianCore > * {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.FMICoreHalo {
+    opacity: 0.22;
+    animation: fmiCoreHaloPulse var(--fmi-cycle) ease-in-out infinite;
+    animation-delay: 0.18s; /* slightly after coupling ring */
+}
+
+.FMICoreHex {
+    stroke: color-mix(in oklab, var(--c-glow-2) 54%, var(--text) 46%);
+    stroke-width: 2.4;
+    fill: color-mix(in oklab, var(--c-primary-2) 24%, transparent);
+    filter:
+        drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 24%, transparent))
+        drop-shadow(0 0 18px color-mix(in oklab, var(--c-glow-1) 10%, transparent));
+    animation: fmiCoreHexPulse var(--fmi-cycle) ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.FMICoreInner {
+    fill: color-mix(in oklab, var(--c-glow-1) 64%, var(--text) 36%);
+    stroke: color-mix(in oklab, var(--text) 22%, var(--c-glow-2) 78%);
+    stroke-width: 1.2;
+    filter:
+        drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 45%, transparent))
+        drop-shadow(0 0 16px color-mix(in oklab, var(--c-glow-2) 18%, transparent));
+    animation: fmiCoreInnerPulse var(--fmi-cycle) ease-in-out infinite;
+    animation-delay: 0.22s;
+}
+
+.FMICoreAxis {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 26%, var(--c-glow-1) 74%);
+    stroke-width: 1.5;
+    opacity: 0.42;
+    animation: fmiCoreAxisPulse var(--fmi-cycle) ease-in-out infinite;
+    animation-delay: 0.24s;
+}
+
+/* field source + incoming wave */
+.FMISourceGlow,
+.FMISourceCore {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.FMISourceGlow {
+    opacity: 0.72;
+    animation: fmiSourceGlowPulse 4.8s ease-in-out infinite;
+}
+
+.FMISourceCore {
+    fill: color-mix(in oklab, var(--c-glow-1) 72%, white 28%);
+    stroke: color-mix(in oklab, var(--text) 24%, var(--c-glow-2) 76%);
+    stroke-width: 1.2;
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--c-glow-1) 50%, transparent));
+    animation: fmiSourceCorePulse 4.8s ease-in-out infinite;
+}
+
+.FMIFieldRibbon {
+    stroke-width: 9;
+    opacity: 0.36;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-3) 34%, transparent));
+    animation: fmiRibbonPulse 4.8s ease-in-out infinite;
+}
+
+.FMIFieldCore {
+    stroke-width: 2.6;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-1) 35%, transparent));
+    stroke-dasharray: 8 10;
+    animation: fmiWaveTravel 7s linear infinite;
+}
+
+.FMIFieldPacket {
+    fill: color-mix(in oklab, var(--c-glow-1) 45%, var(--c-glow-3) 55%);
+    opacity: 0.75;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-1) 36%, transparent));
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: fmiPacketPulse var(--fmi-cycle) ease-in-out infinite;
+}
+
+.FMIFieldPacket--1 { animation-delay: 0s; }
+.FMIFieldPacket--2 { animation-delay: 0.18s; }
+.FMIFieldPacket--3 { animation-delay: 0.36s; }
+.FMIFieldPacket--4 { animation-delay: 0.54s; }
+.FMIFieldPacket--5 { animation-delay: 0.72s; }
+
+.FMIHitGlow,
+.FMICouplingRing,
+.FMINodePulse,
+.FMIResidualGlow {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* coupling */
+.FMIHitGlow {
+    opacity: 0.65;
+    animation: fmiHitGlow var(--fmi-cycle) ease-in-out infinite;
+}
+
+.FMICouplingRing {
+    stroke: color-mix(in oklab, var(--c-glow-1) 48%, var(--text) 52%);
+    stroke-width: 1.8;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 28%, transparent));
+    animation: fmiCouplingRing var(--fmi-cycle) ease-in-out infinite;
+}
+
+
+
+/* response layer */
+.FMIResponseRail {
+    fill: none;
+    stroke-width: 4;
+    opacity: 0.45;
+    filter:
+        drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-1) 55%, transparent))
+        drop-shadow(0 0 14px color-mix(in oklab, var(--c-glow-2) 35%, transparent));
+    animation: fmiResponseRail var(--fmi-cycle) ease-in-out infinite;
+}
+
+.FMIResponse path:nth-of-type(1) { animation-delay: 0s; }
+.FMIResponse path:nth-of-type(2) { animation-delay: 0.05s; }
+.FMIResponse path:nth-of-type(3) { animation-delay: 0.10s; }
+.FMIResponse path:nth-of-type(4) { animation-delay: 0.15s; }
+
+.FMINodePulse {
+    opacity: 0.18;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: fmiNodePulse 4.2s ease-in-out infinite;
+}
+
+.FMIResidualGlow {
+    opacity: 0.26;
+    animation: fmiResidual 5.2s ease-in-out infinite;
+}
+
+/* labels */
+.FMILabelLayer {
+    pointer-events: none;
+}
+
+.FMILabelTick {
+    stroke: color-mix(in oklab, var(--text) 26%, var(--c-glow-1) 74%);
+    stroke-width: 1.4;
+    opacity: 0.7;
+}
+
+.FMILabelText {
+    font-family: var(--font-jester);
+    font-size: 16px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    fill: color-mix(in oklab, var(--text) 70%, var(--c-glow-1) 30%);
+    opacity: 0.96;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 18%, transparent));
+}
+
+
+/* description for figure */
+.FMIDescription {
+    margin: 0;
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+
+    background-image: var(--grad-neon-dim);
+
+    -webkit-background-clip: text;
+    letter-spacing: 0.015em;
+    color: transparent;
+    text-wrap: pretty;
+    
+}
+
+/* motion */
+@keyframes fmiCoreHaloPulse {
+    0%, 100% {
+        opacity: 0.14;
+        transform: scale(0.94);
+    }
+    48% {
+        opacity: 0.18;
+        transform: scale(0.98);
+    }
+    62% {
+        opacity: 0.34;
+        transform: scale(1.08);
+    }
+    78% {
+        opacity: 0.2;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fmiCoreHexPulse {
+    0%, 100% {
+        opacity: 0.82;
+        stroke-width: 2;
+        transform: scale(0.98);
+    }
+    50% {
+        opacity: 0.88;
+        transform: scale(1);
+    }
+    64% {
+        opacity: 1;
+        stroke-width: 2.5;
+        transform: scale(1.045);
+    }
+    80% {
+        opacity: 0.9;
+        transform: scale(1.01);
+    }
+}
+
+@keyframes fmiCoreInnerPulse {
+    0%, 100% {
+        opacity: 0.84;
+        transform: scale(0.94);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+    64% {
+        opacity: 1;
+        transform: scale(1.14);
+    }
+    80% {
+        opacity: 0.92;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fmiCoreAxisPulse {
+    0%, 100% {
+        opacity: 0.28;
+    }
+    52% {
+        opacity: 0.34;
+    }
+    66% {
+        opacity: 0.62;
+    }
+    80% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes fmiSourceGlowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.88);
+    }
+    50% {
+        opacity: 0.95;
+        transform: scale(1.18);
+    }
+}
+
+@keyframes fmiSourceCorePulse {
+    0%, 100% {
+        opacity: 0.82;
+        transform: scale(0.94);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes fmiRibbonPulse {
+    0%, 100% {
+        opacity: 0.26;
+        stroke-width: 8;
+    }
+    50% {
+        opacity: 0.44;
+        stroke-width: 10.5;
+    }
+}
+
+ @keyframes fmiWaveTravel {
+    0% {
+        stroke-dashoffset: 0;
+        opacity: 0.88;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: -72;
+        opacity: 0.88;
+    }
+}
+
+@keyframes fmiPacketPulse {
+    0%, 100% {
+        opacity: 0.18;
+        transform: scale(0.82);
+    }
+    24% {
+        opacity: 0.34;
+        transform: scale(0.92);
+    }
+    42% {
+        opacity: 0.92;
+        transform: scale(1.22);
+    }
+    58% {
+        opacity: 0.42;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fmiHitGlow {
+    0%, 100% {
+        opacity: 0.10;
+        transform: scale(0.86);
+    }
+    34% {
+        opacity: 0.26;
+        transform: scale(0.96);
+    }
+    48% {
+        opacity: 0.82;
+        transform: scale(1.16);
+    }
+    66% {
+        opacity: 0.28;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fmiCouplingRing {
+    0%, 100% {
+        opacity: 0.14;
+        stroke-width: 1.2;
+        transform: scale(0.88);
+    }
+    40% {
+        opacity: 0.26;
+        stroke-width: 1.3;
+        transform: scale(0.96);
+    }
+    54% {
+        opacity: 1;
+        stroke-width: 2.5;
+        transform: scale(1.14);
+    }
+    72% {
+        opacity: 0.32;
+        stroke-width: 1.5;
+        transform: scale(1.01);
+    }
+}
+
+
+
+@keyframes fmiResponseRail {
+    0%, 100% {
+        opacity: 0.12;
+        stroke-width: 3;
+    }
+    42% {
+        opacity: 0.16;
+        stroke-width: 3;
+    }
+    58% {
+        opacity: 0.32;
+        stroke-width: 4;
+    }
+    66% {
+        opacity: 0.82;
+        stroke-width: 5;
+    }
+    78% {
+        opacity: 0.34;
+        stroke-width: 4;
+    }
+}
+
+
+@keyframes fmiNodePulse {
+    0%, 100% {
+        opacity: 0.08;
+        transform: scale(0.78);
+    }
+    48% {
+        opacity: 0.18;
+        transform: scale(0.9);
+    }
+    60% {
+        opacity: 0.68;
+        transform: scale(1.4);
+    }
+    76% {
+        opacity: 0.24;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fmiResidual {
+    0%, 100% {
+        opacity: 0.08;
+        transform: scale(0.96);
+    }
+    52% {
+        opacity: 0.18;
+        transform: scale(1);
+    }
+    66% {
+        opacity: 0.34;
+        transform: scale(1.05);
+    }
+    84% {
+        opacity: 0.2;
+        transform: scale(1.02);
+    }
+}
+
+/* mobile */
+@media (prefers-reduced-motion: reduce) {
+    .FMIFieldRibbon,
+    .FMIFieldCore,
+    .FMIFieldPacket,
+    .FMIHitGlow,
+    .FMICouplingRing,
+    .FMIResponseRail,
+    .FMINodePulse,
+    .FMIResidualGlow {
+        animation: none;
+    }
+}
+
+@media (max-width: 640px) {
+  .FMIDescription {
+    font-size: 0.9rem;
+  }
+}

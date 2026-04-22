@@ -59,7 +59,7 @@ export default function SpecSection({
   }
 
   return (
-    <section className="specSection" id={section.id}>
+    <section className="specpageSection" id={section.id}>
       <SpecSectionHeader
         label={section.label}
         hook={section.hook}
@@ -70,7 +70,7 @@ export default function SpecSection({
         showToggle={showToggle}
       />
 
-      <div className="specSectionBody">
+      <div className="specpageSectionBody">
         <SpecTextPanel
           panel={currentPanel}
           panelIndex={safePanelIndex}
@@ -87,11 +87,11 @@ export default function SpecSection({
       </div>
 
       {hasPanels && (
-        <div className="specPanelControls">
-          <div className="specPanelArrowRow">
+        <div className="specpagePanelControls">
+          <div className="specpagePanelArrowRow">
             <button
               type="button"
-              className="specPanelButton specPanelButtonPrev"
+              className="specpagePanelButton specpagePanelButtonPrev"
               onClick={handlePrevPanel}
               disabled={isFirstPanel}
               aria-label="Go to previous panel"
@@ -99,13 +99,13 @@ export default function SpecSection({
               ← Back
             </button>
 
-            <span className="specPanelCounter">
+            <span className="specpagePanelCounter">
               {safePanelIndex + 1} / {panels.length}
             </span>
 
             <button
               type="button"
-              className="specPanelButton specPanelButtonNext"
+              className="specpagePanelButton specpagePanelButtonNext"
               onClick={handleNextPanel}
               disabled={isLastPanel}
               aria-label="Go to next panel"
@@ -115,7 +115,7 @@ export default function SpecSection({
           </div>
 
           <div
-            className="specPanelDots"
+            className="specpagePanelDots"
             role="tablist"
             aria-label={`${section.label} panels`}
           >
@@ -133,10 +133,10 @@ export default function SpecSection({
                   role="tab"
                   aria-selected={isActive}
                   aria-label={`Go to panel ${index + 1}${panelLabel}`}
-                  className={`specPanelDot ${isActive ? 'is-active' : ''}`}
+                  className={`specpagePanelDot ${isActive ? 'is-active' : ''}`}
                   onClick={() => handleJumpToPanel(index)}
                 >
-                  <span className="specPanelDotInner" />
+                  <span className="specpagePanelDotInner" />
                 </button>
               );
             })}
@@ -145,7 +145,7 @@ export default function SpecSection({
       )}
 
       {hasDemo && (
-        <footer className="specSectionBottom">
+        <footer className="specpageSectionBottom">
           <a
             href={demoHref}
             className="demoLink"

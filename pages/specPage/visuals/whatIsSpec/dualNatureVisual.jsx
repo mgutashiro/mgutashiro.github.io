@@ -1,5 +1,4 @@
-import '../shared/visualShared.css';
-import './dual-natureVisual.css';
+import './dualNatureVisual.css';
 
 const PARTICLES = Array.from({ length: 12 }, (_, i) => ({
   id: i,
@@ -45,7 +44,7 @@ function WaveGlyph() {
   );
 }
 
-export default function DualNatureVisual() {
+export default function DualNatureVisualResponse() {
   return (
     <div className="dualNatureVisual" aria-hidden="true">
       <div className="dualAura dualAura--left" />

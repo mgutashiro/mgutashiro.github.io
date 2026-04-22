@@ -20,7 +20,7 @@ export const spectroscopyText = [
             id: 'dual-nature',
             heading: 'Light behaves in more than one way',
             body: `Light is a strang thing. Sometimes it flows like a wave, and sometimes it arrives in tiny packets, like particles.`,
-            visualKey: 'dual-nature',
+            visualKey: 'dual-nature'
           },
           {
             id: `interaction`,
@@ -53,9 +53,11 @@ export const spectroscopyText = [
             id: 'transitions',
             heading: 'Eigenstate Transitions',
             body: [
-              { type: 'text', value: `Under this perturbation, the system evolves between eigenstates of the molecular Hamiltonian.
+              { type: 'text', value: `
+Under an external perturbation, the system evolves between eigenstates of the molecular Hamiltonian. Absorption, emission, and scattering arise from transitions between these stationary states, with their behavior governed by the energies, symmetries, and structure of the participating wavefunctions.
 
-Absorption, emission, and scattering arise from transition between these stationary states, governed by the structure of the wavefucntions.`}
+This establishes the state-level picture of spectroscopic change. The next question is which of these transitions can actually appear in an experiment, since only those that couple effectively to the interaction and measurement process produce observable intensity. 
+              `}
             ],
             visualKey: 'transitions'
           },
@@ -63,12 +65,16 @@ Absorption, emission, and scattering arise from transition between these station
             id: 'spectroscopic-observables',
             heading: 'Observables as Projections',
             body: [
-              { type: 'text', value: 'Spectroscopic signals correspond to measurable projections of these transitions, where only certain state-to-state changes contribute based on selection rules and coupling mechanisms.' }
+              { type: 'text', value: `
+Spectroscopic signals reflect not every imaginable state change, but the subset of transitions that successfully couple into measurement. A transition is observable when its transition dipole moment is nonzero. This is determined by the interaction operator, the symmetry of the initial and final wavefunctions, and their corresponding overlap. In centrosymmetric systems, some transitions are orbitally forbidden, and if the transition-moment integral lacks the totally symmetric representation, no measurable intensity will generally appear. 
+
+In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are treated as effectively fixed during the much faster electronic transition, so observed intensity is shaped by vibrational overlap as well as electronic selection rules. Yet in situations where spin-orbit or other nonadiabatic couplings become important, this clean separation becomes incomplete, and techniques such as TREPR can reveal the spin-dependent consequences of those couplings in the excited state. 
+                ` }
             ],
             visualKey: 'spectroscopic-observables'
           }
         ],
-        bullets: []
+        // bullets: []
       }
     }
   },
@@ -83,20 +89,20 @@ Absorption, emission, and scattering arise from transition between these station
         panels: [
           {
             id: 'source',
-            heading: 'Everything begins with a source',
-            body: `Every instrument begins with some kind of energy source, whether it is light, radio waves, or a carefully timed pulse.`,
+            heading: 'Every measurement begins with a source',
+            body: `Before anything can be observed, something has to be sent in. It might be light, radio waves, or a carefully timed pulse, but every instrument begins by giving energy a direction.`,
             visualKey: 'source'
           },
           {
             id: 'sample',
-            heading: 'Matter responds',
-            body: `That energy interacts with matter, and the sample responds. Even a small interaction can leave behind a trace.`,
+            heading: 'Matter responds in its own way',
+            body: `That energy given from certain sources meets a sample, and the sample responds. Sometimes the change is small, sometimes dramatic, but even the quietest interaction can leave behind a trace.`,
             visualKey: 'sample'
           },
           {
             id: 'detector',
-            heading: 'The change becomes a signal',
-            body: `Each instrument is built to catch that response and turn it into something we can read. The tools may differ, but the idea stays the same.`,
+            heading: 'The response becomes something we can read',
+            body: `An instrument is built to catch that trace and turn it into a signal. The shapes and parts may differ, but the idea stays the same: send something in, let matter respond, and notice what changed.`,
             visualKey: 'detector'
           }
         ]
@@ -106,55 +112,68 @@ Absorption, emission, and scattering arise from transition between these station
         title: 'For Colleagues',
         panels: [
           {
-            id: 'field-states',
-            heading: 'Field-Matter Interaction',
+            id: 'field-matter-interaction',
+            heading: 'Field–Matter Interaction',
             body: [
               {
                 type: 'text',
-                value: `All spectroscopic techniques probe how a quantum system responds to an external field. In theoretical terms, that field is treated as a perturbation, \(\hat{H}_1(\omega)\), acting on a population of accessible quantum states.`
+                value: `Every spectroscopic experiment begins by coupling a system to an external field. The sample is described by the molecular Hamiltonian, H (the sum of the kinetic energy T, the potential energy V and the pair-wise interaction W). While the source introduces a time-dependent perturbation that can drive transitions, mix states, or shift their energies.`
+              },
+              {
+                type: 'equation',
+                value: String.raw`\hat{H} = \hat{T} + \hat{V} + \hat{W}`
+              },
+              {
+                type: 'text',
+                value: `The exact form of this interaction measurement depends on the spectroscopy method being used; electric-dipole coupling in UV-Vis and fluorescence, magnetic interactions in TREPR, and more elaborate pump-probe interactions in ultrafast transient absorption methods. What changes from technique to technique is not the underlying framework, but the nature of the perturbation, the timescale over which it acts, and the observable chosen at the detector.`
               }
             ],
-            visualKey: 'field-states'
+            visualKey: 'field-matter-interaction'
           },
           {
-            id: 'coupling',
-            heading: 'Transition Probability + Population',
+            id: 'transition-probability-population',
+            heading: 'Transition Probability and Population',
             body: [
               {
                 type: 'text',
-                value: `The measured signal reflects both:
-
-- transition probability (matrix elements of the perturbation operator)
-- state occupancy (population distribution)
-
-Formally, intensities follow:
-
-\\[
-I \\propto \\left| \\langle \\Psi_i \\mid \\hat{H}_1 \\mid \\Psi_f \\rangle \\right|^2
-\\]`
+                value: `A measurable signal requires more than a formally allowed transition. The observed response depends both on the population of the initial state and on how effectively the perturbation couples the initial and final wavefunctions. Spectroscopic intensity is therefore shaped not only by the symmetry and structure of the states themselves, but also by their occupation, whether that population is thermal, photo-prepared, spin-polarized, or evolving in time.`
+              },
+              {
+                type: 'equation',
+                value: String.raw`W_{i \to f} \propto P_i \left| \left\langle \Psi_f \middle| \hat{H}_1 \middle| \Psi_i \right\rangle \right|^2`
+              },
+              {
+                type: 'text',
+                value: `Here, \\(P_i\\) represents the population of the initial state, while the matrix element expresses how strongly the perturbation operator couples \\(\\Psi_i\\) and \\(\\Psi_f\\). This is why instrumentation matters so deeply: the source prepares the relevant field, the experiment helps determine which states are occupied, and the detector records only the portion of that induced response that becomes measurable. What spectroscopists observe is therefore not simply molecular structure in isolation, but structure filtered through population, coupling strength, and experimental design.`
+              },
+              {
+                type: 'text',
+                tone: 'note',
+                value: `*For clarity, this panel uses a framework equation rather than a fully expanded rate law. Detailed notes and references are linked at the bottom of the page.*`
               }
             ],
-            visualKey: 'coupling',
+            visualKey: 'transition-probability-population'
           },
-{
-  id: 'shared-framework',
-  heading: 'Unified Spectroscopic Framework',
-  body: [
           {
-            type: 'text',
-            value: `Despite differences in implementation, all spectroscopic techniques share the same underlying structure: a perturbed quantum system governed by the Hamiltonian, where selection rules, coupling operators, and observables determine how each method probes the system.
-
-Spectroscopy does not measure absolute energies, but energy differences between quantized states.`
+            id: 'unified-spectroscopic-framework',
+            heading: 'A Unified Spectroscopic Framework',
+            body: [
+              {
+                type: 'text',
+                value: `Although different techniques appear very different experimentally, they share the same principle: a source prepares a field, the sample responds through its allowed quantum couplings, a discriminator separates the relevant outgoing signal, and a detector converts that response into something measurable. The specific operator, selection rules, and readout change from method to method, but the logic remains the same.`
+              },
+              {
+                type: 'text',
+                value: `In that sense, spectroscopy does not directly measure absolute energies; it measures observable consequences of energy differences, couplings, and state evolution. Whether the axis is wavelength, frequency, magnetic field, or delay time, the experiment is still probing how quantized states are connected and how that connectivity becomes visible through measurement.`
+              }
+            ],
+            visualKey: 'unified-spectroscopic-framework'
           }
         ],
-        visualKey: 'shared-framework'
-        }
-        ],
-        bullets: []
+        // bullets: []
       }
     }
   },
-
   {
     id: 'uv-vis',
     label: 'UV-Vis',

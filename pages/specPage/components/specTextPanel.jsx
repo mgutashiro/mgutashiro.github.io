@@ -21,13 +21,13 @@ export default function SpecTextPanel({ panel }) {
   const bullets = panel.bullets ?? [];
 
   return (
-    <div className="specTextPanel">
+    <div className="specpageTextPanel">
       {panel.heading && (
-        <h3 className="specPanelHeading">{panel.heading}</h3>
+        <h3 className="specpagePanelHeading">{panel.heading}</h3>
       )}
 
       {isStringBody && (
-        <p className="specParagraph">
+        <p className="specpageParagraph">
           {normalizeTextBlock(panel.body)}
         </p>
       )}
@@ -41,7 +41,7 @@ export default function SpecTextPanel({ panel }) {
           return (
             <p
               key={index}
-              className="specParagraph"
+              className={`specpageParagraph ${block.tone === 'note' ? 'specpageParagraph--note' : ''}`}
               dangerouslySetInnerHTML={{ __html: block.value }}
             />
           );

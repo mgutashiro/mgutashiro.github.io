@@ -1,0 +1,440 @@
+.mvWrap {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.mvStage {
+    position: relative;
+    width: 100%;
+    min-height: unset;
+}
+
+.mvSvg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* main top chamber */
+.mvChamberShell {
+    fill: color-mix(in oklab, var(--c-shadow) 86%, var(--c-primary-2) 14%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 24%, var(--text) 8%);
+    stroke-width: 1.15;
+    opacity: 0.98;
+}
+
+.mvChamberCore {
+    fill: color-mix(in oklab, var(--c-primary-2) 18%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-1) 12%, transparent);
+    stroke-width: 1;
+    opacity: 0.9;
+}
+
+.mvSignalBox {
+    fill: color-mix(in oklab, var(--c-primary-2) 22%, var(--c-shadow) 78%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 16%, var(--text) 8%);
+    stroke-width: 1;
+    opacity: 0.92;
+}
+
+.mvAtmosLine {
+    stroke: color-mix(in oklab, var(--text) 17%, var(--c-glow-1) 12%);
+    stroke-width: 1;
+    opacity: 0.34;
+}
+
+.mvTopTitle,
+.mvLabel,
+.mvBottomText,
+.mvDetectLabel {
+    font-family: var(--font-tech);
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    fill: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+}
+
+.mvTopTitle {
+    font-size: 17px;
+    text-anchor: middle;
+    opacity: 0.9;
+}
+
+.mvLabel {
+    font-size: 15px;
+    text-transform: lowercase;
+    opacity: 0.72;
+}
+
+.mvLightSourceLabel {
+    text-anchor: start;
+}
+
+.mvSampleLabel {
+    text-anchor: middle;
+}
+
+.mvBottomText {
+    font-size: 15px;
+    text-anchor: middle;
+    opacity: 0.8;
+}
+
+.mvDetectLabel {
+    font-size: 14px;
+    opacity: 0.62;
+    letter-spacing: 0.12em;
+    text-anchor: start;
+    dominant-baseline: middle;
+}
+
+/* beams */
+.mvBeamInGlow,
+.mvBeamInRibbon,
+.mvBeamInCore,
+.mvBeamOutGlow,
+.mvBeamOutCore,
+.mvBeamOutBand,
+.mvGhostTrace,
+.mvSpectrumGlow,
+.mvSpectrumLine,
+.mvDetectLineGlow,
+.mvDetectLineCore {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mvBeamInGlow {
+    stroke: url(#mvBeamInGrad);
+    stroke-width: 18;
+    opacity: 0;
+    filter: url(#mvBlurLg);
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: mvInBeam 10s infinite ease-in-out;
+}
+
+.mvBeamInRibbon {
+    stroke: url(#mvBeamInGrad);
+    stroke-width: 8;
+    opacity: 0;
+    filter: url(#mvBlurSm);
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: mvInBeam 10s infinite ease-in-out;
+}
+
+.mvBeamInCore {
+    stroke: url(#mvBeamInGrad);
+    stroke-width: 3.8;
+    opacity: 0;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: mvInBeam 10s infinite ease-in-out;
+}
+
+.mvBeamOutGlow {
+    stroke: url(#mvBeamOutGrad);
+    stroke-width: 14;
+    opacity: 0;
+    filter: url(#mvBlurLg);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 110;
+    animation: mvOutBeam 10s infinite ease-in-out;
+}
+
+.mvBeamOutCore {
+    stroke: url(#mvBeamOutGrad);
+    stroke-width: 3.5;
+    opacity: 0;
+    stroke-dasharray: 110;
+    stroke-dashoffset: 110;
+    animation: mvOutBeam 10s infinite ease-in-out;
+}
+
+.mvBeamOutBand {
+    stroke: color-mix(in oklab, var(--c-glow-1) 58%, var(--c-glow-2) 42%);
+    stroke-width: 2;
+    opacity: 0;
+    filter: url(#mvBlurSm);
+    stroke-dasharray: 135;
+    stroke-dashoffset: 135;
+    animation: mvOutBand 10s infinite ease-in-out;
+}
+
+/* sample */
+.mvFieldAura,
+.mvFieldLens,
+.mvFieldVeil,
+.mvFieldCore {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.mvFieldAura {
+    fill: url(#mvFieldGrad);
+    filter: url(#mvBlurLg);
+    animation: mvFieldPulse 10s infinite ease-in-out;
+}
+
+.mvFieldLens {
+    fill: color-mix(in oklab, var(--c-glow-2) 20%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-1) 25%, var(--c-glow-2) 30%);
+    stroke-width: 1.1;
+    filter: url(#mvBlurSm);
+    animation: mvFieldPulse 10s infinite ease-in-out;
+}
+
+.mvFieldVeil {
+    fill: color-mix(in oklab, var(--text) 22%, var(--c-glow-1) 78%);
+    filter: url(#mvBlurSm);
+    animation: mvFieldPulse 10s infinite ease-in-out;
+}
+
+.mvFieldCore {
+    fill: color-mix(in oklab, var(--text) 36%, var(--c-glow-1) 64%);
+    filter: url(#mvBlurSm);
+    animation: mvFieldPulse 10s infinite ease-in-out;
+}
+
+/* detect line */
+.mvDetectLineGlow {
+    stroke: color-mix(in oklab, var(--c-glow-1) 30%, var(--c-glow-2) 70%);
+    stroke-width: 6;
+    opacity: 0;
+    filter: url(#mvBlurSm);
+    stroke-dasharray: 154;
+    stroke-dashoffset: 154;
+    animation: mvDetectLineGlow 10s infinite ease-in-out;
+}
+
+.mvDetectLineCore {
+    stroke: color-mix(in oklab, var(--text) 40%, var(--c-glow-1) 60%);
+    stroke-width: 1.8;
+    opacity: 0;
+    stroke-dasharray: 124;
+    stroke-dashoffset: 124;
+    animation: mvDetectLineCore 10s infinite ease-in-out;
+}
+
+/* signal */
+.mvMeasureBase {
+    stroke: color-mix(in oklab, var(--text) 18%, var(--c-glow-2) 12%);
+    stroke-width: 1;
+    opacity: 0.22;
+}
+
+.mvGhostTrace {
+    stroke: color-mix(in oklab, var(--text) 48%, var(--c-glow-2) 52%);
+    stroke-width: 1.2;
+    opacity: 0;
+    filter: url(#mvBlurSm);
+    stroke-dasharray: 430;
+    stroke-dashoffset: 430;
+    animation: mvGhostTrace 10s infinite ease-in-out;
+}
+
+.mvSpectrumGlow {
+    stroke: url(#mvTraceGrad);
+    stroke-width: 8;
+    opacity: 0;
+    filter: url(#mvBlurLg);
+    stroke-dasharray: 430;
+    stroke-dashoffset: 430;
+    animation: mvSpectrumWrite 10s infinite ease-in-out;
+}
+
+.mvSpectrumLine {
+    stroke: url(#mvTraceGrad);
+    stroke-width: 2.2;
+    opacity: 0;
+    stroke-dasharray: 430;
+    stroke-dashoffset: 430;
+    animation: mvSpectrumWrite 10s infinite ease-in-out;
+}
+
+/* animation timing */
+@keyframes mvInBeam {
+    0%, 6% {
+        opacity: 0;
+        stroke-dashoffset: 240;
+    }
+    18%, 30% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+    84% {
+        opacity: 0.92;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -20;
+    }
+}
+
+@keyframes mvFieldPulse {
+    0%, 16% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    26%, 42% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    82% {
+        opacity: 0.66;
+        transform: scale(1.03);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.84);
+    }
+}
+
+@keyframes mvOutBeam {
+    0%, 28% {
+        opacity: 0;
+        stroke-dashoffset: 110;
+    }
+    40%, 58% {
+        opacity: 0.92;
+        stroke-dashoffset: 0;
+    }
+    84% {
+        opacity: 0.75;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -18;
+    }
+}
+
+@keyframes mvOutBand {
+    0%, 36% {
+        opacity: 0;
+        stroke-dashoffset: 135;
+    }
+    48%, 62% {
+        opacity: 0.45;
+        stroke-dashoffset: 0;
+    }
+    84% {
+        opacity: 0.3;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -16;
+    }
+}
+
+@keyframes mvDetectLineGlow {
+    0%, 60% {
+        opacity: 0;
+        stroke-dashoffset: 124;
+    }
+    62%, 84% {
+        opacity: 0.44;
+        stroke-dashoffset: 0;
+    }
+    95% {
+        opacity: 0.33;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -10;
+    }
+}
+
+@keyframes mvDetectLineCore {
+    0%, 60% {
+        opacity: 0;
+        stroke-dashoffset: 124;
+    }
+    62%, 84% {
+        opacity: 0.38;
+        stroke-dashoffset: 0;
+    }
+    95% {
+        opacity: 0.22;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -10;
+    }
+}
+
+@keyframes mvGhostTrace {
+    0%, 56% {
+        opacity: 0;
+        stroke-dashoffset: 430;
+    }
+    68%, 80% {
+        opacity: 0.42;
+        stroke-dashoffset: 0;
+    }
+    90% {
+        opacity: 0.24;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -16;
+    }
+}
+
+@keyframes mvSpectrumWrite {
+    0%, 64% {
+        opacity: 0;
+        stroke-dashoffset: 430;
+    }
+    76%, 92% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: -18;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mvBeamInGlow,
+    .mvBeamInRibbon,
+    .mvBeamInCore,
+    .mvBeamOutGlow,
+    .mvBeamOutCore,
+    .mvBeamOutBand,
+    .mvFieldAura,
+    .mvFieldLens,
+    .mvFieldVeil,
+    .mvFieldCore,
+    .mvDetectLine,
+    .mvGhostTrace,
+    .mvSpectrumGlow,
+    .mvSpectrumLine {
+        animation: none;
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+
+    .mvSpectrumGlow {
+        opacity: 0.42;
+    }
+
+    .mvBeamOutBand,
+    .mvDetectLineGlow {
+        opacity: 0.34;
+    }
+
+    .mvDetectLineCore {
+        opacity: 0.56;
+    }
+}

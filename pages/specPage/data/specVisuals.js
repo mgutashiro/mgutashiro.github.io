@@ -10,31 +10,50 @@ export const spectroscopyVisuals = {
   landing: {
     kind: 'hero',
     title: 'Spectroscopy Portal',
-    description: 'Intro visual placeholder'
   },
 
   'what-is-spectroscopy': {
     kind: 'concept',
     title: 'What Is Spectroscopy',
-    parts: [
-      {
-        id: 'quantized-light',
-        heading: 'Quantized Interaction',
-        visualKey: 'quantized-light',
+    visualType: 'introduction',
+    modes: {
+      friends: {
+        parts: [
+          { id: 'dual-nature', label: 'Dual Nature Visual', visualKey: 'dual-nature'},
+          { id: 'interaction', label: `Interaction Visual`, visualKey: 'interaction' },
+          { id: `measurement`, label: `Measurement Visual`, visualKey: `measurement` },
+        ],
       },
-    ]
+      colleague: {
+        parts: [
+          { id: 'quantized-light', label: 'Quantized Light Visual', visualKey: 'quantized-light' },
+          { id: 'transitions', label: 'Transitions Visual', visualKey: 'transitions' },
+          { id: 'spectroscopic-observables', label: 'Spectroscopic Observables Visual', visualKey: 'spectroscopic-observables' }
+        ],
+      },
+    }
   },
 
   'what-all-instruments-have-in-common': {
     kind: 'concept',
     title: 'Common Instrument Logic',
     visualType: 'instrument-flow',
-    parts: [
-      { id: 'source', label: 'Source' },
-      { id: 'sample', label: 'Sample' },
-      { id: 'discriminator', label: 'Discriminator' },
-      { id: 'detector', label: 'Detector' }
-    ]
+    modes: {
+      friends: {
+        parts: [
+          { id: 'source', label: 'Source Visual', visualKey: 'source' },
+          { id: 'sample', label: 'Sample Visual', visualKey: 'sample' },
+          { id: 'detector', label: 'Detector Visual', visualKey: 'detector' }
+        ],
+      },
+      colleague: {
+        parts: [
+          { id: 'field-matter-interaction', label: 'Field Matter Interaction Visual', visualKey: 'field-matter-interaction' },
+          { id: 'transition-probability-population', label: 'Transition Probability Population Visual', visualKey: 'transition-probability-population' },
+          { id: 'unified-spectroscopic-framework', label: 'unified-spectroscopic Framework Visual', visualKey: 'unified-spectroscopic-framework' }
+        ],
+      },
+    },
   },
 
   'uv-vis': {

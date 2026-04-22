@@ -11,26 +11,25 @@ export const HOME_COPY = {
             {
                 id: 'about-01',
                 body: text(`
-                    Currently a theoretical chemist in training, I study how frequencies evolve and interact to shape the physical and chemical behavior we observe; from molecular spectroscopy to quantum-driven electronic processes.
+I am a theoretical chemist in training with a background in spectroscopy, computation, and scientific communication. My work focuses on how light, energy, and electronic structure interact to shape the physical and chemical behavior we observe, from molecular spectroscopy to quantum-level processes.
 
-                    This portfolio documents my work at the intersection of chemistry, computation, and visual communication, aiming to make complex quantum phenomena both understandable and experientially meaningful.
-                    `),
+This portfolio gathers my work at the intersection of chemistry, computation, and visual design, with the goal of making complex scientific ideas more understandable, engaging, and meaningful.
+                `),
             },
             {
                 id: 'about-02',
                 body: text(`
-                     My work explores the laws of quantum mechanics through theoretical modeling, ultrafast spectroscopy, and interactive visualization to understand how excited-state dynamics shape light–matter interactions.
+My projects explore the behavior of matter through theoretical modeling, computational analysis, and interactive visualization, with a particular interest in how structure, energy, and motion shape chemical behavior.
 
-                     By combining science, mathematics, engineering, art, and design, I translate abstract electronic behavior into forms that can be seen, heard, and explored across disciplines.
-                    `),
+An additional passion for philosophy and classical literature has also shaped the way I think about abstraction, interpretation, and theory. Across chemistry, mathematics, coding, and design, I enjoy studying difficult problems and translating abstract ideas into forms that can be seen, explored, and more easily understood.
+                `),
             },
             {
                 id: 'about-03',
                 body: text(`
-                    This space was created to share ongoing investigations with curiosity-driven learners both within and beyond STEM.
-
-                    Thank you for visiting!
-
+                    This space was built for both technical and non-technical visitors: for those looking at my research and professional work, and for those who simply want to know how I think, build, and learn. I hope it offers a welcoming glimpse into the questions that move me, the work I care about, and the idea that both science and art begin in the same place; a desire to understand what it means to see the world clearly.
+                    
+                    Thank you for stopping by!
                     ～(*'∀'*)ﾉ"♡
                     `),
             },
@@ -50,16 +49,18 @@ export const HOME_COPY = {
     dft: {
         title: 'DFT Calculations',
         body: text(`
-            This section presents computational investigations performed in ORCA, including detailed studies of hydroquinone and excited-state behavior. Through density functional theory, we model how electrons distribute, reorganize, and influence chemical reactivity.
+            This section presents computational investigations performed in ORCA, including detailed studies of hydroquinone and excited-state behavior. Through density functional theory, I model how electrons distribute, reorganize, and influence chemical reactivity.
 
             Explore layered explanations in both intuitive and colleague modes, along with documented workflows and results.
             `)
     },
 
-    portfolio: {
-        title: 'Portfolio',
+    philosophy: {
+        title: 'The Philosophy Crypt',
         body: text(`
-            A collection of technical and creative builds including coding projects, interactive models, 3D work, and visual design. Developed to support research, teaching, and scientific communication, while exploring new ways to translate complex scientific ideas into engaging visual experiences.
+            Here, among the static glow and candle-smoke of old ideas, I keep a record of my readings through classical literature, philosophy, and the darker chambers of the human mind. 
+            
+            This is not a shelf of reviews, but a growing archive of mini essays on suffering, morality, rebellion, love, fate, and the shifting line between good and wickedness. Step inside the margin and follow the questions that refuse to stay buried.
             `)
     },
 }

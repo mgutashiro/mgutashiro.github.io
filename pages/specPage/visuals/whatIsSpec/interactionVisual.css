@@ -4,8 +4,8 @@
     --cycle: 5.2s;
     --beam-thickness: 3px;
     --beam-soft: color-mix(in oklab, var(--c-glow-1) 36%, transparent);
-    --beam-bright: color-mix(in oklab, var(--c-glow-1) 80%, white 20%);
-    --sphere-edge: color-mix(in oklab, var(--c-glow-2) 42%, white 12%);
+    --beam-bright: color-mix(in oklab, var(--c-glow-1) 80%, var(--text) 20%);
+    --sphere-edge: color-mix(in oklab, var(--c-glow-2) 42%, var(--text) 12%);
     --sphere-fill: color-mix(in oklab, var(--c-primary-2) 54%, var(--c-ink) 46%);
 }
 
@@ -24,7 +24,7 @@
             color-mix(in oklab, var(--c-shadow) 82%, var(--c-ink) 18%)
         );
     box-shadow:
-        inset 0 0 0 1px color-mix(in oklab, white 5%, transparent),
+        inset 0 0 0 1px color-mix(in oklab, var(--text) 5%, transparent),
         0 18px 34px rgba(0, 0, 0, 0.24);
     padding: clamp(1.1rem, 2.6vw, 1.6rem);
 }
@@ -37,7 +37,7 @@
         linear-gradient(
             90deg,
             transparent 0%,
-            color-mix(in oklab, white 4%, transparent) 50%,
+            color-mix(in oklab, var(--text) 4%, transparent) 50%,
             transparent 100%
         );
     opacity: 0.35;
@@ -92,8 +92,8 @@
     background: linear-gradient(
         90deg,
         transparent 0%,
-        color-mix(in oklab, var(--beam-soft) 80%, white 20%) 18%,
-        color-mix(in oklab, var(--beam-soft) 100%, white 0%) 70%,
+        color-mix(in oklab, var(--beam-soft) 80%, var(--text) 20%) 18%,
+        color-mix(in oklab, var(--beam-soft) 100%, var(--text) 0%) 70%,
         transparent 100%
     );
     opacity: 0.8;
@@ -105,7 +105,7 @@
         90deg,
         transparent 0%,
         color-mix(in oklab, var(--beam-bright) 44%, transparent) 18%,
-        color-mix(in oklab, var(--beam-bright) 84%, white 16%) 72%,
+        color-mix(in oklab, var(--beam-bright) 84%, var(--text) 16%) 72%,
         transparent 100%
     );
     filter: blur(6px);
@@ -127,8 +127,8 @@
     90deg,
     transparent 0%,
     color-mix(in oklab, var(--c-glow-1) 30%, transparent) 18%,
-    color-mix(in oklab, var(--c-glow-1) 78%, white 22%) 58%,
-    white 76%,
+    color-mix(in oklab, var(--c-glow-1) 78%, var(--text) 22%) 58%,
+    var(--text) 76%,
     transparent 100%
   );
   filter:
@@ -213,7 +213,7 @@
     border-radius: 50%;
     border: 1px solid color-mix(in oklab, var(--sphere-edge) 70%, transparent);
     background:
-        radial-gradient(circle at 34% 30%, color-mix(in oklab, white 16%, transparent), transparent 20%),
+        radial-gradient(circle at 34% 30%, color-mix(in oklab, var(--text) 16%, transparent), transparent 20%),
         radial-gradient(
         circle at 50% 45%,
         color-mix(in oklab, var(--sphere-fill) 82%, var(--c-ink) 18%),

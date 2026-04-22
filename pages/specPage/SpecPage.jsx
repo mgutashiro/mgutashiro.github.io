@@ -24,10 +24,10 @@ export default function SpectroscopyPage() {
       {orderedSections.map((section) => {
         if (section.id === 'landing') {
           return (
-            <section key={section.id} className="specLanding">
-              <div className="specLandingInner">
-                <p className="specSectionLabel">{section.label}</p>
-                <h1 className="specLandingTitle">{section.hook}</h1>
+            <section key={section.id} className="specpageLanding">
+              <div className="specpageLandingInner">
+                <p className="specpageSectionLabel">{section.label}</p>
+                <h1 className="specpageLandingTitle">{section.hook}</h1>
               </div>
             </section>
           );

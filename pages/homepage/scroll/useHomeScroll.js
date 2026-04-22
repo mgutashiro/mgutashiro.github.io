@@ -1,84 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
-import { clamp } from './mapProgress'
+import { useEffect, useState } from 'react'
 
-function getScroller() {
-  return document.getElementById('page-home')
-}
-
-function computeScrollState(scroller) {
-  const top = scroller?.scrollTop ?? 0
-  const clientH = scroller?.clientHeight ?? 1
-  const scrollH = scroller?.scrollHeight ?? clientH
-
-  const maxScroll = Math.max(1, scrollH - clientH)
-  const raw = top / maxScroll
-  const p = clamp(Number.isFinite(raw) ? raw : 0, 0, 1)
-
-  return {
-    t: p,
-    p,
-    top,
-    max: maxScroll,
-    maxScroll,
-    clientH,
-    scrollH,
-    raw,
-  }
-}
+const clamp01 = (x) => Math.max(0, Math.min(1, x))
 
 export default function useHomeScroll() {
-  const [state, setState] = useState(() => ({
-    t: 0,
-    p: 0,
-    top: 0,
-    max: 1,
-    maxScroll: 1,
-    clientH: 1,
-    scrollH: 1,
-    raw: 0,
-  }))
-
-  const rafRef = useRef(0)
+  const [p, setP] = useState(0)
 
   useEffect(() => {
-    const scroller = getScroller()
+    const scroller = document.getElementById('page-home')
     if (!scroller) return
 
-    const EPS = 0.0008
+    let raf = 0
 
     const update = () => {
-      rafRef.current = 0
-
-      setState((prev) => {
-        const next = computeScrollState(scroller)
-
-        const sameProgress = Math.abs((prev.t ?? 0) - (next.t ?? 0)) < EPS
-        const sameTop = Math.abs((prev.top ?? 0) - (next.top ?? 0)) < 1
-        const sameHeight =
-          prev.clientH === next.clientH &&
-          prev.scrollH === next.scrollH
-
-        if (sameProgress && sameTop && sameHeight) return prev
-        return next
-      })
+      raf = 0
+      const maxScroll = Math.max(1, scroller.scrollHeight - scroller.clientHeight)
+      setP(clamp01(scroller.scrollTop / maxScroll))
     }
 
-    const requestUpdate = () => {
-      if (rafRef.current) return
-      rafRef.current = window.requestAnimationFrame(update)
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(update)
     }
 
     update()
 
-    scroller.addEventListener('scroll', requestUpdate, { passive: true })
-    window.addEventListener('resize', requestUpdate)
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
 
     return () => {
-      if (rafRef.current) window.cancelAnimationFrame(rafRef.current)
-      scroller.removeEventListener('scroll', requestUpdate)
-      window.removeEventListener('resize', requestUpdate)
+      if (raf) window.cancelAnimationFrame(raf)
+      scroller.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
     }
   }, [])
 
-  return { ...state, p: state.t }
+  return { p }
 }

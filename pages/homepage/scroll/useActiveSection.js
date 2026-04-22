@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 
 const clamp01 = (x) => Math.max(0, Math.min(1, x))
 
@@ -12,30 +12,27 @@ function findByProgress(p, sections) {
 
     if ((x >= a && x < b) || (isLast && x >= a && x <= b)) {
       const span = Math.max(1e-6, b - a)
-      const tLocal = clamp01((x - a) / span)
-      return { idx: i, activeId: s.id, tLocal, active: s }
+      return {
+        activeId: s.id,
+        tLocal: clamp01((x - a) / span),
+        active: s,
+      }
     }
   }
 
-  const s0 = sections[0]
-  return { idx: 0, activeId: s0?.id ?? 'intro', tLocal: 0, active: s0 ?? null }
+  return {
+    activeId: sections[0]?.id ?? 'intro',
+    tLocal: 0,
+    active: sections[0] ?? null,
+  }
 }
 
 export default function useActiveSection(p, sections = []) {
-  const lastRef = useRef(null)
-
   return useMemo(() => {
     if (!sections.length) {
       return { activeId: 'intro', tLocal: 0, active: null }
     }
 
-    const next = findByProgress(p, sections)
-    lastRef.current = { idx: next.idx }
-
-    return {
-      activeId: next.activeId,
-      tLocal: next.tLocal,
-      active: next.active,
-    }
+    return findByProgress(p, sections)
   }, [p, sections])
 }

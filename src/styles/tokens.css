@@ -37,6 +37,7 @@
   --c-glow-1: #3FFFE2;     /* cyan glow */
   --c-glow-2: #9B5CFF;     /* violet glow */
   --c-glow-3: #FF3CAC;     /* hot pink glow */
+  --c-glow-4: #B6FF00;     /* Lime Green glow */
 
   --c-emo-1: #7A1026;      /* wine */
   --c-emo-2: #EB94C4;      /* soft pink */ 
@@ -93,5 +94,12 @@
     var(--c-glow-2),
     var(--c-glow-3),
     var(--c-glow-1)
+  );
+
+  --grad-neon-dim: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--text) 55%, var(--c-glow-2) 45%),
+    color-mix(in oklab, var(--text) 55%, var(--c-glow-3) 45%),
+    color-mix(in oklab, var(--text) 55%, var(--c-glow-1) 45%)
   );
 }

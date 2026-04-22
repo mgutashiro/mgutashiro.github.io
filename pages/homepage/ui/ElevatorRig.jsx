@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 const clamp01 = (x) => Math.max(0, Math.min(1, x))
@@ -35,14 +35,7 @@ function useThemeColors() {
   return colors
 }
 
-function Photon({
-  color,
-  index,
-  progress,
-  rideY,
-  burstAmount,
-  resetMix,
-}) {
+function Photon({color, index, progress, rideY }) {
   const ref = useRef()
 
   useFrame((state) => {
@@ -98,21 +91,6 @@ function Photon({
     y = lerp(y, insideY, insideT)
     z = lerp(z, insideZ, insideT)
 
-    // Burst outward at meme/top
-    if (burstAmount > 0.001) {
-      const burstAngle = orbitPhase + index * 0.75
-      x += Math.cos(burstAngle) * burstAmount * (0.75 + index * 0.16)
-      y += Math.sin(burstAngle) * burstAmount * (0.55 + index * 0.15)
-      z += burstAmount * (0.28 + index * 0.08)
-    }
-
-    // Reset: float back to right-side start
-    if (resetMix > 0.001) {
-      x = lerp(x, startX, resetMix)
-      y = lerp(y, startY, resetMix)
-      z = lerp(z, startZ, resetMix)
-    }
-
     const s = 0.07 + index * 0.008 + Math.sin(t * 4.2 + index * 1.7) * 0.004
 
     ref.current.position.set(x, y, z)
@@ -132,118 +110,35 @@ function Photon({
   )
 }
 
-function LightningBurst({ active, amount, color, position }) {
-  const group = useRef()
-
-  const rays = useMemo(() => {
-    return new Array(12).fill(null).map((_, i) => ({
-      key: i,
-      rotation: (i / 12) * Math.PI * 2,
-      length: i % 2 === 0 ? 0.72 : 0.48,
-    }))
-  }, [])
-
-  useFrame((state) => {
-    if (!group.current) return
-
-    const t = state.clock.getElapsedTime()
-    group.current.visible = active
-    group.current.position.copy(position)
-    group.current.rotation.z = t * 1.15
-
-    const flicker = active ? 0.7 + Math.sin(t * 34) * 0.25 : 0
-    const scale = active ? 0.3 + amount * 1.15 : 0.001
-
-    group.current.children.forEach((child, i) => {
-      child.scale.set(1, Math.max(0.001, scale + flicker + (i % 2) * 0.1), 1)
-    })
-  })
-
-  return (
-    <group ref={group}>
-      {rays.map((ray) => (
-        <mesh key={ray.key} rotation={[0, 0, ray.rotation]}>
-          <boxGeometry args={[0.03, ray.length, 0.03]} />
-          <meshBasicMaterial color={color} toneMapped={false} />
-        </mesh>
-      ))}
-    </group>
-  )
-}
 
 export default function ElevatorRig({ progress = 0, dropNow = false }) {
   const pod = useRef()
   const shell = useRef()
   const glowLight = useRef()
-  const burstCarrier = useRef()
-
-  const [resetPulse, setResetPulse] = useState(0)
   const colors = useThemeColors()
+  const p = clamp01(progress)
+  const rideProgress = easeInOut(clamp01(p / 0.86))
+  const rideY = lerp(-1.08, 1.78, rideProgress)
 
-  // trigger local reset animation when page reset begins
-  useEffect(() => {
-    if (!dropNow) return
-    setResetPulse(1)
-  }, [dropNow])
-
-  useFrame((state, delta) => {
-    if (!pod.current || !shell.current || !glowLight.current || !burstCarrier.current) return
+  useFrame((state) => {
+    if (!pod.current || !shell.current || !glowLight.current) return
 
     const t = state.clock.getElapsedTime()
-    const p = clamp01(progress)
-
-    // Leave some headroom until meme
-    const rideProgress = easeInOut(clamp01(p / 0.86))
-    const normalRideY = lerp(-1.08, 1.78, rideProgress)
-
-    // Meme/top burst
-    const memeZone = clamp01((p - 0.86) / 0.10)
-    const burstSeed = dropNow ? 1 : memeZone
-    const burstAmount = easeOutCubic(clamp01(burstSeed))
-
-    // Reset local pulse decays back to 0
-    let nextReset = resetPulse
-    if (nextReset > 0) {
-      nextReset = Math.max(0, nextReset - delta * 1.2)
-      if (nextReset !== resetPulse) setResetPulse(nextReset)
-    }
-
-    // Instant pod drop on reset pulse
-    const rideY = resetPulse > 0.001
-      ? lerp(normalRideY, -1.08, easeOutCubic(resetPulse))
-      : normalRideY
 
     pod.current.position.set(-0.2, rideY, 0)
-
-    // Shake at the top
-    const shake = burstAmount > 0.01 ? burstAmount : 0
-    pod.current.position.x = -0.2 + Math.sin(t * 45) * 0.035 * shake
-    pod.current.position.y += Math.cos(t * 37) * 0.03 * shake
 
     shell.current.rotation.x += 0.004
     shell.current.rotation.y += 0.006
 
-    const glow = lerp(0.8, 2.9, rideProgress)
+    const glow = lerp(0.8, 2.2, rideProgress)
     shell.current.material.emissiveIntensity = glow * 0.68
     glowLight.current.intensity = glow * 2.15
 
     const baseScale = 1 + Math.sin(t * 2.8) * 0.015
-    const burstScale = 1 + burstAmount * 0.62
-    shell.current.scale.setScalar(baseScale * burstScale)
+    shell.current.scale.setScalar(baseScale)
 
-    shell.current.material.opacity = lerp(0.62, 0.32, burstAmount)
-
-    burstCarrier.current.position.copy(pod.current.position)
+    shell.current.material.opacity = 0.62
   })
-
-  const p = clamp01(progress)
-  const rideProgress = easeInOut(clamp01(p / 0.86))
-  const normalRideY = lerp(-1.08, 1.78, rideProgress)
-  const memeZone = clamp01((p - 0.86) / 0.10)
-  const burstSeed = dropNow ? 1 : memeZone
-  const burstAmount = easeOutCubic(clamp01(burstSeed))
-  const lightningActive = burstAmount > 0.02
-  const resetMix = resetPulse
 
   return (
     <>
@@ -291,25 +186,19 @@ export default function ElevatorRig({ progress = 0, dropNow = false }) {
         color={colors.cyan}
         index={0}
         progress={progress}
-        rideY={normalRideY}
-        burstAmount={burstAmount}
-        resetMix={resetMix}
+        rideY={rideY}
       />
       <Photon
         color={colors.violet}
         index={1}
         progress={progress}
-        rideY={normalRideY}
-        burstAmount={burstAmount}
-        resetMix={resetMix}
+        rideY={rideY}
       />
       <Photon
         color={colors.pink}
         index={2}
         progress={progress}
-        rideY={normalRideY}
-        burstAmount={burstAmount}
-        resetMix={resetMix}
+        rideY={rideY}
       />
 
       {/* pod */}
@@ -328,14 +217,6 @@ export default function ElevatorRig({ progress = 0, dropNow = false }) {
           />
         </mesh>
       </group>
-
-      <group ref={burstCarrier} />
-      <LightningBurst
-        active={lightningActive}
-        amount={burstAmount}
-        color={colors.cyan}
-        position={burstCarrier.current?.position || new THREE.Vector3(-0.2, 1.78, 0)}
-      />
     </>
   )
 }

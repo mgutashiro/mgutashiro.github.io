@@ -1,3 +1,24 @@
+.qiVisual .qiAnimationStage {
+  min-height: 0;
+  height: auto;
+  display: block;
+  aspect-ratio: auto;
+}
+
+.qiAnimationStage{
+  border-radius: 22px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 64% 42%, color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%, transparent 36%),
+    radial-gradient(circle at 22% 70%, color-mix(in oklab, var(--c-glow-1) 10%, transparent) 0%, transparent 28%),
+    linear-gradient(180deg, color-mix(in oklab, var(--text) 3%, transparent), transparent 34%),
+    color-mix(in oklab, var(--c-ink) 93%, var(--surface) 7%);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--text) 3%, transparent),
+    inset 0 -24px 40px color-mix(in oklab, var(--surface) 22%, transparent);
+}
+
+
 .qiSvg {
   width: 100%;
   height: auto;
@@ -58,8 +79,16 @@
 }
 
 .qiVisual .visualCaption {
-  color: color-mix(in oklab, var(--text) 55%, transparent);
-  font-size: 16px;
+  background: var(--grad-neon-dim);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-tech);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  line-height: 1.5;
+  letter-spacing: 0.002em;
+  text-align: center;
   opacity: 1;
 }
 

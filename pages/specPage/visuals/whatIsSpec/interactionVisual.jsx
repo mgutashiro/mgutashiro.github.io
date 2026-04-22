@@ -1,4 +1,3 @@
-import '../shared/visualShared.css';
 import './interactionVisual.css'
 
 const RIPPLE_COUNT = 3;
@@ -9,7 +8,7 @@ const MOTES = [
   { id: 2, x: '46%', y: '66%', delay: '0.55s' },
 ];
 
-export default function InteractionVisual() {
+export default function InteractionVisualResponse() {
     return (
         <div className="visualShell interactionVisualShell">
             <div className="interactionCard" aria-hidden="true">

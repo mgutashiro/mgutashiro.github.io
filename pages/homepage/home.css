@@ -1,6 +1,3 @@
-/**
-    Root + Global Page Shells
-*/
 html,
 body,
 #root {
@@ -12,21 +9,14 @@ body {
   overflow: hidden;
 }
 
-#webgl   { 
-  position: fixed; 
-  inset: 0; 
-  z-index: 0; 
-  pointer-events: none; 
+#webgl {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.uiLayer { position: relative; z-index: 10; } 
-
-/**
-    Main Homepage Grid
-*/
-
 .HomePageGrid {
-  position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr;
   width: 100vw;
@@ -34,13 +24,16 @@ body {
   overflow: hidden;
 }
 
+/* ELEVATOR */
+#elevatorSpace {
+  display: block;
+}
 
 .elevatorLane {
   position: relative;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background: transparent;
 }
 
 .elevatorLane::before {
@@ -62,11 +55,6 @@ body {
   opacity: 0.9;
 }
 
-.elevatorCanvasWrap {
-  position: absolute;
-  inset: 0;
-}
-
 .elevatorLane canvas {
   display: block;
   width: 100% !important;
@@ -74,187 +62,38 @@ body {
 }
 
 
+/* PAGE SHELL */
 .HomePageMainSpace {
-  grid-column: 2;
   position: relative;
-  width: 100%;
-  height: 100vh;
   min-width: 0;
-  min-height: 0;
+  height: 100vh;
   overflow: hidden;
-  background: transparent;
 }
 
-/**
-    Scroll Container + layout anchors
-*/
+
 #page-home {
-  position: relative;
   width: 100%;
   height: 100%;
-  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-
-  scroll-snap-type: y proximity;
-  /* scroll-behavior: auto; */
-  /* overscroll-behavior-y: contain; */
   -webkit-overflow-scrolling: touch;
 }
 
-/** 
-Section-Level Layout 
-*/
 
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  overflow: hidden;
-}
-
-#webgl   { 
-  position: fixed; 
-  inset: 0; 
-  z-index: 0; 
-  pointer-events: none; 
-}
-
-.uiLayer { position: relative; z-index: 10; } 
-
-/**
-    Main Homepage Grid
-*/
-
-.HomePageGrid {
+.uiLayer {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  z-index: 10;
 }
-
-
-.elevatorLane {
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  background: transparent;
-}
-
-.elevatorLane::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      circle at 28% 82%,
-      color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%,
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 36% 58%,
-      color-mix(in oklab, var(--c-glow-1) 9%, transparent) 0%,
-      transparent 26%
-    );
-  opacity: 0.9;
-}
-
-.elevatorCanvasWrap {
-  position: absolute;
-  inset: 0;
-}
-
-.elevatorLane canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-
-.HomePageMainSpace {
-  grid-column: 2;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  background: transparent;
-}
-
-/**
-    Scroll Container + layout anchors
-*/
-#HomePageSections {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  scroll-snap-type: y proximity;
-  /* scroll-behavior: auto; */
-  /* overscroll-behavior-y: contain; */
-  -webkit-overflow-scrolling: touch;
-}
-
-/** 
-Section-Level Layout 
-*/
 
 .homeSection {
-  position: relative;
-  height: 100vh;
-  scroll-snap-align: start;
-}
-
-
-
-
-.introSection {
-  position: relative;
-}
-
-.framedSection {
-  position: relative;
-  display: grid;
-  grid-template-rows: minmax(0, 4fr) minmax(0, 1fr);
-}
-
-/**
-Panel Shells
-*/
-.introPanel{
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.sectionPanelShell,
-.aboutPanel {
-  grid-row: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 .introPanel {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+/* INTRO SECTION */
 .titleAnchor {
   position: absolute;
   top: 52%;
@@ -265,64 +104,55 @@ Panel Shells
   margin-inline: auto;
   transform: translateY(-50%);
   pointer-events: none;
-
-  /* outline: 1px dashed rgba(255, 255, 255, 0.3); */
 }
 
-.introMark {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.85;
-  z-index: 20;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
+/* SHARED FRAME */
+.framedSection {
+  --section-frame-w: min(58vw, 720px);
+  --section-frame-x: 0px;
+  --section-frame-y: -3vh;
+  --section-frame-scale-x: 1;
+  --section-frame-scale-y: 0.8;
+
+  --section-content-left: 50%;
+  --section-text-top: 35%;
+  --section-text-w: min(520px, 70%);
+
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  row-gap: 0.2rem;
+  min-height: 100vh;
 }
 
-.introMark p {
-  margin: 0;
-  font-family: var(--font-fun);
-  color: 
-  var(--text);
+.framedSection > .sectionPanelShell,
+.framedSection > .aboutPanel {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
+
 .sectionFrame {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-
-  --frame-w: min(58vw, 740px);
-  --frame-x: 0px;
-  --frame-y: -3vh;
-  --frame-scale-x: 1;
-  --frame-scale-y: 0.8;
-
-  /* stroke (structure) */
-  --frame-stroke: rgba(255, 255, 255, 0.82);
-  --frame-stroke-soft: rgba(255, 255, 255, 0.35);
-}
-
-.sectionFrame.isActive {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 160ms ease, visibility 0s linear 0s;
 }
 
 .sectionFrame .hudFrameSVG {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: var(--frame-w);
-  aspect-ratio: 908 / 772;
+  width: var(--section-frame-w);
   height: auto;
-  display: block;
-  overflow: visible;
-
-  transform-origin: center center;
+  aspect-ratio: 908 / 772;
   transform:
-    translate(calc(-50% + var(--frame-x)), calc(-50% + var(--frame-y)))
-    scale(var(--frame-scale-x), var(--frame-scale-y));
+    translate(
+      calc(-50% + var(--section-frame-x)),
+      calc(-50% + var(--section-frame-y))
+    )
+  scale(var(--section-frame-scale-x), var(--section-frame-scale-y));
 }
 
 .sectionFrame .homepageFrameBaseSVG {
@@ -332,150 +162,71 @@ Panel Shells
 
 .sectionFrame .frameStroke {
   fill: none;
-  stroke: var(--frame-stroke);
+  stroke: var(--section-frame-stroke);
   stroke-width: 2.2;
 }
 
 .sectionFrame .frameStrokeSoft {
   fill: none;
-  stroke: var(--frame-stroke-soft);
+  stroke: var(--section-frame-stroke-soft);
   stroke-width: 1.2;
   opacity: 0.9;
 }
 
-/* .sectionFrame .frameFill {
-  fill: var(--frame-fill-base);
-  opacity: 0.72;
-}
-
-.sectionFrame .frameFillAlt {
-  fill: var(--frame-fill-tint);
-  opacity: 0.18;
-} */
-
 .sectionFrame .frameGlow {
   fill: none;
-  stroke: var(--frame-stroke);
+  stroke: var(--section-frame-stroke);
   stroke-width: 4;
   opacity: 0.24;
-  filter: var(--frame-glow-shadow);
+  filter: var(--section-frame-glow-shadow);
 }
-
-.sectionFrame.aboutFrame {
-  --frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
-  --frame-stroke-soft: color-mix(in oklab, var(--c-primary-2) 55%, var(--bg));
-
-  /* fill */
-  --frame-fill-base: color-mix(in oklab, var(--surface) 86%, var(--bg-2));
-  --frame-fill-tint: color-mix(in oklab, var(--accent) 18%, var(--emo2));
-
-  /* glow */
-  --frame-glow-shadow: var(--glow-violet);
-
-  /* transform */
-  --frame-w: min(57vw, 720px);
-  --frame-x: 0px;
-  --frame-y: -2vh;
-  --frame-scale-x: 1;
-  --frame-scale-y: 0.9;
-}
-
-.sectionFrame.specFrame {
-  --frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
-  --frame-stroke-soft: color-mix(in oklab, var(--c-glow-2) 45%, var(--bg));
-
-  /* fill */
-  --frame-fill-base: color-mix(in oklab, var(--bg) 76%, var(--surface-2));
-  --frame-fill-tint: color-mix(in oklab, var(--accent-2) 18%, var(--accent));
-
-  /* glow */
-  --frame-glow-shadow: var(--glow-cyan);
-
-  /* transform */
-  --frame-w: min(56vw, 700px);
-  --frame-x: 0px;
-  --frame-y: -3vh;
-  --frame-scale-x: 1;
-  --frame-scale-y: 0.9;
-}
-
-.sectionFrame.dftFrame {
-  /* stroke */
-  --frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
-  --frame-stroke-soft: color-mix(in oklab, var(--copper) 45%, var(--bg));
-
-  /* fill */
-  --frame-fill-base: color-mix(in oklab, var(--surface) 72%, var(--bg));
-  --frame-fill-tint: color-mix(in oklab, var(--lightMetal) 16%, var(--primary-deep));
-
-  /* glow */
-  --frame-glow-shadow:
-    0 0 16px color-mix(in oklab, var(--c-metal-1) 45%, transparent);
-
-  /* transform */
-  --frame-w: min(56vw, 700px);
-  --frame-x: 0px;
-  --frame-y: -2vh;
-  --frame-scale-x: 1;
-  --frame-scale-y: 0.9;
-}
-
-.sectionFrame.portfolioFrame {
-  /* stroke */
-  --frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
-  --frame-stroke-soft: color-mix(in oklab, var(--c-emo-2) 55%, var(--bg));
-
-  /* fill */
-  --frame-fill-base: color-mix(in oklab, var(--surface-2) 82%, var(--bg));
-  --frame-fill-tint: color-mix(in oklab, var(--accent-3) 20%, var(--accent));
-
-  /* glow */
-  --frame-glow-shadow: var(--glow-pink);
-
-  /* transform */
-  --frame-w: min(58vw, 740px);
-  --frame-x: 0vw;
-  --frame-y: -4vh;
-  --frame-scale-x: 1;
-  --frame-scale-y: 0.65;
-}
-
 
 .sectionText,
 .aboutText {
   position: absolute;
-  left: 50%;
-  top: 46%;
-  transform: translate(-50%, -50%);
-  width: min(520px, 70%);
-  text-align: left;
+  left: var(--section-content-left, 50%);
+  top: var(--section-text-top, 50%);
+  transform: translate(-50%, -25%);
+  width: var(--section-text-w, min(520px, 70%));
   z-index: 3;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.sectionText::before,
+.aboutText::before {
+  content: "";
+  position: absolute;
+  inset: -1.2rem -1.4rem -1.4rem;
+  z-index: -1;
+  border-radius: var(--radius-3);
+  background: var(--section-card-bg);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--text) 8%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--border) 75%, transparent),
+    0 18px 36px color-mix(in oklab, var(--bg) 50%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .sectionTextHeader {
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.25rem;
 }
 
 .sectionTitle,
 .aboutTitle {
-  margin: 0 0 1.2rem 0;
+  margin: 0 0 1.2rem;
   font-family: var(--font-display);
   font-weight: var(--w-black);
   font-size: clamp(1.7rem, 3vw, 2.7rem);
   line-height: 1.15;
   letter-spacing: 0.055em;
   color: var(--text);
-  text-shadow:
-    0 0 14px color-mix(in oklab, var(--c-glow-2) 18%, transparent),
-    0 0 28px color-mix(in oklab, var(--text) 10%, transparent);
-  text-wrap: balance;
+  text-align: center;
 }
 
-.sectionBodyWrap {
-  max-width: 56ch;
-}
-
-.sectionBody {
+.sectionBody,
+.aboutBody {
   margin: 0;
   white-space: pre-line;
   font-family: var(--font-body);
@@ -484,311 +235,23 @@ Panel Shells
   color: color-mix(in oklab, var(--text) 82%, var(--bg));
 }
 
-
-
-
-.aboutBody {
-  margin: 0;
-  white-space: pre-line;
-  font-family: var(--font-body);
-  line-height: 1.7;
-  color: var(--text-dim);
-  max-width: 62ch;
-  color: color-mix(in oklab, var(--text) 82%, var(--bg));
-}
-
-.sectionText::before,
-.aboutText::before {
-  content: "";
-  position: absolute;
-  inset: -1.4rem -1.6rem -1.6rem -1.6rem;
-  z-index: -1;
-
-  border-radius: var(--radius-3);
-
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 74%, transparent) 0%,
-      color-mix(in oklab, var(--bg) 82%, transparent) 100%
-    );
-
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 8%, transparent),
-    inset 0 -1px 0 color-mix(in oklab, var(--bg) 40%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--border) 75%, transparent),
-    0 18px 36px color-mix(in oklab, var(--bg) 50%, transparent);
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.aboutText::before {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 68%, var(--accent)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
-    );
-}
-
-.specText::before {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface-2) 66%, var(--accent-2)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
-    );
-}
-
-.dftText::before {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 72%, var(--lightMetal)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
-    );
-}
-
-.portfolioText::before {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface-2) 68%, var(--accent-3)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
-    );
-}
-
-
-
 .LinkToSubPage,
 .aboutControls {
-  grid-row: 2;
-  position: relative;
-  z-index: 5;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  width: 100%;
-  min-height: 0;
-  padding: 0 1.5rem 2rem;
-}
-
-.aboutControls {
-  grid-row: 2;
-  position: relative;
+  align-items: center;
+  padding: 0;
   z-index: 5;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  padding: 0 1.5rem 2rem;
+  transform: none;
+  align-self: start;
 }
 
 .LinkToSubPage {
-  grid-row: 2;
-  position: relative;
-  z-index: 5;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  padding: 0 1.5rem 2rem;
-}
-
-.aboutNavButton {
-  --about-btn-size: 58px;
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 38%, var(--border));
-  --about-btn-fill-top: color-mix(in oklab, var(--surface-2) 82%, var(--bg));
-  --about-btn-fill-bottom: color-mix(in oklab, var(--surface) 88%, var(--bg-2));
-  --about-btn-arrow: var(--text);
-  --about-btn-label-bg: color-mix(in oklab, var(--bg) 84%, var(--primary-deep));
-  --about-btn-label-border: color-mix(in oklab, var(--accent) 20%, var(--border));
-
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-
   padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-
-  appearance: none;
-  -webkit-appearance: none;
+  margin-top: 0;
+  align-self: start;
+  transform: none;
 }
-
-.aboutNavButton__glow {
-  position: absolute;
-  inset: 10px;
-  z-index: 0;
-
-  border-radius: 999px;
-  opacity: 0;
-  transform: scale(0.84);
-
-  filter: blur(10px);
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
-}
-
-.aboutNavButton__circle {
-  position: relative;
-  z-index: 1;
-
-  inline-size: var(--about-btn-size);
-  block-size: var(--about-btn-size);
-  flex: 0 0 var(--about-btn-size);
-
-  border-radius: 999px;
-
-  display: grid;
-  place-items: center;
-
-  background:
-    linear-gradient(
-      180deg,
-      var(--about-btn-fill-top) 0%,
-      var(--about-btn-fill-bottom) 100%
-    );
-
-  border: 1px solid var(--about-btn-border);
-
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
-    inset 0 -1px 0 color-mix(in oklab, var(--bg) 45%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--bg) 38%, transparent);
-
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background 160ms ease;
-}
-
-.aboutNavButton__triangle {
-  display: block;
-  inline-size: 0;
-  block-size: 0;
-}
-
-.aboutNavButton__triangle--right {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 12px solid var(--about-btn-arrow);
-  margin-left: 3px;
-}
-
-.aboutNavButton__triangle--left {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 12px solid var(--about-btn-arrow);
-  margin-right: 3px;
-}
-
-.aboutNavButton__label {
-  font-family: var(--font-tech);
-  font-size: 0.95rem;
-  font-weight: var(--w-medium);
-  letter-spacing: 0.05em;
-  color: var(--text);
-  white-space: nowrap;
-  opacity: 0.92;
-  transition: opacity 160ms ease, transform 160ms ease;
-}
-
-.aboutNavButton__label--left {
-  order: -1;
-}
-
-.aboutNavButton__label--right {
-  order: 1;
-}
-
-.aboutNavButton:hover .aboutNavButton__glow,
-.aboutNavButton:focus-visible .aboutNavButton__glow {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.aboutNavButton:hover .aboutNavButton__circle,
-.aboutNavButton:focus-visible .aboutNavButton__circle {
-  transform: translateY(-1px);
-}
-
-
-
-.aboutNavButton:active .aboutNavButton__glow {
-  opacity: 1;
-  transform: scale(1.08);
-}
-
-.aboutNavButton:active .aboutNavButton__circle {
-  transform: translateY(1px) scale(0.97);
-}
-
-.aboutNavButton:focus-visible {
-  outline: none;
-}
-
-.aboutNavButton--back {
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent));
-  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent));
-}
-
-.aboutNavButton--back .aboutNavButton__glow {
-  background: color-mix(in oklab, var(--accent) 24%, transparent);
-}
-
-.aboutNavButton--back:hover .aboutNavButton__circle,
-.aboutNavButton--back:focus-visible .aboutNavButton__circle {
-  border-color: color-mix(in oklab, var(--accent) 52%, var(--lightMetal));
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--accent) 20%, transparent),
-    var(--glow-violet);
-}
-
-.aboutNavButton--next {
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent-3));
-  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent-3));
-}
-
-.aboutNavButton--next .aboutNavButton__glow {
-  background: color-mix(in oklab, var(--accent-3) 24%, transparent);
-}
-
-.aboutNavButton--next:hover .aboutNavButton__circle,
-.aboutNavButton--next:focus-visible .aboutNavButton__circle {
-  border-color: color-mix(in oklab, var(--accent-3) 52%, var(--lightMetal));
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--accent-3) 20%, transparent),
-    var(--glow-pink);
-}
-
-.aboutNavButton:disabled {
-  cursor: default;
-  opacity: 0.42;
-}
-
-
-.aboutNavButton:disabled .aboutNavButton__circle {
-  border-color: color-mix(in oklab, var(--border) 85%, var(--bg));
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 8%, transparent),
-    inset 0 -1px 0 color-mix(in oklab, var(--bg) 55%, transparent);
-}
-
-
 
 .sectionCTA {
   display: inline-flex;
@@ -802,27 +265,269 @@ Panel Shells
   font-size: 0.9rem;
   font-weight: var(--w-semibold);
   letter-spacing: 0.08em;
-  line-height: 1;
   color: var(--text);
   background: color-mix(in oklab, var(--surface) 78%, var(--bg));
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
 }
 
-.sectionCTA:hover,
-.sectionCTA:focus-visible {
+/* ABOUT SECTION */
+.aboutSection {
+  --section-frame-y: -1.8vh;
+  --section-frame-scale-y: 0.86;
+
+  --section-text-top: 31%;
+  --section-text-w: min(560px, 66%);
+  --section-content-left: 50%;
+
+  --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
+  --section-frame-stroke-soft: color-mix(in oklab, var(--c-primary-2) 55%, var(--bg));
+  --section-frame-glow-shadow: var(--glow-violet);
+
+  --section-card-bg:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--surface) 68%, var(--accent)) 0%,
+      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
+    );
+  row-gap: 0;
+}
+
+.aboutSection > .aboutPanel {
+  min-height: clamp(34rem, 70vh, 44rem);
+}
+
+.aboutText {
+  transform: translate(-50%, -20%);
+}
+
+.aboutControls {
+  padding: 0 0 2rem;
+  margin-top: -2.5rem;
+  transform: none;
+  align-self: start;
+}
+
+.aboutButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.aboutNavButton {
+  --about-btn-size: 58px;
+  --about-btn-border: color-mix(in oklab, var(--lightMetal) 38%, var(--border));
+  --about-btn-fill-top: color-mix(in oklab, var(--surface-2) 82%, var(--bg));
+  --about-btn-fill-bottom: color-mix(in oklab, var(--surface) 88%, var(--bg-2));
+  --about-btn-arrow: var(--text);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.aboutNavButton__glow {
+  position: absolute;
+  inset: 10px;
+  z-index: 0;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.84);
+  filter: blur(10px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.aboutNavButton__circle {
+  position: relative;
+  z-index: 1;
+  inline-size: var(--about-btn-size);
+  block-size: var(--about-btn-size);
+  flex: 0 0 var(--about-btn-size);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    180deg,
+    var(--about-btn-fill-top) 0%,
+    var(--about-btn-fill-bottom) 100%
+  );
+  border: 1px solid var(--about-btn-border);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--bg) 45%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--bg) 38%, transparent);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+.aboutNavButton__triangle {
+  display: block;
+  inline-size: 0;
+  block-size: 0;
+}
+.aboutNavButton__triangle--right {
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid var(--about-btn-arrow);
+  margin-left: 3px;
+}
+.aboutNavButton__triangle--left {
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 12px solid var(--about-btn-arrow);
+  margin-right: 3px;
+}
+.aboutNavButton__label {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.05em;
+  color: var(--text);
+  white-space: nowrap;
+  opacity: 0.92;
+}
+.aboutNavButton__label--left {
+  order: -1;
+}
+.aboutNavButton__label--right {
+  order: 1;
+}
+.aboutNavButton:hover .aboutNavButton__glow,
+.aboutNavButton:focus-visible .aboutNavButton__glow {
+  opacity: 1;
+  transform: scale(1);
+}
+.aboutNavButton:hover .aboutNavButton__circle,
+.aboutNavButton:focus-visible .aboutNavButton__circle {
   transform: translateY(-1px);
 }
+.aboutNavButton:focus-visible {
+  outline: none;
+}
+.aboutNavButton--back {
+  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent));
+  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent));
+}
+.aboutNavButton--back .aboutNavButton__glow {
+  background: color-mix(in oklab, var(--accent) 24%, transparent);
+}
+.aboutNavButton--next {
+  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent-3));
+  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent-3));
+}
+.aboutNavButton--next .aboutNavButton__glow {
+  background: color-mix(in oklab, var(--accent-3) 24%, transparent);
+}
+.aboutNavButton:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+.aboutSocials {
+  position: absolute;
+  /* left: calc(clamp(0.5rem, 1.5vw, 0.8rem) + 10px); */
+  left: calc(50% - 390px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
 
-.sectionCTA:active {
-  transform: translateY(1px) scale(0.985);
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+.aboutSocialLink {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 999px;
+  text-decoration: none;
+
+  background: color-mix(var(--text-dim) 40%, var(--primary-deep) 60%);
+  border: 1px solid color-mix(in oklab, var(--lightMetal) 20%, var(--border));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--text) 12%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--bg) 36%, transparent),
+    0 10px 22px color-mix(in oklab, var(--bg) 46%, transparent);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+.aboutSocialLink img {
+  width: 39px;
+  height: 39px;
+  display: block;
+  object-fit: contain;
+}
+.aboutSocialLink--linkedin {
+  border-color: color-mix(in oklab, var(--c-glow-1) 34%, var(--border));
+}
+.aboutSocialLink--github {
+  border-color: color-mix(in oklab, var(--c-glow-3) 36%, var(--border));
+}
+.aboutSocialLink:hover,
+.aboutSocialLink:focus-visible,
+.aboutSocialLink:active {
+  transform: translateY(-2px) scale(1.05);
+  outline: none;
+}
+.aboutSocialLink--linkedin:hover,
+.aboutSocialLink--linkedin:focus-visible,
+.aboutSocialLink--linkedin:active {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--c-glow-1) 28%, transparent),
+    0 0 28px color-mix(in oklab, var(--c-glow-1) 45%, transparent),
+    0 0 52px color-mix(in oklab, var(--c-glow-1) 22%, transparent);
+}
+.aboutSocialLink--github:hover,
+.aboutSocialLink--github:focus-visible,
+.aboutSocialLink--github:active {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--c-glow-2) 28%, transparent),
+    0 0 28px color-mix(in oklab, var(--c-glow-2) 45%, transparent),
+    0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
 }
 
-.sectionCTA:focus-visible {
-  outline: none;
+/* SPEC SECTION */
+.specSection {
+  --section-frame-y: -1.8vh;
+  --section-frame-scale-y: 0.86;
+
+  --section-text-top: 30%;
+  --section-text-w: min(540px, 64%);
+
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
+  --section-frame-stroke-soft: color-mix(in oklab, var(--c-glow-2) 45%, var(--bg));
+  --section-frame-glow-shadow: var(--glow-cyan);
+
+  --section-card-bg:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--surface-2) 66%, var(--accent-2)) 0%,
+      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
+    );
+  row-gap: 0;
+}
+
+.specSection > .sectionPanelShell {
+    min-height: clamp(27rem, 55vh, 34rem);
+}
+
+.specActions.LinkToSubPage {
+    margin-top: 1.2rem;
+    padding: 0;
+    transform: none;
+    align-self: start;
 }
 
 .specCTA {
@@ -830,12 +535,36 @@ Panel Shells
   box-shadow: var(--glow-cyan);
 }
 
-.specCTA:hover,
-.specCTA:focus-visible {
-  border-color: var(--accent-2);
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--accent-2) 25%, transparent),
-    var(--glow-cyan);
+/* DFT SECTION */
+.dftSection {
+  --section-frame-y: -1.4vh;
+  --section-frame-scale-y: 0.8;
+
+  --section-text-top: 32%;
+  --section-text-w: min(540px, 64%);
+
+  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
+  --section-frame-stroke-soft: color-mix(in oklab, var(--copper) 45%, var(--bg));
+  --section-frame-glow-shadow: 0 0 16px color-mix(in oklab, var(--c-metal-1) 45%, transparent);
+
+  --section-card-bg:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--surface) 72%, var(--lightMetal)) 0%,
+      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
+    );
+  /* row-gap: 0; */
+}
+
+.dftSection > .sectionPanelShell {
+  min-height: clamp(27rem, 56vh, 35rem);
+}
+
+.dftActions.LinkToSubPage {
+  margin-top: 0.5rem;
+  padding: 0;
+  transform: none;
+  align-self: start;
 }
 
 .dftCTA {
@@ -843,60 +572,66 @@ Panel Shells
   box-shadow: var(--glow-violet);
 }
 
-.dftCTA:hover,
-.dftCTA:focus-visible {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--accent) 25%, transparent),
-    var(--glow-violet);
+/* Philosophy SECTION */
+.philosophySection {
+  --section-frame-y: -1vh;
+  --section-frame-scale-y: 0.78;
+  --section-text-top: 33%;
+
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
+  --section-frame-stroke-soft: color-mix(in oklab, var(--c-emo-2) 55%, var(--bg));
+  --section-frame-glow-shadow: var(--glow-pink);
+
+  --section-card-bg:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--surface-2) 68%, var(--accent-3)) 0%,
+      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
+    );
+  row-gap: 0;
 }
 
-.portfolioCTA {
+.philosophySection > .sectionPanelShell {
+  min-height: clamp(28rem, 58vh, 36rem);
+}
+
+.philosophyCTA {
   border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
   box-shadow: var(--glow-pink);
 }
 
-.portfolioCTA:hover,
-.portfolioCTA:focus-visible {
-  border-color: var(--accent-3);
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--accent-3) 25%, transparent),
-    var(--glow-pink);
-}
-
-
-/** 
-  Meme Section
-*/
-.memeSection {
-  position: relative;
-  min-height: 100%;
-  overflow: hidden;
-}
-
-.memePanel {
-  isolation: isolate;
+/* FOOTER MARK */
+.homePageMGUMark {
   position: absolute;
-  inset: 7% 1%;
-  border-radius: 1rem;
-  overflow: hidden;
-
-  background:
-    radial-gradient(circle at 20% 25%, rgba(129, 255, 237, 0.22) 0%, transparent 32%),
-    radial-gradient(circle at 80% 28%, rgba(255, 120, 190, 0.20) 0%, transparent 34%),
-    radial-gradient(circle at 50% 12%, rgba(232, 197, 116, 0.17) 0%, transparent 30%),
-    radial-gradient(circle at 52% 82%, rgba(160, 118, 255, 0.16) 0%, transparent 38%),
-    linear-gradient(180deg, #314f58 0%, #4f2f47 40%, #241b39 70%, #07131c 100%);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -24px 60px rgba(0, 0, 0, 0.28),
-    0 18px 50px rgba(0, 0, 0, 0.26);
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.88;
 }
-
-
-@media (max-width: 900px) {
+.homePageMGUMark p {
+  margin: 0;
+  font-family: var(--font-jester);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+/* =========================
+   TABLET
+   frame ON
+   ========================= */
+@media (max-width: 1200px) {
+  .titleAnchor {
+    left: 50%;
+    right: auto;
+    width: min(84vw, 760px);
+    max-width: none;
+    height: clamp(110px, 16vh, 180px);
+    transform: translate(-50%, -50%);
+    top: 50%;
+  }
+  
   .HomePageGrid {
     grid-template-columns: 1fr;
   }
@@ -909,29 +644,126 @@ Panel Shells
     grid-column: 1;
   }
 
-  .sectionText,
-  .aboutText {
-    width: min(92vw, 62ch);
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    top: 40%;
+  .framedSection {
+    --section-frame-w: min(78vw, 760px);
+    --section-frame-y: 0vh;
+    --section-frame-scale-y: 0.88;
+
+    --section-text-w: min(68vw, 44rem);
+    --section-text-top: 38%;
+    --section-content-left: 50%;
   }
 
+  .sectionText,
+  .aboutText {
+    transform: translate(-50%, -18%);
+  }
+
+  .sectionText::before,
+  .aboutText::before {
+    inset: -1rem -1rem -1.1rem;
+    border-radius: 24px;
+  }
+
+  .sectionTitle,
+  .aboutTitle {
+    font-size: clamp(1.45rem, 5vw, 2.1rem);
+    line-height: 1.12;
+  }
+
+  .sectionBody,
+  .aboutBody {
+    font-size: clamp(0.95rem, 2.2vw, 1rem);
+    line-height: 1.72;
+  }
+
+  .aboutSocials {
+    left: auto;
+    right: 1rem;
+    top: 1rem;
+    transform: none;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .aboutSocialLink {
+    width: 52px;
+    height: 52px;
+  }
+
+  .aboutSocialLink img {
+    width: 24px;
+    height: 24px;
+  }
 
   .LinkToSubPage,
   .aboutControls {
-    padding: 0 1rem 1.5rem;
+    padding: 0 1rem 1.75rem;
+    transform: none;
   }
 }
 
-@media (max-height: 820px) {
-  #HUDFrame {
-    --frame-scale-y: 0.78;
+/* =========================
+   PHONE
+   frame OFF
+   ========================= */
+@media (max-width: 640px) {
+  .titleAnchor {
+    width: min(90vw, 500px);
+    height: clamp(80px, 12vh, 120px);
+    top: 48%;
   }
-}
+  
+  .sectionFrame {
+    display: none;
+  }
 
-@media (max-height: 700px) {
-  #HUDFrame {
-    --frame-scale-y: 0.7;
+  .framedSection {
+    --section-text-w: min(88vw, 28rem);
+    --section-text-top: 34%;
+    --section-content-left: 50%;
+  }
+
+  .sectionText,
+  .aboutText {
+    transform: translate(-50%, 0);
+  }
+
+  .sectionText::before,
+  .aboutText::before {
+    inset: -0.85rem -0.85rem -0.95rem;
+    border-radius: 22px;
+  }
+
+  .sectionTitle,
+  .aboutTitle {
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
+    line-height: 1.08;
+    letter-spacing: 0.03em;
+  }
+
+  .sectionBody,
+  .aboutBody {
+    font-size: 0.96rem;
+    line-height: 1.65;
+    text-align: left;
+    text-justify: auto;
+  }
+
+  .aboutButtons {
+    gap: 0.75rem;
+  }
+
+  .aboutNavButton {
+    --about-btn-size: 50px;
+  }
+
+  .aboutNavButton__label {
+    font-size: 0.85rem;
+  }
+
+  .LinkToSubPage,
+  .aboutControls {
+    padding: 0 0.75rem 1.25rem;
   }
 }
