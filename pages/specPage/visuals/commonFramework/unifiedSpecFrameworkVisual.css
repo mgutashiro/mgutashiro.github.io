@@ -1,0 +1,532 @@
+:root {
+  /* =========================================
+     QUANTUM PALETTE
+     ========================================= */
+
+  /* electronic state manifold */
+  --q-electronic-line:
+    color-mix(in oklab, var(--c-glow-2) 74%, var(--text) 26%);
+
+  /* mS states */
+  --q-ms-line:
+    color-mix(in oklab, var(--c-glow-3) 72%, var(--text) 28%);
+
+  /* nuclear I states */
+  --q-nuclear-line:
+    color-mix(in oklab, var(--c-glow-1) 70%, var(--text) 30%);
+
+  /* electron particle
+     faint outline + darker cloud-like fill */
+  --q-electron-stroke:
+    color-mix(
+      in oklab,
+      color-mix(in oklab, var(--c-glow-2) 76%, var(--text) 24%) 38%,
+      transparent
+    );
+
+  --q-electron-fill:
+    color-mix(
+        in oklab,
+        color-mix(in oklab, var(--c-primary-1) 52%, var(--c-glow-2) 48%) 95%,
+        transparent
+    );
+
+    --q-electron-fill2:
+        color-mix(
+            in oklab,
+            color-mix(in oklab, var(--c-primary-1) 20%, var(--c-glow-2) 80%) 95%,
+            transparent
+        );
+
+    --q-electron-fill3:
+        color-mix(
+            in oklab,
+            color-mix(in oklab, var(--c-glow-2) 82%, var(--text) 18%) 96%,
+            transparent
+        );
+
+  /* proton particle
+     stronger outline + lighter nucleus-like fill */
+    --q-proton-stroke:
+        color-mix(
+            in oklab,
+            color-mix(in oklab, var(--c-glow-1) 78%, var(--text) 22%) 54%,
+            transparent
+        );
+
+  --q-proton-fill:
+    color-mix(
+      in oklab,
+      color-mix(in oklab, var(--c-glow-1) 62%, var(--text) 38%) 70%,
+      transparent
+    );
+
+  /* one universal arrow color */
+  --q-arrow:
+    color-mix(in oklab, var(--c-metal-1) 76%, var(--text) 24%);
+}
+
+/* LAYOUT */
+.USFVisualBase {
+    position: relative;
+    width: 100%;
+}
+
+.USFVisualFrame {
+    position: relative;
+    width: min(100%, 42rem);
+    margin-inline: auto;
+}
+
+.USFVisualSVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* BACKDROP / TYPE */
+.USFBackdrop {
+    fill:
+        color-mix(in oklab, var(--surface) 88%, var(--bg));
+    stroke: color-mix(in oklab, var(--border-strong) 78%, transparent);
+    stroke-width: 1.2;
+}
+
+.USFEyebrow {
+    font-family: var(--font-jester);
+    font-size: 0.8rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
+    fill: var(--text-muted);
+    opacity: 0.92;
+}
+
+.USFHeading {
+    font-family: var(--font-tech);
+    font-size: 1rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--text);
+}
+
+
+
+.USFMethodLabel {
+    font-family: var(--font-jester);
+    font-size: 0.8rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.05em;
+    fill: var(--text);
+}
+
+.USFMethodSubtitle {
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.88;
+}
+
+/* Core Center Three-Layer Quantum Scaffold */
+.USFQuantumCore {
+    pointer-events: none;
+}
+
+.USFCoreGlow {
+    opacity: 0.32;
+    transform-origin: 360px 288px;
+    animation: USFCoreGlowBreath 8s ease-in-out infinite;
+}
+
+.USFCoreShell {
+    fill: color-mix(in oklab, var(--surface) 34%, transparent);
+    stroke-width: 1.7;
+    opacity: 0.96;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-2) 38%, transparent));
+}
+
+.USFCoreInnerShell {
+    fill: color-mix(in oklab, var(--c-ink) 46%, transparent);
+    stroke: color-mix(in oklab, var(--text) 18%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 4 7;
+    opacity: 0.72;
+}
+
+.USFCoreAxis {
+    stroke: color-mix(in oklab, var(--c-glow-2) 28%, transparent);
+    stroke-width: 0.85;
+    stroke-linecap: round;
+    opacity: 0.35;
+}
+
+.USFCoreAxis--horizontal {
+    stroke: color-mix(in oklab, var(--c-glow-1) 26%, transparent);
+}
+
+.USFPort {
+    fill: color-mix(in oklab, var(--c-glow-1) 58%, white);
+    stroke: color-mix(in oklab, var(--text) 38%, transparent);
+    stroke-width: 0.8;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-1) 65%, transparent));
+}
+
+.USFQuantumScaffold {
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--c-glow-2) 22%, transparent));
+}
+
+.USFScaffoldLayerGroup {
+    opacity: 0.94;
+}
+
+.USFScaffoldLayer {
+    stroke-width: 1.05;
+    opacity: 0.94;
+}
+
+.USFLayerRail {
+    stroke: color-mix(in oklab, var(--c-metal-1) 70%, var(--c-glow-3));
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    opacity: 0.82;
+}
+
+.USFLayerTitle {
+    font-family: var(--font-jester);
+    font-size: 11px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.075em;
+    text-transform: lowercase;
+    fill: var(--text);
+    opacity: 0.96;
+}
+
+.USFLayerSubtitle {
+    font-family: var(--font-tech);
+    font-size: 9px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.055em;
+    fill: var(--text-muted);
+}
+
+.USFManifoldLine,
+.USFSpinLine,
+.USFNuclearSpinLine {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.3;
+    opacity: 0.92;
+}
+
+.USFManifoldLine {
+    stroke: var(--q-electronic-line);
+}
+
+.USFSpinLine {
+    stroke: var(--q-ms-line);
+}
+
+.USFNuclearSpinLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 72%, white);
+}
+
+.USFManifoldMiniLabel,
+.USFFieldLabel {
+    font-family: var(--font-tech);
+    font-size: 7.4px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.035em;
+    fill: var(--text-dim);
+    opacity: 0.82;
+}
+
+.USFFieldTick {
+    stroke: color-mix(in oklab, var(--text) 38%, transparent);
+    stroke-width: 0.9;
+    stroke-linecap: round;
+    opacity: 0.72;
+}
+
+.USFSpinSymbol {
+    font-family: var(--font-jester);
+    font-size: 9px;
+    font-weight: var(--w-semibold);
+    fill: color-mix(in oklab, var(--text) 70%, var(--c-glow-3) 30%);
+    opacity: 0.92;
+}
+
+.USFNucleusDot {
+    fill: var(--q-proton-fill);
+    stroke: var(--q-proton-stroke);
+    stroke-width: 1;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-1) 58%, transparent));
+}
+
+.USFNucleusMask {
+    fill: var(--bg);
+    stroke: none;
+}
+
+.USFElectronDot {
+    fill: var(--q-electron-stroke);
+    stroke: var(--q-electron-fill);
+    stroke-width: 0.3;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-1) 58%, transparent));
+}
+
+.USFArrowMaskCircle {
+    fill: color-mix(in oklab, var(--c-ink) 82%, var(--c-primary-2) 18%);
+    stroke: none;
+}
+
+.USFNucleusLabel {
+    font-family: var(--font-jester);
+    font-size: 8px;
+    font-weight: var(--w-semibold);
+    fill: color-mix(in oklab, var(--text) 76%, var(--c-glow-1) 24%);;
+}
+
+
+.USFMethodSubtitle {
+    font-family: var(--font-tech);
+    font-weight: var(--w-medium);
+    fill: var(--text-muted);
+}
+
+.USFFooter {
+    font-family: var(--font-jester);
+    font-size: 22px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.105em;
+    text-transform: lowercase;
+    fill: var(--text);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-2) 40%, transparent));
+}
+
+.USFOrbitRail,
+.USFInnerOrbit,
+.USFMethodConnector {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.USFOrbitRail {
+    stroke: color-mix(in oklab, var(--c-glow-2) 32%, var(--border));
+    stroke-width: 1.4;
+    opacity: 0.55;
+}
+
+.USFInnerOrbit {
+    stroke: color-mix(in oklab, var(--c-glow-1) 33%, var(--border));
+    stroke-width: 1.1;
+    opacity: 0.7;
+}
+
+/* active selector */
+.USFSelectorGroup {
+    pointer-events: none;
+}
+
+.USFOrbitSelectorArc {
+    fill: none;
+    stroke-width: 2.2;
+    opacity: 0.96;
+}
+
+.USFOrbitSelectorDot {
+    opacity: 0.98;
+}
+
+.USFCoreShell {
+    stroke: color-mix(in oklab, var(--c-glow-2) 52%, var(--text));
+    stroke-width: 1.7;
+    fill: color-mix(in oklab, var(--surface-2) 76%, transparent);
+}
+
+.USFCoreInnerShell {
+    stroke: color-mix(in oklab, var(--c-glow-1) 38%, var(--border));
+    stroke-width: 1.2;
+    fill: color-mix(in oklab, var(--c-primary-2) 18%, transparent);
+}
+
+.USFElectronNode {
+    stroke: var(--q-electron-stroke);
+    fill: var(--q-electron-fill);
+}
+
+.USFElectronNode2 {
+    stroke: var(--q-electron-stroke);
+    fill: var(--q-electron-fill2);
+    stroke-width: 1.2;
+
+    filter:
+        drop-shadow(0 0 3px color-mix(in oklab, var(--q-electron-fill2) 78%, transparent))
+        drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-2) 60%, transparent))
+        drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-2) 32%, transparent));
+}
+
+.USFElectronNode3 {
+    stroke: var(--q-electron-stroke);
+    fill: var(--q-electron-fill3);
+    stroke-width: 1.2;
+
+    filter:
+        drop-shadow(0 0 4px color-mix(in oklab, var(--q-electron-fill3) 82%, transparent))
+        drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 68%, transparent))
+        drop-shadow(0 0 14px color-mix(in oklab, var(--c-glow-2) 42%, transparent));
+}
+
+
+/* METHOD MODULES */
+.USFMethod {
+    opacity: 0.28;
+    transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.USFMethod.is-active {
+    opacity: 1;
+}
+
+.USFMethodConnector {
+    stroke: color-mix(in oklab, var(--text) 24%, var(--c-glow-2));
+    stroke-width: 1;
+    opacity: 0.55;
+}
+
+.USFMethodBox {
+    fill: color-mix(in oklab, var(--surface) 90%, transparent);
+    stroke: color-mix(in oklab, var(--border-strong) 88%, var(--c-glow-2));
+    stroke-width: 1.1;
+}
+
+
+.USFMethodArrow {
+    stroke: var(--q-arrow);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    fill: none;
+}
+
+.USFMethodArrowHead {
+    fill: var(--q-arrow);
+}
+
+.USFMethodArrow path {
+    stroke: var(--q-arrow);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.USFMethodArrow2 {
+    stroke: var(--q-nuclear-line);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    fill: none;
+}
+
+.USFMethodArrowHead2 {
+    fill: var(--q-nuclear-line);
+}
+
+.USFMethodArrowHead3 {
+    fill: var(--q-ms-line);
+}
+
+.USFMethodArrow3 {
+    stroke: var(--q-ms-line);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    fill: none;
+}
+
+.USFSpinArrowSvg {
+    color: var(--q-arrow);
+    overflow: visible;
+    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--q-arrow) 45%, transparent));
+}
+
+/* MODE TINTS */
+.USFMethod--uvvis .USFMethodBox,
+.USFMethod--uvvis .USFMethodLabel {
+    stroke: color-mix(in oklab, var(--c-glow-1) 48%, var(--border));
+}
+
+.USFMethod--fluorescence .USFMethodBox,
+.USFMethod--fluorescence .USFMethodLabel {
+    stroke: color-mix(in oklab, var(--c-glow-3) 48%, var(--border));
+}
+
+.USFMethod--nmr .USFMethodBox,
+.USFMethod--nmr .USFMethodLabel {
+    stroke: color-mix(in oklab, var(--c-glow-2) 50%, var(--border));
+}
+
+.USFMethod--epr .USFMethodBox,
+.USFMethod--epr .USFMethodLabel {
+    stroke: color-mix(in oklab, var(--c-glow-3) 42%, var(--c-glow-2));
+}
+
+.USFMethod--ta .USFMethodBox,
+.USFMethod--ta .USFMethodLabel {
+    stroke: color-mix(in oklab, var(--c-glow-1) 40%, var(--c-glow-3));
+}
+
+/* ANIMATION */
+@keyframes USFCoreGlowBreath {
+    0%,
+    100% {
+        opacity: 0.24;
+        transform: scale(0.99);
+    }
+
+    50% {
+        opacity: 0.42;
+        transform: scale(1.015);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .USFCoreGlow {
+        animation: none;
+    }
+}
+
+@keyframes usfPulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes usfMethodCycle {
+    0%, 14% { opacity: 0.28; }
+    20%, 34% { opacity: 1; }
+    40%, 100% { opacity: 0.28; }
+}
+
+@keyframes usfSelectorPulse {
+    0%, 100% {
+        opacity: 0.72;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* MOBILE MODE */
+@media (prefers-reduced-motion: reduce) {
+    .USFOrbitSelectorArc,
+    .USFOrbitSelectorDot,
+    .USFCoreCouplingPath,
+    .USFMethod {
+        animation: none;
+    }
+}

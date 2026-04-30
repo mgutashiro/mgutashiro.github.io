@@ -644,14 +644,28 @@ body {
     grid-column: 1;
   }
 
-  .framedSection {
-    --section-frame-w: min(78vw, 760px);
+   .framedSection {
+    --section-frame-w: min(76vw, 760px);
     --section-frame-y: 0vh;
+    --section-frame-scale-x: 1;
     --section-frame-scale-y: 0.88;
 
     --section-text-w: min(68vw, 44rem);
     --section-text-top: 38%;
     --section-content-left: 50%;
+  }
+
+  .aboutSection {
+    --section-frame-w: min(72vw, 760px);
+    --section-frame-y: 1.5vh;
+    --section-frame-scale-y: 0.78;
+
+    --section-text-w: min(56vw, 40rem);
+    --section-text-top: 32%;
+  }
+
+  .aboutSection > .aboutPanel {
+    min-height: clamp(31rem, 64vh, 40rem);
   }
 
   .sectionText,
@@ -700,6 +714,25 @@ body {
   .aboutControls {
     padding: 0 1rem 1.75rem;
     transform: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .aboutSection {
+    --section-frame-w: min(88vw, 760px);
+    --section-frame-y: 0vh;
+    --section-frame-scale-y: 0.9;
+
+    --section-text-w: min(76vw, 45rem);
+    --section-text-top: 32%;
+  }
+
+  .aboutSection > .aboutPanel {
+    min-height: clamp(40rem, 78vh, 52rem);
+  }
+
+  .aboutSection .sectionFrame .hudFrameSVG {
+    clip-path: inset(3% 0 8% 0);
   }
 }
 

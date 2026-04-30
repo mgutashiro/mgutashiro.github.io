@@ -11,7 +11,7 @@ import QuantizedInteractionVisual from '../whatIsSpec/quantizedLightVisual.jsx';
 import SourceVisual from '../commonFramework/sourceVisual.jsx';
 import FieldMatterInteractionVisual from '../commonFramework/fieldMatterInteractionVisual.jsx'
 
-import WhiteLightSplittingVisual from '../uvvis/white-light-splittingVisual.jsx';
+import WhiteLightSplittingVisual from '../uvvis/whiteLightSplittingVisual.jsx';
 import ExcitedStateVisual from '../fluorescence/excited-stateVisual.jsx';
 import HiddenMotionVisual from '../nmr/hidden-motionVisual.jsx';
 import AfterExcitationVisual from '../epr/after-excitationVisual.jsx'
@@ -19,7 +19,7 @@ import pumpVisual from '../ultrafast/pumpVisual.jsx'
 
 
 
-import ResonantExcitationVisual from '../uvvis/resonant-excitationVisual.jsx'
+import UVVTransmissionVisual from '../uvvis/uvvTransmissionVisual.jsx'
 import KashaRelaxationVisual from '../fluorescence/kasha-relaxationVisual.jsx'
 import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx'
 import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx'
@@ -114,31 +114,31 @@ export const visualRegistry = {
             ),
         },
 
-        'electron-jump': {
+        'beam-band': {
             friends: lazy(() =>
-                import('../uvvis/electron-jumpVisual.jsx')
+                import('../uvvis/beamBandVisual.jsx')
             ),
         },
 
-        'spectrum-forms': {
-            friends: lazy(() =>
-                import('../uvvis/spectrum-formsVisual.jsx')
-            ),
+        'uvvisTransmissionVisual': {
+            colleague: UVVTransmissionVisual,
         },
 
-        'resonant-excitation': {
-            colleague: ResonantExcitationVisual,
-        },
-
-        'beer-lambert': {
+        'uvvisMonochromatorVisual': {
             colleague: lazy(() =>
-                import('../uvvis/beer-lambertVisual.jsx')
+                import('../uvvis/uvvMonochromatorVisual.jsx')
             ),
         },
 
-        'transition-allowance': {
+        'uvvisAbsorbanceRatioVisual': {
             colleague: lazy(() =>
-                import('../uvvis/transition-allowanceVisual.jsx')
+                import('../uvvis/uvvAbsorbanceRatioVisual.jsx')
+            ),
+        },
+
+        'uvvisDetectorReadoutVisual': {
+            colleague: lazy(() =>
+                import('../uvvis/uvvDetectorReadoutVisual.jsx')
             ),
         },
     },

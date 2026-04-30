@@ -1,0 +1,244 @@
+/* BKG */
+.UVVAbsorbVisual {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    gap: clamp(0.1rem, 0.3vw, 0.25rem);
+}
+
+.UVVAbsorbSVG {
+    display: block;
+    max-width: none;
+    height: auto;
+    overflow: visible;
+}
+
+.UVVAbsorbBackplate {
+    fill: color-mix(in oklab, var(--surface-2) 72%, var(--c-ink) 28%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 24%, var(--border));
+    stroke-width: 1.25;
+    opacity: 0.94;
+}
+
+/* SharedBeam */
+.UVVAbsorbBand {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(
+        0 0 7px color-mix(in oklab, currentColor 48%, transparent)
+    );
+}
+
+.UVVAbsorbBand--incoming {
+    opacity: 0.84;
+    stroke-dasharray: 34 18;
+    animation: uvvAbsorbBeamFlow 5.8s linear infinite;
+}
+
+.UVVAbsorbBand--absorbed {
+    stroke-width: 4.2;
+    opacity: 0.78;
+    stroke-dasharray: 22 18;
+    animation: uvvAbsorbPull 5.8s ease-in-out infinite;
+}
+
+.UVVAbsorbBand--outgoing,
+.UVVABsorbBand--outgoing {
+    opacity: 0.82;
+    stroke-dasharray: 34 18;
+    animation: uvvAbsorbBeamFlow 5.8s linear infinite;
+}
+
+.UVVAbsorbChamberGlow {
+    opacity: 0.28;
+    transform-origin: 360px 180px;
+    animation: uvvAbsorbChamberGlow 5.8s ease-in-out infinite;
+}
+
+.UVVAbsorbChamberRing {
+    fill: color-mix(in oklab, var(--c-primary-2) 38%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-1) 34%, var(--c-glow-3) 20%);
+    stroke-width: 1.7;
+    stroke-dasharray: 8 9;
+    opacity: 0.88;
+    transform-origin: 360px 180px;
+    animation: uvvAbsorbRingTurn 18s linear infinite;
+}
+
+.UVVAbsorbSampleCore {
+    stroke: color-mix(in oklab, var(--c-glow-3) 46%, var(--text) 12%);
+    stroke-width: 1.2;
+    opacity: 0.96;
+    transform-origin: 360px 180px;
+    filter: drop-shadow(
+        0 0 14px color-mix(in oklab, var(--c-glow-3) 42%, transparent)
+    );
+    animation: uvvAbsorbCorePulse 5.8s ease-in-out infinite;
+}
+
+.UVVAbsorbInternalLine {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 62%, var(--c-glow-1) 38%);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    opacity: 0.72;
+    stroke-dasharray: 18 12;
+    animation: uvvAbsorbInternalShimmer 5.8s ease-in-out infinite;
+}
+
+.UVVAbsorbDot {
+    fill: color-mix(in oklab, var(--c-glow-3) 70%, var(--c-metal-1) 30%);
+    opacity: 0;
+    filter: drop-shadow(
+        0 0 8px color-mix(in oklab, var(--c-glow-3) 68%, transparent)
+    );
+    animation: uvvAbsorbDotIn 5.8s ease-in-out infinite;
+}
+
+/* LABELS */
+.UVVAbsorbLabel {
+    font-family: var(--font-jester);
+    font-size: 14px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.075em;
+    text-transform: lowercase;
+    fill: color-mix(in oklab, var(--text) 68%, var(--c-glow-1) 32%);
+    opacity: 0.78;
+}
+
+.UVVAbsorbLabel--sample {
+    fill: color-mix(in oklab, var(--text) 62%, var(--c-glow-3) 38%);
+    font-size: 16px;
+}
+
+/* CAPTION */
+.UVVAbsorbCaption {
+    max-width: min(82%, 780px);
+    margin: calc(-1 * clamp(0.25rem, 0.8vw, 0.65rem)) auto 0;
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1.35vw, 1.05rem);
+    line-height: 1.55;
+    letter-spacing: 0.012em;
+    text-align: justify;
+
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.95;
+}
+
+/* ANIMATION */
+@keyframes uvvAbsorbBeamFlow {
+    0% {
+        stroke-dashoffset: 56;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes uvvAbsorbPull {
+    0%,
+    100% {
+        opacity: 0.12;
+        stroke-dashoffset: 42;
+    }
+
+    34% {
+        opacity: 0.8;
+    }
+
+    58% {
+        opacity: 0.95;
+        stroke-dashoffset: 0;
+    }
+
+    78% {
+        opacity: 0.22;
+    }
+}
+
+
+@keyframes uvvAbsorbChamberGlow {
+    0%, 100% {
+        opacity: 0.16;
+        transform: scale(0.96);
+    }
+
+    46%, 66% {
+        opacity: 0.36;
+        transform: scale(1.06);
+    }
+}
+
+@keyframes uvvAbsorbRingTurn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes uvvAbsorbCorePulse {
+    0%, 100% {
+        opacity: 0.82;
+        transform: scale(0.98);
+    }
+
+    48%, 66% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes uvvAbsorbInternalShimmer {
+    0%, 100% {
+        opacity: 0.38;
+        stroke-dashoffset: 26;
+    }
+
+    52%, 68% {
+        opacity: 0.9;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes uvvAbsorbDotIn {
+    0%, 24%, 100% {
+        opacity: 0;
+        transform: translateX(-8px) scale(0.82);
+    }
+
+    46% {
+        opacity: 0.95;
+        transform: translateX(0) scale(1);
+    }
+
+    68% {
+        opacity: 0.18;
+        transform: translateX(8px) scale(0.7);
+    }
+}
+
+/* MOBILE */
+@media (prefers-reduced-motion: reduce) {
+    .UVVAbsorbBand,
+    .UVVAbsorbChamberGlow,
+    .UVVAbsorbChamberRing,
+    .UVVAbsorbSampleCore,
+    .UVVAbsorbInternalLine,
+    .UVVAbsorbDot {
+        animation: none;
+    }
+
+    .UVVAbsorbDot {
+        opacity: 0.72;
+    }
+}

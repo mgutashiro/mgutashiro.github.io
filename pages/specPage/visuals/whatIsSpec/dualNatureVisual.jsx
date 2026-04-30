@@ -12,28 +12,28 @@ const WAVES = Array.from({ length: 5 }, (_, i) => ({
   scale: (0.96 + (i % 2) * 0.08).toFixed(2),
 }));
 
-function Dish() {
+function DualDish() {
   return (
     <div className="dualDish">
-      <div className="dualDish__shadow" />
-      <div className="dualDish__base" />
-      <div className="dualDish__rim" />
-      <div className="dualDish__top" />
-      <div className="dualDish__shine" />
+      <div className="dualDishShadow" />
+      <div className="dualDishBase" />
+      <div className="dualDishRim" />
+      <div className="dualDishTop" />
+      <div className="dualDishShine" />
     </div>
   );
 }
 
-function WaveGlyph() {
+function DualWaveGlyph() {
   return (
     <svg
-      className="dualWave__svg"
+      className="dualWaveSVG"
       viewBox="0 0 84 24"
       preserveAspectRatio="none"
       aria-hidden="true"
     >
       <path
-        className="dualWave__path"
+        className="dualWavePath"
         d="M0 12
            C 7 3, 14 3, 21 12
            S 35 21, 42 12
@@ -46,19 +46,19 @@ function WaveGlyph() {
 
 export default function DualNatureVisualResponse() {
   return (
-    <div className="dualNatureVisual" aria-hidden="true">
-      <div className="dualAura dualAura--left" />
-      <div className="dualAura dualAura--right" />
+    <div className="dualNatureVisualStage" aria-hidden="true">
+      <div className="dualAura dualAuraL" />
+      <div className="dualAura dualAuraR" />
 
       <div className="dualScene">
-        <div className="dualHit dualHit--particles" />
-        <div className="dualHit dualHit--waves" />
+        <div className="dualHit dualHitParticles" />
+        <div className="dualHit dualHitWaves" />
 
-        <div className="dualBeam dualBeam--in dualBeam--particles">
+        <div className="dualBeam dualBeamIn dualBeamParticles">
           {PARTICLES.map((particle) => (
             <span
               key={`particle-in-${particle.id}`}
-              className="dualParticle dualParticle--in"
+              className="dualParticle dualParticleIn"
               style={{
                 '--i': particle.id,
                 '--lane': particle.lane,
@@ -68,11 +68,11 @@ export default function DualNatureVisualResponse() {
           ))}
         </div>
 
-        <div className="dualBeam dualBeam--out dualBeam--particles">
+        <div className="dualBeam dualBeamOut dualBeamParticles">
           {PARTICLES.map((particle) => (
             <span
               key={`particle-out-${particle.id}`}
-              className="dualParticle dualParticle--out"
+              className="dualParticle dualParticleOut"
               style={{
                 '--i': particle.id,
                 '--lane': particle.lane,
@@ -82,39 +82,40 @@ export default function DualNatureVisualResponse() {
           ))}
         </div>
 
-        <div className="dualBeam dualBeam--in dualBeam--waves">
+
+        <div className="dualBeam dualBeamWaves dualBeamIn">
           {WAVES.map((wave) => (
             <span
               key={`wave-in-${wave.id}`}
-              className="dualWave dualWave--in"
+              className="dualWave dualWaveIn"
               style={{
                 '--i': wave.id,
                 '--lane': wave.lane,
                 '--scale': wave.scale,
               }}
             >
-              <WaveGlyph />
+              <DualWaveGlyph />
             </span>
           ))}
         </div>
 
-        <div className="dualBeam dualBeam--out dualBeam--waves">
+        <div className="dualBeam dualBeamWaves dualBeamOut ">
           {WAVES.map((wave) => (
             <span
               key={`wave-out-${wave.id}`}
-              className="dualWave dualWave--out"
+              className="dualWave dualWaveOut"
               style={{
                 '--i': wave.id,
                 '--lane': wave.lane,
                 '--scale': wave.scale,
               }}
             >
-              <WaveGlyph />
+              <DualWaveGlyph />
             </span>
           ))}
         </div>
 
-        <Dish />
+        <DualDish />
       </div>
     </div>
   );

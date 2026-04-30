@@ -26,7 +26,7 @@
     gap: 0.1em;
 
     width: 100%;
-    height: clamp(320px, 36vw, 500px);
+    height: clamp(280px, 30vw, 420px);
     border-radius: 26px;
 
     background:
@@ -71,7 +71,7 @@
     z-index: 4;
     fill: var(--text);
     font-family: var(--font-tech);
-    font-size: 4.6px;
+    font-size: 8px;
     opacity: 0.92;
     dominant-baseline: middle;
     pointer-events: none;
@@ -95,11 +95,6 @@
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
     opacity: 0;
-
-
-    /* animation-ready (draw from bottom) */
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
 }
 
 .SOVArrowTip {
@@ -113,12 +108,16 @@
 .SOVArrowLabel {
     fill: var(--text);
     font-family: var(--font-tech);
-    font-size: 3px;
+    font-size: 6px;
     opacity: 0;
     dominant-baseline: middle;
     letter-spacing: 0.02em;
     pointer-events: none;
     user-select: none;
+}
+
+.SOVArrowLabelFRET {
+    font-size: 5px
 }
 
 .SOVArrowAbsS2, .SOVArrowAbsS1 {
@@ -170,7 +169,6 @@
 }
 
 /* ---------- shared animation pattern ---------- */
-
 /* shafts */
 .SOVArrowGroup .SOVArrowShaft {
     animation: sovArrowDrawMaster var(--sov-loop) linear infinite;
@@ -260,13 +258,15 @@
     position: relative;
     padding: var(--space-panel-inner);
     box-sizing: border-box;
-    min-height: 0;
+    min-height: clamp(105px, 11vw, 145px);
+    transform: translateY(-2rem);
 }
 
 .SOVSpecSVG {
     width: 100%;
     height: 100%;
     display: block;
+    overflow: visible;
 }
 
 .SOVSpecAxis {
@@ -278,7 +278,7 @@
 
 .SOVSpecLabel {
     fill: var(--text);
-    font-size: 5.5px;
+    font-size: 16px;
     font-family: var(--font-tech);
     opacity: 0.9;
     user-select: none;
@@ -343,11 +343,11 @@
     margin: 0 auto;
     padding-inline: 0;
 
-    text-align: center;
+    text-align: justify;
     text-wrap: balance;
 
     font-family: var(--font-tech);
-    font-size: clamp(0.82rem, 1.05vw, 1.02rem);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
     line-height: 1.5;
     letter-spacing: 0.002em;
 
@@ -365,368 +365,307 @@
 @keyframes sovArrowDrawAbsS1 {
     0% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     6% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipAbsS1 {
     0%, 6.5% { opacity: 0; }
     7%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelAbsS1 {
     0%, 8%   { opacity: 0; }
     8.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowDrawAbsS2 {
     0%, 10% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     16% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
-
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipAbsS2 {
     0%, 16.5% { opacity: 0; }
     17%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelAbsS2 {
     0%, 18%   { opacity: 0; }
     18.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowDrawICS2 {
     0%, 20% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     26% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipICS2 {
     0%, 26.5% { opacity: 0; }
     27%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelICS2 {
     0%, 28%   { opacity: 0; }
     28.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawICS2toS1 {
     0%, 30% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     36% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipICS2toS1 {
     0%, 36.5% { opacity: 0; }
     37%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelICS2toS1 {
     0%, 38%   { opacity: 0; }
     38.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%   { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawFRET {
     0%, 30% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     36% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipFRET {
     0%, 36.5% { opacity: 0; }
     37%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelFRET {
     0%, 38%   { opacity: 0; }
     38.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawICS1 {
     0%, 42% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     48% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipICS1 {
     0%, 48.5% { opacity: 0; }
     49%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelICS1 {
     0%, 50%   { opacity: 0; }
     50.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%      { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawFluor {
     0%, 54% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     60% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipFluor {
     0%, 60.5% { opacity: 0; }
     61%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%      { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelFluor {
     0%, 62%   { opacity: 0; }
     62.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%      { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawISC {
     0%, 54% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     60% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipISC {
     0%, 60.5% { opacity: 0; }
     61%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%      { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelISC {
     0%, 62%   { opacity: 0; }
     62.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawICT1 {
     0%, 66% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     72% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipICT1 {
     0%, 72.5% { opacity: 0; }
     73%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%      { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelICT1 {
     0%, 74%   { opacity: 0; }
     74.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100%      { opacity: 0; }
 }
 
 
 @keyframes sovArrowDrawPhosp {
     0%, 76% {
         opacity: 0;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 100;
     }
     82% {
         opacity: 1;
-        stroke-dasharray: 100 0;
-        stroke-dashoffset: 0;
     }
-    90% {
+    90%, 95% {
         opacity: 1;
-        stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
-        stroke-dashoffset: 100;
     }
 }
 
 @keyframes sovArrowTipPhosp {
     0%, 82.5% { opacity: 0; }
     83%       { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovArrowLabelPhosp {
     0%, 84%   { opacity: 0; }
     84.5%     { opacity: 1; }
-    90%      { opacity: 1; }
-    96%,100% { opacity: 0; }
+    90%, 95%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes sovSpecStickAbs {
@@ -742,13 +681,13 @@
         stroke-dashoffset: 0;
     }
 
-    90% {
+    90%, 95% {
         opacity: 1;
         stroke-dasharray: 100;
         stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
         stroke-dasharray: 100;
         stroke-dashoffset: 100;
@@ -768,13 +707,13 @@
         stroke-dashoffset: 0;
     }
 
-    90% {
+    90%, 95% {
         opacity: 0.85;
         stroke-dasharray: 100;
         stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
         stroke-dasharray: 100;
         stroke-dashoffset: 100;
@@ -794,13 +733,13 @@
         stroke-dashoffset: 0;
     }
 
-    90% {
+    90%, 95% {
         opacity: 0.22;
         stroke-dasharray: 100;
         stroke-dashoffset: 0;
     }
 
-    96%, 100% {
+    100% {
         opacity: 0;
         stroke-dasharray: 100;
         stroke-dashoffset: 100;

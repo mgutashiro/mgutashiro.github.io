@@ -1,0 +1,426 @@
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body.SpecModelBodyLocked {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body.SpecModelBodyLocked #root {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.SpectroscopyPage.SpecModelPage {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+}
+
+.SpecModelPage > * {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+
+.SpecDemoViewer {
+    min-height: 100vh;
+    padding: clamp(0.75rem, 2vh, 1.25rem) clamp(1.25rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3.5rem);
+    background:
+        radial-gradient(circle at 22% 10%, color-mix(in oklab, var(--c-glow-2) 14%, transparent), transparent 32%),
+        radial-gradient(circle at 82% 12%, color-mix(in oklab, var(--c-glow-1) 14%, transparent), transparent 34%),
+        var(--c-ink, #050712);
+    color: var(--text, #f5f7ff);
+}
+
+.SpecDemoHeader {
+    max-width: 1120px;
+    margin: 0 auto clamp(1rem, 2.1vw, 1.5rem);
+    text-align: center;
+}
+
+.SpecDemoHeader h1 {
+    margin: 0;
+    font-family: var(--font-hero);
+    font-size: 0 auto clamp(1rem, 2.1vw, 1.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+}
+
+.SpecDemoHeader p {
+    margin: 0.75rem auto 0;
+    max-width: 720px;
+    font-family: var(--font-tech);
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    color: var(--text-muted);
+}
+
+.SpecDemoGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.55fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    align-items: stretch;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.SpecDemoSide {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.SpecDemoModeToggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 auto 0.25rem;
+    width: fit-content;
+    background: transparent;
+}
+
+.SpecDemoModeButton {
+    min-width: 8.25rem;
+    min-height: 2.65rem;
+    padding: 0.2rem 0.2rem;
+
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 30%, transparent);
+    border-radius: 999px;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.72rem, 0.95vw, 0.86rem);
+    font-weight: var(--w-semibold);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+
+    color: color-mix(in oklab, var(--text-muted) 82%, transparent);
+    background: rgba(255, 255, 255, 0.025);
+    cursor: pointer;
+
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.025);
+
+    transition:
+        transform 160ms ease,
+        color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.SpecDemoModeButton:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+    border-color: color-mix(in oklab, var(--c-glow-1) 48%, white 8%);
+}
+
+.SpecDemoModeButton.is-active {
+    color: var(--text);
+    border-color: color-mix(in oklab, var(--c-glow-2) 58%, white 8%);
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in oklab, var(--c-glow-2) 18%, transparent),
+            color-mix(in oklab, var(--c-glow-1) 8%, transparent)
+        ),
+        rgba(255, 255, 255, 0.04);
+    box-shadow:
+        0 0 16px color-mix(in oklab, var(--c-glow-2) 20%, transparent),
+        inset 0 0 14px rgba(255, 255, 255, 0.045);
+}
+
+.SpecDemoCanvasShell {
+    min-height: min(68vh, 720px);
+    height: clamp(420px, 68vh, 760px);
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 34%, transparent);
+    border-radius: 2rem;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.055), transparent),
+        color-mix(in oklab, var(--c-ink) 84%, var(--c-primary-2) 16%);
+    box-shadow:
+        0 0 36px color-mix(in oklab, var(--c-glow-2) 18%, transparent),
+        inset 0 0 28px rgba(255,255,255,0.035);
+}
+
+.SpecDemoCanvasShell canvas {
+    display: block;
+}
+
+.SpecModelLoading {
+    font-family: var(--font-tech);
+    color: var(--text);
+    letter-spacing: 0.08em;
+}
+
+.SpecModelInfoPanel {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: fit-content;
+    min-height: unset;
+    max-height: min(74vh, 720px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: clamp(0.85rem, 1.7vw, 1.25rem);
+    border: 1px solid color-mix(in oklab, var(--c-glow-3) 32%, transparent);
+    border-radius: 1.65rem;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025)),
+        color-mix(in oklab, var(--c-ink) 86%, var(--c-glow-2) 14%);
+    box-shadow:
+        0 0 30px color-mix(in oklab, var(--c-glow-3) 10%, transparent),
+        inset 0 0 22px rgba(255,255,255,0.035);
+}
+
+.SpecModelPartTitle {
+    margin: 0 0 clamp(0.35rem, 0.7vw, 0.55rem);
+    font-family: var(--font-mystic);
+    font-size: clamp(1.2rem, 1.65vw, 1.5rem);;
+    line-height: 1.05;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+    filter:
+        drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-3) 24%, transparent))
+        drop-shadow(0 0 14px color-mix(in oklab, var(--c-glow-2) 12%, transparent));
+}
+
+.SpecModelPartBody {
+    display: grid;
+    gap: clamp(0.3rem, 0.55vw, 0.45rem);
+}
+
+.SpecModelPartBodyText {
+    margin: 0;
+    min-width: 0;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.78rem, 0.92vw, 0.92rem);
+    line-height: 1.52;
+    color: color-mix(in oklab, var(--text-muted) 86%, var(--c-glow-3) 10%);
+    text-wrap: pretty;
+    text-align: center;
+}
+
+.SpecModelPartEquation {
+    box-sizing: border-box;
+    width: min(84%, 24rem);
+    max-width: 100%;
+    min-width: 0;
+
+    justify-self: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin: clamp(0.05rem, 0.25vw, 0.18rem) auto;
+    padding: clamp(0.5rem, 0.8vw, 0.68rem) clamp(0.8rem, 1.3vw, 1rem);
+
+    border-radius: 1.25rem;
+    color: color-mix(in oklab, var(--text) 92%, var(--c-glow-3) 8%);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            color-mix(in oklab, var(--c-glow-3) 16%, transparent) 0%,
+            transparent 58%
+        ),
+        linear-gradient(
+            135deg,
+            color-mix(in oklab, var(--c-ink) 78%, var(--c-glow-2) 12%),
+            color-mix(in oklab, var(--c-ink) 84%, var(--c-glow-3) 10%)
+        );
+
+    border: 1px solid color-mix(in oklab, var(--c-glow-3) 34%, var(--c-glow-1) 14%);
+
+    box-shadow:
+        0 0 16px color-mix(in oklab, var(--c-glow-3) 10%, transparent),
+        0 0 28px color-mix(in oklab, var(--c-glow-1) 5%, transparent),
+        inset 0 0 18px rgba(255, 255, 255, 0.035);
+}
+
+.SpecModelPartEquation .katex-display {
+    margin: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.SpecModelPartEquation .katex {
+    font-size: clamp(1rem, 1.35vw, 1.25rem);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+/* If your EquationBlock component has its own wrapper */
+.SpecModelPartEquation .EquationBlock,
+.SpecModelPartEquation .equationBlock,
+.SpecModelPartEquation .SpecEquationBlock {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 0;
+    background: transparent;
+    border: none;
+
+    overflow-x: auto;
+}
+
+.SpecModelPager {
+    display: grid;
+    grid-template-columns: auto 2.8rem auto;
+    align-items: center;
+    justify-content: center;
+    column-gap: clamp(0.65rem, 1.4vw, 1rem);
+
+    width: fit-content;
+    max-width: 100%;
+    margin: clamp(0.75rem, 1.2vw, 1rem) auto 0;
+}
+
+.SpecModelPagerButton {
+    appearance: none;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 5.4rem;
+
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 42%, transparent);
+    border-radius: 999px;
+    padding: 0.42rem 0.78rem;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.72rem, 0.9vw, 0.85rem);
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--text);
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025)),
+        color-mix(in oklab, var(--c-ink) 78%, var(--c-glow-1) 12%);
+
+    cursor: pointer;
+}
+
+.SpecModelPagerButton:hover:not(:disabled) {
+    border-color: color-mix(in oklab, var(--c-glow-3) 58%, transparent);
+    box-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-3) 18%, transparent);
+}
+
+.SpecModelPagerButton:disabled {
+    opacity: 0.36;
+    cursor: not-allowed;
+}
+
+.SpecModelPagerCount {
+    width: 2.8rem;
+    text-align: center;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.72rem, 0.9vw, 0.85rem);
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
+.SpecModelInteractionHint {
+    margin-top: clamp(0.95rem, 1.6vw, 1.25rem);
+    font-family: var(--font-jester);
+    font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--c-glow-1) 72%, white 16%);
+    text-align: center;
+}
+
+.SpecHintMobile {
+    display: none;
+}
+
+.SpecModelHoverLabel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.22rem 0.42rem;
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 55%, white 8%);
+    border-radius: 999px;
+    font-family: var(--font-tech);
+    font-size: 0.52rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--text);
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in oklab, var(--c-glow-1) 18%, transparent),
+            color-mix(in oklab, var(--c-glow-3) 14%, transparent)
+        ),
+        rgba(5, 7, 18, 0.82);
+    box-shadow:
+        0 0 16px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
+        inset 0 0 10px rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.SpecModelPartTree,
+.SpecModelPartList {
+    display: none;
+}
+
+.SpecModelPartTreeItem {
+    display: grid;
+    gap: 0.42rem;
+    margin-left: calc(var(--part-depth, 0) * 0.85rem);
+}
+
+.SpecModelPartTreeItem .SpecModelPartTree {
+    margin-top: 0.2rem;
+}
+
+.SpecModelPartButton {
+    width: fit-content;
+}
+
+@media (max-width: 900px) {
+    .SpecDemoGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .SpecDemoSide {
+        grid-template-rows: auto auto;
+    }
+
+    .SpecDemoCanvasShell {
+        height: 58vh;
+        min-height: 360px;
+    }
+
+    .SpecHintDesktop {
+        display: none;
+    }
+
+    .SpecHintMobile {
+        display: inline;
+    }
+}

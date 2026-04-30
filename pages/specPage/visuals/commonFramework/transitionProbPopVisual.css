@@ -1,0 +1,496 @@
+/* BASE + WRAP */
+.TPVisualWrap {
+    position: relative;
+    width: 100%;
+}
+
+.TPVisualBase {
+    position: relative;
+    width: 100%;
+    min-height: unset;
+    border-radius: var(--radius-3);
+    overflow: hidden;
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 50% 42%, color-mix(in oklab, var(--c-glow-2) 10%, transparent) 0%, transparent 30%),
+        radial-gradient(circle at 72% 28%, color-mix(in oklab, var(--c-glow-1) 8%, transparent) 0%, transparent 24%),
+        linear-gradient(180deg, color-mix(in oklab, var(--surface) 82%, var(--bg)) 0%, color-mix(in oklab, var(--bg) 94%, var(--c-shadow)) 100%);
+    border: 1px solid color-mix(in oklab, var(--border-strong) 78%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, var(--text) 4%, transparent),
+        0 18px 40px color-mix(in oklab, var(--bg) 72%, transparent);
+}
+
+.TPVisualSvg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.TPVisualScene {
+    pointer-events: none;
+}
+
+/* FRAME / BACKDROP */
+.TPVisualPanel {
+    stroke: color-mix(in oklab, var(--c-glow-2) 22%, var(--border));
+    stroke-width: 1.2;
+}
+
+.TPVisualInnerPanel {
+    fill: color-mix(in oklab, var(--bg) 84%, transparent);
+    stroke: color-mix(in oklab, var(--text) 10%, transparent);
+    stroke-width: 1;
+}
+
+.TPVisualGridLine {
+    fill: none;
+    stroke-width: 0.8;
+    shape-rendering: geometricPrecision;
+}
+
+.TPVisualGridLine--horizontal {
+    stroke-dasharray: 3 10;
+}
+
+.TPVisualGridLine--vertical {
+    stroke-dasharray: 2 12;
+}
+
+.TPVisualCorner {
+    fill: none;
+    stroke: color-mix(in oklab, var(--c-glow-1) 65%, var(--text));
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* opacity: 0.7; */
+}
+
+.TPVisualCoreHalo {
+    opacity: 0.42;
+    transform-box: fill-box;
+    transform-origin: center;
+    mix-blend-mode: screen;
+    animation: tpCoreHaloFlow 6s ease-in-out infinite;
+}
+
+/* HEADERS / TEXT */
+.TPVisualHeader {
+    font-family: var(--font-jester);
+    font-size: 0.82rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    fill: var(--text);
+    opacity: 0.94;
+}
+
+.TPVisualSubheader {
+    font-family: var(--font-tech);
+    font-size: 0.6rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+    opacity: 0.9;
+}
+
+.TPVisualStateLabel {
+    font-family: var(--font-jester);
+    font-size: 0.82rem;
+    font-weight: var(--w-medium);
+    fill: color-mix(in oklab, var(--text) 84%, var(--c-glow-1));
+    opacity: 0.92;
+}
+
+/* ENERGY LEVEL SCAFFOLD */
+.TPVisualLevel {
+    fill: none;
+    /* stroke: url(#TPLevelGrad); */
+    /* stroke: red; */
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    opacity: 0.95;
+}
+
+
+
+.TPVisualLevelCap {
+    stroke: none;
+    fill: color-mix(in oklab, var(--text) 80%, var(--c-glow-1));
+    opacity: 0.92;
+}
+
+/* POPULATION NODES */
+.TPVisualPopulationNode {
+    transform-origin: center;
+    animation: tpNodeFloat 4.8s ease-in-out infinite;
+    animation-delay: var(--tp-node-delay, 0s);
+}
+
+.TPVisualPopulationHalo {
+    fill: color-mix(in oklab, var(--c-glow-2) 34%, transparent);
+    opacity: 0.5;
+}
+
+.TPVisualPopulationShell {
+    fill: color-mix(in oklab, var(--bg) 50%, transparent);
+    stroke: color-mix(in oklab, var(--text) 16%, var(--c-glow-1));
+    stroke-width: 1.1;
+}
+
+.TPVisualPopulationCore {
+    opacity: 1;
+}
+
+.TPVisualPopulationNode--high .TPVisualPopulationHalo {
+    fill: color-mix(in oklab, var(--c-glow-1) 34%, transparent);
+}
+
+.TPVisualPopulationNode--mid .TPVisualPopulationHalo {
+    fill: color-mix(in oklab, var(--c-glow-2) 34%, transparent);
+}
+
+.TPVisualPopulationNode--low .TPVisualPopulationHalo {
+    fill: color-mix(in oklab, var(--c-glow-3) 28%, transparent);
+}
+
+/* COUPLING PATHWAYS */
+.TPVisualTransitionGlow,
+.TPVisualTransitionCore,
+.TPVisualSignalGlow,
+.TPVisualSignalCore {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.TPVisualTransitionGroup {
+    animation: tpTransitionFlash 6s ease-in-out infinite;
+    animation-delay: var(--tp-delay, 0s);
+}
+
+.TPVisualSignalGroup {
+    animation: tpSignalFlash 6s ease-in-out infinite;
+    animation-delay: var(--tp-delay, 0s);
+}
+
+.TPVisualTransitionGlow--strong {
+    stroke-width: 10;
+    opacity: 0.42;
+}
+
+.TPVisualTransitionGlow--mid {
+    stroke-width: 7;
+    opacity: 0.3;
+}
+
+.TPVisualTransitionGlow--weak {
+    stroke-width: 5;
+    opacity: 0.16;
+}
+
+.TPVisualTransitionCore--strong {
+    stroke-width: 3.4;
+    opacity: 0.96;
+}
+
+.TPVisualTransitionCore--mid {
+    stroke-width: 2.4;
+    opacity: 0.72;
+}
+
+.TPVisualTransitionCore--weak {
+    stroke-width: 1.55;
+    opacity: 0.38;
+    stroke-dasharray: 5 7;
+}
+
+/* SIGNAL PATH + DETECTOR */
+.TPVisualSignalGlow--strong {
+    stroke-width: 11;
+    opacity: 0.48;
+}
+
+.TPVisualSignalGlow--mid {
+    stroke-width: 8;
+    opacity: 0.28;
+}
+
+.TPVisualSignalGlow--weak {
+    stroke-width: 5;
+    opacity: 0.14;
+}
+
+.TPVisualSignalCore--strong {
+    stroke-width: 3.6;
+    opacity: 0.98;
+}
+
+.TPVisualSignalCore--mid {
+    stroke-width: 2.5;
+    opacity: 0.68;
+}
+
+.TPVisualSignalCore--weak {
+    stroke-width: 1.6;
+    opacity: 0.3;
+    stroke-dasharray: 5 8;
+}
+
+.TPVisualDetectorHalo {
+    opacity: 0.55;
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: tpDetectorPulse 6s ease-in-out infinite;
+}
+
+.TPVisualDetectorShell {
+    fill: color-mix(in oklab, var(--bg) 44%, var(--surface));
+    stroke: color-mix(in oklab, var(--c-glow-1) 44%, var(--text));
+    stroke-width: 1.2;
+}
+
+.TPVisualDetectorCore {
+    fill: color-mix(in oklab, var(--text) 88%, var(--c-glow-1));
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--c-glow-1) 56%, transparent));
+}
+
+/* READOUT BARS */
+.TPVisualReadoutBar--base {
+    fill: color-mix(in oklab, var(--bg) 66%, transparent);
+    stroke: color-mix(in oklab, var(--text) 8%, transparent);
+    stroke-width: 1;
+}
+
+.TPVisualReadoutBarGroup--strong .TPVisualReadoutBar--strong,
+.TPVisualReadoutBarGroup--mid .TPVisualReadoutBar--mid,
+.TPVisualReadoutBarGroup--weak .TPVisualReadoutBar--weak {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: tpBarRise 6s ease-in-out infinite;
+}
+
+.TPVisualReadoutBar--strong {
+    fill: color-mix(in oklab, var(--c-glow-1) 48%, var(--c-glow-3));
+    opacity: 0.96;
+}
+
+.TPVisualReadoutBar--mid {
+    fill: color-mix(in oklab, var(--c-glow-2) 54%, var(--c-glow-1));
+    opacity: 0.72;
+    animation-delay: 0.35s;
+}
+
+.TPVisualReadoutBar--weak {
+    fill: color-mix(in oklab, var(--c-glow-3) 44%, var(--text));
+    opacity: 0.4;
+    animation-delay: 0.7s;
+}
+
+.TPVisualDescription {
+    width: min(32rem, 88%);
+    margin: 1rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.48;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.TPVisualDescription i,
+.TPVisualDescription sub {
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+}
+
+/* MOTION */
+@keyframes tpCoreHaloFlow {
+    0% {
+        opacity: 0.16;
+        transform: scale(0.94);
+    }
+
+    12% {
+        opacity: 0.24;
+        transform: scale(0.98);
+    }
+
+    24% {
+        opacity: 0.42;
+        transform: scale(1.03);
+    }
+
+    44% {
+        opacity: 0.5;
+        transform: scale(1.06);
+    }
+
+    66% {
+        opacity: 0.34;
+        transform: scale(1.01);
+    }
+
+    82% {
+        opacity: 0.22;
+        transform: scale(0.98);
+    }
+
+    100% {
+        opacity: 0.16;
+        transform: scale(0.94);
+    }
+}
+
+@keyframes tpNodeFloat {
+    0%, 100% {
+        opacity: 0.88;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.06);
+    }
+}
+
+@keyframes tpTransitionFlash {
+    0% {
+        opacity: 0.18;
+    }
+
+    12% {
+        opacity: 0.45;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0.32;
+    }
+
+    100% {
+        opacity: 0.18;
+    }
+}
+
+@keyframes tpSignalFlash {
+    0%,
+    24% {
+        opacity: 0.1;
+    }
+
+    32% {
+        opacity: 0.32;
+    }
+
+    44% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0.28;
+    }
+
+    100% {
+        opacity: 0.12;
+    }
+}
+
+@keyframes tpDetectorPulse {
+    0%,
+    44% {
+        opacity: 0.4;
+        transform: translateX(0) scale(0.9);
+    }
+
+    54% {
+        opacity: 0.62;
+        transform: translateX(14px) scale(0.96);
+    }
+
+    66% {
+        opacity: 0.95;
+        transform: translateX(40px) scale(1.05);
+    }
+
+    82% {
+        opacity: 0.68;
+        transform: translateX(16px) scale(0.97);
+    }
+
+    100% {
+        opacity: 0.4;
+        transform: translateX(0) scale(0.9);
+    }
+}
+
+
+@keyframes tpBarRise {
+    0%,
+    68% {
+        opacity: 0.72;
+        transform: scaleY(1);
+    }
+
+    78% {
+        opacity: 1;
+        transform: scaleY(1.03);
+    }
+
+    88% {
+        opacity: 0.9;
+        transform: scaleY(0.997);
+    }
+
+    100% {
+        opacity: 0.72;
+        transform: scaleY(1);
+    }
+}
+
+/* For MOBILE */
+@media (max-width: 720px) {
+    .TPVisualHeader {
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+    }
+
+    .TPVisualSubheader,
+    .TPVisualLegendText {
+        font-size: 0.5rem;
+    }
+
+    .TPVisualStateLabel,
+    .TPVisualLegendTitle {
+        font-size: 0.64rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .TPVisualCoreHalo,
+    .TPVisualPopulationNode,
+    .TPVisualTransitionGroup,
+    .TPVisualSignalGroup,
+    .TPVisualDetectorHalo,
+    .TPVisualReadoutBarGroup--strong .TPVisualReadoutBar--strong,
+    .TPVisualReadoutBarGroup--mid .TPVisualReadoutBar--mid,
+    .TPVisualReadoutBarGroup--weak .TPVisualReadoutBar--weak {
+        animation: none;
+    }
+}

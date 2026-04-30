@@ -1,0 +1,352 @@
+.UVVAbsRatioVisual_Shell {
+    --uvv-cycle: 4.8s;
+    --uvv-line: color-mix(in oklab, var(--text) 18%, transparent);
+    --uvv-glass: color-mix(in oklab, var(--c-glow-1) 18%, transparent);
+    --uvv-glass-strong: color-mix(in oklab, var(--c-glow-1) 32%, transparent);
+
+    width: min(100%, 760px);
+    margin: 0 auto;
+    display: grid;
+    gap: clamp(0.45rem, 0.9vw, 0.7rem);
+}
+
+.UVVAbsRatioVisual_SVG {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.UVVAbsRatioVisual_Backplate {
+    fill: color-mix(in oklab, var(--surface-2) 82%, var(--c-ink));
+    stroke: color-mix(in oklab, var(--border-strong) 72%, var(--c-glow-2) 28%);
+    stroke-width: 1.15;
+    filter: drop-shadow(0 0 16px color-mix(in oklab, var(--c-glow-2) 16%, transparent));
+}
+
+.UVVAbsRatioVisual_ChamberLine {
+    fill: none;
+    stroke: var(--uvv-line);
+    stroke-width: 1;
+    stroke-dasharray: 7 10;
+}
+
+
+
+.UVVAbsRatioVisual_Beam {
+    fill: none;
+    stroke: var(--beam-grad);
+    stroke-width: 3.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: var(--soft-glow);
+    stroke-dasharray: 18 14;
+    animation: uvvAbsRatioBeamFlow var(--uvv-cycle) linear infinite;
+}
+
+.UVVAbsRatioVisual_InputBeam {
+    stroke: var(--c-glow-1);
+    stroke-width: 4;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 9px color-mix(in oklab, var(--c-glow-1) 70%, transparent));
+}
+
+.UVVAbsRatioVisual_ParallelBeamLayer {
+    pointer-events: none;
+}
+
+.UVVAbsRatioVisual_ParallelBeam {
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 16 12;
+    opacity: 1;
+}
+
+.UVVAbsRatioVisual_ParallelBeamReference {
+    stroke: var(--c-glow-1);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 70%, transparent));
+}
+
+.UVVAbsRatioVisual_ParallelBeamSample {
+    stroke: color-mix(in oklab, var(--c-glow-3) 55%, var(--c-glow-1) 45%);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-3) 60%, transparent));
+    opacity: 0.82;
+}
+
+.UVVAbsRatioVisual_BeamSplitter {
+    stroke: color-mix(in oklab, var(--c-metal-3) 70%, var(--text));
+    stroke-width: 1;
+}
+
+.UVVAbsRatioVisual_CellShell {
+    stroke: color-mix(in oklab, var(--c-metal-1) 68%, var(--text));
+    stroke-width: 1;
+    fill: var(--uvv-glass);
+    opacity: 0.86;
+}
+
+.UVVAbsRatioVisual_CellFluid {
+    fill: var(--uvv-glass);
+    stroke: color-mix(in oklab, var(--c-glow-1) 54%, var(--text) 12%);
+    stroke-width: 1;
+}
+
+.UVVAbsRatioVisual_sample .UVVAbsRatioVisual_CellFluid {
+    fill: color-mix(in oklab, var(--c-glow-3) 18%, var(--c-glow-1) 8%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-3) 52%, var(--c-glow-1) 20%);
+    opacity: 0.6
+}
+
+.UVVAbsRatioVisual_AnalyteDot {
+    fill: color-mix(in oklab, var(--c-glow-3) 82%, var(--text));
+    opacity: 0.78;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-3) 60%, transparent));
+    animation: uvvAbsRatioAnalytePulse 3.6s ease-in-out infinite;
+}
+
+.UVVAbsRatioVisual_ReadoutShell {
+    opacity: 0.88;
+    stroke: color-mix(in oklab, var(--c-metal-1) 55%, var(--text));
+    stroke-width: 1;
+    filter: drop-shadow(0 0 15px color-mix(in oklab, var(--c-glow-3) 18%, transparent));
+}
+
+.UVVAbsRatioVisual_PlotPanel {
+    fill: color-mix(in oklab, var(--text-dim) 88%, var(--c-emo-2) 12%);
+    stroke: color-mix(in oklab, var(--border-strong) 42%, var(--c-ink));
+    stroke-width: 1;
+    opacity: 0.96;
+}
+
+.UVVAbsRatioVisual_Axis {
+    stroke: color-mix(in oklab, var(--c-ink) 72%, var(--text) 28%);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    opacity: 0.9;
+}
+
+.UVVAbsRatioVisual_AxisLabel {
+    font-family: var(--font-tech);
+    font-size: 0.66rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.03em;
+    fill: color-mix(in oklab, var(--c-ink) 76%, var(--text) 24%);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+
+.UVVAbsRatioVisual_RefBar,
+.UVVAbsRatioVisual_SampleBar {
+    stroke-linecap: round;
+    stroke-width: 5;
+    opacity: 0.85;
+
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: uvvAbsRatioBarDraw 2.4s ease-out infinite;
+}
+
+.UVVAbsRatioVisual_RefBar {
+    stroke: var(--c-glow-1);
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-1) 58%, transparent));
+}
+
+.UVVAbsRatioVisual_SampleBar {
+    stroke: var(--c-glow-3);
+    opacity: 0.62;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-3) 50%, transparent));
+    animation-delay: 0.22s;
+}
+
+.UVVAbsRatioVisual_MiniTrace {
+    fill: none;
+    stroke: var(--c-glow-4);
+    stroke-width: 2;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    opacity: 0;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-4) 55%, transparent));
+    stroke-dasharray: 100 100;
+    stroke-dashoffset: 100;
+    animation: uvvAbsRatioTraceDraw 4.8s ease-in-out infinite;
+}
+
+.UVVAbsRatioVisual_Label {
+    font-family: var(--font-tech);
+    font-size: 0.62rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: color-mix(in oklab, var(--text-dim) 82%, var(--c-glow-1));
+    text-anchor: middle;
+    dominant-baseline: middle;
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--c-ink) 84%, transparent);
+    stroke-width: 2.5px;
+}
+
+.UVVAbsRatioVisual_CellTitle, 
+.UVVAbsRatioVisual_SplitterLabel, 
+.UVVAbsRatioVisual_ReadoutLabel1 {
+    font-size: 0.68rem;
+    fill: color-mix(in oklab, var(--text) 72%, var(--c-glow-1));
+}
+
+.UVVAbsRatioVisual_CellSubLabel,
+.UVVAbsRatioVisual_IntensityLabel, 
+.UVVAbsRatioVisual_ReadoutLabel {
+    fill: var(--text-muted);
+    font: var(--font-jester);
+    font-size: 0.64rem;
+}
+
+.UVVAbsRatioVisual_IntensityLabel {
+    text-anchor: start;
+}
+
+.UVVAbsRatioVisual_Formula,
+.UVVAbsRatioVisual_FormulaRatio {
+    font-family: var(--font-tech);
+    font-weight: var(--w-semibold);
+    text-anchor: middle;
+    fill: color-mix(in oklab, var(--text) 78%, var(--c-glow-3));
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--c-ink) 90%, transparent);
+    stroke-width: 3px;
+}
+
+.UVVAbsRatioVisual_Formula {
+    font-size: 0.73rem;
+    letter-spacing: 0.02em;
+}
+
+.UVVAbsRatioVisual_FormulaRatio {
+    font-size: 0.66rem;
+    fill: color-mix(in oklab, var(--text) 76%, var(--c-glow-1));
+}
+
+.UVVAbsRatioVisual_Caption {
+    max-width: 64ch;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: transparent;
+    text-align: justify;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* MOTION */
+@keyframes uvvAbsRatioBeamFlow {
+    from {
+        stroke-dashoffset: 64;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes uvvAbsRatioAnalytePulse {
+    0%, 100% {
+        opacity: 0.48;
+        transform: scale(0.99);
+    }
+
+    45%, 68% {
+        opacity: 0.9;
+        transform: scale(1.01);
+    }
+}
+
+@keyframes uvvAbsRatioDetectorPulse {
+    0%, 100% {
+        opacity: 0.58;
+    }
+
+    48%, 72% {
+        opacity: 1;
+    }
+}
+
+@keyframes uvvAbsRatioTraceDraw {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+
+    8% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+
+    62% {
+        stroke-dashoffset: 0;
+        opacity: 0.86;
+    }
+
+    82% {
+        stroke-dashoffset: 0;
+        opacity: 0.86;
+    }
+
+    100% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+}
+
+@keyframes uvvAbsRatioTraceDraw {
+    0%, 24% {
+        stroke-dashoffset: 96;
+        opacity: 0.2;
+    }
+
+    52%, 78% {
+        stroke-dashoffset: 0;
+        opacity: 0.86;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.32;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 620px) {
+    .UVVAbsRatioVisual_Shell {
+        gap: 0.35rem;
+    }
+
+    .UVVAbsRatioVisual_Label {
+        font-size: 0.5rem;
+        letter-spacing: 0.055em;
+    }
+
+    .UVVAbsRatioVisual_Formula {
+        font-size: 0.62rem;
+    }
+
+    .UVVAbsRatioVisual_FormulaRatio {
+        font-size: 0.56rem;
+    }
+
+    .UVVAbsRatioVisual_Caption {
+        font-size: 0.86rem;
+        line-height: 1.35;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .UVVAbsRatioVisual_Beam,
+    .UVVAbsRatioVisual_AnalyteDot,
+    .UVVAbsRatioVisual_RefSignalDot,
+    .UVVAbsRatioVisual_SampleSignalDot,
+    .UVVAbsRatioVisual_MiniTrace {
+        animation: none;
+    }
+}

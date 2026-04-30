@@ -3,15 +3,31 @@ import './SpecPage.css';
 import { spectroscopySections } from './data/specSections';
 import { getTextSectionById } from './data/specText';
 import { defaultMode } from './data/specModes';
-import SpecSection from './components/SpecSection';
+import { getVisualConfig } from './data/specVisuals';
+import SpecSection from './components/specSection';
 
 function buildOrderedSections() {
   return spectroscopySections
-    .map((id) =>
-      id === 'landing'
-        ? { id: 'landing', label: 'Graveyard Chemist', hook: 'Spectral Observatorium' }
-        : getTextSectionById(id)
-    )
+    .map((id) => {
+      if (id === 'landing') {
+        return {
+          id: 'landing',
+          label: 'Graveyard Chemist',
+          hook: 'Spectral Observatorium',
+        };
+      }
+
+      const textSection = getTextSectionById(id);
+      const visualConfig = getVisualConfig(id);
+
+      if (!textSection) return null;
+
+      return {
+        ...textSection,
+        demoHref: visualConfig?.demoHref ?? textSection.demoHref,
+        demoLabel: visualConfig?.demoLabel ?? textSection.demoLabel,
+      };
+    })
     .filter(Boolean);
 }
 

@@ -10,8 +10,9 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import SpecSectionHeader from './SpecSectionHeader';
-import SpecTextPanel from './SpecTextPanel';
+import SpecTextPanel from './specTextPanel';
 import SpecVisualPanel from './specVisualPanel';
+import LaunchDemoButton from './LaunchDemoButton';
 
 
 export default function SpecSection({
@@ -146,13 +147,10 @@ export default function SpecSection({
 
       {hasDemo && (
         <footer className="specpageSectionBottom">
-          <a
+          <LaunchDemoButton
             href={demoHref}
-            className="demoLink"
-            aria-label={demoLabel}
-          >
-            {demoLabel}
-          </a>
+            label={demoLabel}
+          />
         </footer>
       )}
     </section>

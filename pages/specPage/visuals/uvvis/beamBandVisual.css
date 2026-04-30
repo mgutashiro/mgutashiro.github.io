@@ -1,0 +1,405 @@
+/* PANEL CSS */
+.UVV-F-P3-Shell {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.UVV-F-P3-SVG {
+    width: min(100%, 880px);
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+/* colored background css */
+.UVV-F-P3-Backplate {
+    fill: color-mix(in oklab, var(--surface-2) 78%, var(--c-ink) 22%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 18%, var(--border));
+    stroke-width: 1.2;
+}
+
+/* bean elements */
+.UVV-F-P3-BeamBand path:first-child {
+    stroke-dasharray: 26 18;
+    animation: UVVFP3BeamFlow 5.8s linear infinite;
+}
+
+.UVV-F-P3-BeamBand path:last-child {
+    animation: UVVFP3BeamPulse 5.8s ease-in-out infinite;
+}
+
+.UVVPanel3MissingGroup,
+.UVV-F-P3-MissingMarker {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.UVV-F-P3-MissingMarker line {
+    animation: UVVFP3MissingPulse 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-MissingMarker circle {
+    filter: drop-shadow(0 0 8px currentColor);
+    animation: UVVFP3MissingDot 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-MissingMarker--pink-loss {
+    animation-delay: 0.35s;
+}
+
+.UVV-F-P3-InsetBackplate {
+    fill: color-mix(in oklab, var(--c-primary-2) 48%, var(--c-ink));
+    stroke: color-mix(in oklab, var(--c-glow-2) 22%, var(--border));
+    stroke-width: 1;
+    opacity: 0.82;
+}
+
+.UVV-F-P3-EnergyLevel {
+    stroke: color-mix(in oklab, var(--c-glow-2) 74%, var(--text) 12%);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.UVV-F-P3-TinyLabel {
+    font-family: var(--font-tech);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+}
+
+.UVV-F-P3-ElectronDot {
+    fill: var(--c-metal-1);
+    filter: drop-shadow(
+        0 0 8px color-mix(in oklab, var(--c-metal-1) 70%, transparent)
+    );
+    animation: UVVFP3ElectronJump 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-ElectronArrow,
+.UVV-F-P3-ElectronArrowHead {
+    fill: none;
+    stroke: var(--c-glow-3);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.78;
+}
+
+.UVV-F-P3-ElectronArrowHead {
+    fill: var(--c-glow-3);
+    stroke: none;
+}
+
+.UVV-F-P3-InsetTitle {
+    font-family: var(--font-jester);
+    font-size: 14px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    text-anchor: middle;
+    fill: var(--text-dim);
+}
+
+/* Detector Window */
+.UVV-F-P3-DetectorWindow {
+    stroke: color-mix(in oklab, var(--c-glow-1) 24%, var(--border));
+    stroke-width: 1.2;
+    opacity: 0.94;
+    animation: UVVFP3DetectorWake 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-DetectorCenterLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 48%, transparent);
+    stroke-width: 1.4;
+    stroke-dasharray: 8 10;
+}
+
+.UVV-F-P3-DetectorDot,
+.UVV-F-P3-DetectorDot2,
+.UVV-F-P3-DetectorDot3 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: UVVFP3DetectorDotTravel 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-DetectorDot {
+    fill: var(--c-glow-1);
+    opacity: 0.75;
+}
+
+.UVV-F-P3-DetectorDot2 {
+    --electron-dot-color: color-mix(in oklab, var(--c-glow-4) 70%, var(--text) 10%);
+    fill: var(--electron-dot-color);
+    filter: drop-shadow(
+        0 0 8px color-mix(in oklab, var(--electron-dot-color) 70%, transparent)
+    );
+    opacity: 0.72;
+    animation-delay: 0.12s;
+}
+
+.UVV-F-P3-DetectorDot3 {
+    --electron-dot-color: color-mix(in oklab, var(--c-glow-3) 58%, white 12%);
+    fill: var(--electron-dot-color);
+    filter: drop-shadow(
+        0 0 8px color-mix(in oklab, var(--electron-dot-color) 70%, transparent)
+    );
+    opacity: 0.7;
+    animation-delay: 0.24s;
+}
+
+
+
+.UVV-F-P3-Label {
+    font-family: var(--font-jester);
+    font-size: 15px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    fill: var(--text-dim);
+}
+
+/* Graph Plate */
+.UVVPanel3GraphPlate {
+    fill: color-mix(in oklab, var(--c-ink) 72%, var(--c-primary-2) 28%);
+    stroke: color-mix(in oklab, var(--c-glow-3) 18%, var(--border));
+    stroke-width: 1;
+    opacity: 0.92;
+}
+
+.UVV-F-P3-Axis {
+    stroke: color-mix(in oklab, var(--text-muted) 72%, var(--c-glow-1) 18%);
+    stroke-width: 1.3;
+    stroke-linecap: round;
+}
+
+/* Spectrum Trace */
+.UVV-F-P3SpectrumTraceGlow,
+.UVV-F-P3-SpectrumTrace {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+    animation: UVVFP3TraceWrite 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3SpectrumTraceGlow {
+    stroke: color-mix(in oklab, var(--c-glow-3) 54%, transparent);
+    stroke-width: 9;
+    opacity: 0.34;
+}
+
+.UVV-F-P3-SpectrumTrace {
+    stroke: var(--c-glow-3);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--c-glow-3) 68%, transparent));
+}
+
+.UVV-F-P3-PeakDot {
+    opacity: 0;
+    animation: UVVFP3PeakDot 5.8s ease-in-out infinite;
+}
+
+.UVV-F-P3-PeakDot--violet {
+    fill: var(--c-glow-2);
+}
+
+.UVV-F-P3-PeakDot--pink {
+    fill: var(--c-glow-3);
+    animation-delay: 0.2s;
+}
+
+.UVV-F-P3-GraphLabel {
+    font-family: var(--font-tech);
+    font-size: 10px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+}
+
+.UVV-F-P3-GraphLabel--vertical {
+    writing-mode: vertical-rl;
+    glyph-orientation-vertical: 0deg;
+}
+
+/* Reference Trace */
+.UVV-F-P3-ReferenceTrace {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text-muted) 42%, transparent);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-dasharray: 6 10;
+    opacity: 0.45;
+}
+
+
+/* PIXAR */
+@keyframes UVVFP3BeamFlow {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -88;
+    }
+}
+
+@keyframes UVVFP3BeamPulse {
+    0%, 100% {
+        opacity: 0.09;
+    }
+
+    45%, 70% {
+        opacity: 0.18;
+    }
+}
+
+@keyframes UVVFP3MissingPulse {
+    0%, 20%, 100% {
+        opacity: 0.2;
+    }
+
+    42%, 72% {
+        opacity: 0.78;
+    }
+}
+
+@keyframes UVVFP3MissingDot {
+    0%, 22%, 100% {
+        opacity: 0.22;
+        transform: scale(0.88);
+    }
+
+    44%, 70% {
+        opacity: 0.9;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes UVVFP3ElectronJump {
+    0%, 28% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    44%, 68% {
+        transform: translateY(-44px) scale(1.04);
+        opacity: 1;
+    }
+
+    98%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+    }
+}
+
+@keyframes UVVFP3DetectorWake {
+    0%, 24%, 100% {
+        opacity: 0.76;
+    }
+
+    42%, 78% {
+        opacity: 1;
+    }
+}
+
+@keyframes UVVFP3ElectronJump {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+    }
+
+    10%, 28% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    44%, 72% {
+        transform: translateY(var(--electron-jump-y)) scale(1.04);
+        opacity: 1;
+    }
+
+    88%, 100% {
+        transform: translateY(var(--electron-jump-y)) scale(1.04);
+        opacity: 0.2;
+    }
+}
+
+@keyframes UVVFP3DetectorDotTravel {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scale(0.75);
+    }
+
+    10% {
+        opacity: 0.75;
+        transform: translateX(0) scale(1);
+    }
+
+    42% {
+        opacity: 0.92;
+        transform: translateX(132px) scale(1.08);
+    }
+
+    72% {
+        opacity: 0.82;
+        transform: translateX(268px) scale(0.96);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(302px) scale(0.72);
+    }
+}
+
+@keyframes UVVFP3TraceWrite {
+    0%, 36% {
+        stroke-dashoffset: 420;
+    }
+
+    66%, 88% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 420;
+    }
+}
+
+@keyframes UVVFP3PeakDot {
+    0%, 58%{
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    70%, 88% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    95% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+
+/* MOBILE MODE */
+@media (prefers-reduced-motion: reduce) {
+    .UVV-F-P3-SVG *,
+    .UVV-F-P3-SVG *::before,
+    .UVV-F-P3 *::after {
+        animation: none !important;
+    }
+
+    .UVV-F-P3SpectrumTraceGlow,
+    .UVV-F-P3-SpectrumTrace {
+        stroke-dashoffset: 0;
+    }
+
+    .UVV-F-P3-PeakDot {
+        opacity: 1;
+    }
+}

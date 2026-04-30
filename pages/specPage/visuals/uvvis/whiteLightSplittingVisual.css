@@ -1,0 +1,260 @@
+/* Outer Shells */
+.UVVLightEntryVisual {
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+    color: var(--text);
+}
+
+.UVVLightEntrySVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.UVVLightEntryBackground {
+    fill: color-mix(in oklab, var(--c-primary-2) 34%, var(--c-ink) 66%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 20%, var(--border));
+    stroke-width: 1.2;
+    opacity: 0.96;
+}
+
+/* Source Chamber + elements */
+.UVVLightEntrySourceBody {
+    stroke: color-mix(in oklab, var(--c-glow-1) 26%, var(--border));
+    stroke-width: 1.25;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-1) 22%, transparent));
+}
+
+.UVVLightEntrySourceGlow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: uvvSourceGlow 5.2s ease-in-out infinite;
+}
+
+.UVVLightEntrySlit {
+    fill: color-mix(in oklab, var(--text) 72%, var(--c-glow-1) 28%);
+    opacity: 0.88;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 55%, transparent));
+    animation: uvvSlitPulse 5.2s ease-in-out infinite;
+}
+
+.UVVLightEntryPaleBeam {
+    opacity: 0.92;
+    stroke-dasharray: 42 18;
+    animation: uvvBeamFlow 5.2s linear infinite;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 38%, transparent));
+}
+
+/* Ribbon Group */
+.UVVLightEntryRibbonGroup {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: uvvRibbonDrift 5.2s ease-in-out infinite;
+}
+
+/* Spectral Ribbon */
+.UVVLightEntryRibbon {
+    opacity: 0.58;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--c-glow-2) 28%, transparent));
+    animation: uvvRibbonPulse 5.2s ease-in-out infinite;
+}
+
+.UVVLightEntryRibbonEdge {
+    opacity: 0.62;
+}
+
+.UVVLightEntryEnergyMarkers {
+    pointer-events: none;
+}
+
+.UVVLightEntryEnergyDot {
+    opacity: 0.82;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: uvvEnergyParticlePulse 5.2s ease-in-out infinite;
+    animation-delay: var(--dot-delay, 0s);
+}
+
+.UVVLightEntryEnergyDot--white {
+    fill: color-mix(in oklab, var(--text) 88%, var(--c-glow-1) 12%);
+    filter: drop-shadow(0 0 5px color-mix(in oklab, var(--text) 36%, transparent));
+}
+
+.UVVLightEntryEnergyDot--lime {
+    fill: color-mix(in oklab, var(--c-glow-4) 72%, var(--c-glow-1) 28%);
+    filter: drop-shadow(0 0 5px color-mix(in oklab, var(--c-glow-4) 42%, transparent));
+}
+
+.UVVLightEntryEnergyDot--green {
+    fill: color-mix(in oklab, var(--c-glow-4) 82%, var(--c-glow-1) 18%);
+    filter: drop-shadow(0 0 5px color-mix(in oklab, var(--c-glow-4) 46%, transparent));
+}
+
+.UVVLightEntryEnergyDot--violet {
+    fill: var(--c-glow-2);
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-2) 52%, transparent));
+}
+
+.UVVLightEntryEnergyDot--pink {
+    fill: var(--c-glow-3);
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-3) 48%, transparent));
+}
+
+.UVVLightEntryEnergyDot--warm {
+    fill: color-mix(in oklab, var(--c-metal-1) 72%, var(--c-glow-3) 28%);
+    filter: drop-shadow(0 0 5px color-mix(in oklab, var(--c-metal-1) 42%, transparent));
+}
+
+
+/* Sample Hint */
+.UVVLightEntrySampleHint {
+    opacity: 0.92;
+}
+
+.UVVLightEntrySampleGlow {
+    animation: uvvSampleHintPulse 5.2s ease-in-out infinite;
+}
+
+.UVVLightEntrySampleRing {
+    fill: none;
+    stroke: color-mix(in oklab, var(--c-glow-2) 42%, var(--text) 10%);
+    stroke-width: 1.3;
+    stroke-dasharray: 4 7;
+    opacity: 0.82;
+}
+
+/* Labels */
+.UVVLightEntryLabel {
+    font-family: var(--font-jester);
+    font-size: 15px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.075em;
+    text-transform: lowercase;
+    fill: var(--text-dim);
+    opacity: 0.88;
+}
+
+.UVVLightEntryLabel--source {
+    fill: color-mix(in oklab, var(--text) 68%, var(--c-glow-1) 32%);
+}
+
+.UVVLightEntryLabel--ribbon {
+    fill: color-mix(in oklab, var(--text) 62%, var(--c-glow-3) 38%);
+}
+
+.UVVLightEntryLabel--next {
+    fill: color-mix(in oklab, var(--text) 56%, var(--c-glow-2) 44%);
+    opacity: 0.72;
+}
+
+/* MOTION */
+@keyframes uvvSourceGlow {
+    0%, 100% {
+        opacity: 0.12;
+        transform: scale(0.94);
+    }
+
+    38%, 72% {
+        opacity: 0.24;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes uvvSlitPulse {
+    0%, 100% {
+        opacity: 0.58;
+    }
+
+    34%, 74% {
+        opacity: 1;
+    }
+}
+
+@keyframes uvvBeamFlow {
+    0% {
+        stroke-dashoffset: 60;
+        opacity: 0.55;
+    }
+
+    34%, 78% {
+        opacity: 0.96;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.55;
+    }
+}
+
+@keyframes uvvRibbonDrift {
+    0%, 100% {
+        transform: translateX(-4px);
+    }
+
+    44%, 78% {
+        transform: translateX(4px);
+    }
+}
+
+@keyframes uvvRibbonPulse {
+    0%, 100% {
+        opacity: 0.58;
+    }
+
+    36%, 76% {
+        opacity: 0.86;
+    }
+}
+
+@keyframes uvvEnergyParticlePulse {
+    0%, 100% {
+        opacity: 0.45;
+        transform: translateX(-1px) scale(0.86);
+    }
+
+    42% {
+        opacity: 0.96;
+        transform: translateX(2px) scale(1.12);
+    }
+
+    72% {
+        opacity: 0.72;
+        transform: translateX(4px) scale(0.98);
+    }
+}
+
+@keyframes uvvSampleHintPulse {
+    0%, 100% {
+        opacity: 0.32;
+    }
+
+    52%, 78% {
+        opacity: 0.72;
+    }
+}
+
+/* MOBILE */
+@media (prefers-reduced-motion: reduce) {
+    .UVVLightEntrySourceGlow,
+    .UVVLightEntrySlit,
+    .UVVLightEntryPaleBeam,
+    .UVVLightEntryRibbonGroup,
+    .UVVLightEntryRibbon,
+    .UVVLightEntryEnergyDot,
+    .UVVLightEntrySampleGlow {
+        animation: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .UVVLightEntryLabel {
+        font-size: 13px;
+        letter-spacing: 0.055em;
+    }
+
+    .UVVLightEntryBackground {
+        stroke-width: 1;
+    }
+}

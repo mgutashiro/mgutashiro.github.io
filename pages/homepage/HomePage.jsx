@@ -14,8 +14,8 @@ import ElevatorRig from './ui/ElevatorRig'
 import useHomeScroll from './scroll/useHomeScroll'
 import useActiveSection from './scroll/useActiveSection'
 
-import linkedinLogo from '../../src/assets/linkSVG/linkedinLogo.svg'
-import githubLogo from '../../src/assets/linkSVG/githubLogo.svg'
+import linkedinLogo from '../../src/assets/SVG/linkedinLogo.svg'
+import githubLogo from '../../src/assets/SVG/githubLogo.svg'
 
 
 export default function HomePageReturn() {

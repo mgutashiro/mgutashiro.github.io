@@ -1,10 +1,13 @@
-.dualNatureVisual {
+.dualNatureVisualStage {
   --particle-color: var(--accent-3);
   --wave-color: var(--accent-2);
 
-  --scene-h: 340px;
+  --scene-h: 300px;
   --path: 250px;
   --cycle: 4.2s;
+
+  --scene-scale: 0.86;
+  --scene-y: -18px;
 
   position: relative;
   min-height: var(--scene-h);
@@ -36,7 +39,7 @@
   pointer-events: none;
 }
 
-.dualAura--left {
+.dualAuraL {
   width: 180px;
   height: 180px;
   left: 14%;
@@ -44,7 +47,7 @@
   background: color-mix(in oklab, var(--wave-color) 34%, transparent);
 }
 
-.dualAura--right {
+.dualAuraR {
   width: 180px;
   height: 180px;
   right: 14%;
@@ -57,6 +60,8 @@
   width: min(100%, 780px);
   height: var(--scene-h);
   margin: 0 auto;
+  transform: translateY(var(--scene-y)) scale(var(--scene-scale));
+  transform-origin: 50% 52%;
 }
 
 .dualBeam {
@@ -66,25 +71,25 @@
   pointer-events: none;
 }
 
-.dualBeam--in {
+.dualBeamIn {
   left: calc(50% - var(--path));
   bottom: 30px;
   transform-origin: 100% 50%;
   transform: rotate(56deg);
 }
 
-.dualBeam--out {
+.dualBeamOut {
   left: 50%;
   bottom: 30px;
   transform-origin: 0% 50%;
   transform: rotate(-56deg);
 }
 
-.dualBeam--particles {
+.dualBeamParticles {
   color: var(--particle-color);
 }
 
-.dualBeam--waves {
+.dualBeamWaves {
   color: var(--wave-color);
 }
 
@@ -124,12 +129,12 @@
     0 0 18px color-mix(in oklab, var(--particle-color) 20%, transparent);
 }
 
-.dualParticle--in {
+.dualParticleIn {
   animation: particleIn var(--cycle) linear infinite;
   animation-delay: calc(var(--i) * -0.07s);
 }
 
-.dualParticle--out {
+.dualParticleOut {
   animation: particleOut var(--cycle) linear infinite;
   animation-delay: calc(var(--i) * -0.07s);
 }
@@ -147,14 +152,14 @@
     );
 }
 
-.dualWave__svg {
+.dualWaveSVG {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-.dualWave__path {
+.dualWavePath {
   fill: none;
   stroke: currentColor;
   stroke-width: 3.5;
@@ -162,12 +167,12 @@
   stroke-linejoin: round;
 }
 
-.dualWave--in {
+.dualWaveIn {
   animation: waveIn var(--cycle) ease-in-out infinite;
   animation-delay: calc(var(--i) * -0.1s);
 }
 
-.dualWave--out {
+.dualWaveOut {
   animation: waveOut var(--cycle) ease-in-out infinite;
   animation-delay: calc(var(--i) * -0.1s);
 }
@@ -185,12 +190,12 @@
   filter: blur(7px);
 }
 
-.dualHit--particles {
+.dualHitParticles {
   background: color-mix(in oklab, var(--particle-color) 86%, transparent);
   animation: particleHit var(--cycle) ease-in-out infinite;
 }
 
-.dualHit--waves {
+.dualHitWaves {
   background: color-mix(in oklab, var(--wave-color) 82%, transparent);
   animation: waveHit var(--cycle) ease-in-out infinite;
 }
@@ -205,7 +210,7 @@
   pointer-events: none;
 }
 
-.dualDish__shadow {
+.dualDishShadow {
   position: absolute;
   left: 12%;
   right: 12%;
@@ -217,7 +222,7 @@
   opacity: 0.75;
 }
 
-.dualDish__base {
+.dualDishBase {
   position: absolute;
   inset: auto 0 0;
   height: 60px;
@@ -233,7 +238,7 @@
     inset 0 -10px 16px color-mix(in oklab, black 24%, transparent);
 }
 
-.dualDish__rim {
+.dualDishRim {
   position: absolute;
   left: 3%;
   right: 3%;
@@ -248,7 +253,7 @@
   opacity: 0.95;
 }
 
-.dualDish__top {
+.dualDishTop {
   position: absolute;
   left: 8%;
   right: 8%;
@@ -267,7 +272,7 @@
   opacity: 0.96;
 }
 
-.dualDish__shine {
+.dualDishShine {
   position: absolute;
   left: 20%;
   right: 20%;

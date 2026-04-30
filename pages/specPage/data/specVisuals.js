@@ -60,13 +60,25 @@ export const spectroscopyVisuals = {
     kind: 'instrument',
     title: 'UV-Vis',
     visualType: 'instrument-hotspot',
-    demoHref: '',
-    parts: [
-      { id: 'source', label: 'Source', title: 'Lamp / Input Light' },
-      { id: 'sample', label: 'Sample', title: 'Cuvette / Sample Cell' },
-      { id: 'discriminator', label: 'Discriminator', title: 'Monochromator' },
-      { id: 'detector', label: 'Detector', title: 'Detector' }
-    ]
+    demoHref: '/spec/demo/uvvis-double-beam',
+    demoLabel: 'Launch UV-Vis Demo',
+    modes: {
+      friends: {
+        parts: [
+          { id: 'white-light-splitting', label: 'White Light Splitting Visual', visualKey: 'white-light-splitting' },
+          { id: 'absorption', label: 'Absorption Visual', visualKey: 'absorption' },
+          { id: 'beam-band', label: 'Beam Band Visual', visualKey: 'beam-band' },
+        ],
+      },
+      colleague: {
+        parts: [
+          {id: 'uvvisTransmissionVisual', label: 'UV-Vis Transmission Visual', visualKey: 'uvvisTransmissionVisual' },
+          {id: 'uvvisMonochromatorVisual', label: 'UV-Vis Monochromator Visual', visualKey: 'uvvisMonochromatorVisual' },
+          {id: 'uvvisAbsorbanceRatioVisual', label: 'UV-Vis Absorbance Ratio Visual', visualKey: 'uvvisAbsorbanceRatioVisual' },
+          {id: 'uvvisDetectorReadoutVisual', label: 'UV-Vis Detector Readout Visual', visualKey: 'uvvisDetectorReadoutVisual' },
+        ],
+      },
+    },
   },
 
   fluorescence: {

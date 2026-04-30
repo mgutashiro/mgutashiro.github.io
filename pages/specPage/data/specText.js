@@ -125,7 +125,9 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
               },
               {
                 type: 'text',
-                value: `The exact form of this interaction measurement depends on the spectroscopy method being used; electric-dipole coupling in UV-Vis and fluorescence, magnetic interactions in TREPR, and more elaborate pump-probe interactions in ultrafast transient absorption methods. What changes from technique to technique is not the underlying framework, but the nature of the perturbation, the timescale over which it acts, and the observable chosen at the detector.`
+                value: `The exact form of this interaction measurement depends on the spectroscopy method being used.
+                What changes from technique to technique is not the underlying framework, but the nature of the perturbation, the timescale over which it acts, and the observable chosen at the detector.
+                `
               }
             ],
             visualKey: 'field-matter-interaction'
@@ -136,21 +138,23 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
             body: [
               {
                 type: 'text',
-                value: `A measurable signal requires more than a formally allowed transition. The observed response depends both on the population of the initial state and on how effectively the perturbation couples the initial and final wavefunctions. Spectroscopic intensity is therefore shaped not only by the symmetry and structure of the states themselves, but also by their occupation, whether that population is thermal, photo-prepared, spin-polarized, or evolving in time.`
+                value: `A measurable signal requires more than a symmetry-allowed transition. Its intensity depends on both the population of the initial state and how strongly the perturbation couples the initial and final wavefunctions.
+                `
               },
               {
                 type: 'equation',
-                value: String.raw`W_{i \to f} \propto P_i \left| \left\langle \Psi_f \middle| \hat{H}_1 \middle| \Psi_i \right\rangle \right|^2`
+                value: String.raw`\Gamma_{i \rightarrow f}  = \frac{2\pi}{\hbar} | \langle \psi_f | \hat{V} | \psi_i \rangle |^2 ρ(E_f) `
               },
               {
                 type: 'text',
-                value: `Here, \\(P_i\\) represents the population of the initial state, while the matrix element expresses how strongly the perturbation operator couples \\(\\Psi_i\\) and \\(\\Psi_f\\). This is why instrumentation matters so deeply: the source prepares the relevant field, the experiment helps determine which states are occupied, and the detector records only the portion of that induced response that becomes measurable. What spectroscopists observe is therefore not simply molecular structure in isolation, but structure filtered through population, coupling strength, and experimental design.`
+                value: `By Fermi’s golden rule, the transition probability depends on the coupling term and the density of accessible final states, ρ(E<sub>f</sub>).
+                `
               },
+
               {
                 type: 'text',
-                tone: 'note',
-                value: `*For clarity, this panel uses a framework equation rather than a fully expanded rate law. Detailed notes and references are linked at the bottom of the page.*`
-              }
+                value: `What we observe in spectroscopy is therefore shaped not only by molecular structure, but also by population, coupling strength, and the design of the experiment.`
+              },
             ],
             visualKey: 'transition-probability-population'
           },
@@ -160,12 +164,12 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
             body: [
               {
                 type: 'text',
-                value: `Although different techniques appear very different experimentally, they share the same principle: a source prepares a field, the sample responds through its allowed quantum couplings, a discriminator separates the relevant outgoing signal, and a detector converts that response into something measurable. The specific operator, selection rules, and readout change from method to method, but the logic remains the same.`
+                value: `Spectroscopies may differ in method, but many share the same structure: a source prepares a field, the sample responds through allowed couplings, part of that response is isolated, and a detector converts it into a measurable signal. What changes is the perturbation, the states involved, the selection rules, and the form of the response.`
               },
               {
                 type: 'text',
-                value: `In that sense, spectroscopy does not directly measure absolute energies; it measures observable consequences of energy differences, couplings, and state evolution. Whether the axis is wavelength, frequency, magnetic field, or delay time, the experiment is still probing how quantized states are connected and how that connectivity becomes visible through measurement.`
-              }
+                value: `Spectroscopy is therefore not just the reading of energy levels, but the observation of how quantized states become visible through interaction. What appears in a spectrum depends on energy spacing, population, coupling strength, selection rules, and the limits of detection. UV-Vis absorption is the clearest place to begin applying this framework instrumentally. The perturbation is optical, the response is attenuation of transmitted light, and the observable is built from a wavelength-by-wavelength comparison between the light sent through a reference path and the light sent through the sample.`
+              },
             ],
             visualKey: 'unified-spectroscopic-framework'
           }
@@ -186,28 +190,22 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         panels: [
           {
             id: 'white-light-splitting',
-            heading: 'A range of light',
-            body: `We begin by shining light across a range of colors. Instead of a single color, the molecule is given many possible energies to interact with.`,
+            heading: 'Light Enters as Many Colors',
+            body: `In UV-Vis spectroscopy, the source sends in a wide range of ultraviolet and visible light. Each color carries a different amount of energy, so the sample is not tested with just one possibility. It is given many energies at once.`,
             visualKey: 'white-light-splitting'
           },
           {
             id: 'absorption',
-            heading: 'The molecule quietly chooses',
-            body: `Some colors pass through, while others are absorbed. When certain wavelengths are pulled in, they disappear from the transmitted light.`,
+            heading: 'The Molecule Absorbs Specific Energies',
+            body: `As the light passes through the sample, some wavelengths continue forward while others are absorbed. Absorption happens only when the light has the right energy to match an electronic transition inside the molecule.`,
             visualKey: 'absorption'
           },
           {
-            id: 'electron-jump',
+            id: 'beam-band',
             heading: 'An electron moves upward',
-            body: `When a color is absorbed, an electron moves from one energy level to another, like stepping up to a higher ledge. The color taken in reflects the size of that energy gap.`,
-            visualKey: 'electron-jump'
+            body: `When a wavelength is absorbed, an electron is promoted from a lower energy level to a higher one. The instrument records which wavelengths were removed from the original beam, and those missing colors become the UV-Vis spectrum. In that pattern, we begin to see where the molecule’s electrons can move and how strongly they respond to light.`,
+            visualKey: 'beam-band'
           },
-          {
-            id: 'spectrum-forms',
-            heading: 'The pattern becomes a spectrum',
-            body: `By watching which colors are missing, we begin to map where electrons can go and how the molecule holds its energy. What disappears from the light reappears as structure in the graph.`,
-            visualKey: 'spectrum-forms'
-          }
         ]
       },
 
@@ -215,59 +213,83 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         title: 'For Colleagues',
         panels: [
           {
-            id: 'resonant-excitation',
-            heading: 'Resonant electronic excitation',
+            id: 'uvvisTransmissionVisual',
+            heading: 'Absorption as a Transmission Measurement',
             body: [
               {
-                type: 'text',
-                value: `Absorption occurs when the photon energy matches the gap between states,`
+                  type: "text",
+                  value: `UV-Vis absorption spectroscopy converts an electronic transition into a controlled transmission experiment. A continuum source provides optical radiation, a monochromator selects a narrow wavelength band, and the instrument measures how much radiant power remains after the beam passes through the sample.`,
               },
               {
-                type: 'equation',
-                value: String.raw`h \nu = E_{excited} - E_{ground}`
+                  type: "text",
+                  value: `At each wavelength, absorption reflects the loss of transmitted intensity caused by allowed electronic transitions, together with the practical effects of the cell, solvent, and optical path.`,
               },
               {
-                type: 'text',
-                value: `promoting an electron into an excited configuration.`
-              }
+                  type: "text",
+                  value: `In a double-beam instrument, this measurement is strengthened by comparing the sample channel against a reference channel rather than treating the lamp output as perfectly stable.`,
+              },
             ],
-            visualKey: 'resonant-excitation'
+            visualKey: 'uvvisTransmissionVisual'
           },
           {
-            id: 'beer-lambert',
-            heading: 'Macroscopic absorbance',
+            id: 'uvvisMonochromatorVisual',
+            heading: 'Wavelength Selection and Spectral Bandpass',
             body: [
               {
-                type: 'text',
-                value: `The attenuation of transmitted light is described by`
+                  type: "text",
+                  value: `Before light reaches the sample, the instrument must decide which part of the spectrum is being tested. In a scanning UV-Vis spectrophotometer, polychromatic light is directed into a monochromator, where slits, mirrors, and a diffraction grating isolate a narrow wavelength band.`,
               },
               {
-                type: 'equation',
-                value: String.raw`A = \varepsilon c l`
+                  type: "text",
+                  value: `The grating does not simply “make color”; it controls angular dispersion, spectral order, and resolution. Narrower slits improve wavelength selectivity, but they also reduce radiant power at the detector.`,
               },
               {
-                type: 'text',
-                value: `linking macroscopic absorbance to concentration, path length, and molar absorptivity.`
-              }
-            ],
-            visualKey: 'beer-lambert'
+                  type: "text",
+                  value: `UV-Vis instrumentation therefore works through a constant compromise between resolution, throughput, stray light rejection, and signal-to-noise.`,
+              },
+          ],
+            visualKey: 'uvvisMonochromatorVisual'
           },
           {
-            id: 'transition-allowance',
-            heading: 'Intensity and transition allowance',
+            id: 'uvvisAbsorbanceRatioVisual',
+            heading: 'Sample, Reference, and Absorbance',
             body: [
-              {
-                type: 'text',
-                value: `Spectral intensity depends on how strongly a transition couples to light and whether it is symmetry-allowed.`
-              }
-            ],
+            {
+                type: "paragraph",
+                value: `The sample and reference paths give the instrument a way to separate molecular absorption from background optical losses. The reference cell accounts for solvent absorption, cuvette material, reflection losses, and source variation, so the sample signal can be interpreted as the additional attenuation caused by the analyte.`,
+            },
+            {
+                type: "paragraph",
+                value: `For an ideal absorbing solution,`,
+            },
+            {
+                type: "equation",
+                value: `A(λ) = -log_{10}\\left(\\frac{I_{t,s}(λ)}{I_{t,r}(λ)}\\right) \\approx ε(λ)cl`,
+            },
+            {
+                type: "paragraph",
+                value: `where I<sub>t,s</sub> and I<sub>t,r</sub> are the transmitted sample and reference intensities. The measured spectrum is therefore not just “missing light,” but a corrected ratio that turns optical attenuation into a chemically useful quantity.`,
+            },
+          ],
             bullets: [
-              'Transition dipole moment controls intensity',
-              'Oscillator strength reflects transition probability',
-              'Selection rules determine whether a transition is allowed'
             ],
-            visualKey: 'transition-allowance'
-          }
+            visualKey: 'uvvisAbsorbanceRatioVisual'
+          }, 
+          {
+            id: 'uvvisDetectorReadoutVisual',
+            heading: 'Detection, Readout, and Instrument Limits',
+            body: [
+              {
+                type: 'text',
+                value: `After the source, monochromator, and sample/reference paths have shaped the beam, the detector converts transmitted optical power into an electrical signal. In the UV-Vis model, this is the detector/readout stage: a photomultiplier tube can amplify weak transmitted light through a photoelectron cascade, producing a current or voltage that is compared between sample and reference signals and converted into A(λ).`
+              },
+              {
+                type: 'text',
+                value: `The final spectrum is therefore not only a molecular signature. Stray radiation, dark current, source flicker, detector noise, slit width, scan speed, analog to digital converter(ADC) precision, and cuvette matching all affect the absorbance trace. UV-Vis is conceptually simple but instrumentally rich: it measures how much excitation light is removed, while fluorescence begins from the absorbed population and asks what light the molecule gives back.`
+              }
+            ],
+            visualKey: 'uvvisDetectorReadoutVisual'
+          },
         ]
       }
     }

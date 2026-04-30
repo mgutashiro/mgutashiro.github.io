@@ -320,6 +320,59 @@
     background: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
 }
 
+.launchDemoButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    width: fit-content;
+    padding: 0.78rem 1.1rem;
+
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 45%, transparent);
+    border-radius: 999px;
+
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: var(--text);
+    background:
+        linear-gradient(
+        135deg,
+        color-mix(in oklab, var(--c-glow-1) 18%, transparent),
+        color-mix(in oklab, var(--c-glow-3) 14%, transparent)
+        ),
+        color-mix(in oklab, var(--c-ink) 86%, var(--c-primary-2) 14%);
+
+    box-shadow:
+        0 0 18px color-mix(in oklab, var(--c-glow-1) 18%, transparent),
+        inset 0 0 16px rgba(255, 255, 255, 0.045);
+
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
+}
+
+.launchDemoButton:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--c-glow-3) 65%, white 10%);
+    box-shadow:
+        0 0 26px color-mix(in oklab, var(--c-glow-3) 26%, transparent),
+        inset 0 0 18px rgba(255, 255, 255, 0.065);
+}
+
+.launchDemoButtonArrow {
+    font-size: 1rem;
+    line-height: 1;
+    color: color-mix(in oklab, var(--c-glow-1) 80%, white 20%);
+}
+
 /* -------------------------- */
 /* OPTIONAL VISUAL PLACEHOLDER */
 /* -------------------------- */

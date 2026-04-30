@@ -2,7 +2,7 @@ import { useId } from 'react';
 import './fieldMatterInteractionVisual.css'
 
 /** Preset Constants */
-const VIEWBOX = { width: 720, height: 520 };
+const VIEWBOX = { width: 720, height: 450 };
 const CHAMBER = {
     x: 175, 
     y: 102, 
@@ -237,296 +237,298 @@ export default function FieldMatterInteractionVisualResponse() {
 
                     </defs>
                     
+                    <g className="FMIMoveCanvas" transform="translate(0, -15)">
                     {/* add thin technical guide traces around chamber */}
-                    <g className="FMIGuideLayer" aria-hidden="true">
-                        {/* subtle instrument traces */}
-                        {GUIDE_LINES.map((line, idx) => (
-                            <line
-                                key={`guide-${idx}`}
-                                x1={line.x1}
-                                y1={line.y1}
-                                x2={line.x2}
-                                y2={line.y2}
-                                className="FMIGuideLine"
+                        <g className="FMIGuideLayer" aria-hidden="true">
+                            {/* subtle instrument traces */}
+                            {GUIDE_LINES.map((line, idx) => (
+                                <line
+                                    key={`guide-${idx}`}
+                                    x1={line.x1}
+                                    y1={line.y1}
+                                    x2={line.x2}
+                                    y2={line.y2}
+                                    className="FMIGuideLine"
+                                />
+                            ))}
+
+                            <path className="FMIBracket" d={makeBracketPath('left')} />
+                            <path className="FMIBracket" d={makeBracketPath('right')} />
+
+                            {GUIDE_LINES.flatMap((line, idx) => [
+                                <circle
+                                    key={`guide-start-${idx}`}
+                                    cx={line.x1}
+                                    cy={line.y1}
+                                    r="2.2"
+                                    className="FMIGuideNode"
+                                />,
+                                <circle
+                                    key={`guide-end-${idx}`}
+                                    cx={line.x2}
+                                    cy={line.y2}
+                                    r="2.2"
+                                    className="FMIGuideNode"
+                                />,
+                            ])}
+                        </g>
+
+                        <g className="FMIChamberFrame" aria-hidden="true">
+                            {/* outer frame and glass housing */}
+                            <rect
+                                x={CHAMBER.x}
+                                y={CHAMBER.y}
+                                width={CHAMBER.width}
+                                height={CHAMBER.height}
+                                rx={CHAMBER.radius}
+                                className="FMIChamberOuter"
                             />
-                        ))}
 
-                        <path className="FMIBracket" d={makeBracketPath('left')} />
-                        <path className="FMIBracket" d={makeBracketPath('right')} />
-
-                        {GUIDE_LINES.flatMap((line, idx) => [
-                            <circle
-                                key={`guide-start-${idx}`}
-                                cx={line.x1}
-                                cy={line.y1}
-                                r="2.2"
-                                className="FMIGuideNode"
-                            />,
-                            <circle
-                                key={`guide-end-${idx}`}
-                                cx={line.x2}
-                                cy={line.y2}
-                                r="2.2"
-                                className="FMIGuideNode"
-                            />,
-                        ])}
-                    </g>
-
-                    <g className="FMIChamberFrame" aria-hidden="true">
-                        {/* outer frame and glass housing */}
-                        <rect
-                            x={CHAMBER.x}
-                            y={CHAMBER.y}
-                            width={CHAMBER.width}
-                            height={CHAMBER.height}
-                            rx={CHAMBER.radius}
-                            className="FMIChamberOuter"
-                        />
-
-                        <rect
-                            x={CHAMBER.x + 9}
-                            y={CHAMBER.y + 9}
-                            width={CHAMBER.width - 18}
-                            height={CHAMBER.height - 18}
-                            rx={CHAMBER.radius - 8}
-                            className="FMIChamberGlass"
-                        />
-
-                        <path
-                            className="FMIChamberReflect"
-                            d={`
-                                M ${CHAMBER.x + 34} ${CHAMBER.y + 24}
-                                L ${CHAMBER.x + 118} ${CHAMBER.y + 24}
-                                L ${CHAMBER.x + 84} ${CHAMBER.y + 118}
-                                L ${CHAMBER.x + 24} ${CHAMBER.y + 118}
-                                Z
-                            `}
-                        />
-
-                        {CHAMBER_MOUNTS.map((mount, idx) => (
-                            <g key={`mount-${idx}`} className="FMIChamberMount">
-                                <circle cx={mount.x} cy={mount.y} r="6" className="FMIChamberMountOuter" />
-                                <circle cx={mount.x} cy={mount.y} r="2.2" className="FMIChamberMountInner" />
-                            </g>
-                        ))}
-                    </g>
-
-                    <g className="FMISystem" aria-hidden="true">
-                        {/* static energy rails */}
-                        {LEVEL_Y.map((y) => (
-                            <path 
-                                key={y} 
-                                d={makeRailPath(y)} 
-                                className="FMIRail"
-                                stroke={`url(#${railGradientId})`}
-                                // stroke="var(--c-glow-3)"
+                            <rect
+                                x={CHAMBER.x + 9}
+                                y={CHAMBER.y + 9}
+                                width={CHAMBER.width - 18}
+                                height={CHAMBER.height - 18}
+                                rx={CHAMBER.radius - 8}
+                                className="FMIChamberGlass"
                             />
-                        ))}
 
-                        {/* node markers */}
-                        {levelNodes.map((nodes, i) => (
-                            <g key={`node-row-${LEVEL_Y[i]}`} className="FMINodeRow">
-                                {nodes.map((node, idx) => (
-                                    <g key={`${LEVEL_Y[i]}-${idx}`} className="FMINodeGroup">
-                                        <circle
-                                            cx={node.x}
-                                            cy={node.y}
-                                            r="6"
-                                            className="FMINode"
-                                            fill={`url(#${couplingGradientId})`}
-                                            filter={`url(#${blurSoftId})`}
-                                        />
-                                        <circle 
-                                            cx={node.x}
-                                            cy={node.y}
-                                            r="3.6"
-                                            className="FMINode"
-                                        />
-                                    </g>
-                                ))}
+                            <path
+                                className="FMIChamberReflect"
+                                d={`
+                                    M ${CHAMBER.x + 34} ${CHAMBER.y + 24}
+                                    L ${CHAMBER.x + 118} ${CHAMBER.y + 24}
+                                    L ${CHAMBER.x + 84} ${CHAMBER.y + 118}
+                                    L ${CHAMBER.x + 24} ${CHAMBER.y + 118}
+                                    Z
+                                `}
+                            />
+
+                            {CHAMBER_MOUNTS.map((mount, idx) => (
+                                <g key={`mount-${idx}`} className="FMIChamberMount">
+                                    <circle cx={mount.x} cy={mount.y} r="6" className="FMIChamberMountOuter" />
+                                    <circle cx={mount.x} cy={mount.y} r="2.2" className="FMIChamberMountInner" />
+                                </g>
+                            ))}
+                        </g>
+
+                        <g className="FMISystem" aria-hidden="true">
+                            {/* static energy rails */}
+                            {LEVEL_Y.map((y) => (
+                                <path 
+                                    key={y} 
+                                    d={makeRailPath(y)} 
+                                    className="FMIRail"
+                                    stroke={`url(#${railGradientId})`}
+                                    // stroke="var(--c-glow-3)"
+                                />
+                            ))}
+
+                            {/* node markers */}
+                            {levelNodes.map((nodes, i) => (
+                                <g key={`node-row-${LEVEL_Y[i]}`} className="FMINodeRow">
+                                    {nodes.map((node, idx) => (
+                                        <g key={`${LEVEL_Y[i]}-${idx}`} className="FMINodeGroup">
+                                            <circle
+                                                cx={node.x}
+                                                cy={node.y}
+                                                r="6"
+                                                className="FMINode"
+                                                fill={`url(#${couplingGradientId})`}
+                                                filter={`url(#${blurSoftId})`}
+                                            />
+                                            <circle 
+                                                cx={node.x}
+                                                cy={node.y}
+                                                r="3.6"
+                                                className="FMINode"
+                                            />
+                                        </g>
+                                    ))}
+                                </g>
+                            ))}
+
+                            {/* central Hamiltonian core */}
+                            <g className="FMIHamiltonianCore">
+                                <circle
+                                    cx={CENTER.x}
+                                    cy={CENTER.y}
+                                    r="52"
+                                    className="FMICoreHalo"
+                                    fill={`url(#${couplingGradientId})`}
+                                    filter={`url(#${blurSoftId})`}
+                                />
+                                <path
+                                    d={makeHexagonPath(CENTER.x, CENTER.y, 42)}
+                                    className="FMICoreHex"
+                                />
+                                <circle
+                                    cx={CENTER.x}
+                                    cy={CENTER.y}
+                                    r="16"
+                                    className="FMICoreInner"
+                                />
+                                <path
+                                    d={`
+                                        M ${CENTER.x - 78} ${CENTER.y}
+                                        L ${CENTER.x + 78} ${CENTER.y}
+                                        M ${CENTER.x} ${CENTER.y - 78}
+                                        L ${CENTER.x} ${CENTER.y + 78}
+                                    `}
+                                    className="FMICoreAxis"
+                                />
                             </g>
-                        ))}
+                        </g>
 
-                        {/* central Hamiltonian core */}
-                        <g className="FMIHamiltonianCore">
+                        <g className="FMIField" aria-hidden="true">
                             <circle
-                                cx={CENTER.x}
-                                cy={CENTER.y}
-                                r="52"
-                                className="FMICoreHalo"
+                                cx={SOURCE.x}
+                                cy={SOURCE.y}
+                                r="24"
+                                className="FMISourceGlow"
                                 fill={`url(#${couplingGradientId})`}
                                 filter={`url(#${blurSoftId})`}
                             />
-                            <path
-                                d={makeHexagonPath(CENTER.x, CENTER.y, 42)}
-                                className="FMICoreHex"
-                            />
+
                             <circle
+                                cx={SOURCE.x}
+                                cy={SOURCE.y}
+                                r="8"
+                                className="FMISourceCore"
+                            />
+                            {/* incoming pulse ribbon */}
+                            <path
+                                d={fieldPath}
+                                className="FMIFieldRibbon"
+                                stroke="url(#FMIFieldRibbonGradient)"
+                            />
+                            {/* carrier line */}
+                            <path
+                                d={fieldPath}
+                                className="FMIFieldCore"
+                                stroke="url(#FMIFieldCoreGradient)"
+                            />
+                            {/* pulse packets */}
+                            {FIELD_PACKET_X.map((x, idx) => (
+                                <ellipse
+                                    key={`packet-${idx}`}
+                                    cx={x}
+                                    cy={FIELD_Y}
+                                    rx="8"
+                                    ry="4"
+                                    className={`FMIFieldPacket FMIFieldPacket--${idx + 1}`}
+                                />
+                            ))}
+                        </g>
+
+                        <g className="FMIInteractionZone" aria-hidden="true">
+                            {/* soft glow where the incoming wave first touches the chamber edge */}
+                            <circle
+                                cx={COUPLING.x}
+                                cy={COUPLING.y}
+                                r="40"
+                                className="FMIHitGlow"
+                                fill={`url(#${couplingGradientId})`}
+                                filter={`url(#${blurSoftId})`}
+                            />
+                            {/* small circular marker that shows the entry point into the system */}
+                            <circle
+                                cx={COUPLING.x}
+                                cy={COUPLING.y}
+                                r="16"
+                                className="FMICouplingRing"
+                            />
+                        </g>
+
+                        <g className="FMIResponse" aria-hidden="true">
+                            {/* faint animated copies of the horizontal rails to show the scaffold waking up */}
+                            {responseRails.map((rail) => (
+                                <path
+                                    key={rail.key}
+                                    d={rail.d}
+                                    className="FMIResponseRail"
+                                    stroke={`url(#${railGradientId})`}
+                                    
+                                />
+                            ))}
+                            {/* node pulse */}
+                            {levelNodes.map((nodes, i) => (
+                                <g key={`pulse-${LEVEL_Y[i]}`} className="FMIResponseNodes">
+                                    {nodes.map((node, idx) => (
+                                        <circle
+                                            key={`pulse-${LEVEL_Y[i]}-${idx}`}
+                                            cx={node.x}
+                                            cy={node.y}
+                                            r="6"
+                                            className="FMINodePulse"
+                                            fill={`url(#${couplingGradientId})`}
+                                        />
+                                    ))}
+                                </g>
+                            ))}
+                            {/* residual afterglow / settling */}
+                            <ellipse
                                 cx={CENTER.x}
                                 cy={CENTER.y}
-                                r="16"
-                                className="FMICoreInner"
-                            />
-                            <path
-                                d={`
-                                    M ${CENTER.x - 78} ${CENTER.y}
-                                    L ${CENTER.x + 78} ${CENTER.y}
-                                    M ${CENTER.x} ${CENTER.y - 78}
-                                    L ${CENTER.x} ${CENTER.y + 78}
-                                `}
-                                className="FMICoreAxis"
+                                rx="120"
+                                ry="76"
+                                className="FMIResidualGlow"
+                                fill={`url(#${couplingGradientId})`}
+                                filter={`url(#${blurSoftId})`}
                             />
                         </g>
-                    </g>
 
-                    <g className="FMIField" aria-hidden="true">
-                        <circle
-                            cx={SOURCE.x}
-                            cy={SOURCE.y}
-                            r="24"
-                            className="FMISourceGlow"
-                            fill={`url(#${couplingGradientId})`}
-                            filter={`url(#${blurSoftId})`}
-                        />
-
-                        <circle
-                            cx={SOURCE.x}
-                            cy={SOURCE.y}
-                            r="8"
-                            className="FMISourceCore"
-                        />
-                        {/* incoming pulse ribbon */}
-                        <path
-                            d={fieldPath}
-                            className="FMIFieldRibbon"
-                            stroke="url(#FMIFieldRibbonGradient)"
-                        />
-                        {/* carrier line */}
-                        <path
-                            d={fieldPath}
-                            className="FMIFieldCore"
-                            stroke="url(#FMIFieldCoreGradient)"
-                        />
-                        {/* pulse packets */}
-                        {FIELD_PACKET_X.map((x, idx) => (
-                            <ellipse
-                                key={`packet-${idx}`}
-                                cx={x}
-                                cy={FIELD_Y}
-                                rx="8"
-                                ry="4"
-                                className={`FMIFieldPacket FMIFieldPacket--${idx + 1}`}
-                            />
-                        ))}
-                    </g>
-
-                    <g className="FMIInteractionZone" aria-hidden="true">
-                        {/* soft glow where the incoming wave first touches the chamber edge */}
-                        <circle
-                            cx={COUPLING.x}
-                            cy={COUPLING.y}
-                            r="40"
-                            className="FMIHitGlow"
-                            fill={`url(#${couplingGradientId})`}
-                            filter={`url(#${blurSoftId})`}
-                        />
-                        {/* small circular marker that shows the entry point into the system */}
-                        <circle
-                            cx={COUPLING.x}
-                            cy={COUPLING.y}
-                            r="16"
-                            className="FMICouplingRing"
-                        />
-                    </g>
-
-                    <g className="FMIResponse" aria-hidden="true">
-                        {/* faint animated copies of the horizontal rails to show the scaffold waking up */}
-                        {responseRails.map((rail) => (
-                            <path
-                                key={rail.key}
-                                d={rail.d}
-                                className="FMIResponseRail"
-                                stroke={`url(#${railGradientId})`}
-                                
-                            />
-                        ))}
-                        {/* node pulse */}
-                        {levelNodes.map((nodes, i) => (
-                            <g key={`pulse-${LEVEL_Y[i]}`} className="FMIResponseNodes">
-                                {nodes.map((node, idx) => (
-                                    <circle
-                                        key={`pulse-${LEVEL_Y[i]}-${idx}`}
-                                        cx={node.x}
-                                        cy={node.y}
-                                        r="6"
-                                        className="FMINodePulse"
-                                        fill={`url(#${couplingGradientId})`}
-                                    />
-                                ))}
+                        <g className="FMILabelLayer" aria-hidden="true">
+                            <g className="FMILabelGroup FMILabelGroup--source">
+                                <line
+                                    x1={LABELS.source.tick.x1}
+                                    y1={LABELS.source.tick.y1}
+                                    x2={LABELS.source.tick.x2}
+                                    y2={LABELS.source.tick.y2}
+                                    className="FMILabelTick"
+                                />
+                                <text
+                                    x={LABELS.source.x}
+                                    y={LABELS.source.y}
+                                    className="FMILabelText"
+                                >
+                                    {LABELS.source.text}
+                                </text>
                             </g>
-                        ))}
-                        {/* residual afterglow / settling */}
-                        <ellipse
-                            cx={CENTER.x}
-                            cy={CENTER.y}
-                            rx="120"
-                            ry="76"
-                            className="FMIResidualGlow"
-                            fill={`url(#${couplingGradientId})`}
-                            filter={`url(#${blurSoftId})`}
-                        />
-                    </g>
 
-                    <g className="FMILabelLayer" aria-hidden="true">
-                        <g className="FMILabelGroup FMILabelGroup--source">
-                            <line
-                                x1={LABELS.source.tick.x1}
-                                y1={LABELS.source.tick.y1}
-                                x2={LABELS.source.tick.x2}
-                                y2={LABELS.source.tick.y2}
-                                className="FMILabelTick"
-                            />
-                            <text
-                                x={LABELS.source.x}
-                                y={LABELS.source.y}
-                                className="FMILabelText"
-                            >
-                                {LABELS.source.text}
-                            </text>
-                        </g>
+                            <g className="FMILabelGroup FMILabelGroup--system">
+                                <line
+                                    x1={LABELS.system.tick.x1}
+                                    y1={LABELS.system.tick.y1}
+                                    x2={LABELS.system.tick.x2}
+                                    y2={LABELS.system.tick.y2}
+                                    className="FMILabelTick"
+                                />
+                                <text
+                                    x={LABELS.system.x}
+                                    y={LABELS.system.y}
+                                    className="FMILabelText"
+                                >
+                                    {LABELS.system.text}
+                                </text>
+                            </g>
 
-                        <g className="FMILabelGroup FMILabelGroup--system">
-                            <line
-                                x1={LABELS.system.tick.x1}
-                                y1={LABELS.system.tick.y1}
-                                x2={LABELS.system.tick.x2}
-                                y2={LABELS.system.tick.y2}
-                                className="FMILabelTick"
-                            />
-                            <text
-                                x={LABELS.system.x}
-                                y={LABELS.system.y}
-                                className="FMILabelText"
-                            >
-                                {LABELS.system.text}
-                            </text>
-                        </g>
-
-                        <g className="FMILabelGroup FMILabelGroup--response">
-                            <line
-                                x1={LABELS.response.tick.x1}
-                                y1={LABELS.response.tick.y1}
-                                x2={LABELS.response.tick.x2}
-                                y2={LABELS.response.tick.y2}
-                                className="FMILabelTick"
-                            />
-                            <text
-                                x={LABELS.response.x}
-                                y={LABELS.response.y}
-                                className="FMILabelText"
-                            >
-                                {LABELS.response.text}
-                            </text>
+                            <g className="FMILabelGroup FMILabelGroup--response">
+                                <line
+                                    x1={LABELS.response.tick.x1}
+                                    y1={LABELS.response.tick.y1}
+                                    x2={LABELS.response.tick.x2}
+                                    y2={LABELS.response.tick.y2}
+                                    className="FMILabelTick"
+                                />
+                                <text
+                                    x={LABELS.response.x}
+                                    y={LABELS.response.y}
+                                    className="FMILabelText"
+                                >
+                                    {LABELS.response.text}
+                                </text>
+                            </g>
                         </g>
                     </g>
                 </svg>

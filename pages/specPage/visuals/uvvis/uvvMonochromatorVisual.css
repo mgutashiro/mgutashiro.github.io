@@ -1,0 +1,276 @@
+ .UVVMonochromatorVisual_Shell {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: clamp(0.45rem, 0.9vw, 0.7rem);
+}
+
+.UVVMonochromatorVisual_SVG {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.UVVMonochromatorVisual_Backplate {
+    stroke: var(--border);
+    stroke-width: 1.2;
+    filter: drop-shadow(0 0 16px color-mix(in oklab, var(--c-glow-2) 18%, transparent));
+}
+
+.UVVMonochromatorVisual_ChamberLine {
+    fill: none;
+    stroke: color-mix(in oklab, var(--c-glow-1) 32%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 7 8;
+}
+
+.UVVMonochromatorVisual_Label {
+    font-family: var(--font-jester);
+    font-size: 0.66rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    fill: color-mix(in oklab, var(--text) 84%, var(--c-glow-1) 16%);
+}
+
+.UVVMonochromatorVisual_SmallLabel {
+    font-size: 0.66rem;
+    fill: var(--text-muted);
+}
+
+.UVVMonochromatorVisual_SelectedLabel {
+    font-size: 0.52rem;
+    fill: var(--c-glow-1);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--c-glow-1) 70%, transparent);
+}
+
+.UVVMonochromatorVisual_GratingStage {
+    fill: color-mix(in oklab, var(--surface-2) 76%, var(--c-ink) 24%);
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.UVVMonochromatorVisual_GratingPath {
+    stroke: color-mix(in oklab, var(--c-metal-1) 76%, var(--text) 24%);
+    stroke-width: 1.2;
+}
+
+.UVVMonochromatorVisual_ReflectionPoint {
+    fill: color-mix(in oklab, var(--ray-color) 80%, white 20%);
+    opacity: 0.6;
+}
+
+.UVVMonochromatorVisual_SelectedReflectionPoint {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 70%, transparent));
+}
+
+.UVVMonochromatorVisual_SlitCenterDot {
+    fill: var(--c-glow-1);
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 74%, transparent));
+}
+
+.UVVMonochromatorVisual_WhiteBeam {
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 6 6;
+}
+
+
+.UVVMonochromatorVisual_FoldedBeam,
+.UVVMonochromatorVisual_InternalBeam,
+.UVVMonochromatorVisual_SelectedOutput {
+    fill: none;
+    stroke-width: 4.2;
+    stroke-linecap: round;
+    stroke-dasharray: 18 14;
+    animation: UVVMonochromatorVisual_beamFlow 3.8s linear infinite;
+}
+
+.UVVMonochromatorVisual_FoldedBeam {
+    stroke-width: 3.2;
+    opacity: 0.82;
+}
+
+.UVVMonochromatorVisual_InternalBeam {
+    stroke: color-mix(in oklab, var(--c-glow-1) 70%, var(--c-glow-2) 30%);
+    stroke-width: 2.4;
+    opacity: 0.72;
+}
+
+.UVVMonochromatorVisual_SelectedOutput {
+    stroke-width: 5;
+    stroke-dasharray: 22 16;
+}
+
+.UVVMonochromatorVisual_EntrySlit,
+.UVVMonochromatorVisual_ExitSlitFrame {
+    fill: color-mix(in oklab, var(--c-metal-2) 72%, var(--c-ink) 28%);
+    stroke: color-mix(in oklab, var(--c-metal-1) 78%, var(--text) 10%);
+    stroke-width: 1.1;
+}
+
+.UVVMonochromatorVisual_ExitSlitOpening {
+    fill: var(--c-glow-1);
+    opacity: 0.88;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-1) 70%, transparent));
+    animation: UVVMonochromatorVisual_slitPulse 3.6s ease-in-out infinite;
+}
+
+.UVVMonochromatorVisual_Mirror{
+    stroke: color-mix(in oklab, var(--text) 26%, var(--c-metal-1) 74%);
+    stroke-width: 1.1;
+}
+
+.UVVMonochromatorVisual_MirrorShine {
+    stroke: color-mix(in oklab, var(--text) 80%, var(--c-metal-1) 20%);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    opacity: 0.7;
+}
+
+.UVVMonochromatorVisual_DispersionRay {
+    fill: none;
+    stroke: var(--ray-color);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 7 7;
+    stroke-dashoffset: 0;
+    filter: drop-shadow(
+        0 0 5px color-mix(in oklab, var(--ray-color) 58%, transparent)
+    );
+    animation: uvvDispersionFlow 2.8s linear infinite;
+    animation-delay: var(--ray-delay);
+}
+
+.UVVMonochromatorVisual_RayPoint {
+    fill: var(--ray-color);
+    opacity: 0.9;
+    filter: drop-shadow(
+        0 0 6px color-mix(in oklab, var(--ray-color) 62%, transparent)
+    );
+}
+
+
+
+
+.UVVMonochromatorVisual_ReadoutPanel {
+    fill: color-mix(in oklab, var(--surface-2) 78%, var(--c-ink) 22%);
+    stroke: color-mix(in oklab, var(--c-glow-2) 30%, var(--border));
+    stroke-width: 1;
+}
+
+.UVVMonochromatorVisual_ReadoutTitle {
+    font-size: 0.47rem;
+    fill: color-mix(in oklab, var(--text) 82%, var(--c-glow-3) 18%);
+}
+
+.UVVMonochromatorVisual_ReadoutText,
+.UVVMonochromatorVisual_ReadoutValue {
+    font-family: var(--font-tech);
+    font-size: 0.39rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+}
+
+.UVVMonochromatorVisual_ReadoutValue {
+    fill: var(--c-glow-1);
+}
+
+.UVVMonochromatorVisual_ReadoutTrack {
+    fill: color-mix(in oklab, var(--text-muted) 22%, transparent);
+}
+
+.UVVMonochromatorVisual_ReadoutBar {
+    fill: color-mix(in oklab, var(--c-glow-1) 72%, var(--c-emo-2) 28%);
+    opacity: 0.82;
+    animation: UVVMonochromatorVisual_readoutFlicker 3.4s ease-in-out infinite;
+}
+
+.UVVMonochromatorVisual_Caption {
+    max-width: 64ch;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    text-align: justify;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Motion Animation */
+@keyframes UVVMonochromatorVisual_beamFlow {
+    to {
+        stroke-dashoffset: -64;
+    }
+}
+
+@keyframes UVVMonochromatorVisual_selectedPulse {
+    0%, 100% {
+        opacity: 0.78;
+    }
+    45%, 68% {
+        opacity: 1;
+    }
+}
+
+@keyframes uvvDispersionFlow {
+    from {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: -56;
+    }
+}
+
+@keyframes UVVMonochromatorVisual_slitPulse {
+    0%, 100% {
+        opacity: 0.55;
+    }
+    48% {
+        opacity: 1;
+    }
+}
+
+@keyframes UVVMonochromatorVisual_scanSweep {
+    0%, 100% {
+        transform: rotate(-5deg);
+        opacity: 0.56;
+    }
+    50% {
+        transform: rotate(10deg);
+        opacity: 1;
+    }
+}
+
+@keyframes UVVMonochromatorVisual_readoutFlicker {
+    0%, 100% {
+        opacity: 0.62;
+    }
+    45%, 70% {
+        opacity: 0.95;
+    }
+}
+
+/* Mobile Mode */
+@media (prefers-reduced-motion: reduce) {
+    .UVVMonochromatorVisual_FoldedBeam,
+    .UVVMonochromatorVisual_InternalBeam,
+    .UVVMonochromatorVisual_SelectedOutput,
+    .UVVMonochromatorVisual_SelectedRay,
+    .UVVMonochromatorVisual_ScanCursor,
+    .UVVMonochromatorVisual_ExitSlitOpening,
+    .UVVMonochromatorVisual_ReadoutBar {
+        animation: none;
+    }
+}
