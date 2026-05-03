@@ -18,6 +18,11 @@
     stroke-width: 1.1;
 }
 
+.fluorRelaxedPopulation_StateS1 {
+    --state-core: var(--accent);
+    --state-glow: var(--accent-glow);
+    --state-vib: var(--accent-dim);
+}
 
 .fluorRelaxedPopulation_CurveGlow,
 .fluorRelaxedPopulation_CurveCore {
@@ -26,161 +31,98 @@
     stroke-linejoin: round;
 }
 
-.fluorRelaxedPopulation_CurveGlow {
-    stroke-width: 6;
-    opacity: 0.26;
-    filter: var(--soft-glow);
-}
-
-.fluorRelaxedPopulation_CurveCore {
-    stroke-width: 1.8;
-    opacity: 0.9;
-}
-
-.fluorRelaxedPopulation_StateS0 .fluorRelaxedPopulation_CurveGlow,
-.fluorRelaxedPopulation_StateS0 .fluorRelaxedPopulation_CurveCore {
-    stroke: color-mix(in oklab, var(--accent-2) 45%, var(--text-dim));
-}
-
-.fluorRelaxedPopulation_StateS1 .fluorRelaxedPopulation_CurveGlow,
-.fluorRelaxedPopulation_StateS1 .fluorRelaxedPopulation_CurveCore {
-    stroke: var(--violet-grad);
-}
-
-.fluorRelaxedPopulation_StateT1 .fluorRelaxedPopulation_CurveGlow,
-.fluorRelaxedPopulation_StateT1 .fluorRelaxedPopulation_CurveCore {
-    stroke: var(--triplet-grad);
-    opacity: 0.58;
-}
-
-.fluorRelaxedPopulation_VibTicks line {
-    stroke: currentColor;
-    stroke-width: 1;
-    opacity: 0.16;
-}
-
-.fluorRelaxedPopulation_StateS1 {
-    color: var(--accent);
-}
-
 .fluorRelaxedPopulation_StateS0 {
-    color: var(--accent-2);
+    --state-core: var(--accent-2);
+    --state-glow: var(--accent-2-glow);
+    --state-vib: var(--accent-2-dim);
 }
 
 .fluorRelaxedPopulation_StateT1 {
-    color: color-mix(in oklab, var(--emo2) 42%, var(--accent));
+    --state-core: color-mix(in oklab, var(--accent-3) 64%, var(--accent) 36%);
+    --state-glow: color-mix(in oklab, var(--accent-3-glow) 68%, var(--accent-glow) 32%);
+    --state-vib: color-mix(in oklab, var(--accent-3-dim) 68%, var(--accent-dim) 32%);
+}
+
+.fluorRelaxedPopulation_CurveGlow {
+    stroke: var(--state-glow);
+    stroke-width: 6;
+    opacity: 0.9;
+}
+
+.fluorRelaxedPopulation_CurveCore {
+    stroke: var(--state-core);
+    stroke-width: 1.8;
+}
+
+.fluorRelaxedPopulation_VibLevel {
+    stroke: var(--state-vib);
+    stroke-width: 4;
+    stroke-linecap: round;
+    opacity: 0.95;
 }
 
 .fluorRelaxedPopulation_StateLabel,
 .fluorRelaxedPopulation_Label {
     font-family: var(--font-tech);
     font-weight: var(--w-semibold);
+    font-size: 1rem;
     letter-spacing: 0.055em;
     paint-order: stroke;
     stroke: color-mix(in oklab, var(--bg) 82%, transparent);
     stroke-width: 3px;
+    text-transform: uppercase;
 }
 
 .fluorRelaxedPopulation_StateLabel {
     fill: var(--text-dim);
-    font-size: 1.05rem;
+    font-size: 1.5rem;
 }
 
-.fluorRelaxedPopulation_Label {
-    fill: var(--text-muted);
-    font-size: 0.7rem;
-    text-transform: uppercase;
+
+.fluorRelaxedPopulation_ICLabel {
+    fill: var(--copper);
 }
 
-.fluorRelaxedPopulation_CyanLabel {
-    fill: var(--accent-2);
-}
-
-.fluorRelaxedPopulation_VioletLabel {
-    fill: var(--accent);
-}
-
-.fluorRelaxedPopulation_PinkLabel {
+.fluorRelaxedPopulation_ISCLabel {
     fill: var(--accent-3);
 }
 
-.fluorRelaxedPopulation_DimLabel {
-    fill: color-mix(in oklab, var(--text-muted) 72%, var(--emo2));
+.fluorRelaxedPopulation_FluorLabel {
+    fill: var(--accent);
 }
 
-.fluorRelaxedPopulation_ArrowPath {
-    fill: none;
-    stroke-width: 2.4;
-    stroke-linecap: round;
+.fluorRelaxedPopulation_PhospLabel {
+    fill: var(--accent-3);
+}
+
+.fluorRelaxedPopulation_ELabel {
+    fill: var(--text-dim);
+    font-size: 1.8rem;
+}
+
+.fluorRelaxedPopulation_ArrowShaft {
+    stroke-width: 4;
+    stroke-linecap:round;
     stroke-linejoin: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    opacity: 0;
-    filter: var(--soft-glow);
-    animation: fluorRelaxedPopulationDraw 7s ease-in-out infinite;
+    fill: none;
+    opacity: 1;
 }
 
 .fluorRelaxedPopulation_ArrowHead {
-    opacity: 0;
-    filter: var(--soft-glow);
-    animation: fluorRelaxedPopulationHead 7s ease-in-out infinite;
+  opacity: 1;
 }
 
-.fluorRelaxedPopulation_AbsorptionArrow,
-.fluorRelaxedPopulation_AbsorptionHead {
-    stroke: var(--cyan-grad);
-    fill: var(--accent-2);
+.fluorRelaxedPopulation_RelaxationStep {
+    stroke: var(--copper);
+    fill: var(--copper);
 }
 
-.fluorRelaxedPopulation_RelaxArrow {
-    stroke: var(--violet-grad);
-    animation-delay: 1.25s;
+
+
+.fluorRelaxedPopulation_ICShaft {
+    stroke-width: 2;
 }
 
-.fluorRelaxedPopulation_RelaxArrowSecond {
-    animation-delay: 1.55s;
-}
-
-.fluorRelaxedPopulation_EmissionArrow,
-.fluorRelaxedPopulation_EmissionHead {
-    stroke: var(--pink-grad);
-    fill: var(--accent-3);
-    animation-delay: 3.05s;
-}
-
-.fluorRelaxedPopulation_IscArrow,
-.fluorRelaxedPopulation_IscHead,
-.fluorRelaxedPopulation_PhosphorArrow {
-    stroke: var(--triplet-grad);
-    fill: color-mix(in oklab, var(--emo2) 52%, var(--accent));
-    opacity: 0;
-    animation-delay: 4.2s;
-}
-
-.fluorRelaxedPopulation_PhosphorArrow {
-    stroke-width: 1.8;
-    opacity: 0.38;
-    animation-delay: 4.65s;
-}
-
-.fluorRelaxedPopulation_StateDot {
-    fill: var(--accent);
-    filter: var(--soft-glow);
-    opacity: 0;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: fluorRelaxedPopulationDot 7s ease-in-out infinite;
-    animation-delay: var(--dot-delay);
-}
-
-.fluorRelaxedPopulation_HotDot {
-    fill: var(--accent);
-}
-
-.fluorRelaxedPopulation_EmissiveDot {
-    fill: var(--accent-3);
-    animation-delay: 2.15s;
-}
 
 .fluorRelaxedPopulation_ReadoutStrip {
     opacity: 0.92;
@@ -192,28 +134,24 @@
 }
 
 .fluorRelaxedPopulation_Kicker,
-.fluorRelaxedPopulation_TitleText,
-.fluorRelaxedPopulation_NoteText {
+.fluorRelaxedPopulation_TitleText{
     font-family: var(--font-tech);
     letter-spacing: 0.06em;
 }
 
 .fluorRelaxedPopulation_Kicker {
     fill: var(--text-muted);
-    font-size: 0.63rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
+    font-weight: var(--w-semibold);
 }
 
 .fluorRelaxedPopulation_TitleText {
     fill: var(--text);
-    font-size: 0.88rem;
-    font-weight: var(--w-semibold);
+    font-size: 1.5rem;
 }
 
-.fluorRelaxedPopulation_NoteText {
-    fill: color-mix(in oklab, var(--accent-3) 60%, var(--text-dim));
-    font-size: 0.68rem;
-}
+
 
 .fluorRelaxedPopulation_Caption {
     max-width: 64ch;
@@ -230,54 +168,7 @@
     background-clip: text;
 }
 
-/* MOTION */
-@keyframes fluorRelaxedPopulationDraw {
-    0%, 12% {
-        stroke-dashoffset: 1;
-        opacity: 0;
-    }
 
-    26%, 66% {
-        stroke-dashoffset: 0;
-        opacity: 0.88;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        opacity: 0.18;
-    }
-}
-
-@keyframes fluorRelaxedPopulationHead {
-    0%, 22% {
-        opacity: 0;
-    }
-
-    34%, 66% {
-        opacity: 0.95;
-    }
-
-    100% {
-        opacity: 0.16;
-    }
-}
-
-@keyframes fluorRelaxedPopulationDot {
-    0%, 18% {
-        opacity: 0;
-        transform: scale(0.72);
-    }
-
-    30%, 62% {
-        opacity: 0.95;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0.22;
-        transform: scale(0.86);
-    }
-}
 
 /* MOBILE MODE */
 @media (max-width: 720px) {
@@ -293,8 +184,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .fluorRelaxedPopulation_ArrowPath,
-    .fluorRelaxedPopulation_ArrowHead,
-    .fluorRelaxedPopulation_StateDot {
+    .fluorRelaxedPopulation_ArrowHead{
         animation: none;
         opacity: 0.82;
         stroke-dashoffset: 0;

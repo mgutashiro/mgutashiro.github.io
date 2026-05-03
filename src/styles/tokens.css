@@ -56,9 +56,40 @@
   --primary: var(--c-primary-1);
   --primary-deep: var(--c-primary-2);
 
-  --accent: var(--c-glow-2);
-  --accent-2: var(--c-glow-1);
-  --accent-3: var(--c-glow-3);
+  --accent: color-mix(in oklab, var(--c-glow-2) 82%, white 18%);
+  --accent-2: color-mix(in oklab, var(--c-glow-1) 86%, white 14%);
+  --accent-3: color-mix(in oklab, var(--c-glow-3) 84%, white 16%);
+  --accent-4: color-mix(in oklab, var(--c-glow-4) 82%, white 18%);
+
+  --accent-glow: color-mix(in oklab, var(--accent) 55%, transparent);
+  --accent-2-glow: color-mix(in oklab, var(--accent-2) 55%, transparent);
+  --accent-3-glow: color-mix(in oklab, var(--accent-3) 55%, transparent);
+  --accent-4-glow: color-mix(in oklab, var(--accent-4) 55%, transparent);
+
+  --accent-dim: color-mix(in oklab, var(--accent) 42%, var(--bg, #080812));
+  --accent-2-dim: color-mix(in oklab, var(--accent-2) 42%, var(--bg, #080812));
+  --accent-3-dim: color-mix(in oklab, var(--accent-3) 42%, var(--bg, #080812));
+  --accent-4-dim: color-mix(in oklab, var(--accent-4) 42%, var(--bg, #080812));
+
+  --shadow-glow-violet:
+    0 0 0.45rem var(--accent-glow),
+    0 0 1.1rem color-mix(in oklab, var(--accent) 36%, transparent),
+    0 0 2.2rem color-mix(in oklab, var(--accent) 20%, transparent);
+
+  --shadow-glow-cyan:
+    0 0 0.45rem var(--accent-2-glow),
+    0 0 1.1rem color-mix(in oklab, var(--accent-2) 36%, transparent),
+    0 0 2.2rem color-mix(in oklab, var(--accent-2) 20%, transparent);
+
+  --shadow-glow-pink:
+    0 0 0.45rem var(--accent-3-glow),
+    0 0 1.1rem color-mix(in oklab, var(--accent-3) 36%, transparent),
+    0 0 2.2rem color-mix(in oklab, var(--accent-3) 20%, transparent);
+
+  --shadow-glow-lime:
+    0 0 0.45rem var(--accent-4-glow),
+    0 0 1.1rem color-mix(in oklab, var(--accent-4) 36%, transparent),
+    0 0 2.2rem color-mix(in oklab, var(--accent-4) 20%, transparent);
 
   --lightMetal: var(--c-metal-1);
   --darkMetal-2: var(--c-metal-2);
