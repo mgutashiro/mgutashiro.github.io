@@ -1,0 +1,326 @@
+.FluorSpecRedShiftStage {
+    width: 100%;
+    display: grid;
+    gap: clamp(0.55rem, 1vw, 0.85rem);
+}
+
+.FluorSpecRedShift_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.FluorSpecRedShift_Backplate {
+    fill: color-mix(in oklab, var(--bg-2) 95%, var(--primary-deep) 5%);
+    stroke: color-mix(in oklab, var(--c-glow-1) 10%, var(--border));
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+    opacity: 1;
+}
+
+.FluorSpecRedShift_Rail,
+.FluorSpecRedShiftn_Rail {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text-muted) 36%, transparent);
+    stroke-width: 2;
+    stroke-dasharray: 8 10;
+    opacity: 0.55;
+}
+
+.FluorSpecRedShift_Baseline {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text-muted) 38%, transparent);
+    stroke-width: 3;
+}
+
+.FluorSpecRedShift_SpectrumCurve {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.62;
+}
+
+.FluorSpecRedShift_SpectrumCurve--cool {
+    animation: redShiftCoolCurve 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_SpectrumCurve--warm {
+    animation: redShiftWarmCurve 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_Label {
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+    fill: color-mix(in oklab, var(--text) 78%, var(--c-glow-1));
+    opacity: 0.78;
+}
+
+.FluorSpecRedShift_Label--right {
+    fill: color-mix(in oklab, var(--text) 72%, var(--c-glow-3));
+}
+
+.FluorSpecRedShift_LabelSub {
+    font-size: 0.75rem;
+    font-weight: var(--w-medium);
+    fill: var(--text-muted);
+    opacity: 0.74;
+}
+
+.FluorSpecRedShift_AxisLabel {
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.05em;
+    fill: color-mix(in oklab, var(--text) 95%, var(--c-glow-4));
+    opacity: 0.82;
+}
+
+.FluorSpecRedShift_Beam,
+.FluorSpecRedShift_BeamGlow {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.FluorSpecRedShift_Beam {
+    stroke-width: 4;
+    stroke-dasharray: 330;
+    stroke-dashoffset: 330;
+}
+
+.FluorSpecRedShift_BeamGlow {
+    stroke-width: 13;
+    opacity: 0.35;
+}
+
+.FluorSpecRedShift_Beam--cool {
+    animation: redShiftBeamIn 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_Beam--warm {
+    animation: redShiftBeamOut 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_PhotonDots circle {
+    opacity: 0;
+}
+
+.FluorSpecRedShift_PhotonDots--cool circle {
+    fill: var(--c-glow-1);
+    filter: drop-shadow(var(--glow-cyan));
+    animation: redShiftCoolDots 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_PhotonDots--warm circle {
+    fill: var(--c-glow-3);
+    filter: drop-shadow(var(--glow-pink));
+    animation: redShiftWarmDots 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_Chamber {
+    fill: color-mix(in oklab, var(--surface) 78%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-1) 42%, var(--border));
+    stroke-width: 1.7;
+}
+
+.FluorSpecRedShift_ChamberInner {
+    fill: color-mix(in oklab, var(--bg) 48%, transparent);
+    stroke: color-mix(in oklab, var(--c-glow-2) 34%, transparent);
+    stroke-width: 1.1;
+}
+
+.FluorSpecRedShift_CoreHalo {
+    opacity: 0.38;
+    animation: redShiftCorePulse 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_Core {
+    stroke: color-mix(in oklab, var(--text) 40%, var(--c-glow-3));
+    stroke-width: 1.3;
+    filter: drop-shadow(var(--glow-violet));
+    animation: redShiftCorePulse 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_RelaxArc,
+.FluorSpecRedShift_RelaxTrail {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+}
+
+
+
+.FluorSpecRedShift_Slit {
+    fill: color-mix(in oklab, var(--bg) 74%, var(--c-glow-3));
+    stroke: color-mix(in oklab, var(--c-glow-3) 50%, var(--text));
+    stroke-width: 1.2;
+    opacity: 0.78;
+}
+
+.FluorSpecRedShift_Detector {
+    fill: color-mix(in oklab, var(--surface) 76%, var(--bg));
+    stroke: color-mix(in oklab, var(--c-glow-1) 36%, var(--border-strong));
+    stroke-width: 1.4;
+}
+
+.FluorSpecRedShift_DetectorLens {
+    fill: color-mix(in oklab, var(--c-glow-3) 28%, var(--bg));
+    stroke: color-mix(in oklab, var(--c-glow-3) 72%, var(--text));
+    stroke-width: 1.1;
+    animation: redShiftDetectorPulse 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_ReadoutTrace,
+.FluorSpecRedShift_ReadoutBase {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.FluorSpecRedShift_ReadoutTrace {
+    stroke: var(--c-glow-3);
+    stroke-width: 2.2;
+    stroke-dasharray: 65;
+    stroke-dashoffset: 65;
+    animation: redShiftReadout 5.8s ease-in-out infinite;
+}
+
+.FluorSpecRedShift_ReadoutBase {
+    stroke: color-mix(in oklab, var(--text-muted) 50%, transparent);
+    stroke-width: 1.3;
+}
+
+.FluorRedShift_Caption {
+    max-width: 64ch;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    text-align: justify;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* MOTION */
+@keyframes redShiftBeamIn {
+    0%, 8% {
+        stroke-dashoffset: 330;
+        opacity: 0;
+    }
+
+    22%, 58% {
+        stroke-dashoffset: 0;
+        opacity: 0.95;
+    }
+
+    82%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 0.22;
+    }
+}
+
+@keyframes redShiftBeamOut {
+    0%, 34% {
+        stroke-dashoffset: 330;
+        opacity: 0;
+    }
+
+    52%, 82% {
+        stroke-dashoffset: 0;
+        opacity: 0.95;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.28;
+    }
+}
+
+@keyframes redShiftCoolDots {
+    0%, 12% { opacity: 0; transform: translateX(-8px); }
+    24%, 54% { opacity: 0.95; transform: translateX(0); }
+    78%, 100% { opacity: 0.2; }
+}
+
+@keyframes redShiftWarmDots {
+    0%, 38% { opacity: 0; transform: translateX(-6px); }
+    56%, 82% { opacity: 0.95; transform: translateX(0); }
+    100% { opacity: 0.22; }
+}
+
+@keyframes redShiftCorePulse {
+    0%, 18% { opacity: 0.32; transform: scale(1); }
+    34%, 48% { opacity: 0.86; transform: scale(1.08); }
+    64%, 84% { opacity: 0.58; transform: scale(0.96); }
+    100% { opacity: 0.34; transform: scale(1); }
+}
+
+@keyframes redShiftWarmCurve {
+    0%, 40% { opacity: 0.18; }
+    58%, 84% { opacity: 0.72; }
+    100% { opacity: 0.24; }
+}
+
+@keyframes redShiftCoolCurve {
+    0%, 18% { opacity: 0.22; }
+    28%, 60% { opacity: 0.68; }
+    100% { opacity: 0.25; }
+}
+
+@keyframes redShiftDetectorPulse {
+    0%, 48% {
+        opacity: 0.44;
+        filter: none;
+    }
+
+    62%, 84% {
+        opacity: 0.95;
+        filter: drop-shadow(var(--glow-pink));
+    }
+
+    100% {
+        opacity: 0.48;
+        filter: none;
+    }
+}
+
+@keyframes redShiftReadout {
+    0%, 52% {
+        stroke-dashoffset: 65;
+        opacity: 0;
+    }
+
+    68%, 86% {
+        stroke-dashoffset: 0;
+        opacity: 0.95;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.24;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 720px) {
+    .FluorSpecRedShift_Frame {
+        border-radius: var(--radius-2);
+    }
+
+    .FluorSpecRedShift_Label {
+        font-size: 0.56rem;
+    }
+
+    .FluorRedShift_Caption {
+        font-size: 0.78rem;
+        padding-inline: 0.35rem;
+    }
+}

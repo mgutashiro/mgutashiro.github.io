@@ -266,7 +266,7 @@
     line-height: 1.55;
     color: color-mix(in oklab, var(--text) 84%, var(--c-glow-1) 16%);
     opacity: 0.9;
-    text-align: justify;
+    text-align: center;
 }
 
 /* animations */

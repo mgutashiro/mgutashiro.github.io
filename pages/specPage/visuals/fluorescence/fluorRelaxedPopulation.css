@@ -1,0 +1,302 @@
+.fluorRelaxedPopulation {
+    width: 100%;
+    margin: 0;
+    font-family: var(--font-tech);
+}
+
+.fluorRelaxedPopulation_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-3);
+}
+
+.fluorRelaxedPopulation_Chamber {
+    stroke: var(--border-strong);
+    stroke-width: 1.1;
+}
+
+
+.fluorRelaxedPopulation_CurveGlow,
+.fluorRelaxedPopulation_CurveCore {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.fluorRelaxedPopulation_CurveGlow {
+    stroke-width: 6;
+    opacity: 0.26;
+    filter: var(--soft-glow);
+}
+
+.fluorRelaxedPopulation_CurveCore {
+    stroke-width: 1.8;
+    opacity: 0.9;
+}
+
+.fluorRelaxedPopulation_StateS0 .fluorRelaxedPopulation_CurveGlow,
+.fluorRelaxedPopulation_StateS0 .fluorRelaxedPopulation_CurveCore {
+    stroke: color-mix(in oklab, var(--accent-2) 45%, var(--text-dim));
+}
+
+.fluorRelaxedPopulation_StateS1 .fluorRelaxedPopulation_CurveGlow,
+.fluorRelaxedPopulation_StateS1 .fluorRelaxedPopulation_CurveCore {
+    stroke: var(--violet-grad);
+}
+
+.fluorRelaxedPopulation_StateT1 .fluorRelaxedPopulation_CurveGlow,
+.fluorRelaxedPopulation_StateT1 .fluorRelaxedPopulation_CurveCore {
+    stroke: var(--triplet-grad);
+    opacity: 0.58;
+}
+
+.fluorRelaxedPopulation_VibTicks line {
+    stroke: currentColor;
+    stroke-width: 1;
+    opacity: 0.16;
+}
+
+.fluorRelaxedPopulation_StateS1 {
+    color: var(--accent);
+}
+
+.fluorRelaxedPopulation_StateS0 {
+    color: var(--accent-2);
+}
+
+.fluorRelaxedPopulation_StateT1 {
+    color: color-mix(in oklab, var(--emo2) 42%, var(--accent));
+}
+
+.fluorRelaxedPopulation_StateLabel,
+.fluorRelaxedPopulation_Label {
+    font-family: var(--font-tech);
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.055em;
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 82%, transparent);
+    stroke-width: 3px;
+}
+
+.fluorRelaxedPopulation_StateLabel {
+    fill: var(--text-dim);
+    font-size: 1.05rem;
+}
+
+.fluorRelaxedPopulation_Label {
+    fill: var(--text-muted);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.fluorRelaxedPopulation_CyanLabel {
+    fill: var(--accent-2);
+}
+
+.fluorRelaxedPopulation_VioletLabel {
+    fill: var(--accent);
+}
+
+.fluorRelaxedPopulation_PinkLabel {
+    fill: var(--accent-3);
+}
+
+.fluorRelaxedPopulation_DimLabel {
+    fill: color-mix(in oklab, var(--text-muted) 72%, var(--emo2));
+}
+
+.fluorRelaxedPopulation_ArrowPath {
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    filter: var(--soft-glow);
+    animation: fluorRelaxedPopulationDraw 7s ease-in-out infinite;
+}
+
+.fluorRelaxedPopulation_ArrowHead {
+    opacity: 0;
+    filter: var(--soft-glow);
+    animation: fluorRelaxedPopulationHead 7s ease-in-out infinite;
+}
+
+.fluorRelaxedPopulation_AbsorptionArrow,
+.fluorRelaxedPopulation_AbsorptionHead {
+    stroke: var(--cyan-grad);
+    fill: var(--accent-2);
+}
+
+.fluorRelaxedPopulation_RelaxArrow {
+    stroke: var(--violet-grad);
+    animation-delay: 1.25s;
+}
+
+.fluorRelaxedPopulation_RelaxArrowSecond {
+    animation-delay: 1.55s;
+}
+
+.fluorRelaxedPopulation_EmissionArrow,
+.fluorRelaxedPopulation_EmissionHead {
+    stroke: var(--pink-grad);
+    fill: var(--accent-3);
+    animation-delay: 3.05s;
+}
+
+.fluorRelaxedPopulation_IscArrow,
+.fluorRelaxedPopulation_IscHead,
+.fluorRelaxedPopulation_PhosphorArrow {
+    stroke: var(--triplet-grad);
+    fill: color-mix(in oklab, var(--emo2) 52%, var(--accent));
+    opacity: 0;
+    animation-delay: 4.2s;
+}
+
+.fluorRelaxedPopulation_PhosphorArrow {
+    stroke-width: 1.8;
+    opacity: 0.38;
+    animation-delay: 4.65s;
+}
+
+.fluorRelaxedPopulation_StateDot {
+    fill: var(--accent);
+    filter: var(--soft-glow);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: fluorRelaxedPopulationDot 7s ease-in-out infinite;
+    animation-delay: var(--dot-delay);
+}
+
+.fluorRelaxedPopulation_HotDot {
+    fill: var(--accent);
+}
+
+.fluorRelaxedPopulation_EmissiveDot {
+    fill: var(--accent-3);
+    animation-delay: 2.15s;
+}
+
+.fluorRelaxedPopulation_ReadoutStrip {
+    opacity: 0.92;
+}
+
+.fluorRelaxedPopulation_ReadoutStrip line {
+    stroke: var(--border-strong);
+    stroke-width: 1;
+}
+
+.fluorRelaxedPopulation_Kicker,
+.fluorRelaxedPopulation_TitleText,
+.fluorRelaxedPopulation_NoteText {
+    font-family: var(--font-tech);
+    letter-spacing: 0.06em;
+}
+
+.fluorRelaxedPopulation_Kicker {
+    fill: var(--text-muted);
+    font-size: 0.63rem;
+    text-transform: uppercase;
+}
+
+.fluorRelaxedPopulation_TitleText {
+    fill: var(--text);
+    font-size: 0.88rem;
+    font-weight: var(--w-semibold);
+}
+
+.fluorRelaxedPopulation_NoteText {
+    fill: color-mix(in oklab, var(--accent-3) 60%, var(--text-dim));
+    font-size: 0.68rem;
+}
+
+.fluorRelaxedPopulation_Caption {
+    max-width: 64ch;
+    margin: -0.35rem auto 0;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    text-align: justify;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* MOTION */
+@keyframes fluorRelaxedPopulationDraw {
+    0%, 12% {
+        stroke-dashoffset: 1;
+        opacity: 0;
+    }
+
+    26%, 66% {
+        stroke-dashoffset: 0;
+        opacity: 0.88;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.18;
+    }
+}
+
+@keyframes fluorRelaxedPopulationHead {
+    0%, 22% {
+        opacity: 0;
+    }
+
+    34%, 66% {
+        opacity: 0.95;
+    }
+
+    100% {
+        opacity: 0.16;
+    }
+}
+
+@keyframes fluorRelaxedPopulationDot {
+    0%, 18% {
+        opacity: 0;
+        transform: scale(0.72);
+    }
+
+    30%, 62% {
+        opacity: 0.95;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.22;
+        transform: scale(0.86);
+    }
+}
+
+/* MOBILE MODE */
+@media (max-width: 720px) {
+    .fluorRelaxedPopulation_Frame {
+        border-radius: var(--radius-2);
+    }
+
+    .fluorRelaxedPopulation_Caption {
+        padding-inline: 0.35rem;
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fluorRelaxedPopulation_ArrowPath,
+    .fluorRelaxedPopulation_ArrowHead,
+    .fluorRelaxedPopulation_StateDot {
+        animation: none;
+        opacity: 0.82;
+        stroke-dashoffset: 0;
+    }
+}

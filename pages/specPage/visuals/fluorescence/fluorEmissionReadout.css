@@ -1,0 +1,404 @@
+.fluorEmReadout {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: clamp(0.55rem, 1vw, 0.85rem);
+    color: var(--text);
+}
+
+.fluorEmReadout_SVG {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.fluorEmReadout_Backdrop {
+    fill: color-mix(in oklab, var(--bg) 86%, var(--primary-deep));
+}
+
+.fluorEmReadout_BackgroundWash {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent) 38%, transparent);
+    stroke-width: 92;
+    stroke-linecap: round;
+    opacity: 0.18;
+}
+
+
+.fluorEmReadout_Frame rect,
+.fluorEmReadout_Frame path {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1.2;
+}
+
+.fluorEmReadout_Frame path {
+    opacity: 0.45;
+    stroke-dasharray: 8 12;
+}
+
+.fluorEmReadout_Label {
+    font-family: var(--font-tech);
+    font-size: 10px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+}
+
+.fluorEmReadout_PathTitle {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.12em;
+}
+
+.fluorEmReadout_PathTitle_cyan {
+    fill: color-mix(in oklab, var(--accent-2) 78%, var(--text));
+}
+
+.fluorEmReadout_PathTitle_pink {
+    ill: color-mix(in oklab, var(--accent-3) 78%, var(--text));
+}
+
+.fluorEmReadout_UnitLabel {
+    font-size: 9.5px;
+    fill: var(--text-dim);
+}
+
+.fluorEmReadout_MicroLabel {
+    font-size: 8px;
+    opacity: 0.72;
+    fill: color-mix(in oklab, var(--text-muted) 82%, var(--accent));
+}
+
+.fluorEmReadout_UnitHalo {
+    fill: color-mix(in oklab, var(--surface) 65%, transparent);
+    opacity: 0.5;
+}
+
+.fluorEmReadout_UnitShell {
+    fill: color-mix(in oklab, var(--surface-2) 86%, var(--bg));
+    stroke: var(--border-strong);
+    stroke-width: 1.15;
+}
+
+.fluorEmReadout_SourceUnit .fluorEmReadout_UnitShell,
+.fluorEmReadout_ExcitationUnit .fluorEmReadout_UnitShell {
+    stroke: color-mix(in oklab, var(--accent-2) 34%, var(--border-strong));
+}
+
+.fluorEmReadout_SampleUnit .fluorEmReadout_UnitShell {
+    stroke: color-mix(in oklab, var(--accent) 42%, var(--border-strong));
+}
+
+.fluorEmReadout_EmissionUnit .fluorEmReadout_UnitShell,
+.fluorEmReadout_PMTUnit .fluorEmReadout_UnitShell {
+    stroke: color-mix(in oklab, var(--accent-3) 38%, var(--border-strong));
+}
+
+.fluorEmReadout_SourceRay {
+    stroke: color-mix(in oklab, var(--accent-2) 70%, var(--text));
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    opacity: 0.5;
+    animation: fluorEmReadoutRayPulse 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_SourceHalo {
+    fill: color-mix(in oklab, var(--accent-2) 28%, transparent);
+    stroke: color-mix(in oklab, var(--accent-2) 80%, var(--text));
+    stroke-width: 1.2;
+    animation: fluorEmReadoutSourcePulse 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_SourceCore {
+    fill: var(--text);
+    filter: drop-shadow(var(--glow-cyan));
+}
+
+.fluorEmReadout_Slit {
+    fill: color-mix(in oklab, var(--text) 18%, var(--surface-2));
+    stroke: var(--border);
+    stroke-width: 0.8;
+}
+
+.fluorEmReadout_GratingLine,
+.fluorEmReadout_InternalOptic {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent-2) 55%, var(--text-muted));
+    stroke-width: 1.4;
+    stroke-linecap: round;
+}
+
+.fluorEmReadout_MonoIcon_emission .fluorEmReadout_GratingLine,
+.fluorEmReadout_MonoIcon_emission .fluorEmReadout_InternalOptic {
+    stroke: color-mix(in oklab, var(--accent-3) 58%, var(--text-muted));
+}
+
+.fluorEmReadout_InternalOptic_dim {
+    opacity: 0.38;
+}
+
+.fluorEmReadout_BroadBeam,
+.fluorEmReadout_CyanBeam,
+.fluorEmReadout_PinkBeam,
+.fluorEmReadout_StrayBeam,
+.fluorEmReadout_DetectorToReadout {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.fluorEmReadout_BroadBeam {
+    stroke: color-mix(in oklab, var(--accent-2) 45%, var(--text));
+    stroke-width: 2;
+    opacity: 0.42;
+    stroke-dasharray: 10 14;
+    animation: fluorEmReadoutBeamFlow 4.8s linear infinite;
+}
+
+.fluorEmReadout_CyanBeam {
+    stroke-width: 4;
+    stroke-dasharray: 18 16;
+    animation: fluorEmReadoutBeamFlow 4.8s linear infinite;
+}
+
+.fluorEmReadout_CyanBeam_sample {
+    opacity: 0.85;
+}
+
+.fluorEmReadout_StrayBeam {
+    stroke: color-mix(in oklab, var(--accent-2) 28%, var(--text-muted));
+    stroke-width: 2.4;
+    stroke-dasharray: 6 10;
+    opacity: 0.28;
+}
+
+.fluorEmReadout_PinkBeam {
+    stroke-width: 4.4;
+    stroke-dasharray: 16 14;
+    animation: fluorEmReadoutEmissionFlow 4.8s linear infinite;
+}
+
+.fluorEmReadout_PinkBeam_vertical {
+    animation-delay: 0.7s;
+}
+
+.fluorEmReadout_PinkBeam_filtered {
+    animation-delay: 1.2s;
+}
+
+.fluorEmReadout_DetectorToReadout {
+    stroke: color-mix(in oklab, var(--accent-3) 56%, var(--text));
+    stroke-width: 2.2;
+    stroke-dasharray: 8 10;
+    opacity: 0.62;
+    animation: fluorEmReadoutSignalFlow 4.8s linear infinite;
+}
+
+.fluorEmReadout_Cuvette {
+    fill: color-mix(in oklab, var(--text) 8%, transparent);
+    stroke: color-mix(in oklab, var(--accent) 48%, var(--border-strong));
+    stroke-width: 1.2;
+}
+
+.fluorEmReadout_SampleGlow {
+    opacity: 0.9;
+    animation: fluorEmReadoutSampleGlow 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_CuvetteMeniscus {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent) 54%, var(--text));
+    stroke-width: 1;
+    opacity: 0.48;
+}
+
+.fluorEmReadout_StrayRejectArc {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent-2) 35%, var(--text-muted));
+    stroke-width: 1.2;
+    stroke-dasharray: 5 8;
+    opacity: 0.5;
+}
+
+.fluorEmReadout_PMTFace {
+    fill: color-mix(in oklab, var(--surface) 72%, var(--bg));
+    stroke: color-mix(in oklab, var(--accent-3) 45%, var(--border-strong));
+    stroke-width: 1.1;
+}
+
+.fluorEmReadout_PMTSensor {
+    fill: color-mix(in oklab, var(--accent-3) 45%, var(--text));
+    opacity: 0.9;
+    filter: drop-shadow(var(--glow-pink));
+}
+
+.fluorEmReadout_DetectorPulse {
+    fill: none;
+    stroke: var(--accent-3);
+    stroke-width: 1.4;
+    opacity: 0;
+    animation: fluorEmReadoutDetectorPulse 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_PMTDetail {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 0.9;
+    opacity: 0.6;
+}
+
+.fluorEmReadout_ReadoutPanel {
+    fill: color-mix(in oklab, var(--surface-2) 82%, var(--bg));
+    stroke: color-mix(in oklab, var(--accent-2) 28%, var(--border-strong));
+    stroke-width: 1;
+}
+
+.fluorEmReadout_ReadoutAxis {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 1;
+    opacity: 0.65;
+}
+
+.fluorEmReadout_ReadoutSignal {
+    fill: none;
+    stroke: var(--accent-3);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 140;
+    stroke-dashoffset: 140;
+    filter: drop-shadow(var(--glow-pink));
+    animation: fluorEmReadoutTraceDraw 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_ReadoutPeak {
+    fill: var(--accent-2);
+    opacity: 0;
+    filter: drop-shadow(var(--glow-cyan));
+    animation: fluorEmReadoutPeakBlink 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_ReadoutLabel {
+    font-size: 7px;
+    fill: var(--text-muted);
+}
+
+.fluorEmReadout_Dot {
+    fill: var(--text);
+    opacity: 0;
+    filter: drop-shadow(0 0 10px currentColor);
+    animation: fluorEmReadoutDotPulse 4.8s ease-in-out infinite;
+}
+
+.fluorEmReadout_Dot_1,
+.fluorEmReadout_Dot_2 {
+    color: var(--accent-2);
+}
+
+.fluorEmReadout_Dot_3,
+.fluorEmReadout_Dot_4,
+.fluorEmReadout_Dot_5 {
+    color: var(--accent-3);
+}
+
+.fluorEmReadout_Dot_1 { animation-delay: 0.1s; }
+.fluorEmReadout_Dot_2 { animation-delay: 0.7s; }
+.fluorEmReadout_Dot_3 { animation-delay: 1.45s; }
+.fluorEmReadout_Dot_4 { animation-delay: 2s; }
+.fluorEmReadout_Dot_5 { animation-delay: 2.45s; }
+
+.fluorEmReadout_Caption {
+    max-width: 64ch;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    text-align: justify;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* MOTION */
+@keyframes fluorEmReadoutRayPulse {
+    0%, 100% { opacity: 0.34; }
+    20%, 42% { opacity: 0.78; }
+    70% { opacity: 0.44; }
+}
+
+@keyframes fluorEmReadoutSourcePulse {
+    0%, 100% { opacity: 0.42; }
+    22%, 44% { opacity: 0.9; }
+    70% { opacity: 0.52; }
+}
+
+@keyframes fluorEmReadoutBeamFlow {
+    to { stroke-dashoffset: -68; }
+}
+
+@keyframes fluorEmReadoutEmissionFlow {
+    to { stroke-dashoffset: -58; }
+}
+
+@keyframes fluorEmReadoutSignalFlow {
+    to { stroke-dashoffset: -42; }
+}
+
+@keyframes fluorEmReadoutSampleGlow {
+    0%, 35%, 100% { opacity: 0.45; transform: scale(0.98); }
+    48%, 72% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes fluorEmReadoutDetectorPulse {
+    0%, 52%, 100% { opacity: 0; transform: scale(0.7); }
+    67% { opacity: 0.75; transform: scale(1.15); }
+    82% { opacity: 0; transform: scale(1.45); }
+}
+
+@keyframes fluorEmReadoutTraceDraw {
+    0%, 58% { stroke-dashoffset: 140; opacity: 0.25; }
+    78% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0.55; }
+}
+
+@keyframes fluorEmReadoutPeakBlink {
+    0%, 68%, 100% { opacity: 0; }
+    80%, 90% { opacity: 1; }
+}
+
+@keyframes fluorEmReadoutDotPulse {
+    0%, 100% { opacity: 0; transform: scale(0.75); }
+    18%, 38% { opacity: 1; transform: scale(1.25); }
+    55% { opacity: 0; transform: scale(0.9); }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .fluorEmReadout_MicroLabel {
+        opacity: 0;
+    }
+
+    .fluorEmReadout_UnitLabel {
+        font-size: 8.5px;
+    }
+
+    .fluorEmReadout_PathTitle {
+        font-size: 10px;
+    }
+
+    .fluorEmReadout_Caption {
+        max-width: 58ch;
+    }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+    .fluorEmReadout * {
+        animation: none !important;
+    }
+}

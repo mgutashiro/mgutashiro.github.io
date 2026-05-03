@@ -9,21 +9,21 @@ import DualNatureVisual from '../whatIsSpec/dualNatureVisual.jsx';
 import QuantizedInteractionVisual from '../whatIsSpec/quantizedLightVisual.jsx';
 
 import SourceVisual from '../commonFramework/sourceVisual.jsx';
-import FieldMatterInteractionVisual from '../commonFramework/fieldMatterInteractionVisual.jsx'
+import FieldMatterInteractionVisual from '../commonFramework/fieldMatterInteractionVisual.jsx';
 
 import WhiteLightSplittingVisual from '../uvvis/whiteLightSplittingVisual.jsx';
-import ExcitedStateVisual from '../fluorescence/excited-stateVisual.jsx';
+import UVVTransmissionVisual from '../uvvis/uvvTransmissionVisual.jsx';
+
+import EmissionVisual from '../fluorescence/FluorSpecEmission.jsx';
+
 import HiddenMotionVisual from '../nmr/hidden-motionVisual.jsx';
-import AfterExcitationVisual from '../epr/after-excitationVisual.jsx'
-import pumpVisual from '../ultrafast/pumpVisual.jsx'
+import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx';
 
+import AfterExcitationVisual from '../epr/after-excitationVisual.jsx';
+import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx';
 
-
-import UVVTransmissionVisual from '../uvvis/uvvTransmissionVisual.jsx'
-import KashaRelaxationVisual from '../fluorescence/kasha-relaxationVisual.jsx'
-import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx'
-import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx'
-import DeltaAVisual from '../ultrafast/delta-aVisual.jsx'
+import pumpVisual from '../ultrafast/pumpVisual.jsx';
+import DeltaAVisual from '../ultrafast/delta-aVisual.jsx';
 
 
 import { lazy } from 'react';
@@ -144,35 +144,43 @@ export const visualRegistry = {
     },
 
     'fluorescence': {
-        'excited-state': {
-            friends: ExcitedStateVisual,
-        },
-
-        'relaxation': {
-            friends: lazy(() =>
-                import('../fluorescence/relaxationVisual.jsx')
-            ),
-        },
-
         'emission': {
+            friends: EmissionVisual,
+        },
+
+        'redshift': {
             friends: lazy(() =>
-                import('../fluorescence/emissionVisual.jsx')
+                import('../fluorescence/FluorSpecRedShift.jsx')
             ),
         },
 
-        'kasha-relaxation': {
-            colleague: KashaRelaxationVisual
-        },
-
-        'quantum-yield': {
-            colleague: lazy(() =>
-                import('../fluorescence/quantum-yieldVisual.jsx')
+        'speclimits': {
+            friends: lazy(() =>
+                import('../fluorescence/FluorSpecLimits.jsx')
             ),
         },
 
-        'stokes-shift': {
+        'RelaxedPopulation': {
             colleague: lazy(() =>
-                import('../fluorescence/stokes-shiftVisual.jsx')
+                import('../fluorescence/fluorRelaxedPopulation.jsx')
+            ),
+        },
+
+        'MirrorStokesShift': {
+            colleague: lazy(() =>
+                import('../fluorescence/fluorMirrorStokesShift.jsx')
+            ),
+        },
+
+        'DecayPartition': {
+            colleague: lazy(() =>
+                import('../fluorescence/fluorDecayPartition.jsx')
+            ),
+        },
+
+        'EmissionReadout': {
+            colleague: lazy(() =>
+                import('../fluorescence/fluorEmissionReadout.jsx')
             ),
         },
     },

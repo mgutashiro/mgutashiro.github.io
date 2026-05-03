@@ -86,12 +86,24 @@ export const spectroscopyVisuals = {
     title: 'Fluorescence',
     visualType: 'instrument-hotspot',
     demoHref: '',
-    parts: [
-      { id: 'source', label: 'Source', title: 'Excitation Source' },
-      { id: 'sample', label: 'Sample', title: 'Emission Region' },
-      { id: 'discriminator', label: 'Discriminator', title: 'Emission Selection' },
-      { id: 'detector', label: 'Detector', title: 'Emission Detector' }
-    ]
+    demoLabel: 'Launch Fluorescence Demo',
+    modes: {
+      friends: {
+        parts: [
+          { id: 'emission', label: 'Fluorescence Spec Emission', visualKey: 'FluorSpecEmission' },
+          { id: 'redshift', label: 'Fluorescence Spec Red Shift', visualKey: 'FluorSpecRedShift' },
+          { id: 'speclimits', label: 'Fluorescence Spec Limits', visualKey: 'FluorSpecLimits' },
+        ],
+      },
+      colleague: {
+        parts: [
+          { id: 'RelaxedPopulation', label: 'Fluorescence Spec Relaxed Population', visualKey: 'fluorRelaxedPopulation' },
+          { id: 'MirrorStokesShift', label: 'Fluorescence Spec Mirror Stokes Shift', visualKey: 'fluorescenceMirrorStokesShift' },
+          { id: 'DecayPartition', label: 'Fluorescence Spec Decay Partition', visualKey: 'fluorescenceDecayPartition' },
+          { id: 'EmissionReadout', label: 'Fluorescence Spec Emission Readout', visualKey: 'fluorEmissionReadout' }
+        ],
+      },
+    },
   },
 
   nmr: {

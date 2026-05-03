@@ -19,19 +19,19 @@ export const spectroscopyText = [
           {
             id: 'dual-nature',
             heading: 'Light behaves in more than one way',
-            body: `Light is a strang thing. Sometimes it flows like a wave, and sometimes it arrives in tiny packets, like particles.`,
+            body: `Light is a strange thing. Sometimes it spreads out like a wave, and sometimes it arrives in tiny packets of energy. Every color carries its own amount of energy, which means light can do more than simply brighten a room. It can interact with matter in specific ways.`,
             visualKey: 'dual-nature'
           },
           {
             id: `interaction`,
-            heading: `When light touches matter`,
-            body: `When light touches matter, even something as small as a molecule, it doesn’t leave things untouched; energy is exchanged, motion begins, and something shifts, even if we can’t see it with our eyes.`,
+            heading: `When Light Touches Matter...`,
+            body: `Even something as small as a molecule is not completely still. When energy from light reaches the system, parts of the molecule man respond; bonds may vibrate, electrons may shift, or the molecule may release energy back out as light. These tiny responses are usually invisible to our eyes, but they leave patterns that an instrument can measure.`,
             visualKey: 'interaction'
           },
           {
             id: `measurement`,
-            heading: `Spectroscopy is how we notice`,
-            body: `Spectroscopy is simply our way of noticing, of shining light, listening carefully, and watching how matter responds. Every instrument you’ll see here is built around the same quiet idea; send in light, let it interact, and measure what changed.`,
+            heading: `Spectroscopy Turns Those Changes Into Clues`,
+            body: `Spectroscopy is the art of watching how matter responds to light. By noticing which colors are absorbed, emitted, scattered, or passed through, we can learn about a molecule’s structure, energy, and motion ... almost like reading the hidden handwriting of matter.`,
             visualKey: `measurement`
           }
         ],
@@ -306,22 +306,49 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         title: 'For Friends',
         panels: [
           {
-            id: 'excited-state',
-            heading: 'After absorption',
-            body: `After taking in light, the molecule does not hold that energy forever. It enters an excited state, glowing softly, holding more energy than before.`,
-            visualKey: 'excited-state'
-          },
-          {
-            id: 'relaxation',
-            heading: 'Energy settles downward',
-            body: `That energy begins to relax step by step. Some of it is lost along the way, fading out gently as the system settles into a lower state.`,
-            visualKey: 'relaxation'
-          },
-          {
             id: 'emission',
-            heading: 'A softer light returns',
-            body: `Sometimes, a small part of that energy is released as light. It comes back softer, shifted in color, like an echo of what first came in.`,
-            visualKey: 'emission'
+            heading: 'The Molecule Gives Light Back',
+            body: [
+              {
+                type: 'text',
+                value: `In UV-Vis, we watched certain colors disappear from the incoming beam. Fluorescence begins from that same absorbed energy, but it asks a new question: after the molecule absorbs light, does it give any light back?`
+              },
+              {
+                type: 'text',
+                value: `The answer can be yes, but not in the exact moment or form of the original excitation. After absorbing light, the molecule briefly redistributes that energy internally, and the light we observe usually comes from a more relaxed excited state rather than from the instant of absorption itself.`
+              },
+            ],
+            visualKey: 'FluorSpecEmission'
+          },
+          {
+            id: 'redshift',
+            heading: 'The Emitted Light Usually Shifts Red',
+            body: [
+              {
+                type: 'text',
+                value: `Because some energy is lost before emission, the light that comes back out is usually lower in energy than the light that was first absorbed. This is why fluorescence often appears at longer wavelength, or more to the red, than the corresponding absorption.`
+              },
+              {
+                type: 'text',
+                value: `For many molecules, the shape of the emission spectrum can still resemble the absorption spectrum, because both are connected to the same ground and excited states. But the two are not identical: relaxation, solvent effects, and structural adjustment can all shift the emitted light away from where absorption began.`,
+              },
+            ],
+            visualKey: 'FluorSpecRedShift'
+          },
+          {
+            id: 'speclimits',
+            heading: 'Not Every Excited Molecule Fluoresces',
+            body: [
+              {
+                type: 'text',
+                value: `Once a molecule is excited, fluorescence is only one possible outcome. Some molecules release light, but others lose their energy in different ways, such as through motion, collisions, or other non-radiative pathways.`
+              },
+              {
+                type: 'text',
+                value: `This is why fluorescence spectroscopy does not show every excited molecule becoming emitted light. Instead, the excited population splits between different pathways. Fluorescence Spectroscopy tells us how much of that population survives long enough to undergo emission, and how much energy is lost before fluorescence or even phosphorescence can occur. This technique helps compare emission with other possible competing processes.`,
+              },
+            ],
+            visualKey: 'FluorSpecLimits'
           }
         ]
       },
@@ -330,51 +357,82 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         title: 'For Colleagues',
         panels: [
           {
-            id: 'kasha-relaxation',
+            id: 'RelaxedPopulation',
             heading: 'Relaxation to S₁ and emission',
             body: [
               {
                 type: 'text',
-                value: `Following electronic excitation, the system undergoes rapid vibrational relaxation to the lowest excited singlet state, from which radiative decay occurs in accordance with Kasha’s rule.`
+                value: `Fluorescence spectroscopy begins from the same absorbed population created in UV-Vis, but it follows a different observable. Instead of asking how much excitation light is removed, it asks what light is emitted after the excited-state population relaxes within the molecule and its surroundings.
+                After absorption, the initially prepared excited-state ensemble is usually not yet in its emissive form.`
+              },
+              {
+                type: 'text',
+                value: `Vibrational relaxation and internal conversion rapidly redistribute that energy, so in room-temperature condensed-phase measurements fluorescence is observed primarily from the lowest excited singlet state, near the lowest vibrational levels of S<sub>1</sub> (Kasha’s Rule). 
+                The measured emission therefore reflects not the instant of absorption alone, but the excited-state population after ultrafast relaxation has already occurred.`
               }
             ],
-            visualKey: 'kasha-relaxation'
+            visualKey: 'fluorRelaxedPopulation'
           },
           {
-            id: 'quantum-yield',
+            id: 'MirrorStokesShift',
             heading: 'Competition between pathways',
             body: [
               {
                 type: 'text',
-                value: `The efficiency of fluorescence is captured by the quantum yield,`
-              },
-              {
-                type: 'equation',
-                value: String.raw`\Phi = \frac{k_r}{k_r + k_{nr}}`
+                value: `Because fluorescence and absorption involve the same ground- and excited-state manifolds (via Einstein’s Coefficient B<sub>12</sub> = B<sub>21</sub>), the emission envelope can resemble the absorption envelope in reverse. 
+                When the excited-state geometry and vibronic structure remain similar to those of the ground state due to similar nuclear wavefunctions, the two spectra may show an approximate mirror relationship when compared on an energy or frequency scale.`
               },
               {
                 type: 'text',
-                value: `which reflects the competition between radiative and non-radiative decay pathways.`
+                value: `In practice, emission is usually shifted to lower energy than absorption. 
+                This Stokes shift reflects energy loss before photon emission, including vibrational relaxation, solvent response, and any structural reorganization that stabilizes the emissive state. 
+                When those rearrangements are small, the shift is small; when excited-state reorganization is substantial, the fluorescence maximum can undergo bathochromic (red) shift.`
               }
             ],
-            visualKey: 'quantum-yield'
+            visualKey: 'fluorescenceMirrorStokesShift'
           },
           {
-            id: 'stokes-shift',
+            id: 'DecayPartition',
+            heading: 'Competition between pathways',
+            body: [
+              {
+                type: 'text',
+                value: `Once the emissive state is formed, fluorescence is only one of several possible outcomes. 
+                Radiative decay competes with internal conversion, intersystem crossing, and other  pathways. 
+                Therefore, the observed fluorescence depends on how the total excited-state population is partitioned during deactivation.`
+              },
+              {
+                type: 'equation',
+                value: String.raw`\Phi_f = \frac{k_f}{k_f + \Sum k_{i} = \frac{k_{rad}{k_{rad} + k_{isc} + k{ic}} = \frac{\tau_{f}{\tau_{rad}}`
+              },
+              {
+                type: 'text',
+                value: `Here, Φ<sub>f</sub> is the fluorescence quantum yield, k<sub>rad</sub> is the radiative decay rate, and the remaining rate constants represent competing channels. 
+                The measured fluorescence lifetime τ<sub>f</sub> therefore reflects the total decay of the excited state, while τ<sub>rad</sub> is the limiting radiative lifetime that can be observed amongst other competing pathways. 
+                In this way, fluorescence spectroscopy reports not only that an excited state exists, but how efficiently that state returns light to the detector. `
+              }
+            ],
+            visualKey: 'fluorescenceDecayPartition'
+          },
+          {
+            id: 'EmissionReadout',
             heading: 'Energy loss and spectral shift',
             body: [
               {
                 type: 'text',
-                value: `Internal conversion and vibrational relaxation redistribute energy prior to emission. As a result, the emitted photon is lower in energy, producing a characteristic Stokes shift.`
+                value: `A spectrofluorometer separates excitation from emission optically before it ever turns light into data. 
+                A source such as a xenon lamp is filtered by the excitation monochromator, directed into the sample chamber, and the emitted light is collected into a separate emission channel, often at right angles to the excitation beam to reduce stray excitation light in the detector. 
+                The emission monochromator then selects the wavelength window that reaches the photomultiplier tube.`
+              },
+              {
+                type: 'text',
+                value: `The final spectrum depends on more than the fluorophore alone. 
+                Lamp intensity, slit width, monochromator throughput, detector sensitivity, polarization bias, dark counts, and correction factors all shape the measured signal. 
+                Fluorescence is therefore highly sensitive because it isolates emitted light from the much stronger excitation beam, but it is also instrumentally rich: the spectrum is only as reliable as the optical path that prepares, separates, and detects it.`
               }
             ],
-            bullets: [
-              'Fluorescence originates from S₁ → S₀ after relaxation',
-              'Quantum yield reflects competition between k_r and k_{nr}',
-              'Emission is red-shifted due to prior vibrational relaxation',
-              'Observed intensity depends on both population and decay pathways'
-            ],
-            visualKey: 'stokes-shift'
+            bullets: [],
+            visualKey: 'fluorEmissionReadout'
           }
         ]
       }

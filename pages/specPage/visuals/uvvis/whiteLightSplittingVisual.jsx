@@ -265,7 +265,6 @@ export default function UVVisLightEntryVisual() {
                             fill={`url(#${ids.ribbonGrad})`}
                             className="UVVLightEntryRibbon"
                         />
-
                         <path
                             d={ribbonPath}
                             fill="none"
@@ -313,7 +312,7 @@ export default function UVVisLightEntryVisual() {
 
                     {/* Label Names of key ideas */}
                     <g className="UVVLightEntryLabels">
-                        <text x="86" y="118" className="UVVLightEntryLabel UVVLightEntryLabel--source">
+                        <text x="80" y="118" className="UVVLightEntryLabel UVVLightEntryLabel--source">
                             source
                         </text>
 
@@ -321,8 +320,9 @@ export default function UVVisLightEntryVisual() {
                             many light energies
                         </text>
 
-                        <text x="580" y="282" className="UVVLightEntryLabel UVVLightEntryLabel--next">
-                            toward sample
+                        <text x="615" y="282" className="UVVLightEntryLabel UVVLightEntryLabel--next">
+                            <tspan x="615" dy="0">toward</tspan>
+                            <tspan x="615" dy="1.15em">sample</tspan>
                         </text>
                     </g>
                 </g>

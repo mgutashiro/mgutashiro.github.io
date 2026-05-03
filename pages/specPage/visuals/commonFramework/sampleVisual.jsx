@@ -1,9 +1,10 @@
+import { useId } from "react";
 import './sampleVisual.css'
 
 /** Preset Constants */
 const VIEWBOX = {
     width: 720,
-    height: 420,
+    height: 320,
 };
 
 const CENTER = {
@@ -37,6 +38,44 @@ const SPARKCOUNT = 8;
 const TRACECOUNT = 4;
 
 /** Helper Functions */
+function SampleBackground ({ ids }) {
+    return (
+        <g className="SampleVisualBackground" aria-hidden="true">
+            <defs>
+                <linearGradient id={ids.sampleBgGrad} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="color-mix(in oklab, var(--c-shadow) 72%, var(--c-ink))" />
+                    <stop offset="48%" stopColor="color-mix(in oklab, var(--c-primary-2) 32%, var(--c-ink))" />
+                    <stop offset="100%" stopColor="color-mix(in oklab, var(--c-ink) 84%, var(--c-primary-2))" />
+                </linearGradient>
+
+                <radialGradient id={ids.sampleGlow} cx="52%" cy="48%" r="42%">
+                    <stop offset="0%" stopColor="color-mix(in oklab, var(--c-glow-2) 14%, transparent)" />
+                    <stop offset="100%" stopColor="transparent" />
+                </radialGradient>
+            </defs>
+            <rect 
+                x="0"
+                y="0"
+                width={VIEWBOX.width}
+                height={VIEWBOX.height}
+                rx="36"
+                className="SampleVisualBackplate"
+                fill={`url(#${ids.sampleBgGrad})`}
+            />
+
+            <rect
+                x="0"
+                y="0"
+                width={VIEWBOX.width}
+                height={VIEWBOX.height}
+                rx="36"
+                className="SampleVisualBackGlow"
+                fill={`url(#${ids.sampleGlow})`}
+            />
+        </g>
+    );
+}
+
 // keeps beam paths reusable
 function SampleVisualCurvePath(x1, y1, x2, y2, bend = 0) {
     const cx1 = x1 + (x2 - x1) * 0.38;
@@ -127,48 +166,54 @@ const SampleVisualTraces = SampleVisualTraceData(
     TRACECOUNT
 );
 
-/** MAIN COMPONENT */
+
 export default function SampleVisualResponse () {
+    const uid = useId().replace(/:/g, "");
+
+    const ids = {
+        sampleBgGrad: `${uid}-sample-bg-grad`,
+        sampleGlow: `${uid}-sample-glow`,
+    };
     return (
         <div className="SampleVisualStage">
-            <div className="SampleVisualBackground">
-                <svg
-                    className="SampleVisualSVG"
-                    viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                    preserveAspectRatio="xMidYMid meet"
-                    aria-hidden="true"
-                >
-                    <defs>
-                        <radialGradient id="SampleVisualCoreGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" className="SampleVisualStopCoreA" />
-                            <stop offset="45%" className="SampleVisualStopCoreB" />
-                            <stop offset="100%" className="SampleVisualStopCoreC" />
-                        </radialGradient>
+            <svg
+                className="SampleVisualSVG"
+                viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                preserveAspectRatio="xMidYMid meet"
+                aria-hidden="true"
+            >
+                <defs>
+                    <radialGradient id="SampleVisualCoreGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" className="SampleVisualStopCoreA" />
+                        <stop offset="45%" className="SampleVisualStopCoreB" />
+                        <stop offset="100%" className="SampleVisualStopCoreC" />
+                    </radialGradient>
 
-                        <radialGradient id="SampleVisualHaloGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" className="SampleVisualStopHaloA" />
-                            <stop offset="100%" className="SampleVisualStopHaloB" />
-                        </radialGradient>
+                    <radialGradient id="SampleVisualHaloGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" className="SampleVisualStopHaloA" />
+                        <stop offset="100%" className="SampleVisualStopHaloB" />
+                    </radialGradient>
 
-                        <linearGradient id="SampleVisualBeamInGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" className="SampleVisualStopBeamInA" />
-                            <stop offset="100%" className="SampleVisualStopBeamInB" />
-                        </linearGradient>
+                    <linearGradient id="SampleVisualBeamInGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" className="SampleVisualStopBeamInA" />
+                        <stop offset="100%" className="SampleVisualStopBeamInB" />
+                    </linearGradient>
 
-                        <linearGradient id="SampleVisualBeamOutGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" className="SampleVisualStopBeamOutA" />
-                            <stop offset="100%" className="SampleVisualStopBeamOutB" />
-                        </linearGradient>
+                    <linearGradient id="SampleVisualBeamOutGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" className="SampleVisualStopBeamOutA" />
+                        <stop offset="100%" className="SampleVisualStopBeamOutB" />
+                    </linearGradient>
 
-                        <filter id="SampleVisualBlurSoft" x="-30%" y="-30%" width="160%" height="160%">
-                            <feGaussianBlur stdDeviation="8" />
-                        </filter>
+                    <filter id="SampleVisualBlurSoft" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="8" />
+                    </filter>
 
-                        <filter id="SampleVisualBlurTight" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="3.5" />
-                        </filter>
-                    </defs>
-
+                    <filter id="SampleVisualBlurTight" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3.5" />
+                    </filter>
+                </defs>
+                <SampleBackground ids={ids} />
+                <g className="SampleVisualElements" transform="translate(0, -45)">
                     {/* ambient chamber field */}
                     <g className="SampleVisualAmbientLayer">
                         <ellipse 
@@ -261,7 +306,6 @@ export default function SampleVisualResponse () {
                             />
                         ))}
 
-                        {/* draws small floating trace particles inside or near sample */}
                         {SampleVisualTraces.map((trace) => (
                             <circle 
                                 key={trace.key}
@@ -274,7 +318,6 @@ export default function SampleVisualResponse () {
                         ))}
                     </g>
 
-                    {/* faint changed outgoing signal */}
                     <g className="SampleVisualOutgoingLayer">
                         <path
                             d={SampleVisualOutgoingBeamPath}
@@ -286,7 +329,6 @@ export default function SampleVisualResponse () {
                         />
                     </g>
 
-                    {/* subtle baseline / instrument axis feel */}
                     <g className="SampleVisualFrameLayer">
                         <line
                             className="SampleVisualBaseLine"
@@ -295,7 +337,6 @@ export default function SampleVisualResponse () {
                             x2="650"
                             y2={CENTER.y}
                         />
-
                         <line 
                             className="SampleVisualFocusLine"
                             x1={CENTER.x}
@@ -305,37 +346,33 @@ export default function SampleVisualResponse () {
                         />
                     </g>
                     
-                    {/* text support labels */}
                     <g className="SampleVisualLabelLayer" aria-hidden="true">
                         <text
                             x="112"
-                            y={CENTER.y - 16}
+                            y={CENTER.y - 30}
                             className="SampleVisualLabel SampleVisualLabel--in"
                         >
                             energy in
                         </text>
-
                         <text
                             x={CENTER.x}
-                            y={CENTER.y - 78}
+                            y={CENTER.y - 100}
                             textAnchor="middle"
                             className="SampleVisualLabel SampleVisualLabel--sample"
                         >
                             sample
                         </text>
-
                         <text
-                            x="612"
-                            y={CENTER.y - 16}
+                            x="680"
+                            y={CENTER.y - 30}
                             textAnchor="end"
                             className="SampleVisualLabel SampleVisualLabel--out"
                         >
                             changed signal
                         </text>
                     </g>
-
-                </svg>
-            </div>
+                </g>
+            </svg>
         </div>
     )
 }

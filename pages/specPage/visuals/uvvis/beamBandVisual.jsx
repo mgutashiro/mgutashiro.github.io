@@ -145,15 +145,15 @@ function TransitionInset() {
             style={{ "--electron-jump-y": `${-jumpY}px` }}
         >
             <rect
-                x="-30"
-                y="-42"
-                width="168"
-                height="134"
+                x="-50"
+                y="-48"
+                width="250"
+                height="144"
                 rx="24"
                 className="UVV-F-P3-InsetBackplate"
             />
 
-            <text x={lineCenterX} y="-16" className="UVV-F-P3-InsetTitle">
+            <text x={lineCenterX + 10} y="-18" className="UVV-F-P3-InsetTitle">
                 electron jump
             </text>
 
@@ -164,13 +164,13 @@ function TransitionInset() {
                 return (
                     <g key={id}>
                         <line
-                            x1={x1}
-                            x2={x2}
+                            x1={x1 - 20}
+                            x2={x2 + 20}
                             y1={y}
                             y2={y}
                             className="UVV-F-P3-EnergyLevel"
                         />
-                        <text x={labelX} y={y + 4} className="UVV-F-P3-TinyLabel">
+                        <text x={labelX + 20} y={y + 4} className="UVV-F-P3-TinyLabel">
                             {label}
                         </text>
                     </g>
@@ -178,7 +178,7 @@ function TransitionInset() {
             })}
 
             <circle
-                cx={lineCenterX}
+                cx={lineCenterX - 10}
                 cy={lower.y}
                 r={electronR}
                 className="UVV-F-P3-ElectronDot"
@@ -203,9 +203,9 @@ function DetectorReadout({ detectorGradId }) {
         <g className="UVV-F-P3-DetectorReadout">
             <rect
                 x="366"
-                y="105"
-                width="306"
-                height="116"
+                y="95"
+                width="320"
+                height="126"
                 rx="28"
                 fill={`url(#${detectorGradId})`}
                 className="UVV-F-P3-DetectorWindow"
@@ -224,7 +224,7 @@ function DetectorReadout({ detectorGradId }) {
             <circle cx="356" cy="174" r="4" className="UVV-F-P3-DetectorDot2" />
             <circle cx="356" cy="194" r="4" className="UVV-F-P3-DetectorDot3" />
 
-            <text x="432" y="128" className="UVV-F-P3-Label">
+            <text x="400" y="120" className="UVV-F-P3-Label">
                 detector reads the loss
             </text>
         </g>
@@ -237,10 +237,10 @@ function SpectrumGraph() {
 
     return (
         <g className="UVV-F-P3-SpectrumGraph">
-            <rect x="372" y="240" width="324" height="116" rx="24" className="UVVPanel3GraphPlate" />
+            <rect x="372" y="210" width="324" height="156" rx="24" className="UVVPanel3GraphPlate" />
 
             <line x1="408" y1="326" x2="674" y2="326" className="UVV-F-P3-Axis" />
-            <line x1="408" y1="326" x2="408" y2="258" className="UVV-F-P3-Axis" />
+            <line x1="408" y1="326" x2="408" y2="238" className="UVV-F-P3-Axis" />
 
             <path d={spectrumPath} className="UVV-F-P3SpectrumTraceGlow" />
             <path d={spectrumPath} className="UVV-F-P3-SpectrumTrace" />
@@ -248,11 +248,11 @@ function SpectrumGraph() {
             <circle cx="490" cy="278" r="4.5" className="UVV-F-P3-PeakDot UVV-F-P3-PeakDot--violet" />
             <circle cx="584" cy="252" r="4.5" className="UVV-F-P3-PeakDot UVV-F-P3-PeakDot--pink" />
 
-            <text x="500" y="340" className="UVV-F-P3-GraphLabel">
+            <text x="500" y="350" className="UVV-F-P3-GraphLabel">
                 wavelength
             </text>
 
-            <text x="394" y="250" className="UVV-F-P3-GraphLabel UVV-F-P3-GraphLabel--vertical" transform="rotate(180 394 290)">
+            <text x="390" y="250" className="UVV-F-P3-GraphLabel UVV-F-P3-GraphLabel--vertical" transform="rotate(180 390 290)">
                 absorbance
             </text>
         </g>
@@ -293,30 +293,28 @@ export default function BeamBandVisualReturn() {
                         </feMerge>
                     </filter>
                 </defs>
-
+ 
                 <g className="UVV-F-P3-Stage" transform={STAGE_TRANSFORM}>
                     <rect x="28" y="4" width="704" height="382" rx="36" className="UVV-F-P3-Backplate" />
                         <g className="UVV-F-P3-MainContent" transform="translate(0 -26)">
-                            <g className="UVV-F-P3-BeamGroup" filter={`url(#${softGlowId})`}>
-                                {BEAM_BANDS.map((band) => (
+                            <g className="UVVPanel3SignalCluster" transform="translate(0, -24)">
+                                <g className="UVV-F-P3-BeamGroup" filter={`url(#${softGlowId})`}>
+                                    {BEAM_BANDS.map((band) => (
                                     <BeamBand key={band.id} band={band} />
-                                ))}
-                            </g>
+                                    ))}
+                                </g>
 
-                            <g className="UVVPanel3MissingGroup">
-                                {MISSING_MARKERS.map((marker) => (
+                                <g className="UVVPanel3MissingGroup">
+                                    {MISSING_MARKERS.map((marker) => (
                                     <MissingMarker key={marker.id} marker={marker} />
-                                ))}
-                            </g>
+                                    ))}
+                                </g>
 
+                                <DetectorReadout detectorGradId={detectorGradId} />
+                            </g>
                             <TransitionInset />
-                            <DetectorReadout detectorGradId={detectorGradId} />
                             <SpectrumGraph />
 
-                            <path
-                                d="M 414 302 L 464 302 L 512 300 L 562 301 L 612 300 L 666 302"
-                                className="UVV-F-P3-ReferenceTrace"
-                            />
                         </g>
                     </g>
             </svg>

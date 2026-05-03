@@ -21,7 +21,6 @@
     opacity: 0.94;
 }
 
-/* SharedBeam */
 .UVVAbsorbBand {
     fill: none;
     stroke-width: 5;
@@ -114,9 +113,9 @@
     font-size: 16px;
 }
 
-/* CAPTION */
+
 .UVVAbsorbCaption {
-    max-width: min(82%, 780px);
+    max-width: min(94%, 860px);
     margin: calc(-1 * clamp(0.25rem, 0.8vw, 0.65rem)) auto 0;
     font-family: var(--font-tech);
     font-size: clamp(0.82rem, 1.35vw, 1.05rem);

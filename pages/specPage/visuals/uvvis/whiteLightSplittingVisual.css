@@ -125,10 +125,10 @@
     opacity: 0.82;
 }
 
-/* Labels */
+
 .UVVLightEntryLabel {
     font-family: var(--font-jester);
-    font-size: 15px;
+    font-size: clamp(16px, 2vw, 22px);
     font-weight: var(--w-medium);
     letter-spacing: 0.075em;
     text-transform: lowercase;

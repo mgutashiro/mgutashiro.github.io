@@ -1,73 +1,30 @@
 /* stage / panel shell */
 .SampleVisualStage {
-    position: relative;
     width: 100%;
-    min-height: clamp(240px, 34vw, 360px);
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
+    max-width: 760px;
+    margin: 0 auto;
     box-sizing: border-box;
-}
-
-.SampleVisualBackground {
-    position: relative;
-    width: 100%;
-    min-height: inherit;
-    border-radius: 24px;
-    overflow: hidden;
-    isolation: isolate;
-    box-sizing: border-box;
-
-    background:
-        radial-gradient(
-            circle at 14% 50%,
-            color-mix(in oklab, var(--c-glow-1) 12%, transparent) 0%,
-            transparent 24%
-        ),
-        radial-gradient(
-            circle at 52% 48%,
-            color-mix(in oklab, var(--c-glow-2) 12%, transparent) 0%,
-            transparent 26%
-        ),
-        radial-gradient(
-            circle at 78% 46%,
-            color-mix(in oklab, var(--c-glow-3) 10%, transparent) 0%,
-            transparent 28%
-        ),
-        linear-gradient(
-            180deg,
-            color-mix(in oklab, var(--c-shadow) 72%, var(--c-ink)) 0%,
-            color-mix(in oklab, var(--c-primary-2) 32%, var(--c-ink)) 48%,
-            color-mix(in oklab, var(--c-ink) 84%, var(--c-primary-2)) 100%
-        );
-    
-    box-shadow:
-        inset 0 0 0 1px color-mix(in oklab, var(--border-strong) 60%, transparent),
-        inset 0 16px 40px color-mix(in oklab, var(--c-shadow) 42%, transparent),
-        0 0 0 1px color-mix(in oklab, var(--c-glow-2) 10%, transparent);
-}
-
-.SampleVisualBackground::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            color-mix(in oklab, var(--text) 4%, transparent) 50%,
-        );
-    opacity: 0.45;
 }
 
 .SampleVisualSVG {
-    position: relative;
-    z-index: 1;
     display: block;
     width: 100%;
     height: 100%;
-    min-height: inherit;
+    overflow: visible;
+}
+
+.SampleVisualBackground {
+    pointer-events: none;
+}
+
+.SampleVisualBackplate {
+    stroke: color-mix(in oklab, var(--border-strong) 60%, transparent);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.SampleVisualBackGlow {
+    opacity: 0.95;
 }
 
 /* SVG shared defaults */
@@ -283,7 +240,7 @@
 
 .SampleVisualLabel {
     font-family: var(--font-jester);
-    font-size: 16px;
+    font-size: clamp(16px, 2.0vw, 22px);
     font-weight: var(--w-medium);
     letter-spacing: 0.08em;
     text-transform: lowercase;
