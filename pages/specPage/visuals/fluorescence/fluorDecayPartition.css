@@ -5,20 +5,27 @@
     color: var(--text-dim);
 }
 
-.fluorDecayPartition_Frame {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-3);
-    background:
-        radial-gradient(circle at 50% 8%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 42%),
-        linear-gradient(180deg, var(--surface), var(--bg));
-    box-shadow: 0 0 28px color-mix(in oklab, var(--accent) 18%, transparent);
-    overflow: hidden;
-}
-
 .fluorDecayPartition_SVG {
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
+}
+
+.fluorDecayPartition_BackgroundGlow {
+    fill: color-mix(in oklab, var(--accent) 18%, transparent);
+    opacity: 0.8;
+}
+
+.fluorDecayPartition_BackgroundPanel {
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.fluorDecayPartition_BackgroundAura {
+  fill: color-mix(in oklab, var(--accent) 18%, transparent);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .fluorDecayPartition_Title,
@@ -33,34 +40,21 @@
     pointer-events: none;
 }
 
-.fluorDecayPartition_Title {
-    fill: var(--text);
-    font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: var(--w-semibold);
-    letter-spacing: 0.04em;
-}
+
 
 .fluorDecayPartition_Kicker {
     fill: var(--text-muted);
-    font-size: 13px;
+    font-size: 1rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
-.fluorDecayPartition_FrameLine,
-.fluorDecayPartition_ColumnLine {
+
+.fluorDecayPartition_ColumnLine, .fluorDecayPartition_RowLine {
     fill: none;
     stroke: var(--border-strong);
     stroke-width: 1;
     opacity: 0.75;
-}
-
-.fluorDecayPartition_TopGlow {
-    fill: none;
-    stroke-width: 2;
-    opacity: 0.72;
-    animation: fluorDecayPartitionSoftPulse 4.8s ease-in-out infinite;
 }
 
 .fluorDecayPartition_Node {
@@ -128,7 +122,7 @@
 
 .fluorDecayPartition_BranchLabel {
     fill: var(--text-dim);
-    font-size: 13px;
+    font-size: 1rem;
     letter-spacing: 0.04em;
 }
 
@@ -141,7 +135,7 @@
 
 .fluorDecayPartition_HeaderText {
     fill: color-mix(in oklab, var(--text) 78%, var(--accent-2));
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: var(--w-semibold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -184,19 +178,10 @@
 
 .fluorDecayPartition_CellText {
     fill: var(--text-dim);
-    font-size: 16px;
+    font-size: 1.1rem;
 }
 
-.fluorDecayPartition_RateText {
-    fill: var(--text);
-    font-size: 15px;
-    font-weight: var(--w-medium);
-}
 
-.fluorDecayPartition_EquationBlock {
-    opacity: 0;
-    animation: fluorDecayPartitionEquationIn 5.6s ease-in-out infinite;
-}
 
 .fluorDecayPartition_EquationBlock > rect {
     stroke: color-mix(in oklab, var(--accent-3) 34%, var(--border));
@@ -211,7 +196,7 @@
 
 .fluorDecayPartition_EquationNote {
     fill: var(--text-muted);
-    font-size: 13px;
+    font-size: 1.1rem;
     letter-spacing: 0.06em;
 }
 
@@ -258,21 +243,6 @@
     }
 }
 
-@keyframes fluorDecayPartitionEquationIn {
-    0%, 45% {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    58%, 86% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    100% {
-        opacity: 0.72;
-    }
-}
 
 @keyframes fluorDecayPartitionDotPulse {
     0%, 30%, 100% {
@@ -296,9 +266,6 @@
 
 /* MOBILE */
 @media (max-width: 640px) {
-    .fluorDecayPartition_Title {
-        font-size: 18px;
-    }
 
     .fluorDecayPartition_Caption {
         text-align: left;

@@ -342,13 +342,13 @@ export default function FluorRelaxedPopulationVisual() {
                             d="M 90 480 V 50"
                             fill="none"
                             stroke="var(--text)"
-                            stroke-width= "4"
+                            strokeWidth= "4"
                         />
                         <path 
                             className="fluorRelaxedPopulation_EnergyArrowHead"
                             d="M 90 40 L 70 70 L 110 70 Z"
                             fill="var(--text)"
-                            stroke-width="4"
+                            strokeWidth="4"
                         />
 
                         <CompactLabel 

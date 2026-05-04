@@ -1,34 +1,34 @@
 .fluorMirrorSS {
     width: 100%;
     margin: 0;
-    color: var(--text);
     font-family: var(--font-tech);
-}
-
-.fluorMirrorSS_Frame {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-3);
-    background:
-        radial-gradient(circle at 28% 24%, color-mix(in oklab, var(--accent-2) 12%, transparent), transparent 34%),
-        radial-gradient(circle at 74% 28%, color-mix(in oklab, var(--accent-3) 14%, transparent), transparent 36%),
-        linear-gradient(135deg, var(--bg), var(--surface-2));
-    box-shadow:
-        inset 0 0 36px color-mix(in oklab, var(--accent) 10%, transparent),
-        0 20px 60px color-mix(in oklab, black 55%, transparent);
 }
 
 .fluorMirrorSS_SVG {
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
 }
- 
-.fluorMirrorSS_Backplate {
-    fill: color-mix(in oklab, var(--surface) 72%, transparent);
+
+.fluorMirrorSS_BackplateGroup {
+    pointer-events: none;
+}
+
+.fluorMirrorSS_BackplateBase {
+    stroke: none;
+}
+
+.fluorMirrorSS_BackplateGlow {
+    opacity: 0.95;
+    mix-blend-mode: screen;
+}
+
+.fluorMirrorSS_BackplateBorder {
+    fill: none;
     stroke: var(--border);
-    stroke-width: 1;
+    stroke-width: 1.1;
+    vector-effect: non-scaling-stroke;
 }
 
 .fluorMirrorSS_PlotPane,
@@ -36,13 +36,6 @@
     fill: color-mix(in oklab, var(--bg-2) 78%, transparent);
     stroke: var(--border-strong);
     stroke-width: 1;
-}
-
-.fluorMirrorSS_GridLine {
-    fill: none;
-    stroke: color-mix(in oklab, var(--text-muted) 20%, transparent);
-    stroke-width: 1;
-    stroke-dasharray: 3 9;
 }
 
 .fluorMirrorSS_Axis {
@@ -62,12 +55,12 @@
 }
 
 .fluorMirrorSS_Label {
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     font-weight: var(--w-semibold);
 }
 
 .fluorMirrorSS_AxisLabel {
-    font-size: 0.68rem;
+    font-size: 1rem;
     fill: color-mix(in oklab, var(--text-dim) 80%, transparent);
 }
 
@@ -80,14 +73,19 @@
     fill: var(--accent-3);
 }
 
+.fluorMirrorSS_LabelLine {
+    fill: none;
+    stroke-width: 2;
+}
+
 .fluorMirrorSS_ShiftLabel {
     fill: var(--lightMetal);
-    font-size: 0.72rem;
+    font-size: 0.9rem;
 }
 
 .fluorMirrorSS_Title text {
     font-family: var(--font-heading);
-    font-size: 0.72rem;
+    font-size: 1.1rem;
     font-weight: var(--w-black);
     letter-spacing: 0.16em;
     fill: color-mix(in oklab, var(--text) 70%, var(--accent-3));
@@ -100,16 +98,8 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     opacity: 0.92;
-    stroke-dasharray: 720;
-    stroke-dashoffset: 720;
-}
-
-.fluorMirrorSS_AbsCurve {
-    animation: fluorMirrorSS_trace 7s ease-in-out infinite;
-}
-
-.fluorMirrorSS_EmCurve {
-    animation: fluorMirrorSS_trace 7s ease-in-out 0.7s infinite;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
 }
 
 .fluorMirrorSS_PeakMarker path {
@@ -126,23 +116,19 @@
 }
 
 .fluorMirrorSS_PeakMarker text {
-    font-size: 0.58rem;
+    font-size: 0.8rem;
     text-anchor: middle;
 }
 
 .fluorMirrorSS_ShiftArrow {
+    stroke: var(--c-metal-1);
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;
-    stroke-dasharray: 260;
-    stroke-dashoffset: 260;
-    opacity: 0;
-    animation: fluorMirrorSS_shift 7s ease-in-out infinite;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
 }
 
-.fluorMirrorSS_ArrowHead {
-    fill: var(--lightMetal);
-}
 
 .fluorMirrorSS_LevelLine {
     fill: none;
@@ -151,57 +137,47 @@
 }
 
 .fluorMirrorSS_LevelLabel {
-    font-size: 0.72rem;
+    font-size: 1.2rem;
     font-weight: var(--w-semibold);
     fill: var(--text-dim);
 }
 
-.fluorMirrorSS_RelaxPath,
-.fluorMirrorSS_EmissionPath,
-.fluorMirrorSS_NonRadPath {
+.fluorMirrorSS_JablonksiArrow {
+    stroke: color-mix(in oklab, var(--c-metal-2) 30%, var(--accent-4) 70%);
     fill: none;
-    stroke-width: 2;
     stroke-linecap: round;
-    stroke-dasharray: 180;
-    stroke-dashoffset: 180;
-}
-
-.fluorMirrorSS_RelaxPath {
-    stroke: var(--accent);
-    animation: fluorMirrorSS_path 7s ease-in-out 1.2s infinite;
-}
-
-.fluorMirrorSS_EmissionPath {
-    stroke: var(--accent-3);
-    animation: fluorMirrorSS_path 7s ease-in-out 1.7s infinite;
+    stroke-width: 2;
 }
 
 .fluorMirrorSS_NonRadPath {
-    stroke: color-mix(in oklab, var(--text-muted) 55%, var(--accent));
+    stroke: color-mix(in oklab, var(--c-metal-2) 30%, var(--c-emo-1) 70%);
     opacity: 0.56;
-    animation: fluorMirrorSS_path 7s ease-in-out 1.9s infinite;
+}
+
+.fluorMirrorSS_NonRadPath2 {
+    stroke: color-mix(in oklab, var(--c-metal-2) 30%, var(--c-emo-1) 70%);
+    opacity: 0.56;
+    stroke-width: 2;
 }
 
 .fluorMirrorSS_MiniLabel {
-    font-size: 0.58rem;
-    fill: var(--text-muted);
+    font-size: 1rem;
+}
+
+.fluorMirrorSS_RadLabel {
+    fill: color-mix(in oklab, var(--text) 42%, var(--accent-4) 58%);
+    stroke: color-mix(in oklab, var(--accent-4) 65%, white 35%);
+    stroke-width: 0.2px;
 }
 
 .fluorMirrorSS_NrLabel {
-    fill: color-mix(in oklab, var(--text-muted) 75%, var(--accent));
+    fill: color-mix(in oklab, var(--text) 38%, var(--c-emo-1) 62%);
+    stroke: color-mix(in oklab, var(--c-emo-1) 65%, white 35%);
+    stroke-width: 0.2px;
 }
 
-.fluorMirrorSS_PopDot {
-    fill: var(--accent);
-    opacity: 0.75;
-    filter: drop-shadow(var(--glow-violet));
-    animation: fluorMirrorSS_pulse 7s ease-in-out infinite;
-}
-
-.fluorMirrorSS_PopDotRelaxed {
-    fill: var(--accent-3);
-    filter: drop-shadow(var(--glow-pink));
-    animation-delay: 1.2s;
+.fluorMirrorSS_JablonksiLabel {
+    fill: var(--text-dim);
 }
 
 .fluorMirrorSS_Caption {
@@ -219,69 +195,6 @@
     background-clip: text;
 }
 
-/* MOTION */
-@keyframes fluorMirrorSS_trace {
-    0%, 12% {
-        stroke-dashoffset: 720;
-        opacity: 0.18;
-    }
-
-    34%, 82% {
-        stroke-dashoffset: 0;
-        opacity: 0.92;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        opacity: 0.36;
-    }
-}
-
-@keyframes fluorMirrorSS_shift {
-    0%, 40% {
-        stroke-dashoffset: 260;
-        opacity: 0;
-    }
-
-    56%, 84% {
-        stroke-dashoffset: 0;
-        opacity: 0.9;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        opacity: 0.28;
-    }
-}
-
-@keyframes fluorMirrorSS_path {
-    0%, 45% {
-        stroke-dashoffset: 180;
-        opacity: 0.12;
-    }
-
-    62%, 84% {
-        stroke-dashoffset: 0;
-        opacity: 0.86;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        opacity: 0.32;
-    }
-}
-
-@keyframes fluorMirrorSS_pulse {
-    0%, 35%, 100% {
-        r: 4.2;
-        opacity: 0.35;
-    }
-
-    58%, 76% {
-        r: 6;
-        opacity: 0.9;
-    }
-}
 
 /* MOBILE */
 @media (max-width: 720px) {
@@ -296,7 +209,7 @@
     .fluorMirrorSS_AxisLabel,
     .fluorMirrorSS_MiniLabel,
     .fluorMirrorSS_PeakMarker text {
-        font-size: 0.54rem;
+        font-size: 1rem;
     }
 
     .fluorMirrorSS_Caption {

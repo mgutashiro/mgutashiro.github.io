@@ -403,7 +403,7 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
               },
               {
                 type: 'equation',
-                value: String.raw`\Phi_f = \frac{k_f}{k_f + \Sum k_{i} = \frac{k_{rad}{k_{rad} + k_{isc} + k{ic}} = \frac{\tau_{f}{\tau_{rad}}`
+                value: String.raw`\Phi_f = \frac{k_f}{k_f + \sum_i k_i} = \frac{k_{\mathrm{rad}}}{k_{\mathrm{rad}} + k_{\mathrm{isc}} + k_{\mathrm{ic}}} = \frac{\tau_f}{\tau_{\mathrm{rad}}}`
               },
               {
                 type: 'text',
