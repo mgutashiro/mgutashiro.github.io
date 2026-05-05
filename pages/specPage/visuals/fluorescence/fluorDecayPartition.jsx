@@ -68,7 +68,7 @@ const BRANCHES = [
         id: "ic",
         d: "M360 132 C360 170 360 230 360 270",
         endX: 360,
-        endY: 250,
+        endY: 270,
         labelX: 355,
         labelY: 295,
         label: "IC",
@@ -165,9 +165,9 @@ function BackgroundPanel({
 
             <ellipse
                 cx={x + width / 2}
-                cy={y + height * 0.22}
-                rx={width * 0.34}
-                ry={height * 0.18}
+                cy={y + height * 0.23}
+                rx={width * 0.42}
+                ry={height * 0.16}
                 className="fluorDecayPartition_BackgroundAura"
             />
         </g>
@@ -182,6 +182,7 @@ function SvgText({ x, y, className, children, anchor = "start" }) {
         </text>
     );
 }
+
 function BranchItem({ branch }) {
     const labelLines = Array.isArray(branch.label) ? branch.label : [branch.label];
 
@@ -193,13 +194,13 @@ function BranchItem({ branch }) {
                 cx={branch.endX}
                 cy={branch.endY}
                 r="4"
-                className="fluorDecayPartition_BranchDot"
+                className={`fluorDecayPartition_BranchDot fluorDecayPartition_BranchTone--${branch.id}`}
             />
 
             <SvgText
                 x={branch.labelX}
                 y={branch.labelY}
-                className="fluorDecayPartition_BranchLabel"
+                className={`fluorDecayPartition_BranchLabel fluorDecayPartition_BranchTone--${branch.id}`}
                 dominantBaseline="middle"
             >
                 {labelLines.map((line, index) => (
@@ -223,16 +224,20 @@ function BranchDiagram({ glowId }) {
                 excited-state population partitions into competing exits
             </text>
 
-            <circle cx="360" cy="132" r="34" className="fluorDecayPartition_Node" />
+            
             <circle cx="360" cy="132" r="46" className="fluorDecayPartition_NodeHalo" filter={`url(#${glowId})`} />
-
-            <SvgText x="360" y="139" textanchor="middle" className="fluorDecayPartition_NodeLabel">
-                M*
-            </SvgText>
 
             {BRANCHES.map((branch) => (
                 <BranchItem key={branch.id} branch={branch} />
             ))}
+
+            <circle cx="360" cy="132" r="34" className="fluorDecayPartition_Node" />
+
+            <SvgText x="350" y="139" textanchor="middle" className="fluorDecayPartition_NodeLabel">
+                M*
+            </SvgText>
+
+            
         </g>
     );
 }
@@ -362,7 +367,7 @@ function SchemeTable({
 function EquationBlock({
     x = PANEL.x,
     width = PANEL.width,
-    y = 534,
+    y = 544,
     blockWidth = 650,
     blockHeight = 112,
     radius = 22,
@@ -379,7 +384,7 @@ function EquationBlock({
                 rx={radius}
             />
 
-            <text x="360" y="582" textAnchor="middle" className="fluorDecayPartition_Equation">
+            <text x="360" y="592" textAnchor="middle" className="fluorDecayPartition_Equation">
                 <tspan>Φ</tspan>
                 <tspan baselineShift="sub" fontSize="18">f</tspan>
                 <tspan> = </tspan>
@@ -395,7 +400,7 @@ function EquationBlock({
                 <tspan baselineShift="sub" fontSize="18">rad</tspan>
             </text>
 
-            <text x="360" y="625" textAnchor="middle" className="fluorDecayPartition_EquationNote">
+            <text x="360" y="635" textAnchor="middle" className="fluorDecayPartition_EquationNote">
                 radiative return competes with nonradiative deactivation
             </text>
         </g>

@@ -118,7 +118,7 @@
     letter-spacing: 0.04em;
     color: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
     text-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-2), transparent 70%);
-
+    white-space: pre-line;
     max-width: 26ch;
     text-wrap: pretty;
     text-align: center;
@@ -428,6 +428,7 @@
         color: color-mix(in oklab, var(--text) 85%, var(--c-glow-2) 15%);
         text-shadow: 0 0 18px color-mix(in oklab, var(--c-glow-2), transparent 70%);
         max-width: 14ch;
+        white-space: pre-line;
     }
 
     .specpageSectionHook {

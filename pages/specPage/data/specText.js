@@ -393,7 +393,7 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
           },
           {
             id: 'DecayPartition',
-            heading: 'Competition between pathways',
+            heading: 'Competition Between Pathways',
             body: [
               {
                 type: 'text',
@@ -416,7 +416,7 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
           },
           {
             id: 'EmissionReadout',
-            heading: 'Energy loss and spectral shift',
+            heading: 'Energy Loss and \n Spectral Shift',
             body: [
               {
                 type: 'text',

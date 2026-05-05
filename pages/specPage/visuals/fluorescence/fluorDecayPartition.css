@@ -23,9 +23,10 @@
 }
 
 .fluorDecayPartition_BackgroundAura {
-  fill: color-mix(in oklab, var(--accent) 18%, transparent);
-  opacity: 0.55;
-  pointer-events: none;
+    fill: color-mix(in oklab, var(--accent) 20%, transparent);
+    opacity: 0.22;
+    filter: blur(26px);
+    pointer-events: none;
 }
 
 .fluorDecayPartition_Title,
@@ -43,7 +44,7 @@
 
 
 .fluorDecayPartition_Kicker {
-    fill: var(--text-muted);
+    fill: var(--text);
     font-size: 1rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -59,6 +60,7 @@
 
 .fluorDecayPartition_Node {
     fill: color-mix(in oklab, var(--accent) 26%, var(--bg));
+    fill-opacity: 1;
     stroke: color-mix(in oklab, var(--accent) 72%, var(--text));
     stroke-width: 1.5;
 }
@@ -76,7 +78,7 @@
 
 .fluorDecayPartition_Branch {
     fill: none;
-    stroke-width: 2.2;
+    stroke-width: 3;
     stroke-linecap: round;
     stroke-dasharray: 240;
     stroke-dashoffset: 240;
@@ -84,7 +86,7 @@
 }
 
 .fluorDecayPartition_BranchRad {
-    stroke: var(--accent-3);
+    stroke: color-mix(in oklab, var(--text-muted) 72%, var(--accent-2));
     animation-delay: 0.35s;
 }
 
@@ -95,35 +97,43 @@
 }
 
 .fluorDecayPartition_BranchTriplet {
-    stroke: color-mix(in oklab, var(--emo1) 58%, var(--accent));
+    stroke: color-mix(in oklab, var(--text-muted) 30%, var(--accent-3));
     opacity: 0.72;
     animation-delay: 0.95s;
 }
 
-.fluorDecayPartition_BranchRadDot,
-.fluorDecayPartition_BranchLossDot,
-.fluorDecayPartition_BranchTripletDot {
-    stroke: none;
-    opacity: 0.92;
+.fluorDecayPartition_BranchTone--rad {
+    --branch-color: color-mix(in oklab, var(--text-muted) 72%, var(--accent-2));
+}
+
+.fluorDecayPartition_BranchTone--iso,
+.fluorDecayPartition_BranchTone--ic,
+.fluorDecayPartition_BranchTone--bim {
+    --branch-color: color-mix(in oklab, var(--text-muted) 72%, var(--accent));
+}
+
+.fluorDecayPartition_BranchTone--isc {
+    --branch-color: color-mix(in oklab, var(--text-muted) 30%, var(--accent-3));
+}
+
+.fluorDecayPartition_BranchDot {
+    fill: var(--surface);
+    stroke: var(--branch-color);
+    stroke-width: 3;
+    opacity: 0.96;
     animation: fluorDecayPartitionDotPulse 5.6s ease-in-out infinite;
 }
 
-.fluorDecayPartition_BranchRadDot {
-    fill: var(--accent-3);
-}
-
-.fluorDecayPartition_BranchLossDot {
-    fill: var(--text-muted);
-}
-
-.fluorDecayPartition_BranchTripletDot {
-    fill: color-mix(in oklab, var(--emo1) 62%, var(--accent));
-}
-
 .fluorDecayPartition_BranchLabel {
-    fill: var(--text-dim);
-    font-size: 1rem;
-    letter-spacing: 0.04em;
+    fill: var(--branch-color);
+    font-family: var(--font-tech);
+    font-size: 0.92rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 88%, transparent);
+    stroke-width: 4px;
+    stroke-linejoin: round;
 }
 
 .fluorDecayPartition_Table > rect,
