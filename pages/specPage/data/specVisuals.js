@@ -111,12 +111,22 @@ export const spectroscopyVisuals = {
     title: 'NMR',
     visualType: 'instrument-hotspot',
     demoHref: '',
-    parts: [
-      { id: 'source', label: 'Source', title: 'Magnet + RF Pulse' },
-      { id: 'sample', label: 'Sample', title: 'Sample Tube' },
-      { id: 'discriminator', label: 'Discriminator', title: 'Resonance Selection' },
-      { id: 'detector', label: 'Detector', title: 'Receiver Coil' }
-    ]
+    modes: {
+      friends: {
+        parts: [
+          { id: 'magnet-motion', label: 'Fluorescence Spec Emission', visualKey: 'hidden-motion' },
+          { id: 'nuclear-neighbors', label: 'Nuclear Neighbors', visualKey: 'NuclearNeighbors' },
+          { id: 'nuclear-local-structure', label: 'Nuclear Local Structure', visualKey: 'nuclearStructureMap' },
+        ],
+      },
+      colleague: {
+        parts: [
+          { id: 'NuclearMagneticResonance', label: 'Nuclear Magnetic Resonance', visualKey: 'nmrResonanceTransition' },
+          { id: 'NuclearChemicalShift', label: 'Nuclear Chemical Shift', visualKey: 'nmrChemicalShiftShielding' },
+          { id: 'nmrInstrumentFlow', label: 'NMR Instrument Flow', visualKey: 'nmrInstrumentSignalFlow' },
+        ],
+      },
+    },
   },
 
   epr: {

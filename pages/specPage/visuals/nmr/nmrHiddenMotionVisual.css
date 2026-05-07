@@ -1,0 +1,102 @@
+.NMRSpinPair {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: clamp(0.55rem, 1vw, 0.8rem);
+    place-items: center;
+}
+
+.NMRSpinPair_CanvasWrap {
+    width: min(100%, 920px);
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-3);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            color-mix(in oklab, var(--surface-2) 78%, var(--bg)) 0%,
+            color-mix(in oklab, var(--surface) 58%, var(--bg)) 42%,
+            var(--bg) 100%
+        );
+    box-shadow:
+        inset 0 0 0 1px color-mix(in oklab, var(--text) 5%, transparent),
+        0 0 0.8rem color-mix(in oklab, var(--accent) 14%, transparent),
+        0 0 1.6rem color-mix(in oklab, var(--accent-2) 10%, transparent);
+}
+
+.NMRSpinPair_Caption {
+    max-width: 66ch;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.18rem;
+    text-align: center;
+    font-family: var(--font-tech);
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.NMRSpinPair_CaptionTitle {
+    font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.NMRSpinPair_CaptionText {
+    font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.NMRSpinPair_Label {
+    display: grid;
+    place-items: center;
+    min-width: 1.8rem;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
+    background: color-mix(in oklab, var(--bg) 68%, transparent);
+    backdrop-filter: blur(3px);
+    text-align: center;
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    line-height: 1;
+    text-align: center;
+    font-weight: var(--w-black);
+    letter-spacing: 0.08em;
+    color: var(--text);
+    box-shadow: 0 0 10px color-mix(in oklab, var(--text) 10%, transparent);
+}
+
+.NMRSpinPair_Label--top {
+    box-shadow:
+        0 0 10px color-mix(in oklab, var(--accent-3) 28%, transparent),
+        0 0 20px color-mix(in oklab, var(--accent-3) 14%, transparent);
+}
+
+.NMRSpinPair_Label--bottom {
+    box-shadow:
+        0 0 10px color-mix(in oklab, var(--accent-2) 28%, transparent),
+        0 0 20px color-mix(in oklab, var(--accent-2) 14%, transparent);
+}
+
+.NMRSpinPair_SphereTitle {
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    background: color-mix(in oklab, var(--bg) 74%, transparent);
+    font-family: var(--font-tech);
+    font-size: 0.78rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    white-space: nowrap;
+}

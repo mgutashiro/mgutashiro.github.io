@@ -450,29 +450,45 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         title: 'For Friends',
         panels: [
           {
-            id: 'hidden-motion',
-            heading: 'Hidden motion beneath stillness',
-            body: `Even when nothing seems to be happening, the atoms inside a molecule are not still. Their nuclei carry a quiet magnetism, gently moving in ways we cannot see.`,
+            id: 'magnet-motion',
+            heading: 'From Light to Magnets',
+            body: [
+              {
+                type: 'text',
+                value: `In fluorescence spectroscopy, we followed what happens after a molecule absorbs light and gives some of that light back. NMR shifts the story from light to magnetism.
+Some atomic nuclei behave like tiny magnets because they have a property called spin.`,
+              },
+              {
+                type: 'text',
+                value: `When these nuclei are placed inside a strong magnet, they can respond to radio-wave energy.
+Instead of watching colors disappear or reappear, NMR listens to how these tiny nuclear magnets respond. This makes NMR a form of magnetic spectroscopy.`,
+              },
+            ],
             visualKey: 'hidden-motion'
           },
           {
-            id: 'alignment',
-            heading: 'A magnetic field brings order',
-            body: `When we place the system in a magnetic field, those tiny magnets begin to align, like compass needles settling into place.`,
-            visualKey: 'alignment'
+            id: 'nuclear-neighbors',
+            heading: 'Each Nucleus Feels Its Own Neighborhood',
+            body: `Even inside the same magnet, not every nucleus feels the magnetic field in exactly the same way. The electrons around each nucleus act like a tiny local shield.
+If a nucleus is strongly shielded, it feels less of the magnet. If it is weakly shielded, it feels more of the magnet.`,
+            visualKey: 'NuclearNeighbors'
           },
           {
-            id: 'perturbation',
-            heading: 'A small push sets them in motion',
-            body: `A short pulse nudges them out of alignment. Instead of snapping back immediately, they begin a smooth, circular motion.`,
-            visualKey: 'precession'
+            id: 'nuclear-local-structure',
+            heading: 'A Map of Local Structure',
+            body: [
+              {
+                type: 'text',
+                value: `Because different parts of a molecule have different electron environments, their nuclei respond at slightly different positions in the NMR spectrum.`,
+              },
+              {
+                type: 'text',
+                value: `This is why NMR is so useful for identifying molecular structure. Each signal tells us about a nucleus and the chemical environment around it.
+Instead of showing absorbed light or emitted light, NMR shows where atoms sit within a molecule’s magnetic landscape.`,
+              },
+            ],
+            visualKey: 'nuclearStructureMap'
           },
-          {
-            id: 'signal-spectrum',
-            heading: 'The motion becomes a signal',
-            body: `As they move, they create a faint, oscillating signal. When we listen carefully, that motion transforms into a spectrum that reveals structure beneath what we see.`,
-            visualKey: 'signal-spectrum'
-          }
         ]
       },
 
@@ -480,51 +496,74 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
         title: 'For Colleagues',
         panels: [
           {
-            id: 'zeeman-splitting',
-            heading: 'Zeeman splitting under B₀',
+            id: 'NuclearMagneticResonance',
+            heading: 'From Optical Excitation to Magnetic Resonance',
             body: [
               {
                 type: 'text',
-                value: `In an external magnetic field, nuclear spin states undergo Zeeman splitting with an energy separation given by`
+                value: `After UV-Vis and fluorescence, NMR shifts the experiment away from optical excitation of electronic states and toward magnetic resonance of nuclear spin states.
+
+NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. This commonly occurs for isotopes such as <sup>1</sup>H, <sup>13</sup>C, <sup>19</sup>F, and <sup>31</sup>P.`
+              },
+              {
+                type: 'text',
+                value: `Instead of using light to prepare an excited electronic population, NMR places the sample in a strong static magnetic field, B<sub>0</sub>, and uses radiofrequency radiation to drive transitions between nuclear spin energy levels.
+                For a spin-1/2 nucleus,B<sub>0</sub> splits the spin states into lower-energy α and higher-energy β levels:`,
               },
               {
                 type: 'equation',
-                value: String.raw`\Delta E = \gamma \hbar B_0`
+                value: String.raw`\Delta E = \gamma \hbar B_0 = h ν_0`
+              },
+              {
+                type: 'text',
+                value: `Here, γ is the gyromagnetic ratio and ν<sub>0</sub> is the Larmor frequency. NMR is therefore still spectroscopy: an external field defines an energy gap, and the instrument detects which spin transitions are accessible.`,
               }
             ],
-            visualKey: 'zeeman-splitting'
+            visualKey: 'nmrResonanceTransition'
           },
           {
-            id: 'larmor-precession',
-            heading: 'Larmor precession',
+            id: 'NuclearChemicalShift',
+            heading: 'Chemical Shift and Local Electronic Shielding',
             body: [
               {
                 type: 'text',
-                value: `These spin states precess about the applied field at the Larmor frequency,`
+                value: `A nucleus does not experience the applied magnetic field, B<sub>0</sub>, directly. Surrounding electrons respond to B<sub>0</sub>  by generating small induced magnetic fields that modify the field at the nucleus.
+                This effective field is described by:`
               },
               {
                 type: 'equation',
-                value: String.raw`\omega = \gamma B_0`
-              }
+                value: String.raw`B_{eff} = B_0 (1-σ)`
+              },
+              {
+                type: `text`,
+                value: `where σ is the shielding constant. A more shielded nucleus feels a smaller effective field and resonates at lower frequency. A deshielded nucleus feels a stronger effective field and appears at a larger chemical shift.`,
+              },
+              {
+                type: `text`,
+                value: `Chemical shift, δ, reports this frequency displacement in ppm relative to a reference. In this way, NMR converts local electronic structure into a measurable signal.
+Electronegativity, bonding, hybridization, aromatic ring currents, and nearby functional groups all influence shielding. The NMR spectrum is therefore a map of how each nucleus experiences its local structural environment.`,
+              },
             ],
-            visualKey: 'larmor-precession'
+            visualKey: 'nmrChemicalShiftShielding'
           },
           {
-            id: 'chemical-shift',
-            heading: 'Chemical shift and local environment',
+            id: 'nmrInstrumentFlow',
+            heading: 'From Magnet, RF Pulse, and Probe to Spectrum',
             body: [
               {
                 type: 'text',
-                value: `The local electronic environment modifies the effective field experienced by each nucleus, producing chemical shifts that encode structural information.`
-              }
+                value: `An NMR spectrometer begins with a stable, homogeneous magnetic field. The sample sits inside the magnet bore within a probe containing RF coils tuned to the nucleus being observed.
+A short RF pulse creates an oscillating magnetic field, B<sub>1</sub>, perpendicular to B<sub>0</sub>. This perturbs the nuclear spin ensemble, and the precessing magnetization induces a time-dependent voltage in the receiver coil.`
+              },
+              {
+                type: 'text',
+                value: `That time-domain signal, the free induction decay, is Fourier transformed into the frequency-domain NMR spectrum.
+The final spectrum depends on both molecular structure and instrument control. Field homogeneity, shimming, lock stability, probe tuning, pulse calibration, relaxation delay, receiver gain, concentration, solvent, and reference standard all affect signal quality.`,
+              },
             ],
             bullets: [
-              'Zeeman splitting defines accessible spin transitions',
-              'Larmor frequency governs resonance condition',
-              'Chemical shift arises from electronic shielding effects',
-              'Observed signal reflects local structural environment'
             ],
-            visualKey: 'chemical-shift'
+            visualKey: 'nmrInstrumentSignalFlow'
           }
         ]
       }

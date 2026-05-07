@@ -16,8 +16,7 @@ import UVVTransmissionVisual from '../uvvis/uvvTransmissionVisual.jsx';
 
 import EmissionVisual from '../fluorescence/FluorSpecEmission.jsx';
 
-import HiddenMotionVisual from '../nmr/hidden-motionVisual.jsx';
-import ZeemanSplittingVisual from '../nmr/zeeman-splittingVisual.jsx';
+import HiddenMotionVisual from '../nmr/nmrHiddenMotionVisual.jsx';
 
 import AfterExcitationVisual from '../epr/after-excitationVisual.jsx';
 import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx';
@@ -186,41 +185,37 @@ export const visualRegistry = {
     },
 
     'nmr': {
-        'hidden-motion': {
+        'magnet-motion': {
             friends: HiddenMotionVisual
         },
 
-        'alignment': {
+        'nuclear-neighbors': {
             friends: lazy(() =>
-                import('../nmr/alignmentVisual.jsx')
+                import('../nmr/nmrNuclearNeighborsVisual.jsx')
             ),
         },
 
-        'precession': {
+        'nuclear-local-structure': {
             friends: lazy(() =>
-                import('../nmr/precessionVisual.jsx')
+                import('../nmr/nmrNuclearStructureMapVisual.jsx')
             ),
         },
 
-        'signal-spectrum': {
+        'NuclearMagneticResonance': {
             friends: lazy(() =>
-                import('../nmr/signal-spectrumVisual.jsx')
+                import('../nmr/NMRResonanceTransitionVisual.jsx')
             ),
         },
 
-        'zeeman-splitting': {
-            colleague: ZeemanSplittingVisual
+        'NuclearChemicalShift': {
+            friends: lazy(() =>
+                import('../nmr/NMRChemicalShiftShieldingVisual.jsx')
+            ),
         },
 
-        'larmor-precession': {
+        'nmrInstrumentFlow': {
             colleague: lazy(() =>
-                import('../nmr/larmor-precessionVisual.jsx')
-            ),
-        },
-
-        'chemical-shift': {
-            colleague: lazy(() => 
-                import('../nmr/chemical-shiftVisual.jsx')
+                import('../nmr/NMRInstrumentSignalFlowVisual.jsx')
             ),
         },
     },
