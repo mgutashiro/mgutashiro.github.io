@@ -1,0 +1,204 @@
+.NMRNuclearNeighborsVisualPanel {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: clamp(0.35rem, 0.8vw, 0.6rem);
+    place-items: center;
+}
+
+.NMRNuclearNeighborsVisualPanel_SVG {
+    width: min(100%, 860px);
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.NMRNuclearNeighborsVisualPanel_Panel {
+    stroke: color-mix(in oklab, var(--accent) 24%, var(--border));
+    stroke-width: 1.2;
+}
+
+.NMRNuclearNeighborsVisualPanel_PanelStroke {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent-2) 20%, var(--border));
+    stroke-width: 1.4;
+}
+
+.NMRNuclearNeighborsVisualPanel_Grid {
+    opacity: 0.12;
+}
+
+
+.NMRNuclearNeighborsVisualPanel_Aura {
+    opacity: 0.42;
+    pointer-events: none;
+}
+
+.NMRNuclearNeighborsVisualPanel_Divider {
+    stroke: color-mix(in oklab, var(--c-metal-1) 50%, var(--border));
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+.NMRNuclearNeighborsVisualPanel_Wash {
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+.NMRNuclearNeighbors_Core {
+    fill: color-mix(in oklab, var(--accent-3) 20%, var(--surface-2) 80%);
+    stroke: color-mix(in oklab, var(--accent-3) 32%, var(--border));
+    stroke-width: 2;
+    opacity: 0.95;
+}
+
+.NMRNuclearNeighbors_Crown {
+    pointer-events: none;
+}
+
+.NMRNuclearNeighbors_CrownPath {
+    fill: color-mix(in oklab, var(--c-metal-1) 72%, var(--copper));
+    stroke: color-mix(in oklab, var(--c-metal-1) 84%, var(--text));
+    stroke-width: 4;
+    opacity: 0.96;
+}
+
+.NMRNuclearNeighbors_Small {
+    fill: color-mix(in oklab, var(--accent-2) 54%, var(--c-metal-1));
+    stroke: color-mix(in oklab, var(--text) 24%, var(--border));
+    stroke-width: 1.4;
+    opacity: 0.96;
+}
+
+.NMRNuclearNeighbors_Shield {
+    pointer-events: none;
+}
+
+.NMRNuclearNeighbors_ShieldPath {
+    fill: color-mix(in oklab, var(--text) 48%, var(--surface-2));
+    stroke: color-mix(in oklab, var(--text) 72%, var(--border));
+    stroke-width: 10;
+    opacity: 0.94;
+}
+
+.NMRNuclearNeighbors_FieldLobes {
+    pointer-events: none;
+}
+
+.NMRNuclearNeighbors_FieldPath {
+    fill: none;
+    stroke: var(--accent);
+    stroke: color-mix(in oklab, var(--accent) 58%, var(--border) 42%);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.54;
+
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+
+    animation: NMRNuclearNeighbors_DrawField 5.8s linear infinite both;
+}
+
+.NMRNuclearNeighbors_FieldPath--left1 { animation-delay: 0s; }
+.NMRNuclearNeighbors_FieldPath--left2 { animation-delay: 0.55s; }
+
+.NMRNuclearNeighbors_FieldPath--r1l { animation-delay: 0.15s; }
+.NMRNuclearNeighbors_FieldPath--r1r { animation-delay: 0.65s; }
+
+.NMRNuclearNeighbors_FieldPath--r2l { animation-delay: 1.05s; }
+.NMRNuclearNeighbors_FieldPath--r2r { animation-delay: 1.45s; }
+
+.NMRNuclearNeighbors_FieldPath--r3l { animation-delay: 1.9s; }
+.NMRNuclearNeighbors_FieldPath--r3r { animation-delay: 2.35s; }
+
+.NMRNuclearNeighbors_CoreLabel,
+.NMRNuclearNeighbors_SmallLabel {
+    font-family: var(--font-jester);
+    font-weight: var(--w-semibold);
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    paint-order: stroke fill;
+}
+
+.NMRNuclearNeighbors_CoreLabel {
+    fill: color-mix(in oklab, var(--text) 82%, var(--accent-3) 18%);
+    stroke: color-mix(in oklab, var(--bg) 72%, transparent);
+    stroke-width: 1.25;
+    font-size: 6rem;
+    letter-spacing: 0.02em;
+    opacity: 0.92;
+}
+
+.NMRNuclearNeighbors_SmallLabel {
+    fill: color-mix(in oklab, var(--text) 58%, var(--accent-1) 42%);
+    stroke: color-mix(in oklab, var(--bg) 58%, transparent);
+    stroke-width: 0.7;
+    font-size: 2rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.NMRNuclearNeighborsVisualPanel_FieldLabel {
+    font-family: var(--font-tech);
+    font-weight: var(--w-semibold);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+    dominant-baseline: central;
+    text-transform: uppercase;
+
+    fill: var(--text);
+    stroke: var(--bg);
+    stroke-width: 3;
+    paint-order: stroke fill;
+
+    opacity: 0.92;
+    filter: drop-shadow(
+        0 0 6px color-mix(in oklab, var(--accent-2) 45%, transparent)
+    );
+}
+.NMRNuclearNeighborsVisualPanel_Caption {
+    max-width: 64ch;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.1vw, 1.02rem);
+    line-height: 1.45;
+    text-align: center;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+
+@keyframes NMRNuclearNeighbors_DrawField {
+    0% {
+        stroke-dashoffset: 1;
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.24;
+    }
+
+    46% {
+        stroke-dashoffset: 0;
+        opacity: 0.56;
+    }
+
+    78% {
+        stroke-dashoffset: 0;
+        opacity: 0.46;
+    }
+
+    100% {
+        stroke-dashoffset: -0.08;
+        opacity: 0;
+    }
+}

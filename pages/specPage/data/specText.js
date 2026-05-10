@@ -469,9 +469,13 @@ Instead of watching colors disappear or reappear, NMR listens to how these tiny 
           {
             id: 'nuclear-neighbors',
             heading: 'Each Nucleus Feels Its Own Neighborhood',
-            body: `Even inside the same magnet, not every nucleus feels the magnetic field in exactly the same way. The electrons around each nucleus act like a tiny local shield.
-If a nucleus is strongly shielded, it feels less of the magnet. If it is weakly shielded, it feels more of the magnet.`,
-            visualKey: 'NuclearNeighbors'
+            body: [
+              {type: 'text',
+                value: `Even inside the same applied magnetic field, not every nuclei (N) feels the magnetic field in exactly the same way. The electrons(e) around each nucleus act like a tiny local shield. 
+If a nucleus is strongly shielded (SHIELDED), it feels less of the applied magnetic field and in return, produces less of its own effective magnetic field. If it is weakly shielded (DESHIELDED), it feels more of the applied magnetic field and produces more of its own effective magnetic field.`,
+              }
+            ],
+            visualKey: 'NuclearNeighbors',
           },
           {
             id: 'nuclear-local-structure',
@@ -479,16 +483,35 @@ If a nucleus is strongly shielded, it feels less of the magnet. If it is weakly 
             body: [
               {
                 type: 'text',
-                value: `Because different parts of a molecule have different electron environments, their nuclei respond at slightly different positions in the NMR spectrum.`,
-              },
-              {
-                type: 'text',
-                value: `This is why NMR is so useful for identifying molecular structure. Each signal tells us about a nucleus and the chemical environment around it.
-Instead of showing absorbed light or emitted light, NMR shows where atoms sit within a molecule’s magnetic landscape.`,
+                value: `Not every nucleus shows up in NMR.
+NMR only works for certain nuclei that have spin, often ones with an odd mass number or an odd number of protons.`,
               },
             ],
             visualKey: 'nuclearStructureMap'
           },
+          {
+            id: 'nuclear-signals',
+            heading: 'NMR Response Signals',
+            body: [
+              {
+                type: "text",
+                value:
+                  "If the nucleus is NMR-active, it can respond inside the applied magnetic field (the magnet). That response shows up as a peak in the NMR spectrum."
+              },
+              {
+                type: "text",
+                value:
+                  "Where the peak appears depends on the nucleus’s electron neighborhood. A deshielded nucleus feels more of the magnetic field and shows up toward the down field. A shielded nucleus feels less of it and shows up toward the upfield."
+              },
+              {
+                type: "text",
+                value:
+                  "So the visual reads like a tiny NMR story: the right kind of nucleus can respond, the magnet helps create the response, and the final clue appears as a peak."
+              }
+            ],
+            visualKey: 'nucleusResponseSignals',
+          },
+
         ]
       },
 

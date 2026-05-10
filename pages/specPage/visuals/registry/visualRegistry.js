@@ -200,6 +200,11 @@ export const visualRegistry = {
                 import('../nmr/nmrNuclearStructureMapVisual.jsx')
             ),
         },
+        'nuclear-signals': {
+            friends: lazy(() =>
+                import('../nmr/nmrResponseSignals.jsx')
+            ),
+        },
 
         'NuclearMagneticResonance': {
             friends: lazy(() =>

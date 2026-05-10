@@ -1,0 +1,6 @@
+.NucleusStackPanel_SVG {
+    width: min(100%, 380px);
+    height: auto;
+    display: block;
+    overflow: visible;
+}

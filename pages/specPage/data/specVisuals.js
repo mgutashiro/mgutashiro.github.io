@@ -117,6 +117,7 @@ export const spectroscopyVisuals = {
           { id: 'magnet-motion', label: 'Fluorescence Spec Emission', visualKey: 'hidden-motion' },
           { id: 'nuclear-neighbors', label: 'Nuclear Neighbors', visualKey: 'NuclearNeighbors' },
           { id: 'nuclear-local-structure', label: 'Nuclear Local Structure', visualKey: 'nuclearStructureMap' },
+          { id: 'nuclear-signals', label: 'Nuclear Resoinse Signals', visualKey: 'nucleusResponseSignals' },
         ],
       },
       colleague: {

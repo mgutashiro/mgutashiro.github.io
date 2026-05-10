@@ -1,0 +1,144 @@
+.nmrResponseSingnals___Figure {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.nmrResponseSingnals___SVG {
+    width: min(100%, 860px);
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.nmrResponseSingnals___Panel {
+    stroke: color-mix(in oklab, var(--accent-2) 24%, var(--border));
+    stroke-width: 1.2;
+}
+
+.nmrResponseSingnals___SplitLines {
+    stroke: color-mix(in oklab, var(--text-muted) 55%, var(--accent-2) 45%);
+    stroke-width: 1;
+    stroke-linecap: round;
+    opacity: 0.1;
+    vector-effect: non-scaling-stroke;
+}
+
+.nmrResponseSingnals___NucleusShell {
+    fill: color-mix(in oklab, var(--accent-3) 20%, var(--surface-2) 80%);
+    stroke: color-mix(in oklab, var(--accent-3) 32%, var(--border));
+    stroke-width: 1.4;
+}
+
+.nmrResponseSingnals___NucleusShellBright {
+    fill: color-mix(in oklab, var(--accent-3) 34%, var(--surface) 66%);
+    stroke: color-mix(in oklab, var(--accent-3) 48%, var(--border-strong));
+    stroke-width: 1.5;
+}
+
+.nmrResponseSingnals___MagneticFieldMagnet {
+    fill: color-mix(in oklab, var(--text) 28%, var(--bg) 72%);
+    stroke: color-mix(in oklab, var(--text) 52%, var(--bg) 48%);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.88;
+}
+
+.nmrResponseSingnals___TopRightArrow {
+    fill: none;
+    stroke: color-mix(in oklab, var(--accent-2) 52%, var(--text) 48%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.95;
+}
+
+.nmrResponseSingnals___MagneticFieldPoleLabel {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: var(--w-black);
+    fill: color-mix(in oklab, white 88%, var(--text) 12%);
+    letter-spacing: 0.03em;
+    pointer-events: none;
+}
+
+.nmrResponseSingnals___BottomAxisLine {
+    stroke: color-mix(in oklab, var(--text-muted) 58%, var(--accent-2) 42%);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.88;
+}
+
+.nmrResponseSingnals___BottomAxisTick {
+    stroke: color-mix(in oklab, var(--text-muted) 52%, var(--accent-2) 48%);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.76;
+}
+
+.nmrResponseSingnals___BottomSignalLine {
+    stroke: color-mix(in oklab, var(--accent-3) 68%, var(--text) 32%);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    filter: drop-shadow(
+        0 0 5px color-mix(in oklab, var(--accent-3) 52%, transparent)
+    );
+}
+
+
+.nmrResponseSingnals___BottomFieldArrowHead {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text-muted) 56%, var(--accent-2) 44%);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.9;
+}
+
+.nmrResponseSingnals___ShieldIcon {
+    fill: color-mix(in oklab, var(--c-metal-1) 78%, white 22%);
+    stroke: color-mix(in oklab, var(--c-metal-1) 62%, var(--darkMetal-2) 38%);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.98;
+}
+
+.nmrResponseSingnals___BottomFieldLabel {
+    font-family: var(--font-tech);
+    font-size: 0.6rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.02em;
+    fill: color-mix(in oklab, var(--text) 72%, var(--accent-2) 28%);
+    opacity: 0.96;
+}
+
+.nmrResponseSingnals___BottomPeakLabel {
+    font-family: var(--font-tech);
+    font-size: 0.6rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.02em;
+    fill: color-mix(in oklab, var(--text) 76%, var(--accent-3) 24%);
+    opacity: 0.96;
+}
+
+.nmrResponseSingnals___SectionLabel {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.04em;
+    fill: color-mix(in oklab, var(--text) 82%, var(--accent-3) 18%);
+    opacity: 0.95;
+}
+
+.nmrResponseSingnals___SectionLabelCheck {
+    fill: color-mix(in oklab, var(--accent-4) 82%, white 18%);
+}
