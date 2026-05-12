@@ -85,7 +85,7 @@ export const spectroscopyVisuals = {
     kind: 'instrument',
     title: 'Fluorescence',
     visualType: 'instrument-hotspot',
-    demoHref: '',
+    demoHref: '/spec/demo/fluorescence-spec',
     demoLabel: 'Launch Fluorescence Demo',
     modes: {
       friends: {

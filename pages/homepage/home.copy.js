@@ -51,7 +51,7 @@ An additional passion for philosophy and classical literature has also shaped th
         body: text(`
             This section presents computational investigations performed in ORCA, including detailed studies of hydroquinone and excited-state behavior. Through density functional theory, I model how electrons distribute, reorganize, and influence chemical reactivity.
 
-            Explore layered explanations in both intuitive and colleague modes, along with documented workflows and results.
+            Learn the story and theory of DFT and explore layered explanations in both intuitive and colleague modes, along with documented workflows and results.
             `)
     },
 

@@ -19,4 +19,4 @@ export default function HUDFrame({ activeSection = "intro", className=""}){
             <FrameBase className="hudFrameSVG" />
         </div>
     )
-}
+} 

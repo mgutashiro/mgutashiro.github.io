@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import SpecDemoViewer from '/pages/specPage/components/ModelDemoComponents/specDemoViewer';
-// import SpecModeToggle from '/pages/specPage/components/specModeToggle';
 import '/pages/specPage/data/specModelPanels/specModel.css';
+import '/pages/specPage/data/specModelPanels/fluorescenceSpecModel.css';
 
-export default function UVVisDoubleBeamDemoPage() {
-  const [mode, setMode] = useState('friends');
+export default function FluorescenceSpecDemoPage() {
+    const [mode, setMode] = useState('friends');
 
     return (
         <main className="SpectroscopyPage SpecModelPage">
             <SpecDemoViewer
-                modelId="uvvis-double-beam"
+                modelId="fluorescence-spec-demo"
                 mode={mode}
                 setMode={setMode}
-                debugNames={false}
+                debugNames={true}
             />
         </main>
     );

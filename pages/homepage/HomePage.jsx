@@ -1,4 +1,5 @@
 import './home.css'
+import './hud/HUDFrame.css'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { HOME_SECTIONS } from './home.sections'
@@ -73,7 +74,7 @@ export default function HomePageReturn() {
           >
             <ElevatorRig progress={p} />
           </Canvas>
-        </aside>
+        </aside> 
 
         <div className="HomePageMainSpace">
           <main
@@ -112,45 +113,25 @@ export default function HomePageReturn() {
                     className='homeSection framedSection aboutSection'
                   >
                     <div className="sectionPanelShell aboutPanel">
-                      <HUDFrame
-                        activeSection="about"
-                        className={`sectionFrame aboutFrame ${activeId === 'about' ? 'isActive' : ''}`}
-                      />
-
-                      <div className="aboutSocials" aria-label="External links">
-                        <a
-                          className="aboutSocialLink aboutSocialLink--linkedin"
-                          href="https://www.linkedin.com/in/monica-utashiro-hahn-450748171/"
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label="LinkedIn"
-                        >
-                          <img src={linkedinLogo} alt="LinkedIn" />
-                        </a>
-
-                        <a
-                          className="aboutSocialLink aboutSocialLink--github"
-                          href="https://github.com/mgutashiro"
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label="GitHub"
-                        >
-                          <img src={githubLogo} alt="GitHub" />
-                        </a>
+                      <div className="aboutFrameTarget sectionFrameTarget">
+                        <HUDFrame
+                          activeSection="about"
+                          className={`sectionFrame aboutFrame ${activeId === 'about' ? 'isActive' : ''}`}
+                        />
+                        <div className="aboutText">
+                          <h2 className="aboutTitle">{aboutTitle}</h2>
+                          <p className="aboutBody">{currentPanel.body}</p>
+                        </div>
+                        
                       </div>
-
-                      <div className="aboutText">
-                        <h2 className="aboutTitle">{aboutTitle}</h2>
-                        <p className="aboutBody">{currentPanel.body}</p>
-                      </div>
-                    </div>
-                    <div className="aboutControls">
-                      <AboutButtons
-                        index={aboutIndex}
-                        total={HOME_COPY.about.panels.length}
-                        onBack={goAboutBack}
-                        onNext={goAboutNext}
-                      />
+                      <div className="aboutControls">
+                          <AboutButtons
+                            index={aboutIndex}
+                            total={HOME_COPY.about.panels.length}
+                            onBack={goAboutBack}
+                            onNext={goAboutNext}
+                          />
+                        </div>
                     </div>
                     
                     
@@ -169,33 +150,56 @@ export default function HomePageReturn() {
                   className={`homeSection framedSection ${s.id}Section`}
                 >
                   <div className={`${s.id}Panel sectionPanelShell`}>
+                    <div className={`${s.id}FrameTarget sectionFrameTarget`}>
+                      <HUDFrame
+                        activeSection={s.id}
+                        className={`sectionFrame ${s.id}Frame ${activeId === s.id ? 'isActive' : ''}`}
+                      />
 
-                    <HUDFrame
-                      activeSection={s.id}
-                      className={`sectionFrame ${s.id}Frame ${activeId === s.id ? 'isActive' : ''}`}
-                    />
+                      <div className={`${s.id}Text sectionText`}>
+                        <header className="sectionTextHeader">
+                          <h2 className = "sectionTitle">{sectionCopy.title}</h2>
+                        </header>
 
-                    <div className={`${s.id}Text sectionText`}>
-                      <header className="sectionTextHeader">
-                        <h2 className = "sectionTitle">{sectionCopy.title}</h2>
-                      </header>
-
-                      <div className={`sectionBodyWrap`}>
-                        <p className="sectionBody">{sectionCopy.body}</p>
+                        <div className={`sectionBodyWrap`}>
+                          <p className="sectionBody">{sectionCopy.body}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className={`${s.id}Actions LinkToSubPage`}>
                     {s.hasCTA && s.route ? (
-                      <Link to={s.route} className={`sectionCTA ${s.id}CTA`}>
-                        {s.ctaLabel}
-                      </Link>
+                        <div className={`${s.id}Actions LinkToSubPage`}>
+                        <Link to={s.route} className={`sectionCTA ${s.id}CTA`}>
+                          {s.ctaLabel}
+                        </Link>
+                        </div>
                     ) : null}
                   </div>
                 </section>
               )
             })}
           </main>
+
+          <div className="aboutSocials" aria-label="External links">
+            <a
+              className="aboutSocialLink aboutSocialLink--linkedin"
+              href="https://www.linkedin.com/in/monica-utashiro-hahn-450748171/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img src={linkedinLogo} alt="LinkedIn" />
+            </a>
+
+            <a
+              className="aboutSocialLink aboutSocialLink--github"
+              href="https://github.com/mgutashiro"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <img src={githubLogo} alt="GitHub" />
+            </a>
+          </div>
 
           <div className="homePageMGUMark" aria-hidden="true">
             <p>© M.G.U</p>

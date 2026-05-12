@@ -402,6 +402,7 @@ body.SpecModelBodyLocked #root {
     width: fit-content;
 }
 
+
 @media (max-width: 900px) {
     .SpecDemoGrid {
         grid-template-columns: 1fr;

@@ -1,33 +1,45 @@
-import { Suspense, useEffect, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
 import {
     Bounds,
     Center,
     Html,
-    OrbitControls,
     useGLTF,
 } from '@react-three/drei';
-import { matchModelPartFromObject } from '../utils/matchModelPart';
+import { matchModelPartFromObject } from '/pages/specPage/utils/matchModelPart';
+import FluorescenceHotspots from './FluorescenceHotspots';
+import FluorescencePopup from './FluorescencePopup';
+import FluorescenceBeamSystem from './FluorescenceSpecBeamSystem';
 
-function SpecModelScene({ config, onSelectPart, debugNames = false }) {
+export default function FluorescenceSpecScene({
+    config,
+    mode = 'friends',
+    activePartId,
+    onSelectPart,
+    debugNames = false,
+    laserOn = false,
+    openParts = {},
+    setOpenParts,
+}) {
     const { scene } = useGLTF(config.modelUrl);
 
     const [hoveredPart, setHoveredPart] = useState(null);
     const [hoverPoint, setHoverPoint] = useState(null);
+    const modelRootRef = useRef(null);
+    const [popupPartId, setPopupPartId] = useState(null);
 
     useEffect(() => {
         if (!debugNames) return;
 
         scene.traverse((object) => {
             if (object.isMesh) {
-                console.log('[GLB mesh]', object.name);
+                console.log('[Fluorescence GLB mesh]', object.name);
             }
         });
     }, [scene, debugNames]);
 
     useEffect(() => {
         return () => {
-            document.body.style.cursor="auto";
+            document.body.style.cursor = 'auto';
         };
     }, []);
 
@@ -38,7 +50,7 @@ function SpecModelScene({ config, onSelectPart, debugNames = false }) {
     }
 
     function selectPart(part) {
-        if(!part) return;
+        if (!part) return;
         onSelectPart(part.id);
     }
 
@@ -79,6 +91,14 @@ function SpecModelScene({ config, onSelectPart, debugNames = false }) {
 
         event.stopPropagation();
         onSelectPart(matchedPart.id);
+        setPopupPartId(matchedPart.id);
+
+        if (matchedPart.openKey && setOpenParts) {
+            setOpenParts((current) => ({
+                ...current,
+                [matchedPart.openKey]: !current[matchedPart.openKey],
+            }));
+        }
     }
 
     return (
@@ -89,9 +109,36 @@ function SpecModelScene({ config, onSelectPart, debugNames = false }) {
         >
             <Bounds fit clip observe margin={1.25}>
                 <Center>
-                <primitive object={scene} scale={config.scale ?? 1} />
+                    <group ref={modelRootRef} scale={config.scale ?? 1}>
+                        <primitive object={scene} />
+
+                        <FluorescenceBeamSystem
+                            scene={scene}
+                            modelRootRef={modelRootRef}
+                            laserOn={laserOn}
+                        />
+
+                        {config.hotspots?.enabled && (
+                            <FluorescenceHotspots
+                                scene={scene}
+                                modelRootRef={modelRootRef}
+                                parts={config.parts}
+                                hotspotPartIds={config.hotspots?.partIds ?? []}
+                                activePartId={activePartId}
+                                onSelectPart={onSelectPart}
+                                onOpenPopup={setPopupPartId}
+                            />
+                        )}
+                    </group>
                 </Center>
             </Bounds>
+
+            <FluorescencePopup
+                parts={config.parts}
+                partId={popupPartId}
+                mode={mode}
+                onClose={() => setPopupPartId(null)}
+            />
 
             {hoveredPart && hoverPoint && (
                 <Html
@@ -117,81 +164,5 @@ function SpecModelScene({ config, onSelectPart, debugNames = false }) {
                 </Html>
             )}
         </group>
-    );
-}
-
-export default function SpecModelCanvas({
-    config,
-    onSelectPart,
-    onResetPart,
-    debugNames = false,
-}) {
-    if (!config) return null;
-
-    const cameraPosition = config.camera?.position ?? [4.2, 2.4, 5.2];
-    const startAzimuth = Math.atan2(cameraPosition[0], cameraPosition[2]);
-
-    return (
-        <Canvas 
-            camera={{
-                position: cameraPosition,
-                fov: config.camera?.fov ?? 35,
-            }}
-            gl={{
-                antialias: true,
-                alpha: true,
-            }}
-            onPointerMissed={() => {
-                onResetPart?.();
-            }}
-        >
-            <color attach="background" args={['#050712']} />
-
-            <ambientLight intensity={0.45} />
-            
-
-            <directionalLight
-                position={[4, 6, 5]}
-                intensity={1.45}
-            />
-
-            <pointLight
-                position={[-2, 2.5, 2]}
-                intensity={config.lights?.accent ?? 0.8}
-                color="#b8f7ff"
-            />
-
-            <Suspense
-                fallback={
-                <Html center>
-                    <span className="SpecModelLoading">Loading model...</span>
-                </Html>
-                }
-            >
-            <SpecModelScene
-            config={config}
-            onSelectPart={onSelectPart}
-            debugNames={debugNames}
-            />
-            </Suspense>
-
-            <OrbitControls
-                makeDefault
-                enableRotate
-                enableZoom
-                enablePan={false}
-                enableDamping
-                dampingFactor={0.08}
-                // vertical rotation limit
-                minPolarAngle={0.25}
-                maxPolarAngle={1.25}
-
-                // horizontal limit: prevents seeing the back
-                minAzimuthAngle={startAzimuth - Math.PI / 4}
-                maxAzimuthAngle={startAzimuth + Math.PI / 6}
-                minDistance={3}
-                maxDistance={8}
-            />
-        </Canvas>
     );
 }

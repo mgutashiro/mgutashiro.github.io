@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import EquationBlock from './EquationBlock'; // adjust path if needed
+import EquationBlock from '../EquationBlock'; // adjust path if needed
 
 function SpecModelBodyBlock({ block }) {
     if (typeof block === 'string') {

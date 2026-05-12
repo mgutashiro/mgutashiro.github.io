@@ -1,0 +1,243 @@
+.sectionPanelShell,
+.aboutPanel {
+  outline: none;
+  box-shadow: inset 0 0 0 2px hotpink !important;
+}
+
+/* ================================
+   HUDFrame.css
+   Homepage section frame styling
+================================ */
+
+/* .framedSection {
+  --section-frame-target-max-w: 650px;
+} */
+
+.sectionFrameTarget {
+    position: relative;
+
+    justify-self: center;
+    align-self: center;
+
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    
+
+    padding:
+        var(--section-frame-pad-y, 1.8rem)
+        var(--section-frame-pad-x, 2.2rem);
+
+    box-sizing: border-box;
+    z-index: 2;
+
+    transform:
+        translate(
+        var(--section-frame-target-x, 0px),
+        var(--section-frame-target-y, 0px)
+        );
+
+}
+
+.sectionFrameTarget > .sectionText,
+.sectionFrameTarget > .aboutText {
+    position: relative;
+    z-index: 2;
+
+    width: var(--section-copy-w, min(620px, 100%));
+    max-width: 100%;
+    min-width: 0;
+
+    margin-inline: auto;
+    padding: 0;
+
+    transform: none;
+}
+
+.sectionBodyWrap {
+    width: 100%;
+    max-width: 100%;
+}
+
+.sectionFrameTarget > .sectionFrame {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sectionFrameTarget > .sectionFrame .homepageFrameBaseSVG.hudFrameSVG {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform: none;
+    aspect-ratio: auto;
+    display: block;
+    overflow: visible;
+    transform: none;
+    aspect-ratio: auto;
+}
+
+.homepageFrameBaseSVG .frameArtwork {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.sectionFrameTarget .hudFrameSVG {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    aspect-ratio: auto;
+    transform: none;
+
+    display: block;
+    overflow: visible;
+}
+
+.sectionFrame .homepageFrameBaseSVG {
+    display: block;
+    overflow: visible;;
+}
+
+.homepageFrameBaseSVG {
+    --hud-frame-color: var(--section-frame-stroke, var(--accent-2));
+
+    --hud-frame-fill-top:
+        var(
+        --section-frame-fill-top,
+        color-mix(in oklab, var(--hud-frame-color) 24%, var(--surface))
+        );
+
+    --hud-frame-fill-mid:
+        var(
+        --section-frame-fill-mid,
+        color-mix(in oklab, var(--hud-frame-color) 13%, var(--bg))
+        );
+
+    --hud-frame-fill-bottom:
+        var(
+        --section-frame-fill-bottom,
+        color-mix(in oklab, var(--hud-frame-color) 8%, var(--primary-deep))
+        );
+}
+
+/* Keeps strokes thin even if SVG is scaled */
+.homepageFrameBaseSVG * {
+  vector-effect: non-scaling-stroke;
+}
+
+/* Hide the old separate panel rectangles if frameCenterMain is now the filled panel */
+.homepageFrameBaseSVG .frameFill,
+.homepageFrameBaseSVG .frameFillAlt {
+    display: none;
+}
+
+/* ================================
+   Center filled panel
+================================ */
+
+.homepageFrameBaseSVG .frameCenterMain {
+    stroke: var(--hud-frame-color);
+    stroke-width: 1.5;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    opacity: 1;
+}
+
+.homepageFrameBaseSVG .frameCenterStop--top {
+    stop-color: var(--hud-frame-fill-top);
+}
+
+.homepageFrameBaseSVG .frameCenterStop--mid {
+    stop-color: var(--hud-frame-fill-mid);
+}
+
+.homepageFrameBaseSVG .frameCenterStop--bottom {
+    stop-color: var(--hud-frame-fill-bottom);
+}
+
+/* ABOUT: keep your current/default look */
+.aboutSection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
+}
+
+/* SPEC: cyan / teal glass */
+.specSection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
+
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface-2) 74%, var(--c-glow-1) 18%);
+
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 70%, var(--c-glow-1) 13%);
+
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 78%, var(--c-glow-1) 10%);
+}
+
+/* DFT: bronze / violet computational metal */
+.dftSection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
+
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface) 72%, var(--c-metal-1) 18%);
+
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 70%, var(--copper) 14%);
+
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 78%, var(--accent) 12%);
+}
+
+/* PHILOSOPHY: pink / purple crypt */
+.philosophySection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
+
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface-2) 72%, var(--c-glow-3) 18%);
+
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 70%, var(--c-emo-2) 16%);
+
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 74%, var(--accent-3) 14%);
+}
+
+/* ================================
+   Thin frame linework
+================================ */
+
+.homepageFrameBaseSVG .frameThin,
+.homepageFrameBaseSVG .frameMedium,
+.homepageFrameBaseSVG .frameThick {
+    fill: none;
+    stroke: var(--hud-frame-color);
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+}
+
+.homepageFrameBaseSVG .frameThin {
+    stroke-width: 1.5;
+    opacity: 0.82;
+}
+
+.homepageFrameBaseSVG .frameMedium {
+    stroke-width: 2;
+    opacity: 0.9;
+}
+
+.homepageFrameBaseSVG .frameThick {
+    stroke-width: 4;
+    opacity: 0.96;
+}

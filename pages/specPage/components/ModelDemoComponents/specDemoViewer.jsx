@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { getSpecModel } from '../data/specModelRegistry';
-import { getModelPartById } from '../utils/modelParts';
+import { getSpecModel } from '../../data/specModelRegistry';
+import { getModelPartById } from '../../utils/modelParts';
 import SpecModelCanvas from './specModelCanvas';
 import SpecModelInfoPanel from './specModelInfoPanel';
+import DemoControlBar from './ModelDemoScenes/ModelDemoControls/DemoControlBar';
 
 function SpecDemoModeToggle({ mode, setMode }) {
     return (
@@ -26,6 +27,43 @@ function SpecDemoModeToggle({ mode, setMode }) {
     );
 }
 
+function SpecDemoLaserToggle({ laserOn, setLaserOn }) {
+    return (
+        <button
+            type="button"
+            className={`SpecDemoLaserButton ${laserOn ? 'is-active' : ''}`}
+            onClick={() => setLaserOn((current) => !current)}
+            aria-pressed={laserOn}
+        >
+            {laserOn ? 'Laser On' : 'Laser Off'}
+        </button>
+    );
+}
+
+function SpecDemoControlBar({
+    mode,
+    setMode,
+    laserOn,
+    setLaserOn,
+    showLaserToggle = false,
+}) {
+    return (
+        <div className="SpecDemoControlBar">
+            <SpecDemoModeToggle
+                mode={mode}
+                setMode={setMode}
+            />
+
+            {showLaserToggle && (
+                <SpecDemoLaserToggle
+                    laserOn={laserOn}
+                    setLaserOn={setLaserOn}
+                />
+            )}
+        </div>
+    );
+}
+
 export default function SpecDemoViewer({
     modelId = 'uvvis-double-beam',
     mode = 'friends',
@@ -38,6 +76,9 @@ export default function SpecDemoViewer({
         config?.defaultPartId ?? config?.parts?.[0]?.id ?? null;
 
     const [activePartId, setActivePartId] = useState(defaultPartId);
+    const [laserOn, setLaserOn] = useState(false);
+    const [openParts, setOpenParts] = useState({});
+    const showLaserToggle = Boolean(config?.controls?.laser);
 
     useEffect(() => {
         document.body.classList.add('SpecModelBodyLocked');
@@ -49,6 +90,8 @@ export default function SpecDemoViewer({
 
     useEffect(() => {
         setActivePartId(defaultPartId);
+        setLaserOn(false);
+        setOpenParts({});
     }, [defaultPartId, modelId]);
 
     const activePart =
@@ -75,18 +118,27 @@ export default function SpecDemoViewer({
                 <div className="SpecDemoCanvasShell">
                 <SpecModelCanvas
                     config={config}
+                    mode={mode}
+                    activePartId={activePartId}
+                    selectedPartId={activePartId}
                     onSelectPart={setActivePartId}
+                    setSelectedPartId={setActivePartId}
                     onResetPart={() => setActivePartId(defaultPartId)}
+                    laserOn={laserOn}
+                    openParts={openParts}
+                    setOpenParts={setOpenParts}
                     debugNames={debugNames}
                 />
                 </div>
 
                 <div className="SpecDemoSide">
                     <div className="SpecDemoToggleShell">
-                        <SpecDemoModeToggle
-                        mode={mode}
-                        setMode={setMode}
-                        onModeChange={setMode}
+                        <DemoControlBar
+                            mode={mode}
+                            setMode={setMode}
+                            laserOn={laserOn}
+                            setLaserOn={setLaserOn}
+                            showLaserToggle={showLaserToggle}
                         />
                     </div>
 

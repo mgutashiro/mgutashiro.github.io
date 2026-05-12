@@ -12,7 +12,7 @@ import { useEffect, useMemo, useState } from 'react';
 import SpecSectionHeader from './SpecSectionHeader';
 import SpecTextPanel from './specTextPanel';
 import SpecVisualPanel from './specVisualPanel';
-import LaunchDemoButton from './LaunchDemoButton';
+import LaunchDemoButton from './ModelDemoComponents/LaunchDemoButton';
 
 
 export default function SpecSection({

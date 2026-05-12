@@ -19,7 +19,7 @@ body {
 .HomePageGrid {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
@@ -65,9 +65,16 @@ body {
 /* PAGE SHELL */
 .HomePageMainSpace {
   position: relative;
-  min-width: 0;
-  height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  overflow: clip;
+  isolation: isolate;
 }
 
 
@@ -86,11 +93,49 @@ body {
 }
 
 .homeSection {
-  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  overflow: clip;
+  isolation: isolate;
+}
+
+.homeSection.framedSection {
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: clip;
+}
+
+.framedSection > .sectionPanelShell,
+.framedSection > .aboutPanel {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: grid;
+  place-items: center;
 }
 
 .introPanel {
-  min-height: 100vh;
+  height: 100svh;
+  min-height: 100svh;
+  width: 100%;
 }
 
 /* INTRO SECTION */
@@ -106,151 +151,70 @@ body {
   pointer-events: none;
 }
 
-/* SHARED FRAME */
-.framedSection {
-  --section-frame-w: min(58vw, 720px);
-  --section-frame-x: 0px;
-  --section-frame-y: -3vh;
-  --section-frame-scale-x: 1;
-  --section-frame-scale-y: 0.8;
-
-  --section-content-left: 50%;
-  --section-text-top: 35%;
-  --section-text-w: min(520px, 70%);
-
-  display: grid;
-  grid-template-rows: auto auto;
-  align-content: center;
-  justify-items: center;
-  row-gap: 0.2rem;
-  min-height: 100vh;
-}
-
-.framedSection > .sectionPanelShell,
-.framedSection > .aboutPanel {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
-.sectionFrame {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.sectionFrame .hudFrameSVG {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: var(--section-frame-w);
-  height: auto;
-  aspect-ratio: 908 / 772;
-  transform:
-    translate(
-      calc(-50% + var(--section-frame-x)),
-      calc(-50% + var(--section-frame-y))
-    )
-  scale(var(--section-frame-scale-x), var(--section-frame-scale-y));
-}
-
-.sectionFrame .homepageFrameBaseSVG {
-  display: block;
-  overflow: hidden;
-}
-
-.sectionFrame .frameStroke {
-  fill: none;
-  stroke: var(--section-frame-stroke);
-  stroke-width: 2.2;
-}
-
-.sectionFrame .frameStrokeSoft {
-  fill: none;
-  stroke: var(--section-frame-stroke-soft);
-  stroke-width: 1.2;
-  opacity: 0.9;
-}
-
-.sectionFrame .frameGlow {
-  fill: none;
-  stroke: var(--section-frame-stroke);
-  stroke-width: 4;
-  opacity: 0.24;
-  filter: var(--section-frame-glow-shadow);
-}
-
 .sectionText,
 .aboutText {
-  position: absolute;
-  left: var(--section-content-left, 50%);
-  top: var(--section-text-top, 50%);
-  transform: translate(-50%, -25%);
-  width: var(--section-text-w, min(520px, 70%));
   z-index: 3;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: center;
 }
 
-.sectionText::before,
-.aboutText::before {
-  content: "";
-  position: absolute;
-  inset: -1.2rem -1.4rem -1.4rem;
-  z-index: -1;
-  border-radius: var(--radius-3);
-  background: var(--section-card-bg);
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 8%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--border) 75%, transparent),
-    0 18px 36px color-mix(in oklab, var(--bg) 50%, transparent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.sectionTextHeader {
-  margin-bottom: 1.25rem;
-}
 
 .sectionTitle,
 .aboutTitle {
-  margin: 0 0 1.2rem;
+  margin: 0 1rem 1rem;
   font-family: var(--font-display);
   font-weight: var(--w-black);
-  font-size: clamp(1.7rem, 3vw, 2.7rem);
   line-height: 1.15;
   letter-spacing: 0.055em;
   color: var(--text);
   text-align: center;
+  margin-bottom: 1rem;
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 1.05;
 }
 
 .sectionBody,
 .aboutBody {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+
   white-space: pre-line;
+  overflow-wrap: break-word;
   font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.1vw, 1.02rem);
-  line-height: 1.8;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  line-height: 1.75;
   color: color-mix(in oklab, var(--text) 82%, var(--bg));
 }
 
-.LinkToSubPage,
-.aboutControls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  z-index: 5;
-  transform: none;
-  align-self: start;
+.aboutSection .aboutTitle {
+  margin-bottom: 1rem;
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 1.05;
 }
 
-.LinkToSubPage {
+.aboutSection .aboutBody {
+  line-height: 1.55;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+}
+
+.sectionPanelShell > .aboutControls,
+.sectionPanelShell > .LinkToSubPage {
+  position: absolute;
+
+  left: 50%;
+  bottom: var(--section-action-bottom, clamp(1.5rem, 5vh, 4rem));
+
+  transform:
+    translate(
+      -50%,
+      var(--section-action-y, 0px)
+    );
+
+  z-index: 6;
+
+  margin: 0;
   padding: 0;
-  margin-top: 0;
-  align-self: start;
-  transform: none;
 }
 
 .sectionCTA {
@@ -269,35 +233,58 @@ body {
   background: color-mix(in oklab, var(--surface) 78%, var(--bg));
 }
 
-/* ABOUT SECTION */
+/* ================================
+   Section-specific layout variables
+================================ */
 .aboutSection {
-  --section-frame-y: -1.8vh;
-  --section-frame-scale-y: 0.86;
-
-  --section-text-top: 31%;
-  --section-text-w: min(560px, 66%);
-  --section-content-left: 50%;
-
   --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
-  --section-frame-stroke-soft: color-mix(in oklab, var(--c-primary-2) 55%, var(--bg));
-  --section-frame-glow-shadow: var(--glow-violet);
+  --section-frame-pad-x: 2.2rem;
+  --section-frame-pad-y: 2.4rem;
+  
 
-  --section-card-bg:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 68%, var(--accent)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
-    );
-  row-gap: 0;
+  --section-frame-target-y: -7vh;
+
+  --section-action-bottom: clamp(1.2rem, 4vh, 3rem);
+  --section-action-y: 0px;
 }
 
-.aboutSection > .aboutPanel {
-  min-height: clamp(34rem, 70vh, 44rem);
+.specSection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
+  --section-frame-pad-x: 2.2rem;
+  --section-frame-pad-y: 1.8rem;
+
+  --section-frame-target-y: -7vh;
+
+  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+  --section-action-y: 0px;
 }
 
-.aboutText {
-  transform: translate(-50%, -20%);
+.dftSection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
+
+  /* --section-text-w: min(650px, 74vw); */
+  --section-frame-pad-x: 2rem;
+  --section-frame-pad-y: 1.5rem;
+
+  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+  --section-frame-target-y: -7vh;
 }
+
+.philosophySection {
+  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
+
+  /* --section-text-w: min(650px, 74vw); */
+
+  --section-frame-pad-x: 2rem;
+  --section-frame-pad-y: 1.5rem;
+
+  --section-frame-target-y: -7vh;
+
+  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+  --section-action-y: 0px;
+}
+
+/* ABOUT SECTION */
 
 .aboutControls {
   padding: 0 0 2rem;
@@ -314,10 +301,6 @@ body {
 
 .aboutNavButton {
   --about-btn-size: 58px;
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 38%, var(--border));
-  --about-btn-fill-top: color-mix(in oklab, var(--surface-2) 82%, var(--bg));
-  --about-btn-fill-bottom: color-mix(in oklab, var(--surface) 88%, var(--bg-2));
-  --about-btn-arrow: var(--text);
 
   position: relative;
   display: inline-flex;
@@ -341,6 +324,7 @@ body {
   filter: blur(10px);
   transition: opacity 180ms ease, transform 180ms ease;
 }
+
 .aboutNavButton__circle {
   position: relative;
   z-index: 1;
@@ -424,17 +408,59 @@ body {
   cursor: default;
   opacity: 0.42;
 }
+
+/* SPEC SECTION */
+
+.specCTA {
+  border: 1px solid color-mix(in oklab, var(--accent-2) 45%, var(--lightMetal));
+  box-shadow: var(--glow-cyan);
+}
+
+/* DFT SECTION */
+
+.dftCTA {
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--lightMetal));
+  box-shadow: var(--glow-violet);
+}
+
+/* Philosophy SECTION */
+
+.philosophyCTA {
+  border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
+  box-shadow: var(--glow-pink);
+}
+
+/* FOOTER MARK */
+.homePageMGUMark {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.88;
+}
+.homePageMGUMark p {
+  margin: 0;
+  font-family: var(--font-jester);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
 .aboutSocials {
   position: absolute;
-  /* left: calc(clamp(0.5rem, 1.5vw, 0.8rem) + 10px); */
-  left: calc(50% - 390px);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
+  top: clamp(1.25rem, 4vh, 3rem);
+  right: clamp(1.25rem, 4vw, 3.5rem);
+  z-index: 8;
 
   display: flex;
-  flex-direction: column;
-  gap: 0.95rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+
+  transform: none;
 }
 .aboutSocialLink {
   width: 58px;
@@ -498,305 +524,7 @@ body {
     0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
 }
 
-/* SPEC SECTION */
-.specSection {
-  --section-frame-y: -1.8vh;
-  --section-frame-scale-y: 0.86;
-
-  --section-text-top: 30%;
-  --section-text-w: min(540px, 64%);
-
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
-  --section-frame-stroke-soft: color-mix(in oklab, var(--c-glow-2) 45%, var(--bg));
-  --section-frame-glow-shadow: var(--glow-cyan);
-
-  --section-card-bg:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface-2) 66%, var(--accent-2)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
-    );
-  row-gap: 0;
-}
-
-.specSection > .sectionPanelShell {
-    min-height: clamp(27rem, 55vh, 34rem);
-}
-
-.specActions.LinkToSubPage {
-    margin-top: 1.2rem;
-    padding: 0;
-    transform: none;
-    align-self: start;
-}
-
-.specCTA {
-  border: 1px solid color-mix(in oklab, var(--accent-2) 45%, var(--lightMetal));
-  box-shadow: var(--glow-cyan);
-}
-
-/* DFT SECTION */
-.dftSection {
-  --section-frame-y: -1.4vh;
-  --section-frame-scale-y: 0.8;
-
-  --section-text-top: 32%;
-  --section-text-w: min(540px, 64%);
-
-  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
-  --section-frame-stroke-soft: color-mix(in oklab, var(--copper) 45%, var(--bg));
-  --section-frame-glow-shadow: 0 0 16px color-mix(in oklab, var(--c-metal-1) 45%, transparent);
-
-  --section-card-bg:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 72%, var(--lightMetal)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--primary-deep)) 100%
-    );
-  /* row-gap: 0; */
-}
-
-.dftSection > .sectionPanelShell {
-  min-height: clamp(27rem, 56vh, 35rem);
-}
-
-.dftActions.LinkToSubPage {
-  margin-top: 0.5rem;
-  padding: 0;
-  transform: none;
-  align-self: start;
-}
-
-.dftCTA {
-  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--lightMetal));
-  box-shadow: var(--glow-violet);
-}
-
-/* Philosophy SECTION */
-.philosophySection {
-  --section-frame-y: -1vh;
-  --section-frame-scale-y: 0.78;
-  --section-text-top: 33%;
-
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
-  --section-frame-stroke-soft: color-mix(in oklab, var(--c-emo-2) 55%, var(--bg));
-  --section-frame-glow-shadow: var(--glow-pink);
-
-  --section-card-bg:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface-2) 68%, var(--accent-3)) 0%,
-      color-mix(in oklab, var(--bg) 84%, var(--accent)) 100%
-    );
-  row-gap: 0;
-}
-
-.philosophySection > .sectionPanelShell {
-  min-height: clamp(28rem, 58vh, 36rem);
-}
-
-.philosophyCTA {
-  border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
-  box-shadow: var(--glow-pink);
-}
-
-/* FOOTER MARK */
-.homePageMGUMark {
-  position: absolute;
-  left: 50%;
-  bottom: 5px;
-  transform: translateX(-50%);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.88;
-}
-.homePageMGUMark p {
-  margin: 0;
-  font-family: var(--font-jester);
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  color: var(--text);
-}
 /* =========================
    TABLET
    frame ON
    ========================= */
-@media (max-width: 1200px) {
-  .titleAnchor {
-    left: 50%;
-    right: auto;
-    width: min(84vw, 760px);
-    max-width: none;
-    height: clamp(110px, 16vh, 180px);
-    transform: translate(-50%, -50%);
-    top: 50%;
-  }
-  
-  .HomePageGrid {
-    grid-template-columns: 1fr;
-  }
-
-  #elevatorSpace {
-    display: none;
-  }
-
-  .HomePageMainSpace {
-    grid-column: 1;
-  }
-
-   .framedSection {
-    --section-frame-w: min(76vw, 760px);
-    --section-frame-y: 0vh;
-    --section-frame-scale-x: 1;
-    --section-frame-scale-y: 0.88;
-
-    --section-text-w: min(68vw, 44rem);
-    --section-text-top: 38%;
-    --section-content-left: 50%;
-  }
-
-  .aboutSection {
-    --section-frame-w: min(72vw, 760px);
-    --section-frame-y: 1.5vh;
-    --section-frame-scale-y: 0.78;
-
-    --section-text-w: min(56vw, 40rem);
-    --section-text-top: 32%;
-  }
-
-  .aboutSection > .aboutPanel {
-    min-height: clamp(31rem, 64vh, 40rem);
-  }
-
-  .sectionText,
-  .aboutText {
-    transform: translate(-50%, -18%);
-  }
-
-  .sectionText::before,
-  .aboutText::before {
-    inset: -1rem -1rem -1.1rem;
-    border-radius: 24px;
-  }
-
-  .sectionTitle,
-  .aboutTitle {
-    font-size: clamp(1.45rem, 5vw, 2.1rem);
-    line-height: 1.12;
-  }
-
-  .sectionBody,
-  .aboutBody {
-    font-size: clamp(0.95rem, 2.2vw, 1rem);
-    line-height: 1.72;
-  }
-
-  .aboutSocials {
-    left: auto;
-    right: 1rem;
-    top: 1rem;
-    transform: none;
-    flex-direction: row;
-    gap: 0.75rem;
-  }
-
-  .aboutSocialLink {
-    width: 52px;
-    height: 52px;
-  }
-
-  .aboutSocialLink img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .LinkToSubPage,
-  .aboutControls {
-    padding: 0 1rem 1.75rem;
-    transform: none;
-  }
-}
-
-@media (max-width: 950px) {
-  .aboutSection {
-    --section-frame-w: min(88vw, 760px);
-    --section-frame-y: 0vh;
-    --section-frame-scale-y: 0.9;
-
-    --section-text-w: min(76vw, 45rem);
-    --section-text-top: 32%;
-  }
-
-  .aboutSection > .aboutPanel {
-    min-height: clamp(40rem, 78vh, 52rem);
-  }
-
-  .aboutSection .sectionFrame .hudFrameSVG {
-    clip-path: inset(3% 0 8% 0);
-  }
-}
-
-/* =========================
-   PHONE
-   frame OFF
-   ========================= */
-@media (max-width: 640px) {
-  .titleAnchor {
-    width: min(90vw, 500px);
-    height: clamp(80px, 12vh, 120px);
-    top: 48%;
-  }
-  
-  .sectionFrame {
-    display: none;
-  }
-
-  .framedSection {
-    --section-text-w: min(88vw, 28rem);
-    --section-text-top: 34%;
-    --section-content-left: 50%;
-  }
-
-  .sectionText,
-  .aboutText {
-    transform: translate(-50%, 0);
-  }
-
-  .sectionText::before,
-  .aboutText::before {
-    inset: -0.85rem -0.85rem -0.95rem;
-    border-radius: 22px;
-  }
-
-  .sectionTitle,
-  .aboutTitle {
-    font-size: clamp(1.3rem, 7vw, 1.8rem);
-    line-height: 1.08;
-    letter-spacing: 0.03em;
-  }
-
-  .sectionBody,
-  .aboutBody {
-    font-size: 0.96rem;
-    line-height: 1.65;
-    text-align: left;
-    text-justify: auto;
-  }
-
-  .aboutButtons {
-    gap: 0.75rem;
-  }
-
-  .aboutNavButton {
-    --about-btn-size: 50px;
-  }
-
-  .aboutNavButton__label {
-    font-size: 0.85rem;
-  }
-
-  .LinkToSubPage,
-  .aboutControls {
-    padding: 0 0.75rem 1.25rem;
-  }
-}
