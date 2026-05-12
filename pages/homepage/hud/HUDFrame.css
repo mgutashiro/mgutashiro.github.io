@@ -9,9 +9,6 @@
    Homepage section frame styling
 ================================ */
 
-/* .framedSection {
-  --section-frame-target-max-w: 650px;
-} */
 
 .sectionFrameTarget {
     position: relative;
@@ -107,6 +104,43 @@
     display: block;
     overflow: visible;;
 }
+/* Main panel fill color per HUDFrame theme */
+
+.HUDFrame[data-theme="about"] {
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface) 76%, var(--c-primary-1) 24%);
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 68%, var(--c-primary-1) 32%);
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 74%, var(--accent) 26%);
+}
+
+.HUDFrame[data-theme="spec"] {
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface-2) 62%, var(--c-glow-1) 38%);
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 58%, var(--c-glow-1) 42%);
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 66%, var(--c-glow-2) 34%);
+}
+
+.HUDFrame[data-theme="dft"] {
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface) 58%, var(--c-metal-1) 42%);
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 56%, var(--copper) 44%);
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 64%, var(--accent) 36%);
+}
+
+.HUDFrame[data-theme="philosophy"] {
+  --section-frame-fill-top:
+    color-mix(in oklab, var(--surface-2) 58%, var(--c-glow-3) 42%);
+  --section-frame-fill-mid:
+    color-mix(in oklab, var(--bg) 56%, var(--c-emo-2) 44%);
+  --section-frame-fill-bottom:
+    color-mix(in oklab, var(--primary-deep) 62%, var(--accent-3) 38%);
+}
 
 .homepageFrameBaseSVG {
     --hud-frame-color: var(--section-frame-stroke, var(--accent-2));
@@ -144,6 +178,11 @@
 /* ================================
    Center filled panel
 ================================ */
+.homepageFrameBaseSVG .frameCenterMain,
+.homepageFrameBaseSVG .frameCenterMainFill {
+  opacity: 1;
+  fill-opacity: 1;
+}
 
 .homepageFrameBaseSVG .frameCenterMain {
     stroke: var(--hud-frame-color);
@@ -151,67 +190,24 @@
     stroke-linecap: butt;
     stroke-linejoin: miter;
     stroke-miterlimit: 4;
-    opacity: 1;
 }
 
 .homepageFrameBaseSVG .frameCenterStop--top {
     stop-color: var(--hud-frame-fill-top);
+    stop-opacity: 1;
 }
 
 .homepageFrameBaseSVG .frameCenterStop--mid {
     stop-color: var(--hud-frame-fill-mid);
+    stop-opacity: 1;
 }
 
 .homepageFrameBaseSVG .frameCenterStop--bottom {
     stop-color: var(--hud-frame-fill-bottom);
+    stop-opacity: 1;
 }
 
-/* ABOUT: keep your current/default look */
-.aboutSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
-}
 
-/* SPEC: cyan / teal glass */
-.specSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
-
-  --section-frame-fill-top:
-    color-mix(in oklab, var(--surface-2) 74%, var(--c-glow-1) 18%);
-
-  --section-frame-fill-mid:
-    color-mix(in oklab, var(--bg) 70%, var(--c-glow-1) 13%);
-
-  --section-frame-fill-bottom:
-    color-mix(in oklab, var(--primary-deep) 78%, var(--c-glow-1) 10%);
-}
-
-/* DFT: bronze / violet computational metal */
-.dftSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
-
-  --section-frame-fill-top:
-    color-mix(in oklab, var(--surface) 72%, var(--c-metal-1) 18%);
-
-  --section-frame-fill-mid:
-    color-mix(in oklab, var(--bg) 70%, var(--copper) 14%);
-
-  --section-frame-fill-bottom:
-    color-mix(in oklab, var(--primary-deep) 78%, var(--accent) 12%);
-}
-
-/* PHILOSOPHY: pink / purple crypt */
-.philosophySection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
-
-  --section-frame-fill-top:
-    color-mix(in oklab, var(--surface-2) 72%, var(--c-glow-3) 18%);
-
-  --section-frame-fill-mid:
-    color-mix(in oklab, var(--bg) 70%, var(--c-emo-2) 16%);
-
-  --section-frame-fill-bottom:
-    color-mix(in oklab, var(--primary-deep) 74%, var(--accent-3) 14%);
-}
 
 /* ================================
    Thin frame linework
@@ -228,16 +224,16 @@
 }
 
 .homepageFrameBaseSVG .frameThin {
-    stroke-width: 1.5;
-    opacity: 0.82;
+    stroke-width: 1.1;
+    opacity: 0.68;
 }
 
 .homepageFrameBaseSVG .frameMedium {
-    stroke-width: 2;
-    opacity: 0.9;
+    stroke-width: 1.45;
+    opacity: 0.72;
 }
 
 .homepageFrameBaseSVG .frameThick {
-    stroke-width: 4;
-    opacity: 0.96;
+    stroke-width: 2.6;
+    opacity: 0.82;
 }

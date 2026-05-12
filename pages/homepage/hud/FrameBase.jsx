@@ -27,22 +27,23 @@ export default function FrameBase({ className = "", ...props })  {
         </linearGradient>
       </defs>
       <g className="frameArtWork" transform="translate(-120 -30) scale(1.35 0.95)">
-          <path className="frameThin" d="M367.757 27.0483H164.732V567.436H367.757M367.757 27.0483H569.025V567.436H367.757M367.757 27.0483V567.436M148.033 577.4H585.724V17.5593H148.033V577.4Z" stroke="black"/>
-
-          <g className="frameMedium" >
+          <g className="frameLineWork" transform="translate(0 -5) scale(1 1.02)">
             <path 
+              className="frameThin" 
               d="
-                M135.728 557.473L70.69 521.416V72.5947L135.728 37.4861H597.149L663.945 72.5947V521.416L597.149 557.473H135.728Z
-              " 
+                M367.757 27.0483H164.732V567.436H367.757
+                M367.757 27.0483H569.025V567.436H367.757M367.757 27.0483V567.436
+              "
             />
-            <path d="M694.707 403.754H38.1708V191.205H694.707V403.754Z" />
-          </g>
+
+            <path className="frameMedium" d="M694.707 403.754H38.1708V191.205H694.707V403.754Z M148.033 577.4H585.724V17.5593H148.033V577.4Z" />
 
             <path 
               className="frameThick" 
               d="
                 M25.8663 45.0771V82.0835H46.9598V184.088H24.9874V410.871H48.7176V512.876H24.9874V548.933
                 M708.769 44.6027V82.0835H686.797V184.088H708.769V410.871H686.797V512.876H708.769V549.408
+                M135.728 557.473L70.69 521.416V72.5947L135.728 37.4861H597.149L663.945 72.5947V521.416L597.149 557.473H135.728Z
               " 
             />
 
@@ -77,16 +78,6 @@ export default function FrameBase({ className = "", ...props })  {
             <path 
               className="frameThin" 
               d="
-                M0.37825 590.21L63.6588 560.32L7.40943 594.48
-                M733.378 590.21L670.098 560.32L726.347 594.48
-                M733.378 4.74958L670.098 34.6394L726.347 0.479614
-                M0.37825 4.74958L63.6588 34.6394L7.40943 0.479614
-              " 
-            />
-
-            <path 
-              className="frameThin" 
-              d="
                 M115.514 8.54517H620.879
                 M111.119 585.94H611.212
                 M60.1432 94.8934V172.702
@@ -95,11 +86,12 @@ export default function FrameBase({ className = "", ...props })  {
                 M673.613 95.3678V173.651
               " 
             />
-          <path 
-            className="frameCenterMain" 
-            fill={`url(#${gradientId}-centerFill)`}
-            d="M89.1633 547.984L85.6312 47.4492H648.125V547.984H89.1633Z" 
-          />
+          </g>
+        <path 
+          className="frameCenterMain" 
+          fill={`url(#${gradientId}-centerFill)`}
+          d="M89.1633 547.984L85.6312 47.4492H648.125V547.984H89.1633Z" 
+        />
       </g>
     </svg>
   );

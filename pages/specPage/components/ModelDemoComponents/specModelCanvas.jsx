@@ -156,18 +156,42 @@ export default function SpecModelCanvas({
         >
             <color attach="background" args={['#050712']} />
 
-            <ambientLight intensity={0.45} />
-            
+            <ambientLight
+                intensity={config.lights?.ambient ?? 0.65}
+            />
+
+            <hemisphereLight
+                args={[
+                    '#dffcff',
+                    '#1a1028',
+                    config.lights?.hemisphere ?? 0.75,
+                ]}
+            />
 
             <directionalLight
-                position={[4, 6, 5]}
-                intensity={1.45}
+                position={config.lights?.keyPosition ?? [4, 6, 5]}
+                intensity={config.lights?.key ?? 1.45}
+                color="#ffffff"
+            />
+
+            <directionalLight
+                position={config.lights?.fillPosition ?? [-4, 3.5, -3]}
+                intensity={config.lights?.fill ?? 0.85}
+                color="#d9ccff"
+            />
+
+            <directionalLight
+                position={config.lights?.rimPosition ?? [-3, 5, 4]}
+                intensity={config.lights?.rim ?? 0.75}
+                color="#b8f7ff"
             />
 
             <pointLight
-                position={[-2, 2.5, 2]}
-                intensity={config.lights?.accent ?? 0.8}
-                color="#b8f7ff"
+                position={config.lights?.accentPosition ?? [0, 3, 0]}
+                intensity={config.lights?.accent ?? 0.9}
+                color="#ffb7f5"
+                distance={9}
+                decay={1.6}
             />
 
             <Suspense

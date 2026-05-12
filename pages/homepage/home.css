@@ -84,6 +84,9 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
 }
 
 
@@ -106,6 +109,8 @@ body {
 
   overflow: clip;
   isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .homeSection.framedSection {
@@ -165,11 +170,12 @@ body {
   font-weight: var(--w-black);
   line-height: 1.15;
   letter-spacing: 0.055em;
-  color: var(--text);
   text-align: center;
   margin-bottom: 1rem;
   font-size: clamp(1.55rem, 2.7vw, 2.35rem);
   line-height: 1.05;
+  color: var(--section-title-color, var(--text));
+  text-shadow: var(--section-title-shadow, none);
 }
 
 .sectionBody,
@@ -184,7 +190,8 @@ body {
   font-family: var(--font-body);
   font-size: clamp(0.92rem, 1vw, 1rem);
   line-height: 1.75;
-  color: color-mix(in oklab, var(--text) 82%, var(--bg));
+  color: var(--section-body-color, color-mix(in oklab, var(--text) 82%, var(--bg)));
+  text-shadow: var(--section-body-shadow, none);
 }
 
 .aboutSection .aboutTitle {
@@ -246,6 +253,15 @@ body {
 
   --section-action-bottom: clamp(1.2rem, 4vh, 3rem);
   --section-action-y: 0px;
+
+  --section-title-color: var(--text);
+  --section-body-color: color-mix(in oklab, var(--text) 82%, var(--bg));
+
+  --section-title-shadow:
+    0 0 10px color-mix(in oklab, var(--accent) 18%, transparent);
+
+  --section-body-shadow:
+    0 1px 1px color-mix(in oklab, var(--bg) 65%, transparent);
 }
 
 .specSection {
@@ -257,6 +273,18 @@ body {
 
   --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
   --section-action-y: 0px;
+  --section-title-color:
+    color-mix(in oklab, var(--text) 88%, var(--c-glow-1) 12%);
+
+  --section-body-color:
+    color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+
+  --section-title-shadow:
+    0 0 12px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
+    0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+
+  --section-body-shadow:
+    0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
 }
 
 .dftSection {
@@ -268,6 +296,19 @@ body {
 
   --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
   --section-frame-target-y: -7vh;
+
+  --section-title-color:
+    color-mix(in oklab, var(--text) 84%, var(--c-metal-1) 16%);
+
+  --section-body-color:
+    color-mix(in oklab, var(--text) 76%, var(--lightMetal) 24%);
+
+  --section-title-shadow:
+    0 0 12px color-mix(in oklab, var(--c-metal-1) 26%, transparent),
+    0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+
+  --section-body-shadow:
+    0 1px 2px color-mix(in oklab, var(--bg) 74%, transparent);
 }
 
 .philosophySection {
@@ -282,6 +323,19 @@ body {
 
   --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
   --section-action-y: 0px;
+
+  --section-title-color:
+    color-mix(in oklab, var(--text) 86%, var(--c-glow-3) 14%);
+
+  --section-body-color:
+    color-mix(in oklab, var(--text) 76%, var(--c-glow-3) 24%);
+
+  --section-title-shadow:
+    0 0 14px color-mix(in oklab, var(--c-glow-3) 24%, transparent),
+    0 1px 2px color-mix(in oklab, var(--bg) 78%, transparent);
+
+  --section-body-shadow:
+    0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
 }
 
 /* ABOUT SECTION */
@@ -524,7 +578,8 @@ body {
     0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
 }
 
-/* =========================
-   TABLET
-   frame ON
-   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  #page-home {
+    scroll-behavior: auto;
+  }
+}

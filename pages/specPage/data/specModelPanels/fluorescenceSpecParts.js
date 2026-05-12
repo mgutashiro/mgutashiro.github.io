@@ -360,8 +360,6 @@ export const fluorescenceSpecParts = [
         kind: 'base',
         objectNames: [
             'LightSourceBase',
-            'LightSourceBaseLid',
-            'LightSourceLidEmpty',
         ],
         children: [
             'AnodeBox',
@@ -410,9 +408,7 @@ export const fluorescenceSpecParts = [
         title: 'Dual-Grating Excitation Monochromator',
         kind: 'base',
         objectNames: [
-            'ExcMonoBase',
-            'ExcMonoBaseLid',
-            'ExcMonoLidEmpty',
+            'ExciMonoBase',
         ],
         children: [
             'ApertureStop1',
@@ -460,11 +456,7 @@ export const fluorescenceSpecParts = [
         kind: 'base',
         objectNames: [
             'SampleChamberBase',
-            'SampleChamberBaseLid',
-            'SampleChamberBaseLidEmpty',
             'TSideEmissionChannelbase',
-            'TSideEmissionChannelBaseLid',
-            'TSideEmissionChannelLidEmpty',
         ],
         children: [
             'ApertureStop3',
@@ -528,8 +520,6 @@ export const fluorescenceSpecParts = [
         kind: 'base',
         objectNames: [
             'EmissionMono',
-            'EmissionMonoLid',
-            'EmissionMonoLidEmpty',
         ],
         children: [
             'ApertureStop4',

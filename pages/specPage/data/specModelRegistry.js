@@ -35,14 +35,22 @@ export const specModelRegistry = {
         sceneType: 'fluorescence',
 
         camera: {
-            position: [4.6, 2.7, 5.8],
+            position: [-4.6, 2.7, -5.8],
             fov: 35,
         },
 
         lights: {
-            ambient: 0.72,
-            key: 1.25,
-            accent: 0.95,
+            ambient: 1.25,
+            hemisphere: 1.1,
+            key: 2.8,
+            fill: 1.35,
+            rim: 1.2,
+            accent: 1.6,
+
+            keyPosition: [4.5, 7.5, 5.5],
+            fillPosition: [-5.5, 4.2, -4.5],
+            rimPosition: [-3.5, 5.5, 5.5],
+            accentPosition: [0, 3.2, 0],
         },
         controls: {
             laser: true,
