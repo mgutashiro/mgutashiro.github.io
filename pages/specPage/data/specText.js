@@ -1,9 +1,6 @@
 /**
  * Main content source for all spectroscopy sections.
- * Defines text, panels, modes, equations, and bullets.
- *
  * Structured for data-driven rendering across spec components.
- *
  * Includes helper to fetch section by id.
  */
 
@@ -68,13 +65,12 @@ This establishes the state-level picture of spectroscopic change. The next quest
               { type: 'text', value: `
 Spectroscopic signals reflect not every imaginable state change, but the subset of transitions that successfully couple into measurement. A transition is observable when its transition dipole moment is nonzero. This is determined by the interaction operator, the symmetry of the initial and final wavefunctions, and their corresponding overlap. In centrosymmetric systems, some transitions are orbitally forbidden, and if the transition-moment integral lacks the totally symmetric representation, no measurable intensity will generally appear. 
 
-In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are treated as effectively fixed during the much faster electronic transition, so observed intensity is shaped by vibrational overlap as well as electronic selection rules. Yet in situations where spin-orbit or other nonadiabatic couplings become important, this clean separation becomes incomplete, and techniques such as TREPR can reveal the spin-dependent consequences of those couplings in the excited state. 
+In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are treated as effectively fixed during the much faster electronic transition, so observed intensity is shaped by vibrational overlap as well as electronic selection rules. Yet in situations where spin-orbit or other nonadiabatic couplings become important, this clean separation becomes incomplete, and techniques such as EPR can reveal the spin-dependent consequences of those couplings in the excited state. 
                 ` }
             ],
             visualKey: 'spectroscopic-observables'
           }
         ],
-        // bullets: []
       }
     }
   },
@@ -174,7 +170,6 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
             visualKey: 'unified-spectroscopic-framework'
           }
         ],
-        // bullets: []
       }
     }
   },
@@ -271,8 +266,6 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
                 value: `where I<sub>t,s</sub> and I<sub>t,r</sub> are the transmitted sample and reference intensities. The measured spectrum is therefore not just “missing light,” but a corrected ratio that turns optical attenuation into a chemically useful quantity.`,
             },
           ],
-            bullets: [
-            ],
             visualKey: 'uvvisAbsorbanceRatioVisual'
           }, 
           {
@@ -431,7 +424,6 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
                 Fluorescence is therefore highly sensitive because it isolates emitted light from the much stronger excitation beam, but it is also instrumentally rich: the spectrum is only as reliable as the optical path that prepares, separates, and detects it.`
               }
             ],
-            bullets: [],
             visualKey: 'fluorEmissionReadout'
           }
         ]
@@ -455,7 +447,7 @@ In the usual Born-Oppenheimer applied Franck-Condon picture, the nuclei are trea
             body: [
               {
                 type: 'text',
-                value: `In fluorescence spectroscopy, we followed what happens after a molecule absorbs light and gives some of that light back. NMR shifts the story from light to magnetism.
+                value: `In fluorescence spectroscopy, we followed what happens after a molecule absorbs light and gives some of that light back. Nuclear Magnetic Resonance or NMR shifts the story from light to magnetism.
 Some atomic nuclei behave like tiny magnets because they have a property called spin.`,
               },
               {
@@ -524,7 +516,7 @@ NMR only works for certain nuclei that have spin, often ones with an odd mass nu
             body: [
               {
                 type: 'text',
-                value: `After UV-Vis and fluorescence, NMR shifts the experiment away from optical excitation of electronic states and toward magnetic resonance of nuclear spin states.
+                value: `After UV-Vis and fluorescence, Nuclear Magnetic Resonance or NMR shifts the experiment away from optical excitation of electronic states and toward magnetic resonance of nuclear spin states.
 
 NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. This commonly occurs for isotopes such as <sup>1</sup>H, <sup>13</sup>C, <sup>19</sup>F, and <sup>31</sup>P.`
               },
@@ -550,7 +542,7 @@ NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. Thi
             body: [
               {
                 type: 'text',
-                value: `A nucleus does not experience the applied magnetic field, B<sub>0</sub>, directly. Surrounding electrons respond to B<sub>0</sub>  by generating small induced magnetic fields that modify the field at the nucleus.
+                value: `A nucleus does not experience the applied magnetic field, B<sub>0</sub>, directly. Surrounding electrons respond to B<sub>0</sub> and create small induced fields that change the local field at the nucleus.
                 This effective field is described by:`
               },
               {
@@ -559,12 +551,11 @@ NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. Thi
               },
               {
                 type: `text`,
-                value: `where σ is the shielding constant. A more shielded nucleus feels a smaller effective field and resonates at lower frequency. A deshielded nucleus feels a stronger effective field and appears at a larger chemical shift.`,
+                value: `Here, σ is the shielding constant. A more shielded nucleus feels a smaller B<sub>eff</sub> and resonates at lower frequency, while a deshielded nucleus feels a stronger field and appears at higher chemical shift.`,
               },
               {
                 type: `text`,
-                value: `Chemical shift, δ, reports this frequency displacement in ppm relative to a reference. In this way, NMR converts local electronic structure into a measurable signal.
-Electronegativity, bonding, hybridization, aromatic ring currents, and nearby functional groups all influence shielding. The NMR spectrum is therefore a map of how each nucleus experiences its local structural environment.`,
+                value: `Chemical shift, δ, reports this displacement in ppm relative to a reference. Because shielding depends on bonding, electronegativity, hybridization, ring currents, and nearby functional groups, the NMR spectrum becomes a map of each nucleus’s local electronic environment.`,
               },
             ],
             visualKey: 'nmrChemicalShiftShielding'
@@ -584,8 +575,6 @@ A short RF pulse creates an oscillating magnetic field, B<sub>1</sub>, perpendic
 The final spectrum depends on both molecular structure and instrument control. Field homogeneity, shimming, lock stability, probe tuning, pulse calibration, relaxation delay, receiver gain, concentration, solvent, and reference standard all affect signal quality.`,
               },
             ],
-            bullets: [
-            ],
             visualKey: 'nmrInstrumentSignalFlow'
           }
         ]
@@ -595,7 +584,7 @@ The final spectrum depends on both molecular structure and instrument control. F
 
   {
     id: 'epr',
-    label: 'TREPR',
+    label: 'EPR',
     hook: 'Now we watch electron spins directly.',
     demoHref: '/specDemo/trepr',
     modes: {
@@ -603,29 +592,64 @@ The final spectrum depends on both molecular structure and instrument control. F
         title: 'For Friends',
         panels: [
           {
-            id: 'after-excitation',
+            id: 'epr-electron-magnets',
             heading: 'After excitation, something new appears',
-            body: `After light has done its work, something new can form, often too fleeting to see by other means. The molecule shifts, and new, reactive pieces begin to emerge.`,
-            visualKey: 'after-excitation'
+            body: [
+              {
+                type: 'text',
+                value: `In the NMR section, we looked at nuclei that behave like tiny magnets. Electron Paramagnetic Resonance or EPR keeps the magnetic story going, but now the tiny magnet comes from an unpaired electron.`,
+              },
+              {
+                type: 'text',
+                value: `Most electrons come in pairs, and paired electrons cancel each other out like two people pulling equally in opposite directions. When an electron is left unpaired, its magnetic behavior can be detected by EPR.`,
+              },
+              {
+                type: 'text',
+                value: `That is why EPR is especially useful for studying radicals in organic molecules and transition metal complexes, where unpaired electrons can live in metal-centered orbitals. These unpaired spins can behave in different ways: some act mostly alone, some line up together, and some pair against each other. EPR helps us study those magnetic personalities.`,
+              }
+              
+            ],
+            visualKey: 'epr-electron-magnets',
           },
           {
-            id: 'spin-appears',
+            id: 'epr-vs-nmr-resonance',
             heading: 'Electrons reveal their spin',
-            body: `Each electron carries a tiny magnetic identity called spin. As these states form, subtle differences begin to appear, like small arrows pointing in different directions.`,
-            visualKey: 'spin-appears'
+            body: [
+              {
+                type: 'text',
+                value: `EPR stands for electron paramagnetic resonance. Similar NMR, it places a sample inside a magnetic field and watches for a resonance signal.`,
+              },
+              {
+                type: 'text',
+                value: `The difference is what the instrument is listening to. NMR listens to nuclei or proton spins. EPR listens to unpaired electron spins. Because an electron is a much stronger tiny magnet than most nuclei, EPR usually uses microwaves instead of the radio waves used in NMR.`,
+              },
+              {
+                type: 'text',
+                value: `This makes EPR especially good at finding where the “active” electron is in a molecule. If a reaction involves radicals, metal centers, or electron transfer, EPR can help reveal where the unpaired electron lives and how its surroundings shape its behavior.`,
+
+              }
+            ],
+            visualKey: 'epr-vs-nmr-resonance',
           },
           {
-            id: 'radical-pair',
+            id: 'epr-beer-radical-quality',
             heading: 'A pair begins to separate',
-            body: `These electrons can form radical pairs, drifting apart but still connected. Their spins can align or oppose each other, shaping how they evolve.`,
-            visualKey: 'radical-pair'
+            body: [
+              {
+                type: 'text',
+                value: `In an EPR experiment, the magnetic field is swept until an unpaired electron responds to the microwave energy. When that match happens, the response appears as a signal in the EPR spectrum.`,
+              },
+              {
+                type: 'text',
+                value: `One real-life example is beer quality testing. As beer ages or is exposed to light and oxygen, tiny radical species can form and slowly damage the flavor. EPR can detect these radicals directly, which helps researchers measure how quickly oxidation is happening. `,
+              },
+              {
+                type: 'text',
+                value: `In a way, EPR spectrum becomes a kind of “radical fingerprint” for quality analysis. If antioxidants in the beer delay radical buildup for a longer time, the beer has better resistance to staling. This helps explain why packaging matters too: amber bottles block more harmful light than clear glass, helping protect beer from light-driven flavor damage.`,
+              },
+            ],
+            visualKey: 'epr-beer-radical-quality',
           },
-          {
-            id: 'epr-signal',
-            heading: 'The motion becomes a pattern',
-            body: `As these spins move and interact, they create a changing signal. It feels less like a still image and more like catching a moment that is constantly unfolding.`,
-            visualKey: 'epr-signal'
-          }
         ]
       },
 
@@ -633,53 +657,72 @@ The final spectrum depends on both molecular structure and instrument control. F
         title: 'For Colleagues',
         panels: [
           {
-            id: 'spin-hamiltonian',
-            heading: 'Spin Hamiltonian and energy structure',
+            id: 'epr-single-spin-system',
+            heading: 'Single-Spin Magnetic Systems',
             body: [
               {
                 type: 'text',
-                value: `Following photoexcitation, transient radical pairs form with spin states that evolve under the spin Hamiltonian,`
-              },
-              {
-                type: 'equation',
-                value: String.raw`\hat{H} = g\mu_B B S + D S^2`
+                value: `After NMR, the magnetic resonance story shifts from nuclear spins to electron spins. Like NMR, EPR requires a magnetic moment that can interact with an applied magnetic field, B<sub>0</sub>. The key difference is that EPR observes systems with unpaired electrons.`
               },
               {
                 type: 'text',
-                value: `where Zeeman and zero-field splitting terms define the energy landscape.`
+                value: `Closed-shell molecules are usually EPR-silent because paired electrons cancel their spin magnetic moments. In organic molecules, EPR-active species are often radicals. In transition-metal complexes, the signal often comes from partially filled d-orbitals with one or more unpaired d-electrons.
+This connects to magnetism: paramagnetic systems contain unpaired spins, ferromagnetic systems involve cooperative spin alignment, and antiferromagnetic systems involve oppositely coupled spins that can cancel. Here, the starting point is the simplest EPR-active idea: a system with a detectable net electron spin.`
               }
             ],
-            visualKey: 'spin-hamiltonian'
+            visualKey: 'EPR-single-spin-systems',
           },
           {
-            id: 'spin-dynamics',
-            heading: 'Time-dependent spin evolution',
+            id: 'epr-vs-nmr-magnetic-moment',
+            heading: 'Definition of EPR',
             body: [
               {
                 type: 'text',
-                value: `The resulting spin polarization reflects both the initial formation mechanism and subsequent evolution of the radical pair.`
-              }
+                value: `EPR, or electron paramagnetic resonance, is the electron-spin version of magnetic resonance spectroscopy. It is also called ESR, or electron spin resonance. Like NMR, it begins with a magnetic moment, \(\vec{\mu}\), placed in an external magnetic field, B<sub>0</sub>.`,
+              },
+              {
+                type: 'text',
+                value: `A magnetic moment is the “tiny magnet” associated with angular momentum. In NMR, that magnetic moment comes from the nuclear spin of nuclei such as <sup>1</sup>H and <sup>13</sup>C. In EPR, it comes from the spin of an unpaired electron. Because the electron has a much larger gyromagnetic ratio, γ, than most nuclei, its spin energy splitting is much larger at the same B<sub>0</sub>. That is why EPR typically uses microwave radiation, while NMR uses radiofrequency radiation.`,
+              },
+              {
+                type: 'text',
+                value: `In order to understand a chemical reactions, we need to understand where the active electrons are as the electronic structure tells us the full picture of reaction mechanisms and EPR is an essential tool for unraveling details of electron behaviors.`,
+              },
             ],
-            visualKey: 'spin-dynamics'
+            visualKey: 'EPR-vs-nmr-magnetic-moment',
           },
           {
-            id: 'time-resolved-signal',
-            heading: 'Time-resolved signal formation',
+            id: 'epr-cu2-paramagnetic-spec',
+            heading: 'Measuring Paramagnetic Systems',
             body: [
               {
                 type: 'text',
-                value: `Because this process unfolds in time, TREPR directly captures the evolution of spin populations following excitation, encoding both electronic structure and dynamical pathways.`
+                value: `EPR measures paramagnetic systems by following how an unpaired electron responds as the applied magnetic field, B<sub>0</sub>, is swept through resonance. When the microwave energy matches the field-defined spin gap, the system absorbs, producing an EPR signal. 
+A useful example is a Cu<sup>2+</sup> complex, where the unpaired electron behaves as a relatively simple paramagnetic spin center. In a CW EPR experiment, the spectrum is commonly interpreted through the g-values and hyperfine coupling to the copper nucleus. `
+              },
+              {
+                type: 'text',
+                value: `For an axially elongated Cu<sup>2+</sup> complex, the spectrum is described by g<sub>||</sub>, g<sub>⟂</sub>, A<sub>||</sub>, and A<sub>⟂</sub>. These features show how the electron spin experiences its local coordination environment and how it couples to the metal nucleus. 
+Because continuous wave (CW) EPR spectra are usually recorded as first derivatives, the signal appears as positive and negative peaks rather than as a simple absorption band. In the Cu<sup>2+</sup> example, the lower-field g<sub>||</sub> region often shows resolved copper hyperfine splitting, while the higher-field g<sub>⟂</sub> region forms the stronger main feature. Together, the line position, splitting, and shape connect the observed spectrum to the local electronic structure of the paramagnetic center. `,
               }
             ],
-            bullets: [
-              'Radical pairs form following photoinduced processes',
-              'Spin Hamiltonian governs energy levels and evolution',
-              'Zero-field splitting reflects anisotropic interactions',
-              'Spin polarization evolves in time after excitation',
-              'TREPR resolves transient spin dynamics'
+            visualKey: 'EPR-cu2-paramagnetic-spectrum',
+          },
+          {
+            id: 'epr-reveal-in-research',
+            heading: 'What EPR Can Reveal in Real Research',
+            body: [
+              {
+                type: 'text',
+                value: `EPR is powerful because it detects unpaired electrons directly, which makes it useful far beyond textbook radicals. In food chemistry, EPR can track radical formation during beer oxidation. By measuring how quickly radicals appear, or how long antioxidants delay radical buildup, researchers can estimate beer freshness and oxidative stability. A longer radical-quenching or “lag” time suggests stronger resistance to staling, helping breweries compare recipes, storage conditions, and packaging choices. This is one reason amber bottles are preferred over clear glass: they better reduce light-driven chemistry that can damage beer flavor.`,
+              },
+              {
+                type: 'text',
+                value: `EPR is also useful for mechanistic chemistry, especially reactions involving proton-coupled electron transfer or PCET. During PCET, electron and proton motion can create short-lived radical intermediates. EPR can follow changes in unpaired electron spin, g-value, hyperfine coupling, and reaction kinetics, helping identify where the spin density lives and how the reaction evolves. This makes EPR a bridge between structure and dynamics: it tells us what paramagnetic species formed, while ultrafast spectroscopy can later show when those species appear and decay.`,
+              }
             ],
-            visualKey: 'time-resolved-signal'
-          }
+            visualKey: 'EPR-research-applications',
+          },
         ]
       }
     }
@@ -752,12 +795,6 @@ The final spectrum depends on both molecular structure and instrument control. F
                 type: 'text',
                 value: `The measured spectrum arises from overlapping contributions that reflect population changes and allowed transitions across the evolving energy landscape.`
               }
-            ],
-            bullets: [
-              'Ground-State Bleach (GSB): depletion of ground-state population reduces absorption, giving negative ΔA at ground-state wavelengths',
-              'Stimulated Emission (SE): probe-induced emission increases transmitted intensity, producing negative ΔA, typically red-shifted',
-              'Excited-State Absorption (ESA): excited states absorb further, producing positive ΔA at higher-lying transitions',
-              'Product Absorption: transient or long-lived species absorb the probe, giving positive ΔA alongside corresponding bleach'
             ],
             visualKey: 'spectral-contributions'
           },

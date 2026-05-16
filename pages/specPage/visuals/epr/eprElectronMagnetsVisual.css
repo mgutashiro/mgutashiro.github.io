@@ -1,0 +1,140 @@
+.EPRElectronMagnetsVisual {
+    width: 100%;
+    margin: 0;
+}
+
+.EPRElectronMagnetsVisual_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.EPRElectronMagnetsVisual_PanelRect {
+    stroke: var(--border-strong);
+    stroke-width: 1.35;
+}
+
+.EPRElectronMagnetsVisual_SplitLine {
+    stroke: color-mix(in oklab, var(--text) 18%, transparent);
+    stroke-width: 1.2;
+    stroke-dasharray: 6 9;
+    opacity: 0.8;
+}
+
+.EPRElectronMagnetsVisual_TopHalfVisualPanel {
+    pointer-events: none;
+}
+
+.EPRElectronMagnetsVisual_Circle {
+    stroke: color-mix(in oklab, var(--text) 22%, transparent);
+    stroke-width: 1.25;
+}
+
+.EPRElectronMagnetsVisual_Circle--proton {
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--accent-3) 26%, transparent));
+}
+
+.EPRElectronMagnetsVisual_Circle--electron {
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--accent-2) 28%, transparent));
+}
+
+.EPRElectronMagnetsVisual_UpArrowShaft {
+    stroke: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.9;
+}
+
+.EPRElectronMagnetsVisual_UpArrowHead {
+    fill: color-mix(in oklab, var(--text) 80%, var(--accent-2) 20%);
+    opacity: 0.95;
+}
+
+.EPRElectronMagnetsVisual_BottomSpinArrow {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 80%, var(--accent) 20%);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.9;
+}
+
+
+
+.EPRElectronMagnetsVisual_BottomSpinArrow--proton {
+    stroke: color-mix(in oklab, var(--text) 70%, var(--accent-3) 30%);
+    stroke-width: 2.5;
+}
+
+.EPRElectronMagnetsVisual_BottomSpinArrow--electron {
+    stroke: color-mix(in oklab, var(--text) 72%, var(--accent-2) 28%);
+    stroke-width: 5;
+}
+
+.EPRElectronMagnetsVisual_TextLayer {
+    pointer-events: none;
+}
+
+.EPRElectronMagnetsVisual_BottomHalfVisualPanel {
+    pointer-events: none;
+}
+
+.EPRElectronMagnetsVisual_OrbitalLine {
+    stroke: color-mix(in oklab, var(--text) 56%, var(--accent-2) 44%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.82;
+}
+
+.EPRElectronMagnetsVisual_DownArrowShaft {
+    stroke: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.9;
+}
+
+.EPRElectronMagnetsVisual_DownArrowHead {
+    fill: color-mix(in oklab, var(--text) 80%, var(--accent-2) 20%);
+    opacity: 0.95;
+}
+
+.EPRElectronMagnetsVisual_UpArrow--bottomElectron .EPRElectronMagnetsVisual_UpArrowShaft,
+.EPRElectronMagnetsVisual_DownArrow--bottomElectron .EPRElectronMagnetsVisual_DownArrowShaft {
+    stroke: color-mix(in oklab, var(--accent-2) 76%, var(--text) 24%);
+    stroke-width: 1.8;
+}
+
+.EPRElectronMagnetsVisual_UpArrow--bottomElectron .EPRElectronMagnetsVisual_UpArrowHead,
+.EPRElectronMagnetsVisual_DownArrow--bottomElectron .EPRElectronMagnetsVisual_DownArrowHead {
+    fill: color-mix(in oklab, var(--accent-2) 76%, var(--text) 24%);
+}
+
+.EPRElectronMagnetsVisual_Label {
+    fill: var(--text);
+    font-family: var(--font-tech);
+    font-weight: var(--w-medium);
+    letter-spacing: 0.02em;
+}
+
+.EPRElectronMagnetsVisual_Label--heading {
+    font-size: 16px;
+    fill: color-mix(in oklab, var(--text) 92%, var(--accent-2) 8%);
+}
+
+.EPRElectronMagnetsVisual_Label--vs {
+    font-size: 14px;
+    font-weight: var(--w-black);
+    fill: var(--accent-3);
+    letter-spacing: 0.08em;
+}
+
+.EPRElectronMagnetsVisual_Label--math {
+    font-size: 16px;
+    fill: color-mix(in oklab, var(--text) 88%, var(--accent) 12%);
+}
+
+.EPRElectronMagnetsVisual_Label--equals {
+    font-size: 18px;
+    font-weight: var(--w-semibold);
+    fill: var(--accent-2);
+}

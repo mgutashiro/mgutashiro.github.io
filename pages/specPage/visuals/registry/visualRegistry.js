@@ -6,20 +6,16 @@
  */
 
 import DualNatureVisual from '../whatIsSpec/dualNatureVisual.jsx';
-import QuantizedInteractionVisual from '../whatIsSpec/quantizedLightVisual.jsx';
 
 import SourceVisual from '../commonFramework/sourceVisual.jsx';
-import FieldMatterInteractionVisual from '../commonFramework/fieldMatterInteractionVisual.jsx';
 
 import WhiteLightSplittingVisual from '../uvvis/whiteLightSplittingVisual.jsx';
-import UVVTransmissionVisual from '../uvvis/uvvTransmissionVisual.jsx';
 
 import EmissionVisual from '../fluorescence/FluorSpecEmission.jsx';
 
 import HiddenMotionVisual from '../nmr/nmrHiddenMotionVisual.jsx';
 
-import AfterExcitationVisual from '../epr/after-excitationVisual.jsx';
-import SpinHamiltonianVisual from '../epr/spin-hamiltonianVisual.jsx';
+import EPRElectronMagnets from '../epr/eprElectronMagnetsVisual.jsx';
 
 import pumpVisual from '../ultrafast/pumpVisual.jsx';
 import DeltaAVisual from '../ultrafast/delta-aVisual.jsx';
@@ -51,7 +47,9 @@ export const visualRegistry = {
         },
 
         'quantized-light': {
-            colleague: QuantizedInteractionVisual,
+            colleague: lazy(() =>
+                import('../whatIsSpec/quantizedLightVisual.jsx')
+            ),
         },
 
         'transitions': {
@@ -85,7 +83,9 @@ export const visualRegistry = {
         },
 
         'field-matter-interaction': {
-            colleague: FieldMatterInteractionVisual,
+            friends: lazy(() => 
+                import('../commonFramework/fieldMatterInteractionVisual.jsx')
+            ),
         },
 
         'transition-probability-population': {
@@ -120,7 +120,9 @@ export const visualRegistry = {
         },
 
         'uvvisTransmissionVisual': {
-            colleague: UVVTransmissionVisual,
+            colleague: lazy(() =>
+                import('../uvvis/uvvTransmissionVisual.jsx')
+            ),
         },
 
         'uvvisMonochromatorVisual': {
@@ -225,36 +227,43 @@ export const visualRegistry = {
         },
     },
 
-    'epr': {
-        'after-excitation': {
-            friends: AfterExcitationVisual,
+    'epr': { 
+        'epr-electron-magnets': {
+            friends: EPRElectronMagnets,
         },
 
-        'spin-appears': {
+        'epr-vs-nmr-resonance': {
             friends: lazy(() =>
-                import('../epr/spin-appearsVisual.jsx')
+                import('../epr/eprVsNmrResonanceVisual.jsx')
             ),
         },
 
-        'radical-pair': {
+        'epr-beer-radical-quality': {
             friends: lazy(() =>
-                import('../epr/radical-pairVisual.jsx')
+                import('../epr/eprBeerRadicalQualityVisual.jsx')
             ),
         },
 
-        'epr-signal': {
-            friends: lazy(() =>
-                import('../epr/epr-signalVisual.jsx')
-            ),
-        },
-
-        'spin-hamiltonian': {
-            colleague: SpinHamiltonianVisual
-        },
-
-        'spin-dynamics': {
+        'epr-single-spin-system': {
             colleague: lazy(() =>
-                import('../epr/spin-dynamicsVisual.jsx')
+                import('../epr/EPRSingleSpinSystemsVisual.jsx')
+            ),
+        },
+
+        'epr-vs-nmr-magnetic-moment': {
+            colleague: lazy(() =>
+                import('../epr/EPRVsNMRMagneticMomentVisual.jsx')
+            ),
+        },
+        'EPR-cu2-paramagnetic-spectrum': {
+            colleague: lazy(() =>
+              import('../epr/EPRCu2ParamagneticSpecVisual.jsx')  
+            ),
+        },
+
+        'epr-reveal-in-research': {
+            colleague: lazy(() =>
+                import('../epr/EPRResearchApplicationsVisual.jsx')
             ),
         },
     },

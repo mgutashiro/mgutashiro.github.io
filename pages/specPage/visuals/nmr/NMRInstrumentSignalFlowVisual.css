@@ -1,0 +1,126 @@
+.NMRInstrumentSignalFlowCanvas {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.NMInstrumentSignalFlow {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.NMInstrumentSignalFlow_Panel {
+    stroke: color-mix(in oklab, var(--accent-2) 35%, transparent);
+    stroke-width: 1.2;
+}
+
+.NMInstrumentSignalFlow_CenterLine {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 14%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 6 9;
+}
+
+.NMInstrumentSignalFlow_MagnetBody {
+    stroke: color-mix(in oklab, var(--text) 18%, transparent);
+    stroke-width: 1.5;
+}
+
+.NMInstrumentSignalFlow_MagnetCenterBody, .NMRInstrumentSignalFlow_CUVETTE {
+    stroke: color-mix(in oklab, var(--text) 18%, transparent);
+    stroke-width: 1.5;
+}
+
+.NMRInstrumentSignalFlow_MAGNETCOIL, .NMRInstrumentSignalFlow_SAMPLECOIL, .NMRInstrumentSignalFlow_ConnectingLine {
+    fill: none;
+    stroke: color-mix(in oklab, var(--copper) 72%, var(--accent-2) 28%);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(
+        0 0 0.45rem color-mix(in oklab, var(--copper) 45%, transparent)
+    );
+}
+.NMRInstrumentSignalFlow_ConnectingLine {
+    stroke-width: 3;
+}
+
+
+.NMRInstrumentSignalFlow_ConnectingArrowHead {
+    fill: color-mix(in oklab, var(--copper) 72%, var(--accent-2) 28%);
+    filter: drop-shadow(
+        0 0 0.45rem color-mix(in oklab, var(--copper) 45%, transparent)
+    );
+}
+
+.NMInstrumentSignalFlow_SignalBlock {
+    stroke: color-mix(in oklab, var(--accent-2) 42%, transparent);
+    stroke-width: 1.4;
+    vector-effect: non-scaling-stroke;
+}
+
+.NMInstrumentSignalFlow_ReadoutSignal {
+    fill: none;
+    stroke: color-mix(in oklab, var(--bg) 75%, var(--accent-2) 25%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.NMInstrumentSignalFlow_ReadoutArrowLine {
+    stroke: color-mix(in oklab, var(--bg) 82%, black 18%);
+    stroke-width: 2;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.NMInstrumentSignalFlow_ReadoutArrowHead {
+    fill: color-mix(in oklab, var(--bg) 82%, black 18%);
+}
+
+.NMInstrumentSignalFlow_SignalBlockText {
+    font-family: var(--font-tech);
+    font-size: 1rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    fill: color-mix(in oklab, var(--bg) 82%, var(--text-muted) 18%);
+    pointer-events: none;
+}
+
+.NMRInstrumentSignalFlow_Label {
+  font-family: var(--font-tech);
+  font-weight: var(--w-semibold);
+  letter-spacing: 0.055em;
+  pointer-events: none;
+  font-size: 1rem;
+    fill: color-mix(in oklab, var(--accent-2) 80%, white 20%);
+    filter: drop-shadow(
+        0 0 0.45rem color-mix(in oklab, var(--accent-2) 55%, transparent)
+    );
+}
+
+.NMRInstrumentSignalFlow_Label--absorption {
+    font-size: 0.7rem;
+}
+
+
+.NMRInstrumentSignalFlowCaption {
+    max-width: 64ch;
+    margin-top: 0.35rem;
+    margin: 0 auto;
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    text-align: justify;
+    text-wrap: pretty;
+    color: transparent;
+    background-image: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+}

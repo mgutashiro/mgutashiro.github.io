@@ -135,12 +135,23 @@ export const spectroscopyVisuals = {
     title: 'TREPR / EPR',
     visualType: 'instrument-hotspot',
     demoHref: '',
-    parts: [
-      { id: 'source', label: 'Source', title: 'Photoexcitation + Microwave Field' },
-      { id: 'sample', label: 'Sample', title: 'Radical Pair Region' },
-      { id: 'discriminator', label: 'Discriminator', title: 'Spin-State Selection' },
-      { id: 'detector', label: 'Detector', title: 'Microwave Detection' }
-    ]
+    modes: {
+      friends: {
+        parts: [
+          { id: 'epr-electron-magnets', label: 'Source', visualKey: 'epr-electron-magnets' },
+          { id: 'epr-vs-nmr-resonance', label: 'Sample', visualKey: 'epr-vs-nmr-resonance' },
+          { id: 'epr-beer-radical-quality', label: 'Discriminator', visualKey: 'epr-beer-radical-quality' },
+        ],
+      },
+      colleague: {
+        parts: [
+          { id: 'epr-single-spin-system', label: 'Source', visualKey: 'EPR-single-spin-systems' },
+          { id: 'epr-vs-nmr-magnetic-moment', label: 'Sample', visualKey: 'EPR-vs-nmr-magnetic-moment' },
+          { id: 'epr-cu2-paramagnetic-spec', label: 'Discriminator', visualKey: 'EPR-cu2-paramagnetic-spectrum' },
+          { id: 'epr-reveal-in-researchr', label: 'Discriminator', visualKey: 'EPR-research-applications' },
+        ],
+      },
+    },
   },
 
   'ultrafast-ta': {

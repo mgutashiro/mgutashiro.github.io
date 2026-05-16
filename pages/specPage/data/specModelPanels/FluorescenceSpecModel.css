@@ -267,6 +267,98 @@
     color: color-mix(in oklab, var(--c-glow-1) 66%, white 10%);
 }
 
+.FluorPCReadout {
+    width: 180px;
+    height: 110px;
+    padding: 0.55rem;
+    border: 1px solid color-mix(in oklab, var(--c-glow-1) 55%, white 10%);
+    border-radius: 0.7rem;
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            color-mix(in oklab, var(--c-glow-1) 18%, transparent),
+            transparent 58%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(8, 15, 28, 0.96),
+            rgba(4, 7, 16, 0.98)
+        );
+    box-shadow:
+        0 0 18px color-mix(in oklab, var(--c-glow-1) 34%, transparent),
+        inset 0 0 18px rgba(63, 255, 226, 0.12);
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+        opacity 260ms ease,
+        transform 260ms ease,
+        box-shadow 260ms ease;
+}
+
+.FluorPCReadout.is-active {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow:
+        0 0 22px color-mix(in oklab, var(--c-glow-1) 48%, transparent),
+        0 0 44px color-mix(in oklab, var(--c-glow-2) 18%, transparent),
+        inset 0 0 22px rgba(63, 255, 226, 0.16);
+}
+
+.FluorPCReadout_Header,
+.FluorPCReadout_Footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-tech);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--c-glow-1) 78%, white 12%);
+}
+
+.FluorPCReadout_Graph {
+    width: 100%;
+    height: 72px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.2rem;
+    overflow: visible;
+}
+
+.FluorPCReadout_GridLine {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 8;
+    vector-effect: non-scaling-stroke;
+}
+
+.FluorPCReadout_Curve {
+    fill: none;
+    stroke: color-mix(in oklab, var(--c-glow-1) 80%, white 20%);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-glow-1) 80%, transparent));
+}
+
+.FluorPCReadout.is-active .FluorPCReadout_Curve {
+    animation: fluorPCReadoutDraw var(--pc-readout-duration) ease-out forwards;
+}
+
+@keyframes fluorPCReadoutDraw {
+    from {
+        stroke-dashoffset: 1;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
 @media (max-width: 900px) {
     .FluorescenceSpecModelPage .SpecDemoControlBar {
         gap: 0.45rem;
