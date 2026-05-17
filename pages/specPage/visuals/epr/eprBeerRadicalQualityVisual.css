@@ -9,3 +9,30 @@
     height: auto;
 }
 
+.EPRBeerRadicalQuality_TextLabel {
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.48;
+    letter-spacing: 0.002em;
+
+    fill: color-mix(in oklab, var(--text) 60%, var(--accent-2) 40%);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.EPRBeerRadicalQuality_Title {
+    font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+    font-weight: var(--w-black);
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+}
+
+.EPRBeerRadicalQuality_BottleLabel {
+    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+    font-weight: var(--w-semibold);
+}
+
+.EPRBeerRadicalQuality_Comparison {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: var(--w-black);
+}

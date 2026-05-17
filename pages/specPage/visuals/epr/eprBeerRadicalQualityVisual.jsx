@@ -3,14 +3,14 @@ import { useId } from "react";
 
 const VIEWBOX = {
     width: 520,
-    height: 360,
+    height: 450,
 };
 
 const PANEL = {
     x: 18,
     y: 18,
     width: 484,
-    height: 324,
+    height: 424,
     rx: 28,
 };
 
@@ -67,21 +67,23 @@ function EPRBeerRadicalQualityVisualDefs({
                 y2={PANEL.y + PANEL.height}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop offset="0%" stopColor="white" stopOpacity="0.16" />
-                <stop offset="100%" stopColor="white" stopOpacity="0.02" />
+                <stop offset="0%" stopColor="white" stopOpacity="0.28" />
+                <stop offset="45%" stopColor="white" stopOpacity="0.18" />
+                <stop offset="100%" stopColor="#F6F8FF" stopOpacity="0.08" />
             </linearGradient>
 
             <linearGradient
                 id={greenWashId}
                 x1={PANEL.x}
-                y1={PANEL.y + PANEL.height}
+                y1={PANEL.y}
                 x2={PANEL.x + PANEL.width}
-                y2={PANEL.y}
+                y2={PANEL.y + PANEL.height}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop offset="0%" stopColor="var(--accent-4)" stopOpacity="0.24" />
-                <stop offset="65%" stopColor="var(--accent-4)" stopOpacity="0.08" />
-                <stop offset="100%" stopColor="var(--accent-4)" stopOpacity="0.02" />
+                <stop offset="0%" stopColor="#D8FF8A" stopOpacity="0.30" />
+                <stop offset="18%" stopColor="#98D94C" stopOpacity="0.40" />
+                <stop offset="58%" stopColor="#6FAF33" stopOpacity="0.42" />
+                <stop offset="100%" stopColor="#3D5D1B" stopOpacity="0.28" />
             </linearGradient>
 
             <linearGradient
@@ -92,22 +94,17 @@ function EPRBeerRadicalQualityVisualDefs({
                 y2={PANEL.y + PANEL.height}
                 gradientUnits="userSpaceOnUse"
             >
-                <stop offset="0%" stopColor="#FFD36A" stopOpacity="0.36" />
-                <stop offset="55%" stopColor="#F59E0B" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#7A3E00" stopOpacity="0.08" />
+                <stop offset="0%" stopColor="#FFD978" stopOpacity="0.44" />
+                <stop offset="18%" stopColor="#E59A2F" stopOpacity="0.70" />
+                <stop offset="52%" stopColor="#B56418" stopOpacity="0.84" />
+                <stop offset="100%" stopColor="#5E2608" stopOpacity="0.72" />
             </linearGradient>
 
-            <linearGradient
-                id={beerWashId}
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-            >
-                <stop offset="0%" stopColor="#F7E6AE" stopOpacity="0.88" />
-                <stop offset="26%" stopColor="#D9B765" stopOpacity="0.78" />
-                <stop offset="62%" stopColor="#A97735" stopOpacity="0.64" />
-                <stop offset="100%" stopColor="#6C4720" stopOpacity="0.52" />
+            <linearGradient id={beerWashId} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#F7E6AE" stopOpacity="0.84" />
+                <stop offset="26%" stopColor="#D9B765" stopOpacity="0.72" />
+                <stop offset="62%" stopColor="#A97735" stopOpacity="0.58" />
+                <stop offset="100%" stopColor="#6C4720" stopOpacity="0.44" />
             </linearGradient>
 
             <linearGradient
@@ -117,13 +114,6 @@ function EPRBeerRadicalQualityVisualDefs({
                 x2="1"
                 y2="0"
             >
-                <stop offset="0%" stopColor="white" stopOpacity="0.18" />
-                <stop offset="18%" stopColor="white" stopOpacity="0.06" />
-                <stop offset="55%" stopColor="white" stopOpacity="0.02" />
-                <stop offset="100%" stopColor="white" stopOpacity="0.08" />
-            </linearGradient>
-
-            <linearGradient id={glassHighlightId} x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="white" stopOpacity="0.18" />
                 <stop offset="18%" stopColor="white" stopOpacity="0.06" />
                 <stop offset="55%" stopColor="white" stopOpacity="0.02" />
@@ -205,16 +195,15 @@ function BeerQualityGlassRow({
     greenWashId,
     amberWashId,
     beerWashId,
-    glassHighlightId,
 }) {
     const scale = 0.084;
     const glassWidth = BEER_GLASS.width * scale;
     const glassHeight = BEER_GLASS.height * scale;
-    const gap = 26;
+    const gap = 80;
 
     const totalWidth = glassWidth * 3 + gap * 2;
     const startX = PANEL_MID.x - totalWidth / 2;
-    const baseY = PANEL.y + PANEL.height - glassHeight - 18;
+    const baseY = PANEL.y + PANEL.height - glassHeight - 70;
 
     return (
         <g className="EPRBeerRadicalQuality_GlassRow">
@@ -224,8 +213,8 @@ function BeerQualityGlassRow({
                 scale={scale}
                 shellFillId={clearWhiteId}
                 beerWashId={beerWashId}
-                liquidOpacity={0.82}
-                shellOpacity={0.10}
+                liquidOpacity={0.86}
+                shellOpacity={0.18}
             />
 
             <BeerQualityGlass
@@ -234,8 +223,8 @@ function BeerQualityGlassRow({
                 scale={scale}
                 shellFillId={greenWashId}
                 beerWashId={beerWashId}
-                liquidOpacity={0.60}
-                shellOpacity={0.56}
+                liquidOpacity={0.56}
+                shellOpacity={0.72}
             />
 
             <BeerQualityGlass
@@ -244,8 +233,105 @@ function BeerQualityGlassRow({
                 scale={scale}
                 shellFillId={amberWashId}
                 beerWashId={beerWashId}
-                liquidOpacity={0.34}
-                shellOpacity={1}
+                liquidOpacity={0.16}
+                shellOpacity={0.96}
+            />
+        </g>
+    );
+}
+
+function BottleTextLabel({
+    x,
+    y,
+    lines,
+    className = "",
+    lineGap = 18,
+}) {
+    const textLines = Array.isArray(lines) ? lines : String(lines).split("\n");
+
+    return (
+        <text
+            x={x}
+            y={y}
+            textAnchor="middle"
+            className={`EPRBeerRadicalQuality_TextLabel ${className}`}
+        >
+            {textLines.map((line, index) => (
+                <tspan
+                    key={`${line}-${index}`}
+                    x={x}
+                    dy={index === 0 ? 0 : lineGap}
+                >
+                    {line}
+                </tspan>
+            ))}
+        </text>
+    );
+}
+
+function BeerQualityTextRow() {
+    const scale = 0.084;
+    const glassWidth = BEER_GLASS.width * scale;
+    const glassHeight = BEER_GLASS.height * scale;
+    const gap = 42;
+
+    const totalWidth = glassWidth * 3 + gap * 2;
+    const startX = PANEL_MID.x - totalWidth / 2;
+    const baseY = PANEL.y + PANEL.height - glassHeight - 34;
+
+    const leftBottleCenter = startX + glassWidth / 2;
+    const middleBottleCenter = startX + glassWidth + gap + glassWidth / 2;
+    const rightBottleCenter = startX + (glassWidth + gap) * 2 + glassWidth / 2;
+
+    const labelY = baseY + glassHeight - 10;
+    const comparisonY = labelY + 10;
+
+    const leftMiddleSymbolX = (leftBottleCenter + middleBottleCenter) / 2;
+    const middleRightSymbolX = (middleBottleCenter + rightBottleCenter) / 2;
+
+    return (
+        <g className="EPRBeerRadicalQuality_TextRow">
+            <BottleTextLabel
+                x={PANEL_MID.x}
+                y={PANEL.y + 28}
+                lines={["Beer Glass Bottle and", "Quality Longevity"]}
+                className="EPRBeerRadicalQuality_Title"
+                lineGap={25}
+            />
+
+            <BottleTextLabel
+                x={leftBottleCenter - 30}
+                y={labelY}
+                lines={["Clear Bottle", "Lowest Quality"]}
+                className="EPRBeerRadicalQuality_BottleLabel"
+            />
+
+            <BottleTextLabel
+                x={middleBottleCenter + 10}
+                y={labelY + 10}
+                lines={["Green Bottle"]}
+                className="EPRBeerRadicalQuality_BottleLabel"
+            />
+
+            <BottleTextLabel
+                x={rightBottleCenter + 40}
+                y={labelY}
+                lines={["Amber Bottle", "Best Quality"]}
+                className="EPRBeerRadicalQuality_BottleLabel"
+            />
+
+            <BottleTextLabel
+                x={leftMiddleSymbolX - 10}
+                y={comparisonY}
+                lines={["<"]}
+                className="EPRBeerRadicalQuality_Comparison"
+            />
+
+            <BottleTextLabel
+                x={middleRightSymbolX + 20}
+                y={comparisonY}
+                lines={["<"]}
+                className="EPRBeerRadicalQuality_Comparison"
             />
         </g>
     );
@@ -261,7 +347,6 @@ export default function EPRBeerQualityRadical() {
     const amberWashId = `epr-beer-radical-quality-amber-wash-${id}`;
     const beerWashId = `epr-beer-radical-quality-beer-wash-${id}`;
     const beerHighlightId = `epr-beer-radical-quality-beer-highlight-${id}`;
-    const glassHighlightId = `epr-beer-radical-quality-glass-highlight-${id}`;
 
     return (
         <figure className="EPRBeerQualityRadical">
@@ -293,8 +378,9 @@ export default function EPRBeerQualityRadical() {
                     amberWashId={amberWashId}
                     beerWashId={beerWashId}
                     beerHighlightId={beerHighlightId}
-                    glassHighlightId={glassHighlightId}
                 />
+
+                <BeerQualityTextRow />
 
 
             </svg>
