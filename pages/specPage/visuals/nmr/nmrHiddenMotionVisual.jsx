@@ -1,6 +1,7 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Html, Line } from "@react-three/drei";
+import "./nmrHiddenMotionVisual.css";
 
 import {
   ACWArrow,
@@ -14,13 +15,64 @@ import {
   StagePlane,
 } from "../SharedSpinStage";
 
-import "./nmrHiddenMotionVisual.css";
+
+function TinyMagnetCallout({ palette }) {
+    const labelPos = [0, 1.55, 0.35];
+    const leftTarget = [-2.15, 0.75, 0.25];
+    const rightTarget = [2.15, 0.75, 0.25];
+
+    return (
+        <group>
+            <Line
+                points={[labelPos, leftTarget]}
+                color={palette.accent2}
+                lineWidth={1.4}
+                transparent
+                opacity={0.72}
+            />
+
+            <Line
+                points={[labelPos, rightTarget]}
+                color={palette.accent3}
+                lineWidth={1.4}
+                transparent
+                opacity={0.72}
+            />
+
+            <Html
+                position={labelPos}
+                center
+                transform
+                sprite
+                distanceFactor={7}
+                style={{ pointerEvents: "none" }}
+            >
+                <div className="NMRSpinPair_TinyMagnetLabel">
+                    “tiny magnets”
+                </div>
+            </Html>
+        </group>
+    );
+}
+
+function SpinModelNote() {
+    return (
+        <Html
+            position={[0, -2, 0.65]}
+            center
+            transform
+            sprite
+            distanceFactor={7.5}
+            style={{ pointerEvents: "none" }}
+        >
+            <div className="NMRSpinPair_ModelNote">
+                This is a helpful picture, not the exact reality: nuclei do not literally spin like tiny spheres.
+            </div>
+        </Html>
+    );
+}
 
 export function NMRSpinPairRig({
-    leftTop = "N",
-    leftBottom = "S",
-    rightTop = "S",
-    rightBottom = "N",
     leftDirection = 1,
     rightDirection = -1,
 }) {
@@ -50,24 +102,24 @@ export function NMRSpinPairRig({
 
             <group position={[0, 0.15, 0]}>
                 <SpinSphereUnit
-                position={[-2.15, 0, 0]}
-                direction={leftDirection}
-                topText={leftTop}
-                bottomText={leftBottom}
-                palette={palette}
-                shellColor={palette.sphereBaseLeft}
-                lineColor={palette.accent2}
+                    position={[-2.15, 0, 0]}
+                    direction={leftDirection}
+                    palette={palette}
+                    shellColor={palette.sphereBaseLeft}
+                    lineColor={palette.accent2}
+                    flipMagnet={false}
                 />
 
                 <SpinSphereUnit
-                position={[2.15, 0, 0]}
-                direction={rightDirection}
-                topText={rightTop}
-                bottomText={rightBottom}
-                palette={palette}
-                shellColor={palette.sphereBaseRight}
-                lineColor={palette.accent3}
+                    position={[2.15, 0, 0]}
+                    direction={rightDirection}
+                    palette={palette}
+                    shellColor={palette.sphereBaseRight}
+                    lineColor={palette.accent3}
+                    flipMagnet={true}
                 />
+                <TinyMagnetCallout palette={palette} />
+                <SpinModelNote />
             </group>
 
             <StageArrow
@@ -112,6 +164,7 @@ export default function NMRSpinPairScene({
                     />
                 </Canvas>
             </div>
+
 
             <figcaption className="NMRSpinPair_Caption">
                 <span className="NMRSpinPair_CaptionText">{caption}</span>

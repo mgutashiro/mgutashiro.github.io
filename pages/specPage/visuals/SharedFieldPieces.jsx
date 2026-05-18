@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
 export const ACWArrow = `M89.3458 31.5179L65.1416 34.5133L37.8857 41.4027L20.6634 47.094C20.6634 47.094 8.5292 52.777 4.46748 59.6753C0.893 65.7462 -0.144853 70.3778 0.868399 77.3474C1.83186 83.9746 8.66642 92.6246 8.66642 92.6246L20.6634 102.509L34.4599 111.196L49.756 118.684L62.9526 122.635L76.1493 124.675L94.4446 127.371L115.439 129.168L131.635 130.367H151.13H171.825H193.719H214.714C214.714 130.367 222.512 130.367 231.81 130.367C238.6 130.367 243.441 128.97 250.705 127.371C260.003 125.324 262.016 124.239 267.201 122.579C273.478 120.568 282.497 115.989 282.497 115.989L294.834 109.399L306.791 101.91C306.791 101.91 315.488 96.5176 320.287 91.7255C325.086 86.9334 326.286 81.5417 326.286 81.5417C326.286 81.5417 327.656 74.9979 327.485 70.4587C327.341 66.6027 325.086 60.8728 325.086 60.8728L317.888 52.1861L311.889 46.1961L304.991 41.1032L294.834 35.3522L287.595 31.5183L279.185 26.809L270.253 23.2241L262.402 21.9334H253.404H245.606M263.302 0.366577L259.103 4.26059L254.904 9.05321L250.405 15.044L245.606 21.9334L251.605 28.8228L256.703 34.2145L261.202 38.7076L266.901 44.0993`;
@@ -134,23 +133,9 @@ export function StageArrow({
     );
 }
 
-export function PoleLabel({ children, position, className = "" }) {
-  return (
-    <Html
-      position={position}
-      center
-      distanceFactor={8}
-      style={{ pointerEvents: "none" }}
-    >
-      <div className={`NMRSpinPair_Label ${className}`}>{children}</div>
-    </Html>
-  );
-}
 
 export function VerticalMagnet({
     palette,
-    topText = "N",
-    bottomText = "S",
     topColor,
     bottomColor,
 }) {
@@ -158,9 +143,6 @@ export function VerticalMagnet({
     const poleHeight = 0.95;
     const poleOffset = 0.62;
     const capOffset = 1.16;
-
-    const labelY = capOffset + 0.4;
-    const labelZ = 0.08;
 
     return (
         <group>
@@ -219,20 +201,6 @@ export function VerticalMagnet({
                 emissiveIntensity={0.22}
                 />
             </mesh>
-
-            <PoleLabel
-                position={[0, labelY, labelZ]}
-                className="NMRSpinPair_Label--top"
-            >
-                {topText}
-            </PoleLabel>
-
-            <PoleLabel
-                position={[0, -labelY, labelZ]}
-                className="NMRSpinPair_Label--bottom"
-            >
-                {bottomText}
-            </PoleLabel>
         </group>
     );
 }

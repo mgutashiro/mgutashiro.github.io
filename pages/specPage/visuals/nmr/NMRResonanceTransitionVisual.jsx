@@ -67,10 +67,6 @@ function SpinEnergyStateLabel({
 }
 
 export function NMRResonanceTransitionRig({
-    leftTop = "N",
-    leftBottom = "S",
-    rightTop = "S",
-    rightBottom = "N",
     leftDirection = 1,
     rightDirection = -1,
 }) {
@@ -112,11 +108,10 @@ export function NMRResonanceTransitionRig({
                 <SpinSphereUnit
                     position={[-2.15, 0, 0]}
                     direction={leftDirection}
-                    topText={leftTop}
-                    bottomText={leftBottom}
                     palette={palette}
                     shellColor={palette.sphereBaseLeft}
                     lineColor={palette.accent2}
+                    flipMagnet={false}
                 />
 
                 {/* resonance transition arrow */}
@@ -126,11 +121,10 @@ export function NMRResonanceTransitionRig({
                 <SpinSphereUnit
                     position={[2.15, 0, 0]}
                     direction={rightDirection}
-                    topText={rightTop}
-                    bottomText={rightBottom}
                     palette={palette}
                     shellColor={palette.sphereBaseRight}
                     lineColor={palette.accent3}
+                    flipMagnet={true}
                 />
 
                 {/* spin-direction arrows on the stage */}
@@ -150,19 +144,19 @@ export function NMRResonanceTransitionRig({
 
                 {/* spin energy state labels */}
                 <SpinEnergyStateLabel
-                    position={[-2, -2, 0.65]}
+                    position={[-2, -1.5, 0.65]}
                 >
                     +1/2 <span className="NMRResonanceTransitionVisual_LabelMuted">(or α)</span>
                 </SpinEnergyStateLabel>
 
                 <SpinEnergyStateLabel
-                    position={[2, -2, 0.65]}
+                    position={[2, -1.5, 0.65]}
                 >
                     −1/2 <span className="NMRResonanceTransitionVisual_LabelMuted">(or β)</span>
                 </SpinEnergyStateLabel>
 
                 <SpinEnergyStateLabel
-                    position={[0, -2.5, 0.65]}
+                    position={[0, -2, 0.65]}
                     className="NMRResonanceTransitionVisual_EnergyLabel--title"
                 >
                     Spin Energy States
@@ -181,7 +175,6 @@ export function NMRResonanceTransitionRig({
 
 export default function NMRResonanceTransitionVisuals({
     className = "",
-    caption = "Radio-frequency energy can drive a transition between nuclear spin states when it matches the energy gap set by the magnetic field.",
     showControls = false,
 }) {
     return (
@@ -204,7 +197,8 @@ export default function NMRResonanceTransitionVisuals({
             </div>
 
             <figcaption className="NMRSpinPair_Caption">
-                <span className="NMRSpinPair_CaptionText">{caption}</span>
+                <span className="NMRSpinPair_CaptionText">Radio-frequency energy can drive a transition between nuclear spin states when it matches the energy gap set by the magnetic field.</span>
+                <span className="NMRSpinPair_CaptionText2">NOTE: nuclear spin is an intrinsic quantum property with an associated magnetic moment; this is a simplified visualization.</span>
             </figcaption>
         </figure>
     );

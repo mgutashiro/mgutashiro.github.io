@@ -138,23 +138,20 @@ export function StagePlane({
 export function SpinSphereUnit({
     position = [0, 0, 0],
     direction = 1,
-    topText = "N",
-    bottomText = "S",
     palette,
     shellColor,
     lineColor,
     title,
+    flipMagnet = false,
 }) {
-    const topColor = topText === "N" ? palette.accent3 : palette.accent2;
-    const bottomColor = bottomText === "S" ? palette.accent2 : palette.accent3;
+    const topColor = flipMagnet ? palette.accent2 : palette.accent3;
+    const bottomColor = flipMagnet ? palette.accent3 : palette.accent2;
 
     return (
         <group position={position}>
             {/* fixed magnet */}
             <VerticalMagnet
                 palette={palette}
-                topText={topText}
-                bottomText={bottomText}
                 topColor={topColor}
                 bottomColor={bottomColor}
             />

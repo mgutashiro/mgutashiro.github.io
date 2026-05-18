@@ -1,0 +1,75 @@
+.EPRSingleSpinSystemsVisual {
+    width: 100%;
+    margin: 0;
+    pointer-events: none;
+}
+
+.EPRSingleSpinSystemsVisual_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.EPRSingleSpinSystemsVisual_Label {
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    font-weight: var(--w-medium);
+    fill: color-mix(in oklab, var(--text) 76%, var(--accent-2) 24%);
+    letter-spacing: 0.02em;
+}
+
+.EPRSingleSpinSystemsVisual_Background {
+    filter: drop-shadow(0 0 18px color-mix(in oklab, var(--accent) 22%, transparent));
+}
+
+.EPRSingleSpinSystemsVisual_PanelTitle {
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    fill: color-mix(in oklab, var(--text) 82%, var(--accent-2) 18%);
+}
+
+.EPRSingleSpinSystemsVisual_ShellLabel {
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.03em;
+    fill: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+}
+
+.EPRSingleSpinSystemsVisual_FieldLabel {
+    font-family: var(--font-tech);
+    font-size: 0.96rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.03em;
+    fill: color-mix(in oklab, var(--text) 82%, var(--accent-2) 18%);
+}
+
+.EPRSingleSpinSystemsVisual_Caption {
+    display: block;
+    width: min(32rem, 88%);
+    margin: 1rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.48;
+    letter-spacing: 0.002em;
+
+    background-image: var(--grad-neon-dim);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+    pointer-events: none;
+}

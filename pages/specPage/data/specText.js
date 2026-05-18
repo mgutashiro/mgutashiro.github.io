@@ -667,7 +667,7 @@ The final spectrum depends on both molecular structure and instrument control. F
               {
                 type: 'text',
                 value: `Closed-shell molecules are usually EPR-silent because paired electrons cancel their spin magnetic moments. In organic molecules, EPR-active species are often radicals. In transition-metal complexes, the signal often comes from partially filled d-orbitals with one or more unpaired d-electrons.
-This connects to magnetism: paramagnetic systems contain unpaired spins, ferromagnetic systems involve cooperative spin alignment, and antiferromagnetic systems involve oppositely coupled spins that can cancel. Here, the starting point is the simplest EPR-active idea: a system with a detectable net electron spin.`
+                This connects to magnetism: paramagnetic systems contain unpaired spins, ferromagnetic systems involve cooperative spin alignment, and antiferromagnetic systems involve oppositely coupled spins that can cancel. One thing to note is that in ferromagnetic and antiferromagnetic materials, electrons align spontaneously via exchange interactions. Here, the starting point is the simplest EPR-active idea: a system with a detectable net electron spin.`
               }
             ],
             visualKey: 'EPR-single-spin-systems',
