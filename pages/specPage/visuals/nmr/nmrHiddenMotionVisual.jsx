@@ -58,7 +58,7 @@ function TinyMagnetCallout({ palette }) {
 function SpinModelNote() {
     return (
         <Html
-            position={[0, -2, 0.65]}
+            position={[0, -1.7, 0.65]}
             center
             transform
             sprite

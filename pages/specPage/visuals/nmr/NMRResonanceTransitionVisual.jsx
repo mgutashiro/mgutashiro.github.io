@@ -35,7 +35,7 @@ function ResonanceTransitionArrow({ color = "#B6FF00" }) {
             </mesh>
 
             <Html
-                position={[0.2, 0, 0.1]}
+                position={[-0.1, 0, 0.1]}
                 center
                 transform
                 sprite
@@ -185,14 +185,14 @@ export default function NMRResonanceTransitionVisuals({
                     dpr={[1, 2]}
                     gl={{ antialias: true, alpha: true }}
                 >
-                <NMRResonanceTransitionRig />
+                    <NMRResonanceTransitionRig />
 
-                <OrbitControls
-                    enablePan={false}
-                    enableZoom={false}
-                    enableRotate={showControls}
-                    autoRotate={false}
-                />
+                    <OrbitControls
+                        enablePan={false}
+                        enableZoom={false}
+                        enableRotate={showControls}
+                        autoRotate={false}
+                    />
                 </Canvas>
             </div>
 

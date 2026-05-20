@@ -615,7 +615,7 @@ The final spectrum depends on both molecular structure and instrument control. F
             body: [
               {
                 type: 'text',
-                value: `EPR stands for electron paramagnetic resonance. Similar NMR, it places a sample inside a magnetic field and watches for a resonance signal.`,
+                value: `EPR stands for electron paramagnetic resonance. Similar NMR, it places a sample inside a magnetic field (B<sub>0</sub>) and watches for a resonance signal.`,
               },
               {
                 type: 'text',

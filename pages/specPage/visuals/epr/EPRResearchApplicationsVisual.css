@@ -1,0 +1,124 @@
+.EPRResearchApps {
+    display: block;
+    width: min(100%, 54rem);
+    margin: 0 auto;
+    pointer-events: none;
+}
+
+.EPRResearchApps_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.EPRResearchApps_Background {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.EPRResearchApps_Title {
+    font-family: var(--font-tech);
+    font-size: 1.2rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    fill: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+}
+
+.EPRResearchApps_SchemeLayer {
+    opacity: 0.96;
+}
+
+.EPRResearchApps_SchemeCard {
+    fill: color-mix(in oklab, var(--surface) 72%, transparent);
+    stroke: color-mix(in oklab, var(--accent-2) 38%, transparent);
+    stroke-width: 1.1;
+}
+
+.EPRResearchApps_SchemeImage {
+    opacity: 0.92;
+}
+
+.EPRResearchApps_SchemeLabels {
+    pointer-events: none;
+}
+
+.EPRResearchApps_SchemeLabel {
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.045em;
+
+    fill: color-mix(in oklab, var(--text) 82%, var(--accent-2) 18%);
+
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 78%, transparent);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
+.EPRResearchApps_SchemeLabel--product {
+    fill: color-mix(in oklab, var(--text) 80%, var(--accent-4) 20%);
+}
+
+.EPRResearchApps_BeerBloom {
+    filter: drop-shadow(0 0 14px color-mix(in oklab, var(--accent-2) 48%, transparent));
+}
+
+.EPRResearchApps_Caption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.05rem auto 0;
+    padding-inline: 0;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    opacity: 0.9;
+}
+
+.EPRResearchApps_CaptionText {
+    display: block;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    background-image: var(--grad-neon-dim);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.EPRResearchApps_ReferenceLine {
+    display: block;
+    margin-top: 0.35rem;
+
+    font-size: 0.78em;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+    text-align: center;
+
+    color: color-mix(in oklab, white 82%, var(--accent-2) 18%);
+    -webkit-text-fill-color: color-mix(in oklab, white 82%, var(--accent-2) 18%);
+
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    opacity: 0.86;
+    pointer-events: auto;
+}
+
+.EPRResearchApps_ReferenceLine:hover {
+    color: color-mix(in oklab, white 72%, var(--accent-4) 28%);
+    -webkit-text-fill-color: color-mix(in oklab, white 72%, var(--accent-4) 28%);
+    text-decoration: underline;
+}
