@@ -1,0 +1,38 @@
+.EPRHYQRadicalSpecFigure {
+  display: block;
+  width: min(34rem, 96%);
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+.EPRHYQRadicalSpec {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.EPRHYQRadicalSpecCaption {
+  display: block;
+  width: min(32rem, 92%);
+  margin: 0.45rem auto 0;
+  padding-inline: 0;
+
+  text-align: justify;
+  text-wrap: pretty;
+
+  font-family: var(--font-tech);
+  font-size: clamp(0.82rem, 1vw, 0.98rem);
+  line-height: 1.42;
+  letter-spacing: 0.002em;
+
+  background: var(--grad-neon-dim);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0.9;
+}

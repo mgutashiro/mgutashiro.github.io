@@ -138,17 +138,17 @@ export const spectroscopyVisuals = {
     modes: {
       friends: {
         parts: [
-          { id: 'epr-electron-magnets', label: 'Source', visualKey: 'epr-electron-magnets' },
-          { id: 'epr-vs-nmr-resonance', label: 'Sample', visualKey: 'epr-vs-nmr-resonance' },
-          { id: 'epr-beer-radical-quality', label: 'Discriminator', visualKey: 'epr-beer-radical-quality' },
+          { id: 'epr-electron-magnets', label: 'EPR Electron Magnets', visualKey: 'epr-electron-magnets' },
+          { id: 'epr-vs-nmr-resonance', label: 'EPR vs NMR Resonance', visualKey: 'epr-vs-nmr-resonance' },
+          { id: 'epr-beer-radical-quality', label: 'EPR beer Radical Quality', visualKey: 'epr-beer-radical-quality' },
         ],
       },
       colleague: {
         parts: [
-          { id: 'epr-single-spin-system', label: 'Source', visualKey: 'EPR-single-spin-systems' },
-          { id: 'epr-vs-nmr-magnetic-moment', label: 'Sample', visualKey: 'EPR-vs-nmr-magnetic-moment' },
-          { id: 'epr-cu2-paramagnetic-spec', label: 'Discriminator', visualKey: 'EPR-cu2-paramagnetic-spectrum' },
-          { id: 'epr-reveal-in-researchr', label: 'Discriminator', visualKey: 'EPR-research-applications' },
+          { id: 'epr-single-spin-system', label: 'EPR Single Spin Systems', visualKey: 'EPR-single-spin-systems' },
+          { id: 'epr-vs-nmr-magnetic-moment', label: 'EPR vs NMR Magnetic Moment', visualKey: 'EPR-vs-nmr-magnetic-moment' },
+          { id: 'epr-hyq-radical-spec', label: 'EPR HYQ Radical Spec', visualKey: 'EPR-HYQRadical-spec' },
+          { id: 'epr-reveal-in-research', label: 'EPR Reveal in Research', visualKey: 'EPR-research-applications' },
         ],
       },
     },

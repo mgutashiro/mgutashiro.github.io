@@ -255,9 +255,9 @@ export const visualRegistry = {
                 import('../epr/EPRVsNMRMagneticMomentVisual.jsx')
             ),
         },
-        'EPR-cu2-paramagnetic-spectrum': {
+        'epr-hyq-radical-spec': {
             colleague: lazy(() =>
-              import('../epr/EPRCu2ParamagneticSpecVisual.jsx')  
+              import('../epr/EPRHYQRadicalSpecVisual.jsx')  
             ),
         },
 

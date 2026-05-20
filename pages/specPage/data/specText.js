@@ -516,13 +516,12 @@ NMR only works for certain nuclei that have spin, often ones with an odd mass nu
               {
                 type: 'text',
                 value: `After UV-Vis and fluorescence, Nuclear Magnetic Resonance or NMR shifts the experiment away from optical excitation of electronic states and toward magnetic resonance of nuclear spin states.
-
-NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. This commonly occurs for isotopes such as <sup>1</sup>H, <sup>13</sup>C, <sup>19</sup>F, and <sup>31</sup>P.`
+                NMR-active nuclei have nonzero nuclear spin and therefore a magnetic moment. This commonly occurs for isotopes such as <sup>1</sup>H and <sup>13</sup>C.`
               },
               {
                 type: 'text',
                 value: `Instead of using light to prepare an excited electronic population, NMR places the sample in a strong static magnetic field, B<sub>0</sub>, and uses radiofrequency radiation to drive transitions between nuclear spin energy levels.
-                For a spin-1/2 nucleus,B<sub>0</sub> splits the spin states into lower-energy α and higher-energy β levels:`,
+                When the nucleus spins, the B<sub>0</sub> splits the spin states into lower-energy α and higher-energy β levels:`,
               },
               {
                 type: 'equation',
@@ -691,21 +690,27 @@ The final spectrum depends on both molecular structure and instrument control. F
             visualKey: 'EPR-vs-nmr-magnetic-moment',
           },
           {
-            id: 'epr-cu2-paramagnetic-spec',
-            heading: 'Measuring Paramagnetic Systems',
+            id: 'epr-hyq-radical-spec',
+            heading: 'Measuring Organic Radical Systems',
             body: [
               {
-                type: 'text',
-                value: `EPR measures paramagnetic systems by following how an unpaired electron responds as the applied magnetic field, B<sub>0</sub>, is swept through resonance. When the microwave energy matches the field-defined spin gap, the system absorbs, producing an EPR signal. 
-A useful example is a Cu<sup>2+</sup> complex, where the unpaired electron behaves as a relatively simple paramagnetic spin center. In a CW EPR experiment, the spectrum is commonly interpreted through the g-values and hyperfine coupling to the copper nucleus. `
-              },
-              {
-                type: 'text',
-                value: `For an axially elongated Cu<sup>2+</sup> complex, the spectrum is described by g<sub>||</sub>, g<sub>⟂</sub>, A<sub>||</sub>, and A<sub>⟂</sub>. These features show how the electron spin experiences its local coordination environment and how it couples to the metal nucleus. 
-Because continuous wave (CW) EPR spectra are usually recorded as first derivatives, the signal appears as positive and negative peaks rather than as a simple absorption band. In the Cu<sup>2+</sup> example, the lower-field g<sub>||</sub> region often shows resolved copper hyperfine splitting, while the higher-field g<sub>⟂</sub> region forms the stronger main feature. Together, the line position, splitting, and shape connect the observed spectrum to the local electronic structure of the paramagnetic center. `,
-              }
+              type: 'text',
+              value: String.raw`EPR measures paramagnetic systems by following how an unpaired electron responds as the applied magnetic field, B<sub>0</sub>, is swept through resonance. When the microwave energy matches the field-defined spin gap, the system absorbs, producing an EPR signal.`
+            },
+            {
+              type: 'text',
+              value: String.raw`The resonance position is controlled by the g-value. For a free electron, g is close to 2.0023, but in a molecule the local electronic environment shifts this value through spin-orbit and orbital contributions. In an organic radical, the result is often described by a g-tensor rather than a single number. For the HYQ radical calculation, the principal g-values are g<sub>x</sub> = 2.0021, g<sub>y</sub> = 2.0049, and g<sub>z</sub> = 2.0077, with g<sub>iso</sub> = 2.0049. At fixed microwave frequency, larger g-values resonate at slightly lower magnetic field, so the anisotropic g-tensor helps spread and shape the frozen-solution spectrum.`
+            },
+            {
+              type: 'text',
+              value: String.raw`The fine structure within the EPR line comes from hyperfine coupling: magnetic interaction between the unpaired electron and nearby magnetic nuclei. In the HYQ radical, the most useful natural-abundance splitting pattern comes from the five <sup>1</sup>H nuclei. The calculated isotropic proton couplings are approximately A<sub>iso</sub> = −8.14, −15.71, +3.28, +3.29, and −16.82 MHz. These values describe how strongly each proton “feels” the unpaired electron spin density.`
+            },
+            {
+              type: 'text',
+              value: String.raw`In fluid solution, rapid molecular tumbling averages the orientation-dependent tensors into g<sub>iso</sub> and A<sub>iso</sub>, giving a sharper, more resolved hyperfine pattern. In a frozen or solid sample, that tumbling is removed, so the full g- and A-tensors become visible as an anisotropic line shape. This is why the same HYQ radical can be simulated as both a solution-like spectrum and a broader frozen-solution spectrum from the same ORCA-computed spin-Hamiltonian parameters.`
+            }
             ],
-            visualKey: 'EPR-cu2-paramagnetic-spectrum',
+            visualKey: 'EPR-HYQRadical-spec',
           },
           {
             id: 'epr-reveal-in-research',
