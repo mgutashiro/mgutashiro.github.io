@@ -1,0 +1,123 @@
+.EPRvsNMRMM {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.EPRvsNMRMM_svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.EPRvsNMRMM_panelStroke {
+    stroke-width: 1.35;
+    opacity: 0.72;
+}
+
+.EPRvsNMRMM_panelFill {
+    opacity: 0.92;
+}
+
+.EPRvsNMRMM__tableLine {
+    fill: color-mix(in oklab, var(--surface-2) 58%, transparent);
+    stroke: color-mix(in oklab, var(--text) 16%, transparent);
+    stroke-width: 1.1;
+}
+
+.EPRvsNMRMM__tableLine--major {
+    stroke: color-mix(in oklab, var(--accent-2) 64%, var(--text) 18%);
+    stroke-width: 3.2;
+    filter: drop-shadow(0 0 0.35rem var(--accent-2-glow));
+}
+
+.EPRvsNMRMM__tableCell {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 0.35rem;
+
+    box-sizing: border-box;
+    text-align: center;
+
+    font-family: var(--font-tech);
+    font-size: 0.68rem;
+    font-weight: var(--w-medium);
+    line-height: 1.18;
+
+    letter-spacing: 0.01em;
+
+    color: var(--text);
+}
+
+.EPRvsNMRMM__tableCell--title {
+    font-size: 0.74rem;
+    font-weight: var(--w-black);
+    letter-spacing: 0.035em;
+    color: var(--accent-2);
+    text-shadow:
+        0 0 0.35rem var(--accent-2-glow),
+        0 0 0.75rem color-mix(in oklab, var(--accent-2) 32%, transparent);
+}
+
+.EPRvsNMRMM__equation {
+    white-space: nowrap;
+}
+
+.EPRvsNMRMM__vec {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.22em;
+    padding-inline: 0.04em;
+}
+
+.EPRvsNMRMM__vec::after {
+    content: "→";
+    position: absolute;
+    left: 50%;
+    top: -1.2em;
+    transform: translateX(-50%);
+    font-size: 0.52em;
+    line-height: 1;
+}
+
+.EPRvsNMRMM__equation sub,
+.EPRvsNMRMM__tableCell sub {
+    display: inline-block;
+    line-height: 1;
+    font-size: 1em; 
+    transform: translateY(0.38em) scale(0.8);
+    transform-origin: left center;
+    margin-left: 0.02em;
+}
+
+.EPRvsNMRMM_caption {
+    display: block;
+    width: min(32rem, 88%);
+    margin: 1rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    line-height: 1.48;
+    letter-spacing: 0.002em;
+
+    background-image: var(--grad-neon-dim);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+    pointer-events: none;
+}

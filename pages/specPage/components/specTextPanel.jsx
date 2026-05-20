@@ -12,6 +12,7 @@ import {
   normalizeContentBlocks,
   normalizeTextBlock,
 } from '../utils/renderSpecContent';
+import InlineMathText from "./InlineMathText";
 
 export default function SpecTextPanel({ panel }) {
   if (!panel) return null;
@@ -41,9 +42,10 @@ export default function SpecTextPanel({ panel }) {
           return (
             <p
               key={index}
-              className={`specpageParagraph ${block.tone === 'note' ? 'specpageParagraph--note' : ''}`}
-              dangerouslySetInnerHTML={{ __html: block.value }}
-            />
+              className={`specp  ageParagraph ${block.tone === 'note' ? 'specpageParagraph--note' : ''}`}
+            >
+              <InlineMathText value={block.value} />
+            </p>
           );
         })}
 

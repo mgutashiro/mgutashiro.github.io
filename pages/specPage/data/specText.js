@@ -3,7 +3,6 @@
  * Structured for data-driven rendering across spec components.
  * Includes helper to fetch section by id.
  */
-
 export const spectroscopyText = [
   {
     id: 'what-is-spectroscopy',
@@ -678,11 +677,11 @@ The final spectrum depends on both molecular structure and instrument control. F
             body: [
               {
                 type: 'text',
-                value: `EPR, or electron paramagnetic resonance, is the electron-spin version of magnetic resonance spectroscopy. It is also called ESR, or electron spin resonance. Like NMR, it begins with a magnetic moment, \(\vec{\mu}\), placed in an external magnetic field, B<sub>0</sub>.`,
+                value: String.raw`EPR, or electron paramagnetic resonance, is the electron-spin version of magnetic resonance spectroscopy. It is also called ESR, or electron spin resonance. Similar to NMR, it begins with a magnetic moment, \(\vec{\mu}\), placed in an external magnetic field, \(B_0\).`,
               },
               {
                 type: 'text',
-                value: `A magnetic moment is the “tiny magnet” associated with angular momentum. In NMR, that magnetic moment comes from the nuclear spin of nuclei such as <sup>1</sup>H and <sup>13</sup>C. In EPR, it comes from the spin of an unpaired electron. Because the electron has a much larger gyromagnetic ratio, γ, than most nuclei, its spin energy splitting is much larger at the same B<sub>0</sub>. That is why EPR typically uses microwave radiation, while NMR uses radiofrequency radiation.`,
+                value: String.raw`A magnetic moment is the “tiny magnet” associated with angular momentum. In NMR, that magnetic moment comes from the nuclear spin of both protons and neutrons. In EPR, it comes from the spin of an unpaired electron, \(\vec{S}\). Because the electron has a much larger gyromagnetic ratio, γ, than most nuclei, the proton's spin energy splitting, \(\vec{I}\), is much larger at the same B<sub>0</sub>. That is why EPR typically uses microwave radiation, while NMR uses radiofrequency radiation.`,
               },
               {
                 type: 'text',
