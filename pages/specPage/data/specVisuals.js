@@ -160,10 +160,10 @@ export const spectroscopyVisuals = {
     visualType: 'instrument-hotspot',
     demoHref: '',
     parts: [
-      { id: 'source', label: 'Source', title: 'Pump + Probe Pulses' },
-      { id: 'sample', label: 'Sample', title: 'Excited Sample' },
-      { id: 'discriminator', label: 'Discriminator', title: 'Delay + Wavelength Sorting' },
-      { id: 'detector', label: 'Detector', title: 'Array Detector' }
+      { id: 'ultrafast-continuation', label: 'ultrafast spec continuation', visualKey: 'ultrafast-spec-continuation' },
+      { id: 'ultrafast-pump', label: 'Sample', visualKey: 'ultrafast-pump' },
+      { id: 'ultrafast-probe', label: 'Discriminator', visualKey: 'ultrafast-probe' },
+      { id: 'ultrafast-evolution', label: 'Detector', visualKey: 'ultrafast-evolution' }
     ]
   }
 };

@@ -17,7 +17,7 @@ import HiddenMotionVisual from '../nmr/nmrHiddenMotionVisual.jsx';
 
 import EPRElectronMagnets from '../epr/eprElectronMagnetsVisual.jsx';
 
-import pumpVisual from '../ultrafast/pumpVisual.jsx';
+import continuationVisual from '../ultrafast/ultrafastContinuationVisual.jsx';
 import DeltaAVisual from '../ultrafast/delta-aVisual.jsx';
 
 
@@ -269,25 +269,25 @@ export const visualRegistry = {
     },
 
     'ultrafast-ta': {
-        'pump': {
-            friends: pumpVisual
+        'ultrafast-continuation': {
+            friends: continuationVisual
         },
 
-        'delay': {
+        'ultrafast-pump': {
             friends: lazy(() =>
-                import('../ultrafast/delayVisual.jsx')
+                import('../ultrafast/ultrafastDelayVisual.jsx')
             ),
         },
 
-        'probe': {
+        'ultrafast-probe': {
             friends: lazy(() =>
-                import('../ultrafast/probeVisual.jsx')
+                import('../ultrafast/ultrafastProbeVisual.jsx')
             ),
         },
 
-        'evolution': {
+        'ultrafast-evolution': {
             friends: lazy(() =>
-                import('../ultrafast/evolutionVisual.jsx')
+                import('../ultrafast/ultrafastEvolutionVisual.jsx')
             ),
         },
 

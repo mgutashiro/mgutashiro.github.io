@@ -743,28 +743,64 @@ The final spectrum depends on both molecular structure and instrument control. F
         title: 'For Friends',
         panels: [
           {
-            id: 'pump',
-            heading: 'A first pulse starts the motion',
-            body: `Up until now, we have been catching moments. Here, a first pulse of light strikes the molecule and immediately excites it, beginning the process we want to follow.`,
-            visualKey: 'pump'
+            id: 'ultrafast-continuation',
+            heading: 'There’s More to the Story After Absorption',
+            body: [
+              {
+                type: "text",
+                value: "UV-Vis showed us that molecules absorb specific colors of light. Fluorescence showed us that some of that absorbed energy can later come back out as light."
+              },
+              {
+                type: "text",
+                value: "Ultrafast spectroscopy looks into the hidden moment between those two ideas. In photosynthesis, this moment matters deeply: pigment molecules in chloroplasts capture sunlight and begin passing that energy toward a reaction center almost immediately, on a femtosecond (1fs = 10<sup>15</sup>s) timescale."
+              }
+            ],
+            visualKey: 'ultrafast-spec-continuation'
           },
           {
-            id: 'delay',
-            heading: 'Time becomes part of the experiment',
-            body: `A second pulse does not arrive right away. By shifting the delay between the two pulses, we choose when to ask the system what has changed.`,
-            visualKey: 'delay'
+            id: 'ultrafast-pump',
+            heading: 'The Pump Pulse Starts the Clock',
+            body: [
+              {
+                type: "text",
+                value: "The experiment begins with a very short flash of light called the pump pulse. This pulse excites the sample, similar to the first light-capturing step in photosynthesis."
+              },
+              {
+                type: "text",
+                value: "For plant pigments such as chlorophylls and carotenoids, that first burst of absorbed energy does not simply stay still. It can begin moving through an organized antenna system before the energy is lost as heat or fluorescence."
+              }
+            ],
+            visualKey: 'ultrafast-pump'
           },
           {
-            id: 'probe',
-            heading: 'The probe asks what is different',
-            body: `The probe pulse passes through after that short wait. What it sees depends on when it arrives, so each delay reveals a different moment in the system’s evolution.`,
-            visualKey: 'probe'
+            id: 'ultrafast-probe',
+            heading: 'The Probe Pulse Later Checks the Molecule',
+            body: [
+              {
+                type: "text",
+                value: "After the pump pulse, the experiment waits for a tiny chosen delay. Then a second pulse, called the probe, passes through the sample to check what changed."
+              },
+              {
+                type: "text",
+                value: "By changing the delay again and again, femtosecond ultrafast spectroscopy can follow energy transfer through photosynthetic pigments and watch for the earliest signs of charge separation at the reaction center."
+              }
+            ],
+            visualKey: 'ultrafast-probe'
           },
           {
-            id: 'evolution',
-            heading: 'The spectrum begins to move',
-            body: `As the delay changes again and again, the signal shifts and reshapes over time. It becomes less about what happened once, and more about watching the system evolve in real time.`,
-            visualKey: 'evolution'
+            id: 'ultrafast-evolution',
+            heading: 'Watching the Spectrum “Breathe” Through Time',
+            body: [
+              {
+                type: "text",
+                value: "As time moves forward, the spectrum can grow, fade, shift, or reshape. These changes are not random; they can reveal energy migration, relaxation, and the formation of short-lived charge-separated states."
+              },
+              {
+                type: "text",
+                value: "This makes ultrafast spectroscopy feel like watching photosynthesis begin in real time. UV-Vis shows where light is absorbed, fluorescence shows one possible ending, and ultrafast spectroscopy reveals the motion in between. From here, DFT helps connect those moving signals to orbitals, structures, and chemical meaning."
+              }
+            ],
+            visualKey: 'ultrafast-evolution'
           }
         ]
       },
