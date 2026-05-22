@@ -14,6 +14,169 @@
     filter: drop-shadow(0 0 18px color-mix(in oklab, var(--accent) 22%, transparent));
 }
 
+.ultrafastPV_CellOuter {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 72%, var(--accent-2));
+    stroke-width: 4;
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--accent-2) 35%, transparent));
+}
+
+.ultrafastPV_CellLiquid {
+    stroke: color-mix(in oklab, var(--text) 26%, var(--accent-4));
+    stroke-width: 1.2;
+    opacity: 0.86;
+}
+
+.ultrafastPV_SampleLabel {
+    font-family: var(--font-jester);
+    font-size: 1.2rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    fill: color-mix(in oklab, var(--text) 76%, var(--accent-4));
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 84%, transparent);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.ultrafastPV_BeamGuide {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 8 12;
+    opacity: 0.18;
+}
+
+.ultrafastPV_PumpGuide {
+    stroke: var(--accent-2);
+}
+
+.ultrafastPV_ProbeGuide {
+    stroke: var(--accent);
+}
+
+.ultrafastPV_BeamPulse {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 12 10;
+    stroke-dashoffset: 1.08;
+    opacity: 0;
+    filter: drop-shadow(0 0 12px currentColor);
+}
+
+.ultrafastPV_PumpBeam {
+    color: var(--accent-2);
+}
+
+.ultrafastPV_ProbeBeam {
+    color: var(--accent);
+}
+
+.ultrafastPV_BeamLabel {
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.045em;
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 86%, transparent);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.ultrafastPV_PumpLabel {
+    fill: color-mix(in oklab, var(--text) 66%, var(--accent-2));
+}
+
+.ultrafastPV_ProbeLabel {
+    fill: color-mix(in oklab, var(--text) 66%, var(--accent));
+}
+
+.ultrafastPV_LiquidPumpGlow {
+    fill: var(--accent-4);
+    stroke: var(--accent-4);
+    stroke-width: 2;
+    opacity: 0;
+    filter: drop-shadow(0 0 16px color-mix(in oklab, var(--accent-4) 70%, transparent));
+    animation: ultrafastPV_liquidPumpGlow 4.8s linear infinite;
+}
+
+.ultrafastPV_ReactionCenterState {
+    opacity: 0;
+    animation: ultrafastPV_chargeStateAppear 4.8s linear infinite;
+}
+
+.ultrafastPV_ReactionCenterHalo {
+    fill: color-mix(in oklab, var(--accent-3) 32%, transparent);
+    stroke: color-mix(in oklab, var(--accent-3) 70%, white);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--accent-3) 55%, transparent));
+}
+
+.ultrafastPV_ReactionCenterDot {
+    fill: var(--accent-3);
+    filter: drop-shadow(0 0 8px var(--accent-3));
+}
+
+.ultrafastPV_ChargeSplitLine {
+    fill: none;
+    stroke: color-mix(in oklab, var(--text) 55%, var(--accent-2));
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 5 5;
+    opacity: 0.72;
+}
+
+.ultrafastPV_ChargePositive,
+.ultrafastPV_ChargeNegative {
+    stroke-width: 1.3;
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--accent-2) 45%, transparent));
+}
+
+.ultrafastPV_ChargePositive {
+    fill: color-mix(in oklab, var(--accent-3) 42%, var(--surface));
+    stroke: color-mix(in oklab, var(--accent-3) 78%, white);
+}
+
+.ultrafastPV_ChargeNegative {
+    fill: color-mix(in oklab, var(--accent-2) 42%, var(--surface));
+    stroke: color-mix(in oklab, var(--accent-2) 78%, white);
+}
+
+.ultrafastPV_ChargeText {
+    font-family: var(--font-tech);
+    font-size: 1.1rem;
+    font-weight: var(--w-black);
+    fill: var(--text);
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 88%, transparent);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
+.ultrafastPV_ProbeCheckRing {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    opacity: 0;
+    filter: drop-shadow(0 0 14px color-mix(in oklab, var(--accent) 60%, transparent));
+    animation: ultrafastPV_probeCheckRing 4.8s linear infinite;
+}
+
+.ultrafastPV_ChargeLabel {
+    font-family: var(--font-jester);
+    font-size: 0.76rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.03em;
+    fill: color-mix(in oklab, var(--text) 72%, var(--accent-3));
+    opacity: 0;
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 86%, transparent);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    animation: ultrafastPV_chargeStateAppear 4.8s linear infinite;
+}
+
 .ultrafastPV_Caption {
     display: block;
     width: min(32rem, 92%);
@@ -36,4 +199,68 @@
     -webkit-text-fill-color: transparent;
 
     opacity: 0.9;
+}
+
+@keyframes ultrafastPV_liquidPumpGlow {
+    0%,
+    10% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.28;
+    }
+
+    24% {
+        opacity: 0.52;
+    }
+
+    34% {
+        opacity: 0.12;
+    }
+
+    45%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ultrafastPV_chargeStateAppear {
+    0%,
+    16% {
+        opacity: 0;
+    }
+
+    22%,
+    70% {
+        opacity: 1;
+    }
+
+    82%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ultrafastPV_probeCheckRing {
+    0%,
+    34% {
+        r: 42;
+        opacity: 0;
+    }
+
+    40% {
+        r: 52;
+        opacity: 0.8;
+    }
+
+    52% {
+        r: 72;
+        opacity: 0;
+    }
+
+    100% {
+        r: 72;
+        opacity: 0;
+    }
 }
