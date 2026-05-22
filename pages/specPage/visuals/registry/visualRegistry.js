@@ -275,7 +275,7 @@ export const visualRegistry = {
 
         'ultrafast-pump': {
             friends: lazy(() =>
-                import('../ultrafast/ultrafastDelayVisual.jsx')
+                import('../ultrafast/ultrafastPumpVisual.jsx')
             ),
         },
 

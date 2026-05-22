@@ -1,0 +1,100 @@
+.UltrafastPumpVisual {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.ultrafastPumpVisual_SVG {
+    width: 100%;
+    max-width: 48rem;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.UltrafastPump_PulsingHotspot {
+    filter: drop-shadow(
+        0 0 0.35rem color-mix(in oklab, var(--accent-3) 45%, transparent)
+    );
+}
+
+.UltrafastPump_LHCAntenna {
+    filter: drop-shadow(0 0 0.4rem color-mix(in oklab, var(--accent-2) 22%, transparent));
+}
+
+.UltrafastPump_PigmentProteinComplex {
+    filter: drop-shadow(0 0 0.45rem color-mix(in oklab, var(--accent-4) 30%, transparent));
+}
+
+.UltrafastPump_ReactionCenter {
+    filter: drop-shadow(0 0 0.35rem color-mix(in oklab, #FF9A7A 28%, transparent));
+}
+
+.UltrafastPump_Labels {
+    pointer-events: none;
+}
+
+.UltrafastPump_Label {
+    font-family: var(--font-tech);
+    font-size: 0.94rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    fill: color-mix(in oklab, var(--text) 72%, var(--accent-2) 28%);
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 78%, transparent);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    text-align: center;
+}
+
+.UltrafastPump_LabelSmall {
+    font-size: 0.84rem;
+    letter-spacing: 0.04em;
+    fill: color-mix(in oklab, var(--text) 68%, var(--accent-4) 32%);
+}
+
+.UltrafastPump_LabelGroup {
+    pointer-events: none;
+}
+
+.UltrafastPump_LabelLine {
+    stroke: color-mix(in oklab, var(--text) 34%, var(--bg) 66%);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 4 5;
+}
+
+.UltrafastPump_LabelLineDot {
+    fill: color-mix(in oklab, var(--text) 35%, var(--accent-2) 65%);
+    opacity: 0.85;
+}
+
+.UltrafastPump_LabelEnergy {
+    fill: color-mix(in oklab, var(--text) 55%, var(--accent-4) 45%);
+}
+
+.ultrafastPumpCaption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.45rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+}

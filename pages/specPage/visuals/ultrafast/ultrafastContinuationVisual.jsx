@@ -734,22 +734,26 @@ function LeafToLHCGuides({
 }
 
 const LABEL_POSITIONS = {
-  photosynthesis: { x: 370, y: 60, rotate: -68 },
+  photosynthesis: { x: 280, y: 60, rotate: -8 },
 
   lightHarvestingCenter: { x: LHC_BASE.cx + 100, y: LHC_BASE.cy + 200 },
-  reactionCenter: { x: LHC_BASE.cx - 80, y: LHC_BASE.cy - 80 },
+
+  reactionCenter: { x: LHC_BASE.cx, y: LHC_BASE.cy - 10 },
+
   lightEnergy: { x: LHC_BASE.cx - 255, y: LHC_BASE.cy - 60 },
   chlorophyll: { x: LHC_BASE.cx + 280, y: LHC_BASE.cy },
-  core: { x: LHC_BASE.cx, y: LHC_BASE.cy - 10 },
+  core: { x: LHC_BASE.cx - 85, y: LHC_BASE.cy - 5 },
 };
 
 function VisualLabel({
   x,
   y,
   children,
+  rotate = 0,
   anchor = "middle",
   size = 18,
   weight = "var(--w-semibold)",
+  lines,
 }) {
   return (
     <text
@@ -758,13 +762,20 @@ function VisualLabel({
       y={y}
       textAnchor={anchor}
       dominantBaseline="middle"
+      transform={rotate ? `rotate(${rotate} ${x} ${y})` : undefined}
       fill="var(--text)"
       fontFamily="var(--font-tech)"
       fontSize={size}
       fontWeight={weight}
       letterSpacing="0.035em"
     >
-      {children}
+      {lines
+        ? lines.map((line, i) => (
+            <tspan key={line} x={x} dy={i === 0 ? "-0.5em" : "1em"}>
+              {line}
+            </tspan>
+          ))
+        : children}
     </text>
   );
 }
@@ -775,7 +786,7 @@ function UltrafastContinuationLabels() {
       <VisualLabel
         x={LABEL_POSITIONS.photosynthesis.x}
         y={LABEL_POSITIONS.photosynthesis.y}
-        size={26}
+        size={32}
         anchor="start"
       >
         PHOTOSYNTHESIS ZOOMED IN
@@ -784,7 +795,7 @@ function UltrafastContinuationLabels() {
       <VisualLabel
         x={LABEL_POSITIONS.lightHarvestingCenter.x}
         y={LABEL_POSITIONS.lightHarvestingCenter.y}
-        size={18}
+        size={22}
       >
         Light Harvesting Center
       </VisualLabel>
@@ -792,31 +803,29 @@ function UltrafastContinuationLabels() {
       <VisualLabel
         x={LABEL_POSITIONS.reactionCenter.x}
         y={LABEL_POSITIONS.reactionCenter.y}
-        size={15}
-      >
-        Reaction Center
-      </VisualLabel>
+        size={18}
+        lines={["Reaction", "Center"]}
+      />
 
       <VisualLabel
         x={LABEL_POSITIONS.lightEnergy.x}
         y={LABEL_POSITIONS.lightEnergy.y}
-        size={15}
+        size={22}
       >
-        light energy
+        Light Energy
       </VisualLabel>
 
       <VisualLabel
         x={LABEL_POSITIONS.chlorophyll.x}
         y={LABEL_POSITIONS.chlorophyll.y}
-        size={15}
-      >
-        chlorophyll
-      </VisualLabel>
+        size={22}
+        lines={["Plant", "Pigments"]}
+      />
 
       <VisualLabel
         x={LABEL_POSITIONS.core.x}
         y={LABEL_POSITIONS.core.y}
-        size={14}
+        size={22}
       >
         core
       </VisualLabel>

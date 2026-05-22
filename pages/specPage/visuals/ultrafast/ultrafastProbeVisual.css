@@ -1,0 +1,39 @@
+.ultrafastPV {
+    width: min(38rem, 100%);
+    margin: 0 auto;
+}
+
+.ultrafastPV_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.ultrafastPV_BackgroundPanel {
+    filter: drop-shadow(0 0 18px color-mix(in oklab, var(--accent) 22%, transparent));
+}
+
+.ultrafastPV_Caption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.45rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+}
