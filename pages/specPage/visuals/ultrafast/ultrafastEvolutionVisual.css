@@ -1,0 +1,30 @@
+.ultrafastEvolution_Figure {
+    width: 100%;
+    margin: 0;
+}
+
+.ultrafastEvolution_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font-family: var(--font-tech);
+}
+
+.ultrafastEvolution_BackgroundPanel {
+    filter: drop-shadow(0 0 18px color-mix(in oklab, var(--accent) 18%, transparent));
+}
+
+.ultrafastEvolution_TopLabels {
+    pointer-events: none;
+}
+
+.ultrafastEvolution_TopLabel {
+    font-family: var(--font-tech);
+    font-size: 0.72rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+
+    fill: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+}

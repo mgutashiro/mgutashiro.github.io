@@ -75,6 +75,31 @@
     fill: color-mix(in oklab, var(--text) 55%, var(--accent-4) 45%);
 }
 
+.ultrafastEvolution_EnergyLabel, .ultrafastEvolution_PeakActionlabel {
+    font-family: var(--font-jester);
+    fill: color-mix(in oklab, var(--text) 78%, var(--accent-2) 22%);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+}
+
+.ultrafastEvolution_EnergyLabel {
+    font-size: 0.72rem;
+    font-weight: var(--w-semibold);
+    text-transform: uppercase;
+}
+
+.ultrafastEvolution_PeakActionLabel {
+    font-family: var(--font-tech);
+    font-size: 0.88rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.018em;
+    fill: color-mix(in oklab, var(--text) 88%, var(--accent-2) 12%);
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg) 82%, transparent);
+    stroke-width: 2.5px;
+    pointer-events: none;
+}
+
 .ultrafastPumpCaption {
     display: block;
     width: min(32rem, 92%);
