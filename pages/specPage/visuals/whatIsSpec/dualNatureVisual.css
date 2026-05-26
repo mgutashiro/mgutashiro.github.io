@@ -1,455 +1,449 @@
 .dualNatureVisualStage {
-  --particle-color: var(--accent-3);
-  --wave-color: var(--accent-2);
+    --particle-color: var(--accent-3);
+    --wave-color: var(--accent-2);
 
-  --scene-h: 300px;
-  --path: 250px;
-  --cycle: 4.2s;
+    --scene-h: 300px;
+    --path: 250px;
+    --cycle: 4.2s;
 
-  --scene-scale: 0.86;
-  --scene-y: -18px;
+    --scene-scale: 0.86;
+    --scene-y: -18px;
 
-  position: relative;
-  min-height: var(--scene-h);
-  border-radius: var(--radius-3);
-  overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 28% 52%,
-      color-mix(in oklab, var(--c-glow-1) 14%, transparent),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 72% 52%,
-      color-mix(in oklab, var(--c-glow-3) 12%, transparent),
-      transparent 32%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--surface) 42%, var(--bg)) 0%,
-      color-mix(in oklab, var(--bg-2) 78%, var(--bg)) 100%
-    );
+    position: relative;
+    min-height: var(--scene-h);
+    border-radius: var(--radius-3);
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 28% 52%,
+            color-mix(in oklab, var(--c-glow-1) 14%, transparent),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 72% 52%,
+            color-mix(in oklab, var(--c-glow-3) 12%, transparent),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--surface) 42%, var(--bg)) 0%,
+            color-mix(in oklab, var(--bg-2) 78%, var(--bg)) 100%
+        );
 }
 
 .dualAura {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(34px);
-  opacity: 0.22;
-  pointer-events: none;
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(34px);
+    opacity: 0.22;
+    pointer-events: none;
 }
 
 .dualAuraL {
-  width: 180px;
-  height: 180px;
-  left: 14%;
-  top: 28%;
-  background: color-mix(in oklab, var(--wave-color) 34%, transparent);
+    width: 180px;
+    height: 180px;
+    left: 14%;
+    top: 28%;
+    background: color-mix(in oklab, var(--wave-color) 34%, transparent);
 }
 
+
 .dualAuraR {
-  width: 180px;
-  height: 180px;
-  right: 14%;
-  top: 28%;
-  background: color-mix(in oklab, var(--particle-color) 28%, transparent);
+    width: 180px;
+    height: 180px;
+    right: 14%;
+    top: 28%;
+    background: color-mix(in oklab, var(--particle-color) 28%, transparent);
 }
 
 .dualScene {
-  position: relative;
-  width: min(100%, 780px);
-  height: var(--scene-h);
-  margin: 0 auto;
-  transform: translateY(var(--scene-y)) scale(var(--scene-scale));
-  transform-origin: 50% 52%;
+    position: relative;
+    width: min(100%, 780px);
+    height: var(--scene-h);
+    margin: 0 auto;
+    transform: translateY(var(--scene-y)) scale(var(--scene-scale));
+    transform-origin: 50% 52%;
 }
 
+
 .dualBeam {
-  position: absolute;
-  width: var(--path);
-  height: 96;
-  pointer-events: none;
+    position: absolute;
+    width: var(--path);
+    height: 96;
+    pointer-events: none;
 }
 
 .dualBeamIn {
-  left: calc(50% - var(--path));
-  bottom: 30px;
-  transform-origin: 100% 50%;
-  transform: rotate(56deg);
+    left: calc(50% - var(--path));
+    bottom: 30px;
+    transform-origin: 100% 50%;
+    transform: rotate(56deg);
 }
 
 .dualBeamOut {
-  left: 50%;
-  bottom: 30px;
-  transform-origin: 0% 50%;
-  transform: rotate(-56deg);
+    left: 50%;
+    bottom: 30px;
+    transform-origin: 0% 50%;
+    transform: rotate(-56deg);
 }
 
 .dualBeamParticles {
-  color: var(--particle-color);
+    color: var(--particle-color);
 }
 
 .dualBeamWaves {
-  color: var(--wave-color);
+    color: var(--wave-color);
 }
 
 .dualBeam::before {
-  content: '';
-  position: absolute;
-  inset: 50% 0 auto;
-  height: 3px;
-  transform: translateY(-50%);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in oklab, currentColor 10%, transparent) 18%,
-    color-mix(in oklab, currentColor 25%, transparent) 50%,
-    color-mix(in oklab, currentColor 10%, transparent) 82%,
-    transparent 100%
-  );
-  opacity: 0.28;
-  filter: blur(5px);
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 3px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, currentColor 10%, transparent) 18%,
+        color-mix(in oklab, currentColor 25%, transparent) 50%,
+        color-mix(in oklab, currentColor 10%, transparent) 82%,
+        transparent 100%
+    );
+    opacity: 0.28;
+    filter: blur(5px);
 }
 
-.dualParticle,
-.dualWave {
-  position: absolute;
-  left: 0;
-  opacity: 0;
+.dualParticle, .dualWave {
+    position: absolute;
+    left: 0;
+    opacity: 0;
 }
 
 .dualParticle {
-  top: calc(50% + (var(--lane) * 12px));
-  width: calc(8px * var(--size));
-  height: calc(8px * var(--size));
-  border-radius: 50%;
-  background: var(--particle-color);
-  box-shadow:
-    0 0 10px color-mix(in oklab, var(--particle-color) 42%, transparent),
-    0 0 18px color-mix(in oklab, var(--particle-color) 20%, transparent);
+    top: calc(50% + (var(--lane) * 12px));
+    width: calc(8px * var(--size));
+    height: calc(8px * var(--size));
+    border-radius: 50%;
+    background: var(--particle-color);
+    box-shadow:
+        0 0 10px color-mix(in oklab, var(--particle-color) 42%, transparent),
+        0 0 18px color-mix(in oklab, var(--particle-color) 20%, transparent);
 }
 
 .dualParticleIn {
-  animation: particleIn var(--cycle) linear infinite;
-  animation-delay: calc(var(--i) * -0.07s);
+    animation: particleIn var(--cycle) linear infinite;
+    animation-delay: calc(var(--i) * -0.07s);
 }
 
 .dualParticleOut {
-  animation: particleOut var(--cycle) linear infinite;
-  animation-delay: calc(var(--i) * -0.07s);
+    animation: particleOut var(--cycle) linear infinite;
+    animation-delay: calc(var(--i) * -0.07s);
 }
 
 .dualWave {
-  top: calc(50% + (var(--lane) * 14px));
-  width: 84px;
-  height: 24px;
-  color: var(--wave-color);
-  filter: drop-shadow(
-    0 0 10px color-mix(in oklab, 
-        var(--wave-color) 26%, 
-        transparent
-        )
-    );
+    top: calc(50% + (var(--lane) * 14px));
+    width: 84px;
+    height: 24px;
+    color: var(--wave-color);
+    filter: drop-shadow(
+        0 0 10px color-mix(in oklab, 
+            var(--wave-color) 26%, 
+            transparent
+            )
+        );
 }
 
 .dualWaveSVG {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
 }
 
 .dualWavePath {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .dualWaveIn {
-  animation: waveIn var(--cycle) ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.1s);
+    animation: waveIn var(--cycle) ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.1s);
 }
 
 .dualWaveOut {
-  animation: waveOut var(--cycle) ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.1s);
+    animation: waveOut var(--cycle) ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.1s);
 }
 
 .dualHit {
-  position: absolute;
-  left: 50%;
-  bottom: 45px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  transform: translateX(-50%) scale(0.35);
-  opacity: 0;
-  pointer-events: none;
-  filter: blur(7px);
+    position: absolute;
+    left: 50%;
+    bottom: 45px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0.35);
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(7px);
 }
 
 .dualHitParticles {
-  background: color-mix(in oklab, var(--particle-color) 86%, transparent);
-  animation: particleHit var(--cycle) ease-in-out infinite;
+    background: color-mix(in oklab, var(--particle-color) 86%, transparent);
+    animation: particleHit var(--cycle) ease-in-out infinite;
 }
 
 .dualHitWaves {
-  background: color-mix(in oklab, var(--wave-color) 82%, transparent);
-  animation: waveHit var(--cycle) ease-in-out infinite;
+    background: color-mix(in oklab, var(--wave-color) 82%, transparent);
+    animation: waveHit var(--cycle) ease-in-out infinite;
 }
 
 .dualDish {
-  position: absolute;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
-  width: min(74%, 380px);
-  height: 108px;
-  pointer-events: none;
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    width: min(74%, 380px);
+    height: 108px;
+    pointer-events: none;
 }
 
 .dualDishShadow {
-  position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: 0;
-  height: 22px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--bg) 74%, transparent);
-  filter: blur(12px);
-  opacity: 0.75;
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: 0;
+    height: 22px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--bg) 74%, transparent);
+    filter: blur(12px);
+    opacity: 0.75;
 }
 
 .dualDishBase {
-  position: absolute;
-  inset: auto 0 0;
-  height: 60px;
-  border-radius: 999px / 30px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--text) 24%, var(--lightMetal)) 0%,
-    color-mix(in oklab, var(--surface) 44%, var(--lightMetal)) 38%,
-    color-mix(in oklab, var(--bg-2) 70%, var(--copper)) 100%
-  );
-  box-shadow:
-    inset 0 2px 8px color-mix(in oklab, white 14%, transparent),
-    inset 0 -10px 16px color-mix(in oklab, black 24%, transparent);
+    position: absolute;
+    inset: auto 0 0;
+    height: 60px;
+    border-radius: 999px / 30px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--text) 24%, var(--lightMetal)) 0%,
+        color-mix(in oklab, var(--surface) 44%, var(--lightMetal)) 38%,
+        color-mix(in oklab, var(--bg-2) 70%, var(--copper)) 100%
+    );
+    box-shadow:
+        inset 0 2px 8px color-mix(in oklab, white 14%, transparent),
+        inset 0 -10px 16px color-mix(in oklab, black 24%, transparent);
 }
 
 .dualDishRim {
-  position: absolute;
-  left: 3%;
-  right: 3%;
-  bottom: 40px;
-  height: 20px;
-  border-radius: 999px / 14px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, white 46%, var(--text)) 0%,
-    color-mix(in oklab, var(--surface) 46%, var(--lightMetal)) 100%
-  );
-  opacity: 0.95;
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    bottom: 40px;
+    height: 20px;
+    border-radius: 999px / 14px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in oklab, white 46%, var(--text)) 0%,
+        color-mix(in oklab, var(--surface) 46%, var(--lightMetal)) 100%
+    );
+    opacity: 0.95;
 }
 
 .dualDishTop {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 46px;
-  height: 30px;
-  border-radius: 999px / 16px;
-  background: radial-gradient(
-    circle at 50% 42%,
-    color-mix(in oklab, white 40%, var(--text)) 0%,
-    color-mix(in oklab, var(--text) 54%, var(--surface)) 45%,
-    color-mix(in oklab, var(--surface-2) 78%, var(--bg)) 100%
-  );
-  box-shadow:
-    inset 0 1px 8px color-mix(in oklab, white 18%, transparent),
-    inset 0 -3px 7px color-mix(in oklab, black 12%, transparent);
-  opacity: 0.96;
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 46px;
+    height: 30px;
+    border-radius: 999px / 16px;
+    background: radial-gradient(
+        circle at 50% 42%,
+        color-mix(in oklab, white 40%, var(--text)) 0%,
+        color-mix(in oklab, var(--text) 54%, var(--surface)) 45%,
+        color-mix(in oklab, var(--surface-2) 78%, var(--bg)) 100%
+    );
+    box-shadow:
+        inset 0 1px 8px color-mix(in oklab, white 18%, transparent),
+        inset 0 -3px 7px color-mix(in oklab, black 12%, transparent);
+    opacity: 0.96;
 }
 
 .dualDishShine {
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  bottom: 58px;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in oklab, white 78%, transparent) 50%,
-    transparent 100%
-  );
-  opacity: 0.42;
-  filter: blur(1px);
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 58px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, white 78%, transparent) 50%,
+        transparent 100%
+    );
+    opacity: 0.42;
+    filter: blur(1px);
 }
 
 @keyframes particleIn {
-  0% {
-    transform: translateX(0) scale(0.78);
-    opacity: 0;
-  }
-  6% {
-    opacity: 0.92;
-  }
-  22% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0.95;
-  }
-  26% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0;
-  }
+    0% {
+        transform: translateX(0) scale(0.78);
+        opacity: 0;
+    }
+    6% {
+        opacity: 0.92;
+    }
+    22% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0.95;
+    }
+    26% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0;
+    }
 }
 
 @keyframes particleOut {
-  0%,
-  18% {
-    transform: translateX(0) scale(0.82);
-    opacity: 0;
-  }
-  22% {
-    opacity: 0.95;
-  }
-  40% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0.92;
-  }
-  44% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(var(--path)) scale(var(--size));
-    opacity: 0;
-  }
+    0%, 18% {
+        transform: translateX(0) scale(0.82);
+        opacity: 0;
+    }
+    22% {
+        opacity: 0.95;
+    }
+    40% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0.92;
+    }
+    44% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--path)) scale(var(--size));
+        opacity: 0;
+    }
 }
 
 @keyframes waveIn {
-  0%,
-  46% {
-    transform: translateX(0) scaleX(calc(var(--scale) * 0.94)) scaleY(0.94);
-    opacity: 0;
-  }
-  52% {
-    opacity: 0.78;
-  }
-  70% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0.88;
-  }
-  74% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0;
-  }
+    0%, 46% {
+        transform: translateX(0) scaleX(calc(var(--scale) * 0.94)) scaleY(0.94);
+        opacity: 0;
+    }
+    52% {
+        opacity: 0.78;
+    }
+    70% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0.88;
+    }
+    74% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0;
+    }
 }
 
 @keyframes waveOut {
-  0%,
-  66% {
-    transform: translateX(0) scaleX(calc(var(--scale) * 0.94)) scaleY(0.94);
-    opacity: 0;
-  }
-  70% {
-    opacity: 0.82;
-  }
-  90% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0.9;
-  }
-  94% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
-    opacity: 0;
-  }
+    0%, 66% {
+        transform: translateX(0) scaleX(calc(var(--scale) * 0.94)) scaleY(0.94);
+        opacity: 0;
+    }
+    70% {
+        opacity: 0.82;
+    }
+    90% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0.9;
+    }
+    94% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--path)) scaleX(var(--scale)) scaleY(1);
+        opacity: 0;
+    }
 }
 
 @keyframes particleHit {
-  0%,
-  16%,
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.35);
-  }
-  22% {
-    opacity: 0.58;
-    transform: translateX(-50%) scale(0.95);
-  }
-  28% {
-    opacity: 0.12;
-    transform: translateX(-50%) scale(1.6);
-  }
-  32% {
-    opacity: 0;
-    transform: translateX(-50%) scale(1.9);
-  }
+    0%, 16%, 100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.35);
+    }
+    22% {
+        opacity: 0.58;
+        transform: translateX(-50%) scale(0.95);
+    }
+    28% {
+        opacity: 0.12;
+        transform: translateX(-50%) scale(1.6);
+    }
+    32% {
+        opacity: 0;
+        transform: translateX(-50%) scale(1.9);
+    }
 }
 
 @keyframes waveHit {
-  0%,
-  64%,
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.35);
-  }
-  70% {
-    opacity: 0.44;
-    transform: translateX(-50%) scale(1);
-  }
-  76% {
-    opacity: 0.12;
-    transform: translateX(-50%) scale(1.7);
-  }
-  82% {
-    opacity: 0;
-    transform: translateX(-50%) scale(2.05);
-  }
+    0%, 64%, 100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.35);
+    }
+    70% {
+        opacity: 0.44;
+        transform: translateX(-50%) scale(1);
+    }
+    76% {
+        opacity: 0.12;
+        transform: translateX(-50%) scale(1.7);
+    }
+    82% {
+        opacity: 0;
+        transform: translateX(-50%) scale(2.05);
+    }
 }
 
 @media (max-width: 760px) {
-  .dualNatureVisual {
-    --scene-h: 300px;
-    --path: 170px;
-    --impact-y: 68px;
-  }
+    .dualNatureVisual {
+        --scene-h: 300px;
+        --path: 170px;
+        --impact-y: 68px;
+    }
 
-  .dualDish {
-    width: min(86%, 320px);
-    height: 96px;
-  }
+    .dualDish {
+        width: min(86%, 320px);
+        height: 96px;
+    }
 
-  .dualWave {
-    width: 72px;
-    height: 20px;
-  }
+    .dualWave {
+        width: 72px;
+        height: 20px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dualParticle,
-  .dualWave,
-  .dualHit,
-  .dualAura {
-    animation: none !important;
-  }
+    .dualParticle,
+    .dualWave,
+    .dualHit,
+    .dualAura {
+        animation: none !important;
+    }
 
-  .dualParticle,
-  .dualWave {
-    opacity: 0.35;
-  }
+    .dualParticle,
+    .dualWave {
+        opacity: 0.35;
+    }
 }

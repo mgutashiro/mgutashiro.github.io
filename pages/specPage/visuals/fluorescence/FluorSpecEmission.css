@@ -1,12 +1,12 @@
 .FluorSpecEmission {
     --cycle: 7s;
-
     width: 100%;
     margin: 0;
     display: grid;
     gap: 0.15rem;
     place-items: center;
 }
+
 
 .FluorSpecEmission_SVG {
     width: min(100%, 420px);
@@ -106,8 +106,6 @@
     animation: fluorCoreHighlight var(--cycle) ease-out infinite;
 }
 
-
-
 .FluorSpecEmission_DetectorBody {
     fill: color-mix(in oklab, var(--surface) 76%, var(--bg));
     stroke: color-mix(in oklab, var(--c-glow-1) 28%, var(--border-strong));
@@ -172,220 +170,220 @@
 
 /* MOTION */
 @keyframes fluorExcitationBeam {
-  0%, 4% {
-    stroke-dashoffset: 100;
-    opacity: 0;
-  }
-  10% {
-    stroke-dashoffset: 55;
-    opacity: 0.82;
-  }
-  15% {
-    stroke-dashoffset: 0;
-    opacity: 0.96;
-  }
-  18% {
-    stroke-dashoffset: 0;
-    opacity: 0.9;
-  }
-  22% {
-    stroke-dashoffset: -36;
-    opacity: 0.76;
-  }
-  26% {
-    stroke-dashoffset: -76;
-    opacity: 0.42;
-  }
-  30%, 100% {
-    stroke-dashoffset: -120;
-    opacity: 0;
-  }
+    0%, 4% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+    10% {
+        stroke-dashoffset: 55;
+        opacity: 0.82;
+    }
+    15% {
+        stroke-dashoffset: 0;
+        opacity: 0.96;
+    }
+    18% {
+        stroke-dashoffset: 0;
+        opacity: 0.9;
+    }
+    22% {
+        stroke-dashoffset: -36;
+        opacity: 0.76;
+    }
+    26% {
+        stroke-dashoffset: -76;
+        opacity: 0.42;
+    }
+    30%, 100% {
+        stroke-dashoffset: -120;
+        opacity: 0;
+    }
 }
 
 @keyframes fluorExcitationHalo {
-  0%, 4% {
-    stroke-dashoffset: 100;
-    opacity: 0;
-  }
-  10% {
-    stroke-dashoffset: 55;
-    opacity: 0.16;
-  }
-  15% {
-    stroke-dashoffset: 0;
-    opacity: 0.28;
-  }
-  18% {
-    stroke-dashoffset: 0;
-    opacity: 0.22;
-  }
-  22% {
-    stroke-dashoffset: -36;
-    opacity: 0.16;
-  }
-  26% {
-    stroke-dashoffset: -76;
-    opacity: 0.08;
-  }
-  30%, 100% {
-    stroke-dashoffset: -120;
-    opacity: 0;
-  }
+    0%, 4% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+    10% {
+        stroke-dashoffset: 55;
+        opacity: 0.16;
+    }
+    15% {
+        stroke-dashoffset: 0;
+        opacity: 0.28;
+    }
+    18% {
+        stroke-dashoffset: 0;
+        opacity: 0.22;
+    }
+    22% {
+        stroke-dashoffset: -36;
+        opacity: 0.16;
+    }
+    26% {
+        stroke-dashoffset: -76;
+        opacity: 0.08;
+    }
+    30%, 100% {
+        stroke-dashoffset: -120;
+        opacity: 0;
+    }
 }
 
 @keyframes fluorSampleMotion {
-  0%, 18% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
-  }
-  23% {
-    transform: translate(0px, 0px) scale(1.12) rotate(0deg);
-  }
-  27% {
-    transform: translate(5px, -1px) scale(1.15) rotate(4deg);
-  }
-  31% {
-    transform: translate(-5px, 1px) scale(1.15) rotate(-4deg);
-  }
-  35% {
-    transform: translate(4px, 0px) scale(1.12) rotate(3deg);
-  }
-  39% {
-    transform: translate(-3px, 0px) scale(1.08) rotate(-2deg);
-  }
-  44% {
-    transform: translate(0px, 0px) scale(1.03) rotate(0deg);
-  }
-  50%, 60% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
-  }
+    0%, 18% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+    }
+    23% {
+        transform: translate(0px, 0px) scale(1.12) rotate(0deg);
+    }
+    27% {
+        transform: translate(5px, -1px) scale(1.15) rotate(4deg);
+    }
+    31% {
+        transform: translate(-5px, 1px) scale(1.15) rotate(-4deg);
+    }
+    35% {
+        transform: translate(4px, 0px) scale(1.12) rotate(3deg);
+    }
+    39% {
+        transform: translate(-3px, 0px) scale(1.08) rotate(-2deg);
+    }
+    44% {
+        transform: translate(0px, 0px) scale(1.03) rotate(0deg);
+    }
+    50%, 60% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+    }
 }
 
 @keyframes fluorAuraBreath {
-  0%, 18% {
-    opacity: 0.08;
-    transform: scale(0.94);
-  }
-  25%, 40% {
-    opacity: 0.22;
-    transform: scale(1.08);
-  }
-  50%, 60% {
-    opacity: 0.1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.08;
-    transform: scale(0.98);
-  }
+    0%, 18% {
+        opacity: 0.08;
+        transform: scale(0.94);
+    }
+    25%, 40% {
+        opacity: 0.22;
+        transform: scale(1.08);
+    }
+    50%, 60% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.08;
+        transform: scale(0.98);
+    }
 }
 
 @keyframes fluorCoreCharge {
-  0%, 18% {
-    opacity: 0.78;
-    transform: scale(0.96);
-  }
-  25%, 40% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-  50%, 60% {
-    opacity: 0.9;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.86;
-    transform: scale(1);
-  }
+    0%, 18% {
+        opacity: 0.78;
+        transform: scale(0.96);
+    }
+    25%, 40% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+    50%, 60% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.86;
+        transform: scale(1);
+    }
 }
 
 @keyframes fluorCoreHighlight {
-  0%, 18% {
-    opacity: 0.14;
-    transform: translate(0px, 0px) scale(1);
-  }
-  27%, 40% {
-    opacity: 0.34;
-    transform: translate(2px, -2px) scale(1.08);
-  }
-  50%, 60% {
-    opacity: 0.18;
-    transform: translate(0px, 0px) scale(1);
-  }
-  100% {
-    opacity: 0.16;
-    transform: translate(0px, 0px) scale(1);
-  }
+    0%, 18% {
+        opacity: 0.14;
+        transform: translate(0px, 0px) scale(1);
+    }
+    27%, 40% {
+        opacity: 0.34;
+        transform: translate(2px, -2px) scale(1.08);
+    }
+    50%, 60% {
+        opacity: 0.18;
+        transform: translate(0px, 0px) scale(1);
+    }
+    100% {
+        opacity: 0.16;
+        transform: translate(0px, 0px) scale(1);
+    }
 }
 
 @keyframes fluorShockwave {
-  0%, 56% {
-    opacity: 0;
-    transform: scale(0.35);
-  }
-  60% {
-    opacity: 0.42;
-    transform: scale(1);
-  }
-  68% {
-    opacity: 0.3;
-    transform: scale(4);
-  }
-  76% {
-    opacity: 0.18;
-    transform: scale(8);
-  }
-  84% {
-    opacity: 0.08;
-    transform: scale(13);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(15);
-  }
+    0%, 56% {
+        opacity: 0;
+        transform: scale(0.35);
+    }
+    60% {
+        opacity: 0.42;
+        transform: scale(1);
+    }
+    68% {
+        opacity: 0.3;
+        transform: scale(4);
+    }
+    76% {
+        opacity: 0.18;
+        transform: scale(8);
+    }
+    84% {
+        opacity: 0.08;
+        transform: scale(13);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(15);
+    }
 }
 
 @keyframes fluorDetectorWake {
-  0%, 70% {
-    opacity: 0.16;
-  }
-  74% {
-    opacity: 0.64;
-  }
-  84% {
-    opacity: 0.58;
-  }
-  94% {
-    opacity: 0.38;
-  }
-  100% {
-    opacity: 0.22;
-  }
+    0%, 70% {
+        opacity: 0.16;
+    }
+    74% {
+        opacity: 0.64;
+    }
+    84% {
+        opacity: 0.58;
+    }
+    94% {
+        opacity: 0.38;
+    }
+    100% {
+        opacity: 0.22;
+    }
 }
 
 @keyframes fluorReadout {
-  0%, 72% {
-    stroke-dashoffset: 46;
-    opacity: 0;
-  }
-  78% {
-    stroke-dashoffset: 24;
-    opacity: 0.72;
-  }
-  84% {
-    stroke-dashoffset: 0;
-    opacity: 0.86;
-  }
-  94% {
-    stroke-dashoffset: 0;
-    opacity: 0.72;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0;
-  }
+    0%, 72% {
+        stroke-dashoffset: 46;
+        opacity: 0;
+    }
+    78% {
+        stroke-dashoffset: 24;
+        opacity: 0.72;
+    }
+    84% {
+        stroke-dashoffset: 0;
+        opacity: 0.86;
+    }
+    94% {
+        stroke-dashoffset: 0;
+        opacity: 0.72;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
 }
 
 /* MOBILE MODE */

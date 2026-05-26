@@ -1,585 +1,568 @@
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
+html, body, #root {
+    height: 100%;
+    margin: 0;
 }
 
+
 body {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 #webgl {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .HomePageGrid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
 }
+
+
 
 /* ELEVATOR */
 #elevatorSpace {
-  display: block;
+    display: block;
 }
 
 .elevatorLane {
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
+    position: relative;
+    z-index: 2;
+    flex: 0 0 33.333%;
+    width: 33.333%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .elevatorLane::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      circle at 28% 82%,
-      color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%,
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 36% 58%,
-      color-mix(in oklab, var(--c-glow-1) 9%, transparent) 0%,
-      transparent 26%
-    );
-  opacity: 0.9;
-}
-
-.elevatorLane canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 28% 82%,
+            color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 36% 58%,
+            color-mix(in oklab, var(--c-glow-1) 9%, transparent) 0%,
+            transparent 26%
+        );
+    opacity: 0.9;
 }
 
 
 /* PAGE SHELL */
 .HomePageMainSpace {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
+    position: relative;
+    flex: 1 1 66.667%;
+    width: 66.667%;
+    min-width: 0;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 
-  display: grid;
-  place-items: center;
+    display: grid;
+    place-items: center;
 
-  overflow: clip;
-  isolation: isolate;
+    overflow: clip;
+    isolation: isolate;
 }
 
 
 #page-home {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
 }
 
 
 .uiLayer {
-  position: relative;
-  z-index: 10;
+    position: relative;
+    z-index: 10;
 }
 
 .homeSection {
-  position: relative;
-  width: 100%;
-  height: 100svh;
-  min-height: 100svh;
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
 
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  display: grid;
-  place-items: center;
+    display: grid;
+    place-items: center;
 
-  overflow: clip;
-  isolation: isolate;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+    overflow: clip;
+    isolation: isolate;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .homeSection.framedSection {
-  width: 100%;
-  height: 100svh;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  overflow: clip;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: clip;
 }
 
 .framedSection > .sectionPanelShell,
 .framedSection > .aboutPanel {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  display: grid;
-  place-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
 }
 
 .introPanel {
-  height: 100svh;
-  min-height: 100svh;
-  width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    width: 100%;
 }
 
 /* INTRO SECTION */
 .titleAnchor {
-  position: absolute;
-  top: 52%;
-  left: clamp(2rem, 5vw, 5rem);
-  right: clamp(2rem, 6vw, 6rem);
-  max-width: 980px;
-  height: clamp(140px, 18vh, 220px);
-  margin-inline: auto;
-  transform: translateY(-50%);
-  pointer-events: none;
+    position: absolute;
+    top: 52%;
+    left: clamp(2rem, 5vw, 5rem);
+    right: clamp(2rem, 6vw, 6rem);
+    max-width: 980px;
+    height: clamp(140px, 18vh, 220px);
+    margin-inline: auto;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .sectionText,
 .aboutText {
-  z-index: 3;
-  text-align: center;
+    z-index: 3;
+    text-align: center;
 }
 
 
 .sectionTitle,
 .aboutTitle {
-  margin: 0 1rem 1rem;
-  font-family: var(--font-display);
-  font-weight: var(--w-black);
-  line-height: 1.15;
-  letter-spacing: 0.055em;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
-  line-height: 1.05;
-  color: var(--section-title-color, var(--text));
-  text-shadow: var(--section-title-shadow, none);
+    margin: 0 1rem 1rem;
+    font-family: var(--font-display);
+    font-weight: var(--w-black);
+    line-height: 1.15;
+    letter-spacing: 0.055em;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+    line-height: 1.05;
+    color: var(--section-title-color, var(--text));
+    text-shadow: var(--section-title-shadow, none);
 }
 
 .sectionBody,
 .aboutBody {
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
 
-  white-space: pre-line;
-  overflow-wrap: break-word;
-  font-family: var(--font-body);
-  font-size: clamp(0.92rem, 1vw, 1rem);
-  line-height: 1.75;
-  color: var(--section-body-color, color-mix(in oklab, var(--text) 82%, var(--bg)));
-  text-shadow: var(--section-body-shadow, none);
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    font-family: var(--font-body);
+    font-size: clamp(0.92rem, 1vw, 1rem);
+    line-height: 1.75;
+    color: var(--section-body-color, color-mix(in oklab, var(--text) 82%, var(--bg)));
+    text-shadow: var(--section-body-shadow, none);
 }
 
 .aboutSection .aboutTitle {
-  margin-bottom: 1rem;
-  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
-  line-height: 1.05;
+    margin-bottom: 1rem;
+    font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+    line-height: 1.05;
 }
 
 .aboutSection .aboutBody {
-  line-height: 1.55;
-  font-size: clamp(0.92rem, 1vw, 1rem);
+    line-height: 1.55;
+    font-size: clamp(0.92rem, 1vw, 1rem);
 }
 
 .sectionPanelShell > .aboutControls,
 .sectionPanelShell > .LinkToSubPage {
-  position: absolute;
-
-  left: 50%;
-  bottom: var(--section-action-bottom, clamp(1.5rem, 5vh, 4rem));
-
-  transform:
-    translate(
-      -50%,
-      var(--section-action-y, 0px)
-    );
-
-  z-index: 6;
-
-  margin: 0;
-  padding: 0;
+    position: absolute;
+    left: 50%;
+    bottom: var(--section-action-bottom, clamp(1.5rem, 5vh, 4rem));
+    transform:
+        translate(
+            -50%,
+            var(--section-action-y, 0px)
+        );
+    z-index: 6;
+    margin: 0;
+    padding: 0;
 }
 
 .sectionCTA {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 220px;
-  padding: 0.9rem 1.35rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-family: var(--font-tech);
-  font-size: 0.9rem;
-  font-weight: var(--w-semibold);
-  letter-spacing: 0.08em;
-  color: var(--text);
-  background: color-mix(in oklab, var(--surface) 78%, var(--bg));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    padding: 0.9rem 1.35rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.08em;
+    color: var(--text);
+    background: color-mix(in oklab, var(--surface) 78%, var(--bg));
 }
 
-/* ================================
-   Section-specific layout variables
-================================ */
+/* Section Layout  */
 .aboutSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
-  --section-frame-pad-x: 2.2rem;
-  --section-frame-pad-y: 2.4rem;
-  
+    --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
+    --section-frame-pad-x: 2.2rem;
+    --section-frame-pad-y: 2.4rem;
+    
 
-  --section-frame-target-y: -7vh;
+    --section-frame-target-y: -7vh;
 
-  --section-action-bottom: clamp(1.2rem, 4vh, 3rem);
-  --section-action-y: 0px;
+    --section-action-bottom: clamp(1.2rem, 4vh, 3rem);
+    --section-action-y: 0px;
 
-  --section-title-color: var(--text);
-  --section-body-color: color-mix(in oklab, var(--text) 82%, var(--bg));
+    --section-title-color: var(--text);
+    --section-body-color: color-mix(in oklab, var(--text) 82%, var(--bg));
 
-  --section-title-shadow:
-    0 0 10px color-mix(in oklab, var(--accent) 18%, transparent);
+    --section-title-shadow:
+        0 0 10px color-mix(in oklab, var(--accent) 18%, transparent);
 
-  --section-body-shadow:
-    0 1px 1px color-mix(in oklab, var(--bg) 65%, transparent);
+    --section-body-shadow:
+        0 1px 1px color-mix(in oklab, var(--bg) 65%, transparent);
 }
 
 .specSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
-  --section-frame-pad-x: 2.2rem;
-  --section-frame-pad-y: 1.8rem;
+    --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
+    --section-frame-pad-x: 2.2rem;
+    --section-frame-pad-y: 1.8rem;
 
-  --section-frame-target-y: -7vh;
+    --section-frame-target-y: -7vh;
 
-  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-  --section-action-y: 0px;
-  --section-title-color:
-    color-mix(in oklab, var(--text) 88%, var(--c-glow-1) 12%);
+    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+    --section-action-y: 0px;
+    --section-title-color: color-mix(in oklab, var(--text) 88%, var(--c-glow-1) 12%);
 
-  --section-body-color:
-    color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+    --section-body-color: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
 
-  --section-title-shadow:
-    0 0 12px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
-    0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+    --section-title-shadow:
+        0 0 12px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
+        0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
 
-  --section-body-shadow:
-    0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
+    --section-body-shadow:
+        0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
 }
 
 .dftSection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
+    --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
 
-  /* --section-text-w: min(650px, 74vw); */
-  --section-frame-pad-x: 2rem;
-  --section-frame-pad-y: 1.5rem;
+    /* --section-text-w: min(650px, 74vw); */
+    --section-frame-pad-x: 2rem;
+    --section-frame-pad-y: 1.5rem;
 
-  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-  --section-frame-target-y: -7vh;
+    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+    --section-frame-target-y: -7vh;
 
-  --section-title-color:
-    color-mix(in oklab, var(--text) 84%, var(--c-metal-1) 16%);
+    --section-title-color: color-mix(in oklab, var(--text) 84%, var(--c-metal-1) 16%);
 
-  --section-body-color:
-    color-mix(in oklab, var(--text) 76%, var(--lightMetal) 24%);
+    --section-body-color: color-mix(in oklab, var(--text) 76%, var(--lightMetal) 24%);
 
-  --section-title-shadow:
-    0 0 12px color-mix(in oklab, var(--c-metal-1) 26%, transparent),
-    0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+    --section-title-shadow:
+        0 0 12px color-mix(in oklab, var(--c-metal-1) 26%, transparent),
+        0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
 
-  --section-body-shadow:
-    0 1px 2px color-mix(in oklab, var(--bg) 74%, transparent);
+    --section-body-shadow:
+        0 1px 2px color-mix(in oklab, var(--bg) 74%, transparent);
 }
 
 .philosophySection {
-  --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
+    --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
+    /* --section-text-w: min(650px, 74vw); */
+    --section-frame-pad-x: 2rem;
+    --section-frame-pad-y: 1.5rem;
+    --section-frame-target-y: -7vh;
+    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
+    --section-action-y: 0px;
 
-  /* --section-text-w: min(650px, 74vw); */
+    --section-title-color: color-mix(in oklab, var(--text) 86%, var(--c-glow-3) 14%);
+    --section-body-color: color-mix(in oklab, var(--text) 76%, var(--c-glow-3) 24%);
+    --section-title-shadow:
+        0 0 14px color-mix(in oklab, var(--c-glow-3) 24%, transparent),
+        0 1px 2px color-mix(in oklab, var(--bg) 78%, transparent);
 
-  --section-frame-pad-x: 2rem;
-  --section-frame-pad-y: 1.5rem;
-
-  --section-frame-target-y: -7vh;
-
-  --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-  --section-action-y: 0px;
-
-  --section-title-color:
-    color-mix(in oklab, var(--text) 86%, var(--c-glow-3) 14%);
-
-  --section-body-color:
-    color-mix(in oklab, var(--text) 76%, var(--c-glow-3) 24%);
-
-  --section-title-shadow:
-    0 0 14px color-mix(in oklab, var(--c-glow-3) 24%, transparent),
-    0 1px 2px color-mix(in oklab, var(--bg) 78%, transparent);
-
-  --section-body-shadow:
-    0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
+    --section-body-shadow:
+        0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
 }
 
 /* ABOUT SECTION */
-
 .aboutControls {
-  padding: 0 0 2rem;
-  margin-top: -2.5rem;
-  transform: none;
-  align-self: start;
+    padding: 0 0 2rem;
+    margin-top: -2.5rem;
+    transform: none;
+    align-self: start;
 }
 
 .aboutButtons {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .aboutNavButton {
-  --about-btn-size: 58px;
-
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
+    --about-btn-size: 58px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .aboutNavButton__glow {
-  position: absolute;
-  inset: 10px;
-  z-index: 0;
-  border-radius: 999px;
-  opacity: 0;
-  transform: scale(0.84);
-  filter: blur(10px);
-  transition: opacity 180ms ease, transform 180ms ease;
+    position: absolute;
+    inset: 10px;
+    z-index: 0;
+    border-radius: 999px;
+    opacity: 0;
+    transform: scale(0.84);
+    filter: blur(10px);
+    transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .aboutNavButton__circle {
-  position: relative;
-  z-index: 1;
-  inline-size: var(--about-btn-size);
-  block-size: var(--about-btn-size);
-  flex: 0 0 var(--about-btn-size);
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(
-    180deg,
-    var(--about-btn-fill-top) 0%,
-    var(--about-btn-fill-bottom) 100%
-  );
-  border: 1px solid var(--about-btn-border);
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
-    inset 0 -1px 0 color-mix(in oklab, var(--bg) 45%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--bg) 38%, transparent);
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    position: relative;
+    z-index: 1;
+    inline-size: var(--about-btn-size);
+    block-size: var(--about-btn-size);
+    flex: 0 0 var(--about-btn-size);
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(
+        180deg,
+        var(--about-btn-fill-top) 0%,
+        var(--about-btn-fill-bottom) 100%
+    );
+    border: 1px solid var(--about-btn-border);
+    box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--text) 16%, transparent),
+        inset 0 -1px 0 color-mix(in oklab, var(--bg) 45%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--bg) 38%, transparent);
+    transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 .aboutNavButton__triangle {
-  display: block;
-  inline-size: 0;
-  block-size: 0;
+    display: block;
+    inline-size: 0;
+    block-size: 0;
 }
 .aboutNavButton__triangle--right {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 12px solid var(--about-btn-arrow);
-  margin-left: 3px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid var(--about-btn-arrow);
+    margin-left: 3px;
 }
 .aboutNavButton__triangle--left {
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 12px solid var(--about-btn-arrow);
-  margin-right: 3px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 12px solid var(--about-btn-arrow);
+    margin-right: 3px;
 }
 .aboutNavButton__label {
-  font-family: var(--font-tech);
-  font-size: 0.95rem;
-  font-weight: var(--w-medium);
-  letter-spacing: 0.05em;
-  color: var(--text);
-  white-space: nowrap;
-  opacity: 0.92;
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.05em;
+    color: var(--text);
+    white-space: nowrap;
+    opacity: 0.92;
 }
 .aboutNavButton__label--left {
-  order: -1;
+    order: -1;
 }
 .aboutNavButton__label--right {
-  order: 1;
+    order: 1;
 }
 .aboutNavButton:hover .aboutNavButton__glow,
 .aboutNavButton:focus-visible .aboutNavButton__glow {
-  opacity: 1;
-  transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
 }
 .aboutNavButton:hover .aboutNavButton__circle,
 .aboutNavButton:focus-visible .aboutNavButton__circle {
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
 .aboutNavButton:focus-visible {
-  outline: none;
+    outline: none;
 }
 .aboutNavButton--back {
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent));
-  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent));
+    --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent));
+    --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent));
 }
 .aboutNavButton--back .aboutNavButton__glow {
-  background: color-mix(in oklab, var(--accent) 24%, transparent);
+    background: color-mix(in oklab, var(--accent) 24%, transparent);
 }
 .aboutNavButton--next {
-  --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent-3));
-  --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent-3));
+    --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent-3));
+    --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent-3));
 }
 .aboutNavButton--next .aboutNavButton__glow {
-  background: color-mix(in oklab, var(--accent-3) 24%, transparent);
+    background: color-mix(in oklab, var(--accent-3) 24%, transparent);
 }
 .aboutNavButton:disabled {
-  cursor: default;
-  opacity: 0.42;
+    cursor: default;
+    opacity: 0.42;
 }
 
 /* SPEC SECTION */
-
 .specCTA {
-  border: 1px solid color-mix(in oklab, var(--accent-2) 45%, var(--lightMetal));
-  box-shadow: var(--glow-cyan);
+    border: 1px solid color-mix(in oklab, var(--accent-2) 45%, var(--lightMetal));
+    box-shadow: var(--glow-cyan);
 }
 
 /* DFT SECTION */
-
 .dftCTA {
-  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--lightMetal));
-  box-shadow: var(--glow-violet);
+    border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--lightMetal));
+    box-shadow: var(--glow-violet);
 }
 
 /* Philosophy SECTION */
-
 .philosophyCTA {
-  border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
-  box-shadow: var(--glow-pink);
+    border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
+    box-shadow: var(--glow-pink);
 }
 
 /* FOOTER MARK */
 .homePageMGUMark {
-  position: absolute;
-  left: 50%;
-  bottom: 5px;
-  transform: translateX(-50%);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.88;
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.88;
 }
 .homePageMGUMark p {
-  margin: 0;
-  font-family: var(--font-jester);
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  color: var(--text);
+    margin: 0;
+    font-family: var(--font-jester);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
 }
 
 .aboutSocials {
-  position: absolute;
-  top: clamp(1.25rem, 4vh, 3rem);
-  right: clamp(1.25rem, 4vw, 3.5rem);
-  z-index: 8;
+    position: absolute;
+    top: clamp(1.25rem, 4vh, 3rem);
+    right: clamp(1.25rem, 4vw, 3.5rem);
+    z-index: 8;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.85rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.85rem;
 
-  transform: none;
+    transform: none;
 }
 .aboutSocialLink {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-
-  border-radius: 999px;
-  text-decoration: none;
-
-  background: color-mix(var(--text-dim) 40%, var(--primary-deep) 60%);
-  border: 1px solid color-mix(in oklab, var(--lightMetal) 20%, var(--border));
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 12%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--bg) 36%, transparent),
-    0 10px 22px color-mix(in oklab, var(--bg) 46%, transparent);
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background 180ms ease;
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    text-decoration: none;
+    background: color-mix(var(--text-dim) 40%, var(--primary-deep) 60%);
+    border: 1px solid color-mix(in oklab, var(--lightMetal) 20%, var(--border));
+    box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--text) 12%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--bg) 36%, transparent),
+        0 10px 22px color-mix(in oklab, var(--bg) 46%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
 }
 .aboutSocialLink img {
-  width: 39px;
-  height: 39px;
-  display: block;
-  object-fit: contain;
+    width: 39px;
+    height: 39px;
+    display: block;
+    object-fit: contain;
 }
 .aboutSocialLink--linkedin {
-  border-color: color-mix(in oklab, var(--c-glow-1) 34%, var(--border));
+    border-color: color-mix(in oklab, var(--c-glow-1) 34%, var(--border));
 }
 .aboutSocialLink--github {
-  border-color: color-mix(in oklab, var(--c-glow-3) 36%, var(--border));
+    border-color: color-mix(in oklab, var(--c-glow-3) 36%, var(--border));
 }
 .aboutSocialLink:hover,
 .aboutSocialLink:focus-visible,
 .aboutSocialLink:active {
-  transform: translateY(-2px) scale(1.05);
-  outline: none;
+    transform: translateY(-2px) scale(1.05);
+    outline: none;
 }
 .aboutSocialLink--linkedin:hover,
 .aboutSocialLink--linkedin:focus-visible,
 .aboutSocialLink--linkedin:active {
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--c-glow-1) 28%, transparent),
-    0 0 28px color-mix(in oklab, var(--c-glow-1) 45%, transparent),
-    0 0 52px color-mix(in oklab, var(--c-glow-1) 22%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--c-glow-1) 28%, transparent),
+        0 0 28px color-mix(in oklab, var(--c-glow-1) 45%, transparent),
+        0 0 52px color-mix(in oklab, var(--c-glow-1) 22%, transparent);
 }
 .aboutSocialLink--github:hover,
 .aboutSocialLink--github:focus-visible,
 .aboutSocialLink--github:active {
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--c-glow-2) 28%, transparent),
-    0 0 28px color-mix(in oklab, var(--c-glow-2) 45%, transparent),
-    0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--text) 14%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--c-glow-2) 28%, transparent),
+        0 0 28px color-mix(in oklab, var(--c-glow-2) 45%, transparent),
+        0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #page-home {
-    scroll-behavior: auto;
-  }
+    #page-home {
+        scroll-behavior: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .elevatorLane {
+        flex-basis: 25%;
+        width: 25%;
+    }
+
+    .HomePageMainSpace {
+        flex-basis: 75%;
+        width: 75%;
+    }
 }

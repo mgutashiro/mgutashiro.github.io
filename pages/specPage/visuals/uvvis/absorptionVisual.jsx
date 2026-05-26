@@ -11,10 +11,10 @@ const VIEWBOX = {
 const SAMPLE = { cx: 360, cy: 180, coreR : 42, ringR: 70 }
 
 const BEAM = {
-  inX1: 70,
-  inX2: 302,
-  outX1: 418,
-  outX2: 650,
+    inX1: 70,
+    inX2: 302,
+    outX1: 418,
+    outX2: 650,
 };
 
 const OUTGOING_BAND_Y = [160, 180, 200];

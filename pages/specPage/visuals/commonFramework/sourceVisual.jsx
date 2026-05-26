@@ -1,342 +1,345 @@
 import { useId } from "react";
-import './sourceVisual.css'
+import './sourceVisual.css';
 
-// preset constants
-const VIEWBOX = { width: 720, height: 300 };
+const VIEWBOX = { 
+    width: 720,
+    height: 300,
+};
 
 const SOURCE = {
-  cx: 108,
-  cy: 182,
-  outerRx: 52,
-  outerRy: 78,
-  innerRx: 26,
-  innerRy: 54,
-  apertureX: 146,
-  apertureY: 150,
-  apertureW: 18,
-  apertureH: 64,
-  apertureR: 9,
+    cx: 108,
+    cy: 182,
+    outerRx: 52,
+    outerRy: 78,
+    innerRx: 26,
+    innerRy: 54,
+    apertureX: 146,
+    apertureY: 150,
+    apertureW: 18,
+    apertureH: 64,
+    apertureR: 9,
 };
 
 const BEAM = {
-  startX: 156,
-  midX: 320,
-  endX: 620,
-  y: 182,
+    startX: 156,
+    midX: 320,
+    endX: 620,
+    y: 182,
 };
 
 const HALO = {
-  r1: 64,
-  r2: 86,
+    r1: 64,
+    r2: 86,
 };
 
 const SPARKS = [
-  { x: 88, y: 128, r: 2.2 },
-  { x: 118, y: 102, r: 1.8 },
-  { x: 96, y: 240, r: 2.0 },
-  { x: 126, y: 264, r: 1.6 },
+    { x: 88, y: 128, r: 2.2 },
+    { x: 118, y: 102, r: 1.8 },
+    { x: 96, y: 240, r: 2.0 },
+    { x: 126, y: 264, r: 1.6 },
 ];
 
 const BEAM_PATH = `
-  M ${BEAM.startX} ${BEAM.y}
-  C ${BEAM.midX} ${BEAM.y - 2},
-    ${BEAM.endX - 120} ${BEAM.y + 2},
-    ${BEAM.endX} ${BEAM.y}
+    M ${BEAM.startX} ${BEAM.y}
+    C ${BEAM.midX} ${BEAM.y - 2},
+        ${BEAM.endX - 120} ${BEAM.y + 2},
+        ${BEAM.endX} ${BEAM.y}
 `;
 
-function SourceVisualBG ({ ids }) {
-  return (
-    <g className="SVBackground">
-      <defs>
-        <linearGradient id={ids.bgGrad} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="color-mix(in oklab, var(--c-primary-2) 58%, var(--c-ink))" />
-          <stop offset="55%" stopColor="color-mix(in oklab, var(--c-shadow) 88%, var(--c-ink))" />
-          <stop offset="100%" stopColor="color-mix(in oklab, var(--c-primary-2) 34%, var(--c-ink))" />
-        </linearGradient>
 
-        <radialGradient id={ids.bgGlow} cx="18%" cy="50%" r="42%">
-          <stop offset="0%" stopColor="color-mix(in oklab, var(--c-glow-2) 16%, transparent)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-      <rect
-        x="0"
-        y="0"
-        width={VIEWBOX.width}
-        height={VIEWBOX.height}
-        rx="36"
-        className="SVBackplate"
-        fill={`url(#${ids.bgGrad})`}
-      />
-      <rect
-        x="0"
-        y="0"
-        width={VIEWBOX.width}
-        height={VIEWBOX.height}
-        rx="36"
-        className="SVBackGlow"
-        fill={`url(#${ids.bgGlow})`}
-      />
-    </g>
-  );
+function SourceVisualBG ({ ids }) {
+    return (
+        <g className="SVBackground">
+            <defs>
+                <linearGradient id={ids.bgGrad} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="color-mix(in oklab, var(--c-primary-2) 58%, var(--c-ink))" />
+                    <stop offset="55%" stopColor="color-mix(in oklab, var(--c-shadow) 88%, var(--c-ink))" />
+                    <stop offset="100%" stopColor="color-mix(in oklab, var(--c-primary-2) 34%, var(--c-ink))" />
+                </linearGradient>
+
+                <radialGradient id={ids.bgGlow} cx="18%" cy="50%" r="42%">
+                    <stop offset="0%" stopColor="color-mix(in oklab, var(--c-glow-2) 16%, transparent)" />
+                    <stop offset="100%" stopColor="transparent" />
+                </radialGradient>
+            </defs>
+            <rect
+                x="0"
+                y="0"
+                width={VIEWBOX.width}
+                height={VIEWBOX.height}
+                rx="36"
+                className="SVBackplate"
+                fill={`url(#${ids.bgGrad})`}
+            />
+            <rect
+                x="0"
+                y="0"
+                width={VIEWBOX.width}
+                height={VIEWBOX.height}
+                rx="36"
+                className="SVBackGlow"
+                fill={`url(#${ids.bgGlow})`}
+            />
+        </g>
+    );
 }
 
 // function for tiny spark renderer
 function renderSourceSparks(sparks) {
-  return sparks.map((spark, i) => (
-    <circle
-      key={`spark-${i}`}
-      cx={spark.x}
-      cy={spark.y}
-      r={spark.r}
-      className="SVSpark"
-      fill="var(--c-glow-1)"
-      opacity="0.78"
-      filter="url(#sSVBlurs)"
-    />
-  ));
+    return sparks.map((spark, i) => (
+        <circle
+            key={`spark-${i}`}
+            cx={spark.x}
+            cy={spark.y}
+            r={spark.r}
+            className="SVSpark"
+            fill="var(--c-glow-1)"
+            opacity="0.78"
+            filter="url(#sSVBlurs)"
+        />
+    ));
 }
 
 // function for beam layer renderer
 function renderBeamLayer(
-  className,
-  {
-    stroke = 'url(#SVBeamGradient)',
-    strokeWidth = 8,
-    opacity = 1,
-    filter,
-  } = {}
+    className,
+    {
+        stroke = 'url(#SVBeamGradient)',
+        strokeWidth = 8,
+        opacity = 1,
+        filter,
+    } = {}
 ) {
-  return (
-    <path
-      d={BEAM_PATH}
-      className={className}
-      fill="none"
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      opacity={opacity}
-      filter={filter}
-    />
-  );
+    return (
+        <path
+            d={BEAM_PATH}
+            className={className}
+            fill="none"
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity={opacity}
+            filter={filter}
+        />
+    );
 }
 
 // function for source ring renderer
 function renderHalo(
-  cx,
-  cy,
-  rx,
-  ry,
-  className,
-  {
-    fill = 'url(#SVSourceGlow)',
-    opacity = 1,
-    filter,
-    stroke,
-    strokeWidth,
-  } = {}
+    cx,
+    cy,
+    rx,
+    ry,
+    className,
+    {
+        fill = 'url(#SVSourceGlow)',
+        opacity = 1,
+        filter,
+        stroke,
+        strokeWidth,
+    } = {}
 ) {
-  return (
-    <ellipse
-      cx={cx}
-      cy={cy}
-      rx={rx}
-      ry={ry}
-      className={className}
-      fill={fill}
-      opacity={opacity}
-      filter={filter}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-    />
-  );
+    return (
+        <ellipse
+            cx={cx}
+            cy={cy}
+            rx={rx}
+            ry={ry}
+            className={className}
+            fill={fill}
+            opacity={opacity}
+            filter={filter}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+        />
+    );
 }
 
 
 export default function SourceVisualResponse() {
-  const baseId = useId();
-  const ids = {
-    bgGrad: `${baseId}-sv-bg-grad`,
-    bgGlow: `${baseId}-sv-bg-glow`,
-  };
+    const baseId = useId();
+    const ids = {
+        bgGrad: `${baseId}-sv-bg-grad`,
+        bgGlow: `${baseId}-sv-bg-glow`,
+    };
 
-  return (
-    <div className="SVStage" aria-label="Source beginning the measurement">
-      <svg 
-        className="SVSVG"
-        viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-        preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
-      >
-        <defs>
-          <filter id="SVBlurL" x="-25%" y="-40%" width="150%" height="180%">
-            <feGaussianBlur stdDeviation="18" />
-          </filter>
+    return (
+        <div className="SVStage" aria-label="Source beginning the measurement">
+            <svg 
+                className="SVSVG"
+                viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                preserveAspectRatio="xMidYMid meet"
+                aria-hidden="true"
+            >
+                <defs>
+                    <filter id="SVBlurL" x="-25%" y="-40%" width="150%" height="180%">
+                        <feGaussianBlur stdDeviation="18" />
+                    </filter>
 
-          <filter id="SVBlurM" x="-20%" y="-30%" width="140%" height="160%">
-            <feGaussianBlur stdDeviation="10" />
-          </filter>
+                    <filter id="SVBlurM" x="-20%" y="-30%" width="140%" height="160%">
+                        <feGaussianBlur stdDeviation="10" />
+                    </filter>
 
-          <filter id="SVBlurS" x="-12%" y="-18%" width="124%" height="136%">
-            <feGaussianBlur stdDeviation="4" />
-          </filter>
+                    <filter id="SVBlurS" x="-12%" y="-18%" width="124%" height="136%">
+                        <feGaussianBlur stdDeviation="4" />
+                    </filter>
 
-          <linearGradient
-            id="SVBeamGradient"
-            x1={BEAM.startX}
-            y1={BEAM.y}
-            x2={BEAM.endX}
-            y2={BEAM.y}
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor="var(--c-glow-1)" stopOpacity="0.98" />
-            <stop offset="40%" stopColor="var(--c-glow-2)" stopOpacity="0.92" />
-            <stop offset="72%" stopColor="var(--c-glow-1)" stopOpacity="0.72" />
-            <stop offset="100%" stopColor="var(--c-glow-3)" stopOpacity="0.28" />
-          </linearGradient>
+                    <linearGradient
+                        id="SVBeamGradient"
+                        x1={BEAM.startX}
+                        y1={BEAM.y}
+                        x2={BEAM.endX}
+                        y2={BEAM.y}
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop offset="0%" stopColor="var(--c-glow-1)" stopOpacity="0.98" />
+                        <stop offset="40%" stopColor="var(--c-glow-2)" stopOpacity="0.92" />
+                        <stop offset="72%" stopColor="var(--c-glow-1)" stopOpacity="0.72" />
+                        <stop offset="100%" stopColor="var(--c-glow-3)" stopOpacity="0.28" />
+                    </linearGradient>
 
-          <radialGradient
-            id="SVSourceGlow"
-            cx={SOURCE.cx}
-            cy={SOURCE.cy}
-            r={HALO.r2}
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor="var(--c-glow-1)" stopOpacity="0.98" />
-            <stop offset="34%" stopColor="var(--c-glow-2)" stopOpacity="0.78" />
-            <stop offset="66%" stopColor="var(--c-glow-3)" stopOpacity="0.24" />
-            <stop offset="100%" stopColor="var(--c-glow-2)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <SourceVisualBG ids={ids} />
-          <g className="SVElements" transform="translate(0, -25)">
-            <g className="SVSource">
-              <ellipse
-                cx={SOURCE.cx}
-                cy={SOURCE.cy}
-                rx={SOURCE.outerRx}
-                ry={SOURCE.outerRy}
-                className="SVSourceShell"
-                fill="color-mix(in oklab, var(--c-primary-2) 76%, var(--c-ink))"
-                stroke="color-mix(in oklab, var(--c-glow-2) 42%, var(--text) 18%)"
-                strokeWidth="1.5"
-              />
+                    <radialGradient
+                        id="SVSourceGlow"
+                        cx={SOURCE.cx}
+                        cy={SOURCE.cy}
+                        r={HALO.r2}
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop offset="0%" stopColor="var(--c-glow-1)" stopOpacity="0.98" />
+                        <stop offset="34%" stopColor="var(--c-glow-2)" stopOpacity="0.78" />
+                        <stop offset="66%" stopColor="var(--c-glow-3)" stopOpacity="0.24" />
+                        <stop offset="100%" stopColor="var(--c-glow-2)" stopOpacity="0" />
+                    </radialGradient>
+                </defs>
+                <SourceVisualBG ids={ids} />
+                <g className="SVElements" transform="translate(0, -25)">
+                    <g className="SVSource">
+                        <ellipse
+                            cx={SOURCE.cx}
+                            cy={SOURCE.cy}
+                            rx={SOURCE.outerRx}
+                            ry={SOURCE.outerRy}
+                            className="SVSourceShell"
+                            fill="color-mix(in oklab, var(--c-primary-2) 76%, var(--c-ink))"
+                            stroke="color-mix(in oklab, var(--c-glow-2) 42%, var(--text) 18%)"
+                            strokeWidth="1.5"
+                        />
 
-              {renderHalo(
-                SOURCE.cx, 
-                SOURCE.cy, 
-                HALO.r2, 
-                HALO.r2 * 0.82, 
-                'SVHaloOuter',
-                {
-                  opacity: 0.55,
-                  filter: 'url(#SVBlurL)'
-                }
-              )}
+                        {renderHalo(
+                            SOURCE.cx, 
+                            SOURCE.cy, 
+                            HALO.r2, 
+                            HALO.r2 * 0.82, 
+                            'SVHaloOuter',
+                            {
+                                opacity: 0.55,
+                                filter: 'url(#SVBlurL)'
+                            }
+                        )}
 
-              {renderHalo(
-                SOURCE.cx, 
-                SOURCE.cy, 
-                HALO.r1, 
-                HALO.r1 * 0.8, 
-                'SVHaloInner',
-                {
-                  opacity: 0.82,
-                  filter: 'url(#SVBlurM)'
-                }
-              )}
+                        {renderHalo(
+                            SOURCE.cx, 
+                            SOURCE.cy, 
+                            HALO.r1, 
+                            HALO.r1 * 0.8, 
+                            'SVHaloInner',
+                            {
+                                opacity: 0.82,
+                                filter: 'url(#SVBlurM)'
+                            }
+                        )}
 
-              <ellipse
-                cx={SOURCE.cx}
-                cy={SOURCE.cy}
-                rx={SOURCE.innerRx}
-                ry={SOURCE.innerRy}
-                className="SVSourceCore"
-                fill="url(#SVSourceGlow)"
-                opacity="0.96"
-                filter="url(#SVBlurS)"
-              />
+                        <ellipse
+                            cx={SOURCE.cx}
+                            cy={SOURCE.cy}
+                            rx={SOURCE.innerRx}
+                            ry={SOURCE.innerRy}
+                            className="SVSourceCore"
+                            fill="url(#SVSourceGlow)"
+                            opacity="0.96"
+                            filter="url(#SVBlurS)"
+                        />
 
-              <rect
-                x={SOURCE.apertureX}
-                y={SOURCE.apertureY}
-                width={SOURCE.apertureW}
-                height={SOURCE.apertureH}
-                rx={SOURCE.apertureR}
-                className="SVAperture"
-                fill="var(--c-glow-1)"
-                opacity="0.92"
-                filter="url(#SVBlurS)"
-              />
-              {renderSourceSparks(SPARKS)}
-            </g>
+                        <rect
+                            x={SOURCE.apertureX}
+                            y={SOURCE.apertureY}
+                            width={SOURCE.apertureW}
+                            height={SOURCE.apertureH}
+                            rx={SOURCE.apertureR}
+                            className="SVAperture"
+                            fill="var(--c-glow-1)"
+                            opacity="0.92"
+                            filter="url(#SVBlurS)"
+                        />
+                        {renderSourceSparks(SPARKS)}
+                    </g>
 
-            <g className="SVEmission">
-              {renderBeamLayer('SVBeamGlow', {
-                strokeWidth: 24,
-                opacity: 0.32,
-                filter: 'url(#SVBlurL)'
-              })}
+                    <g className="SVEmission">
+                        {renderBeamLayer('SVBeamGlow', {
+                            strokeWidth: 24,
+                            opacity: 0.32,
+                            filter: 'url(#SVBlurL)'
+                        })}
 
-              {renderBeamLayer('SVBeamRibbon', {
-                strokeWidth: 14,
-                opacity: 0.48,
-                filter: 'url(#SVBlurM)'
-              })}
+                        {renderBeamLayer('SVBeamRibbon', {
+                            strokeWidth: 14,
+                            opacity: 0.48,
+                            filter: 'url(#SVBlurM)'
+                        })}
 
-              {renderBeamLayer('SVBeamCore', {
-                strokeWidth: 6,
-                opacity: 0.96
-              })}
+                        {renderBeamLayer('SVBeamCore', {
+                            strokeWidth: 6,
+                            opacity: 0.96
+                        })}
 
-              <path 
-                d={BEAM_PATH} 
-                className="SVBeamPulse" 
-                fill="none"
-                stroke="url(#SVBeamGradient)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.9"
-                filter="url(#SVBlurS)"
-              />
-            </g>
+                        <path 
+                            d={BEAM_PATH} 
+                            className="SVBeamPulse" 
+                            fill="none"
+                            stroke="url(#SVBeamGradient)"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            opacity="0.9"
+                            filter="url(#SVBlurS)"
+                        />
+                    </g>
 
-            <g className="SVAmbient">
-              <line 
-                x1="180" 
-                y1="182" 
-                x2="650" 
-                y2="182" 
-                className="SVResidualLine"
-                stroke="url(#SVBeamGradient)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                opacity="0.22"
-                filter="url(#SVBlurS)"
-              />
-            </g>
+                    <g className="SVAmbient">
+                        <line 
+                            x1="180" 
+                            y1="182" 
+                            x2="650" 
+                            y2="182" 
+                            className="SVResidualLine"
+                            stroke="url(#SVBeamGradient)"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            opacity="0.22"
+                            filter="url(#SVBlurS)"
+                        />
+                    </g>
 
-            <g className="SVLabels" aria-hidden="true">
-              <text
-                x="70"
-                y="85"
-                className="SVLabelText SVLabelText--source"
-              >
-                source
-              </text>
+                    <g className="SVLabels" aria-hidden="true">
+                        <text
+                            x="70"
+                            y="85"
+                            className="SVLabelText SVLabelText--source"
+                        >
+                            source
+                        </text>
 
-              <text
-                x="440"
-                y="152"
-                className="SVLabelText SVLabelText--beam"
-              >
-                outgoing signal
-              </text>
-            </g>
-          </g>
-        </svg>
-    </div>
-  )
+                        <text
+                            x="440"
+                            y="152"
+                            className="SVLabelText SVLabelText--beam"
+                        >
+                            outgoing signal
+                        </text>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    );
 }

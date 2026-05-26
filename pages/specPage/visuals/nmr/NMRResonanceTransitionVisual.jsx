@@ -10,8 +10,8 @@ import {
 } from "../SharedFieldPieces";
 
 import {
-  SpinSphereUnit,
-  StagePlane,
+    SpinSphereUnit,
+    StagePlane,
 } from "../SharedSpinStage";
 
 import "./nmrHiddenMotionVisual.css";

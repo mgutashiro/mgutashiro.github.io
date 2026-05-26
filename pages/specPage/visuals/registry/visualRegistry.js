@@ -18,7 +18,7 @@ import HiddenMotionVisual from '../nmr/nmrHiddenMotionVisual.jsx';
 import EPRElectronMagnets from '../epr/eprElectronMagnetsVisual.jsx';
 
 import continuationVisual from '../ultrafast/ultrafastContinuationVisual.jsx';
-import DeltaAVisual from '../ultrafast/delta-aVisual.jsx';
+import DeltaAVisual from '../ultrafast/UltrafastSpecDeltaAVisual.jsx';
 
 
 import { lazy } from 'react';
@@ -291,23 +291,26 @@ export const visualRegistry = {
             ),
         },
 
-        'delta-a': {
+        'UltrafastSpecDeltaA': {
             colleague: DeltaAVisual
         },
 
-        'spectral-contributions': {
+        'UltrafastSpecContributions': {
             colleague: lazy(() =>
-                import('../ultrafast/spectral-contributionsVisual.jsx')
+                import('../ultrafast/UltrafastSpecSpecContributionsVisual.jsx')
             ),
         },
 
-        'chirped-probe': {
+        'UltrafastSpecAnisotropy': {
             colleague: lazy(() =>
-                import('../ultrafast/chirped-probeVisual.jsx')
+                import('../ultrafast/UltrafastSpecAnisotropyVisual.jsx')
+            ),
+        },
+
+        'UltrafastSpecChirpedProbe': {
+            colleague: lazy(() =>
+                import('../ultrafast/UltrafastSpecChirpedProbeVisual.jsx')
             ),
         },
     },
-
-
-
 }

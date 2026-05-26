@@ -5,42 +5,42 @@ import './transitionsVisual.css';
 /**  setup + helper function that will be used in main component */
 // array of three modes the visual cycles through
 const PHASES = [
-  {id: 'absorption', label: 'Absorption', subtitle: 'energy in'},
-  {id: 'emission', label: 'Emission', subtitle: 'energy out'},
-  {id: 'scattering', label: 'Scattering', subtitle: 'redirect'} 
+    {id: 'absorption', label: 'Absorption', subtitle: 'energy in'},
+    {id: 'emission', label: 'Emission', subtitle: 'energy out'},
+    {id: 'scattering', label: 'Scattering', subtitle: 'redirect'} 
 ];
 
 // coordinates for visual animation
 const LEFT = {
-  upperY: 72,
-  lowerY: 232,
+    upperY: 72,
+    lowerY: 232,
 
-  lineX1: 126,
-  lineX2: 300,
+    lineX1: 126,
+    lineX2: 300,
 
-  photonX: 190,
+    photonX: 190,
 
-  scatterStartX: 190,
-  scatterEndX: 282,
-  scatterC1X: 214,
-  scatterC1Y: 52,
-  scatterC2X: 248,
-  scatterC2Y: 144,
+    scatterStartX: 190,
+    scatterEndX: 282,
+    scatterC1X: 214,
+    scatterC1Y: 52,
+    scatterC2X: 248,
+    scatterC2Y: 144,
 
-  arrowX: 305,
-  arrowTop: 86,
-  arrowBottom: 208,
+    arrowX: 305,
+    arrowTop: 86,
+    arrowBottom: 208,
 
-  deltaEX: 314,
-  deltaEY: 174,
+    deltaEX: 314,
+    deltaEY: 174,
 };
 
 const RIGHT = {
-  signalStart: 108,
-  signalEnd: 248,
-  signalY: 142,
-  hitX: 116,
-  hitY: 142,
+    signalStart: 108,
+    signalEnd: 248,
+    signalY: 142,
+    hitX: 116,
+    hitY: 142,
 };
 
 // helper function that draws right side animation 

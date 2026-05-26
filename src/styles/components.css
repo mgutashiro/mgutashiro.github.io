@@ -1,66 +1,61 @@
-/* base / document rules */
-/* set global behavior + prevent browser defaults */
-html { scroll-behavior: smooth; }
-
-html, body { 
-  height: 100%; 
-  margin: 0;
+html { 
+    scroll-behavior: smooth;
 }
 
+
 body {
+    font-family: var(--font-body);
+    font-weight: var(--w-regular);
 
-  font-family: var(--font-body);
-  font-weight: var(--w-regular);
-
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
 }
 
 /* Setting Typography elements */
 /* Headings */
 h1, h2, h3 {
-  font-family: var(--font-mystique);
-  margin: 0;
+    font-family: var(--font-mystique);
+    margin: 0;
 }
 
 /* Typography overrides */
 h1 {
-  font-family: var(--font-heading);
-  font-weight: var(--w-black);
-  letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+    font-weight: var(--w-black);
+    letter-spacing: 0.5px;
 }
 
 h2 {
-  font-weight: var(--w-semibold);
-  letter-spacing: 0.4px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.4px;
 }
 
 h3 {
-  font-weight: var(--w-medium);
-  letter-spacing: 0.3px;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.3px;
 }
 
 p {
-  max-width: 65ch;
-  line-height: 1.6;
-  color: var(--text-dim);
-  white-space: pre-line;
+    max-width: 65ch;
+    line-height: 1.6;
+    color: var(--text-dim);
+    white-space: pre-line;
 }
 
 .p.kaomiji {
-  font-family: var(--font-JP), sans-seriff;
-  font-variant-ligatures: none;
-  letter-spacing: 0;
-  line-height: 1;
-  display: inline-block;
-  transform: translateY(0.02em);
+    font-family: var(--font-JP), sans-seriff;
+    font-variant-ligatures: none;
+    letter-spacing: 0;
+    line-height: 1;
+    display: inline-block;
+    transform: translateY(0.02em);
 }
 
 /* horizontal rule aka thematic break */
 hr {
-  border: 0;
-  border-top: 1px solid var(--border);
+    border: 0;
+    border-top: 1px solid var(--border);
 }
 
 /* Utility font classes */
@@ -71,57 +66,56 @@ hr {
 
 /* UI Surfaces Primitives(reusable design components) */
 .surface {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2);
 }
 
 .surface-2 {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2);
 }
 
 .panel--solid {
-  background: color-mix(in oklab, var(--bg) 88%, transparent);
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
 }
 
 /* WebGL / Canvas Layering (site infrastructure) + UI on top */
 /* React mount container: keep simple */
 #root {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 /* the R3F canvas wrapper */
 #webgl {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 #webgl canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
 
 /* UI layer (HTML sections, SVG frames, text, buttons) */
 .uiLayer {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .textBlock {
-  white-space: pre-line;
+    white-space: pre-line;
 }
-
 
 /* responsive overrides */
 @media (max-width: 900px) {
-  #intro {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-  }
+    #intro {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
 }
 

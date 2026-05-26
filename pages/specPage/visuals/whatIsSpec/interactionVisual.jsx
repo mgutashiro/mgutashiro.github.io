@@ -3,9 +3,9 @@ import './interactionVisual.css'
 const RIPPLE_COUNT = 3;
 
 const MOTES = [
-  { id: 0, x: '30%', y: '36%', delay: '0.1s' },
-  { id: 1, x: '63%', y: '42%', delay: '0.35s' },
-  { id: 2, x: '46%', y: '66%', delay: '0.55s' },
+    { id: 0, x: '30%', y: '36%', delay: '0.1s' },
+    { id: 1, x: '63%', y: '42%', delay: '0.35s' },
+    { id: 2, x: '46%', y: '66%', delay: '0.55s' },
 ];
 
 export default function InteractionVisualResponse() {

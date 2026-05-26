@@ -1,15 +1,12 @@
 /**
- * Defines available explanation modes and labels.
- * Used across spec page for mode toggling.
- *
- * defaultMode sets initial view.
+ * Define available explanation modes and lables
+ * used across spec page for mode toggling
+ * default mode sets initial view
  */
-
 export const modeLabels = {
-  friends: 'Friends Mode',
-  colleague: 'Colleague Mode'
+    friends: 'Friends Mode',
+    colleague: 'Colleague Mode'
 };
 
 export const availableModes = ['friends', 'colleague'];
-
 export const defaultMode = 'friends';

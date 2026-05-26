@@ -6,27 +6,27 @@ import { fluorescenceSpecParts } from './specModelPanels/fluorescenceSpecParts';
 
 export const specModelRegistry = {
     'uvvis-double-beam': {
-    id: 'uvvis-double-beam',
-    title: 'Double-Beam UV-Vis Absorption Spectrometer',
-    subtitle: 'One selected wavelength, two paths, one comparison.',
-    modelUrl: uvvisDoubleBeamUrl,
-    defaultPartId: 'overview',
+        id: 'uvvis-double-beam',
+        title: 'Double-Beam UV-Vis Absorption Spectrometer',
+        subtitle: 'One selected wavelength, two paths, one comparison.',
+        modelUrl: uvvisDoubleBeamUrl,
+        defaultPartId: 'overview',
 
-    camera: {
-        position: [4.2, 2.4, 5.2],
-        fov: 35,
+        camera: {
+            position: [4.2, 2.4, 5.2],
+            fov: 35,
+        },
+
+        lights: {
+            ambient: 0.7,
+            key: 1.15,
+            accent: 0.8,
+        },
+
+            scale: 1.12,
+            parts: uvvisDoubleBeamParts,
     },
-
-    lights: {
-        ambient: 0.7,
-        key: 1.15,
-        accent: 0.8,
-    },
-
-        scale: 1.12,
-        parts: uvvisDoubleBeamParts,
-  },
-  'fluorescence-spec-demo': {
+    'fluorescence-spec-demo': {
         id: 'fluorescence-spec-demo',
         title: 'Steady-State Fluorescence Spectrometer',
         subtitle: 'Selected excitation light enters the sample, then emitted fluorescence travels to the detector.',

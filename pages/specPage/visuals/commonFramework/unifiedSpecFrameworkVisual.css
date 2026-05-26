@@ -1,30 +1,20 @@
 :root {
-  /* =========================================
-     QUANTUM PALETTE
-     ========================================= */
+    /* QUANTUM PALETTE */
+    --q-electronic-line: color-mix(in oklab, var(--c-glow-2) 74%, var(--text) 26%);
+    --q-ms-line: color-mix(in oklab, var(--c-glow-3) 72%, var(--text) 28%);
 
-  /* electronic state manifold */
-  --q-electronic-line:
-    color-mix(in oklab, var(--c-glow-2) 74%, var(--text) 26%);
+    /* nuclear I states */
+    --q-nuclear-line: color-mix(in oklab, var(--c-glow-1) 70%, var(--text) 30%);
 
-  /* mS states */
-  --q-ms-line:
-    color-mix(in oklab, var(--c-glow-3) 72%, var(--text) 28%);
-
-  /* nuclear I states */
-  --q-nuclear-line:
-    color-mix(in oklab, var(--c-glow-1) 70%, var(--text) 30%);
-
-  /* electron particle
-     faint outline + darker cloud-like fill */
-  --q-electron-stroke:
+    /* electron particle faint outline + darker cloud-like fill */
+    --q-electron-stroke:
     color-mix(
-      in oklab,
-      color-mix(in oklab, var(--c-glow-2) 76%, var(--text) 24%) 38%,
-      transparent
+        in oklab,
+        color-mix(in oklab, var(--c-glow-2) 76%, var(--text) 24%) 38%,
+        transparent
     );
 
-  --q-electron-fill:
+    --q-electron-fill:
     color-mix(
         in oklab,
         color-mix(in oklab, var(--c-primary-1) 52%, var(--c-glow-2) 48%) 95%,
@@ -45,8 +35,6 @@
             transparent
         );
 
-  /* proton particle
-     stronger outline + lighter nucleus-like fill */
     --q-proton-stroke:
         color-mix(
             in oklab,
@@ -54,16 +42,14 @@
             transparent
         );
 
-  --q-proton-fill:
-    color-mix(
-      in oklab,
-      color-mix(in oklab, var(--c-glow-1) 62%, var(--text) 38%) 70%,
-      transparent
-    );
+    --q-proton-fill:
+        color-mix(
+            in oklab,
+            color-mix(in oklab, var(--c-glow-1) 62%, var(--text) 38%) 70%,
+            transparent
+        );
 
-  /* one universal arrow color */
-  --q-arrow:
-    color-mix(in oklab, var(--c-metal-1) 76%, var(--text) 24%);
+    --q-arrow: color-mix(in oklab, var(--c-metal-1) 76%, var(--text) 24%);
 }
 
 /* LAYOUT */
@@ -85,7 +71,6 @@
     overflow: visible;
 }
 
-/* BACKDROP / TYPE */
 .USFBackdrop {
     fill:
         color-mix(in oklab, var(--surface) 88%, var(--bg));
@@ -112,8 +97,6 @@
     fill: var(--text);
 }
 
-
-
 .USFMethodLabel {
     font-family: var(--font-jester);
     font-size: 0.8rem;
@@ -129,7 +112,6 @@
     opacity: 0.88;
 }
 
-/* Core Center Three-Layer Quantum Scaffold */
 .USFQuantumCore {
     pointer-events: none;
 }
@@ -330,7 +312,6 @@
     opacity: 0.7;
 }
 
-/* active selector */
 .USFSelectorGroup {
     pointer-events: none;
 }
@@ -377,7 +358,6 @@
     stroke: var(--q-electron-stroke);
     fill: var(--q-electron-fill3);
     stroke-width: 1.2;
-
     filter:
         drop-shadow(0 0 4px color-mix(in oklab, var(--q-electron-fill3) 82%, transparent))
         drop-shadow(0 0 8px color-mix(in oklab, var(--c-glow-2) 68%, transparent))
@@ -385,7 +365,6 @@
 }
 
 
-/* METHOD MODULES */
 .USFMethod {
     opacity: 0.28;
     transition: opacity 320ms ease, transform 320ms ease;
@@ -406,7 +385,6 @@
     stroke: color-mix(in oklab, var(--border-strong) 88%, var(--c-glow-2));
     stroke-width: 1.1;
 }
-
 
 .USFMethodArrow {
     stroke: var(--q-arrow);
@@ -455,7 +433,7 @@
     filter: drop-shadow(0 0 3px color-mix(in oklab, var(--q-arrow) 45%, transparent));
 }
 
-/* MODE TINTS */
+
 .USFMethod--uvvis .USFMethodBox,
 .USFMethod--uvvis .USFMethodLabel {
     stroke: color-mix(in oklab, var(--c-glow-1) 48%, var(--border));

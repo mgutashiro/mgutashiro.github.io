@@ -2,24 +2,24 @@ import React, { useId } from "react";
 import './NMRInstrumentSignalFlowVisual.css';
 
 const CANVAS = {
-  width: 700,
-  height: 500,
-  padding: 5,
+    width: 700,
+    height: 500,
+    padding: 5,
 };
 
 const VIEWBOX = `0 0 ${CANVAS.width} ${CANVAS.height}`;
 
 const CENTER = {
-  x: CANVAS.width / 2,
-  y: CANVAS.height / 2,
+    x: CANVAS.width / 2,
+    y: CANVAS.height / 2,
 };
 
 const PANEL = {
-  x: CANVAS.padding,
-  y: CANVAS.padding,
-  width: CANVAS.width - CANVAS.padding * 2,
-  height: CANVAS.height - CANVAS.padding * 2,
-  rx: 28,
+    x: CANVAS.padding,
+    y: CANVAS.padding,
+    width: CANVAS.width - CANVAS.padding * 2,
+    height: CANVAS.height - CANVAS.padding * 2,
+    rx: 28,
 };
 
 const NMRMAGNET = { 

@@ -4,15 +4,15 @@ import { OrbitControls, Html, Line } from "@react-three/drei";
 import "./nmrHiddenMotionVisual.css";
 
 import {
-  ACWArrow,
-  CWArrow,
-  StageArrow,
-  useTokenPalette,
+    ACWArrow,
+    CWArrow,
+    StageArrow,
+    useTokenPalette,
 } from "../SharedFieldPieces";
 
 import {
-  SpinSphereUnit,
-  StagePlane,
+    SpinSphereUnit,
+    StagePlane,
 } from "../SharedSpinStage";
 
 

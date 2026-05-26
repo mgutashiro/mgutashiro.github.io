@@ -1,0 +1,457 @@
+.ElevatorRig {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
+    pointer-events: none;
+
+    --cab-w: clamp(4.4rem, 12vw, 8rem);
+    --gear-big: clamp(2.55rem, 7vw, 4.8rem);
+    --gear-center: clamp(1.55rem, 4.2vw, 3rem);
+    --gear-main: clamp(2.15rem, 6vw, 4.2rem);
+    --weight-w: clamp(1.9rem, 5.2vw, 3.45rem);
+    --photon-size: clamp(0.88rem, 2.4vw, 1.5rem);
+
+    image-rendering: pixelated;
+}
+
+.ElevatorRig::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(
+            circle at 50% 82%,
+            color-mix(in oklab, var(--c-metal-1) 15%, transparent) 0%,
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 18%,
+            color-mix(in oklab, var(--c-glow-2) 14%, transparent) 0%,
+            transparent 36%
+        ),
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--c-shadow) 78%, var(--c-ink)) 0%,
+            var(--c-ink) 70%,
+            color-mix(in oklab, var(--c-primary-2) 36%, var(--c-ink)) 100%
+        );
+}
+
+.ElevatorRig img {
+    display: block;
+    image-rendering: pixelated;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* SVG rope */
+.ElevatorRig_ropeSvg {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.ElevatorRig_ropeShadow,
+.ElevatorRig_ropeCore,
+.ElevatorRig_ropeHighlight {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+}
+
+.ElevatorRig_ropeShadow {
+    stroke: color-mix(in oklab, var(--c-ink) 80%, var(--c-metal-2));
+    stroke-width: 4.4;
+}
+
+.ElevatorRig_ropeCore {
+    stroke: var(--c-metal-2);
+    stroke-width: 2.8;
+}
+
+.ElevatorRig_ropeHighlight {
+    stroke: color-mix(in oklab, var(--c-metal-1) 78%, var(--text));
+    stroke-width: 1.1;
+    stroke-dasharray: 2 5;
+    opacity: 0.72;
+}
+
+/* Gear deck */
+.ElevatorRig_gearDeck {
+    position: absolute;
+    top: clamp(1rem, 5.2vh, 3.5rem);
+    left: 50%;
+    z-index: 5;
+    width: min(92%, 17rem);
+    height: clamp(4rem, 14vh, 7.4rem);
+    transform: translateX(-50%);
+}
+
+.ElevatorRig_gear {
+    position: absolute;
+    height: auto;
+    transform-origin: 50% 50%;
+    filter:
+        drop-shadow(0 0 0.35rem color-mix(in oklab, var(--c-metal-1) 24%, transparent))
+        drop-shadow(0 0 0.9rem color-mix(in oklab, var(--c-glow-2) 12%, transparent));
+}
+
+.ElevatorRig_gear--left {
+    left: 24%;
+    top: 54%;
+    width: var(--gear-big);
+    transform: translate(-50%, -50%) rotate(var(--gear-left-rotation));
+}
+
+.ElevatorRig_gear--center {
+    left: 50%;
+    top: 43%;
+    width: var(--gear-center);
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(var(--gear-center-rotation));
+}
+
+.ElevatorRig_gear--right {
+    left: 76%;
+    top: 54%;
+    width: var(--gear-big);
+    transform: translate(-50%, -50%) rotate(var(--gear-right-rotation));
+}
+
+.ElevatorRig_gear--main {
+    left: 50%;
+    top: 66%;
+    width: var(--gear-main);
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(var(--gear-main-rotation));
+}
+
+/* Loading gear motion */
+.ElevatorRig[data-phase="loading"] .ElevatorRig_gear--left,
+.ElevatorRig[data-phase="loading"] .ElevatorRig_gear--right {
+    animation: ElevatorRigBigGearLoad 10s linear forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_gear--center,
+.ElevatorRig[data-phase="loading"] .ElevatorRig_gear--main {
+    animation: ElevatorRigCenterGearLoad 10s linear forwards;
+}
+
+/* Counterweight */
+.ElevatorRig_weight {
+    position: absolute;
+    left: 79%;
+    top: var(--weight-y);
+    z-index: 4;
+    width: var(--weight-w);
+    transform: translate(-50%, -50%);
+    filter:
+        drop-shadow(0 0 0.4rem color-mix(in oklab, var(--c-metal-1) 20%, transparent))
+        drop-shadow(0 0 0.9rem color-mix(in oklab, var(--c-shadow) 80%, transparent));
+}
+
+.ElevatorRig_weight img {
+    width: 100%;
+    height: auto;
+}
+
+/* Elevator cab */
+.ElevatorRig_rideStack {
+    position: absolute;
+    left: 50%;
+    top: var(--ride-y);
+    z-index: 6;
+    width: var(--cab-w);
+    transform: translate(-50%, -50%);
+}
+
+.ElevatorRig_guideStack {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% - 0.12rem);
+    z-index: 1;
+    width: 54%;
+    transform: translateX(-50%);
+}
+
+.ElevatorRig_guideBase,
+.ElevatorRig_guideActive {
+    width: 100%;
+    height: auto;
+}
+
+.ElevatorRig_guideActive {
+    position: absolute;
+    left: 50%;
+    bottom: 62%;
+    width: 58%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 0.35rem color-mix(in oklab, var(--c-glow-1) 26%, transparent));
+}
+
+.ElevatorRig_cab {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    aspect-ratio: 1 / 1.22;
+    filter:
+        drop-shadow(0 0 0.42rem color-mix(in oklab, var(--c-metal-1) 22%, transparent))
+        drop-shadow(0 0 1.1rem color-mix(in oklab, var(--c-glow-2) 16%, transparent));
+}
+
+.ElevatorRig_ride,
+.ElevatorRig_door {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ElevatorRig_ride--open {
+    z-index: 1;
+    opacity: 0;
+}
+
+.ElevatorRig_photons {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.ElevatorRig_ride--closed {
+    z-index: 3;
+    opacity: 1;
+}
+
+.ElevatorRig_door {
+    z-index: 5;
+}
+
+.ElevatorRig_door--left {
+    transform: translateX(0);
+}
+
+.ElevatorRig_door--right {
+    transform: translateX(0);
+}
+
+.ElevatorRig_photon {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: var(--photon-size);
+    height: auto;
+    opacity: 0.82;
+    filter:
+        drop-shadow(0 0 0.28rem color-mix(in oklab, var(--c-glow-1) 45%, transparent))
+        drop-shadow(0 0 0.62rem color-mix(in oklab, var(--c-glow-2) 24%, transparent));
+}
+
+.ElevatorRig_photon--one {
+    transform: translate(-145%, -60%);
+}
+
+.ElevatorRig_photon--two {
+    transform: translate(-50%, -54%);
+}
+
+.ElevatorRig_photon--three {
+    transform: translate(48%, -60%);
+}
+
+/* Loading state: open ride first, photons enter, doors close, final state matches homepage landing */
+.ElevatorRig[data-phase="loading"] .ElevatorRig_ride--open {
+    opacity: 1;
+    animation: ElevatorRigOpenRideLoad 10s linear forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_ride--closed {
+    opacity: 0;
+    animation: ElevatorRigClosedRideLoad 10s linear forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_door--left {
+    animation: ElevatorRigDoorLeftLoad 10s cubic-bezier(0.33, 0, 0.18, 1) forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_door--right {
+    animation: ElevatorRigDoorRightLoad 10s cubic-bezier(0.33, 0, 0.18, 1) forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_photon--one {
+    animation: ElevatorRigPhotonOneLoad 10s ease-out forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_photon--two {
+    animation: ElevatorRigPhotonTwoLoad 10s ease-out forwards;
+}
+
+.ElevatorRig[data-phase="loading"] .ElevatorRig_photon--three {
+    animation: ElevatorRigPhotonThreeLoad 10s ease-out forwards;
+}
+
+@keyframes ElevatorRigBigGearLoad {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    72%, 100% {
+        transform: translate(-50%, -50%) rotate(540deg);
+    }
+}
+
+@keyframes ElevatorRigCenterGearLoad {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    72%, 100% {
+        transform: translate(-50%, -50%) rotate(-1080deg);
+    }
+}
+
+@keyframes ElevatorRigDoorLeftLoad {
+    0%, 46% {
+        transform: translateX(-66%);
+    }
+
+    64%, 100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes ElevatorRigDoorRightLoad {
+    0%, 46% {
+        transform: translateX(66%);
+    }
+
+    64%, 100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes ElevatorRigOpenRideLoad {
+    0%, 56% {
+        opacity: 1;
+    }
+
+    66%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ElevatorRigClosedRideLoad {
+    0%, 58% {
+        opacity: 0;
+    }
+
+    66%, 100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ElevatorRigPhotonOneLoad {
+    0%, 12% {
+        opacity: 0;
+        transform: translate(-410%, -102%) scale(0.72);
+    }
+
+    22% {
+        opacity: 1;
+    }
+
+    42%, 100% {
+        opacity: 0.86;
+        transform: translate(-145%, -60%) scale(1);
+    }
+}
+
+@keyframes ElevatorRigPhotonTwoLoad {
+    0%, 18% {
+        opacity: 0;
+        transform: translate(-445%, -30%) scale(0.72);
+    }
+
+    28% {
+        opacity: 1;
+    }
+
+    48%, 100% {
+        opacity: 0.86;
+        transform: translate(-50%, -54%) scale(1);
+    }
+}
+
+@keyframes ElevatorRigPhotonThreeLoad {
+    0%, 24% {
+        opacity: 0;
+        transform: translate(-475%, 22%) scale(0.72);
+    }
+
+    34% {
+        opacity: 1;
+    }
+
+    54%, 100% {
+        opacity: 0.86;
+        transform: translate(48%, -60%) scale(1);
+    }
+}
+
+
+@media (max-width: 700px) {
+    .ElevatorRig {
+        --cab-w: clamp(3.7rem, 20vw, 5.8rem);
+        --gear-big: clamp(2.05rem, 14vw, 3.55rem);
+        --gear-center: clamp(1.25rem, 8vw, 2.15rem);
+        --gear-main: clamp(1.8rem, 12vw, 3rem);
+        --weight-w: clamp(1.45rem, 9vw, 2.5rem);
+        --photon-size: clamp(0.68rem, 4vw, 1.1rem);
+    }
+
+    .ElevatorRig_gearDeck {
+        width: min(96%, 11rem);
+        top: clamp(0.85rem, 4.7vh, 2.2rem);
+    }
+
+    .ElevatorRig_gear--left {
+        left: 18%;
+    }
+
+    .ElevatorRig_gear--right {
+        left: 82%;
+    }
+
+    .ElevatorRig_weight {
+        left: 84%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_gear,
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_ride,
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_door,
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_photon {
+        animation: none;
+    }
+
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_ride--open {
+        opacity: 0;
+    }
+
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_ride--closed {
+        opacity: 1;
+    }
+
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_door--left,
+    .ElevatorRig[data-phase="loading"] .ElevatorRig_door--right {
+        transform: translateX(0);
+    }
+}
