@@ -55,8 +55,15 @@ export default function ElevatorRig({
     const scrollT = isLoading ? 0 : easeInOut(clamp01(progress));
     const loadT = clamp01(loadingProgress);
 
-    const rideY = lerp(82, 27, scrollT);
-    const weightY = lerp(20, 78, scrollT);
+    const stationY = 86;
+    const rideY = lerp(stationY, 22, scrollT);
+    const weightY = lerp(24, 90, scrollT);
+    const cabX = 24;
+    const weightX = 55;
+    const gearLeftX = 25;
+    const gearCenterX = 40;
+    const gearRightX = 55;
+    const gearMainX = 40;
 
     const guideImage = isLoading ? guide1 : GUIDE_BY_SECTION[activeId] || guide1;
 
@@ -64,15 +71,30 @@ export default function ElevatorRig({
     const centerGearRotation = scrollT * -1440;
     const mainGearRotation = scrollT * -1440;
 
-    const ropeCabTopY = rideY - 10;
-    const ropeWeightTopY = weightY - 9;
+    const ropeCabAttachY = Math.max(rideY - 4, 28);
+    const ropeWeightAttachY = Math.max(weightY - 4, 28);
+
+    const ropeWrap = {
+        cx: gearMainX,
+        sideY: 18,
+        topY: 1,
+        leftX: cabX,
+        rightX: weightX,
+    };
 
     const ropePath = `
-        M 50 ${ropeCabTopY}
-        L 50 22
-        Q 50 14 58 15
-        Q 66 16 70 23
-        L 79 ${ropeWeightTopY}
+        M ${cabX} ${ropeCabAttachY}
+        L ${ropeWrap.leftX} ${ropeWrap.sideY}
+
+        C ${ropeWrap.leftX} ${ropeWrap.topY + 5}
+        ${ropeWrap.cx - 10} ${ropeWrap.topY}
+        ${ropeWrap.cx} ${ropeWrap.topY}
+
+        C ${ropeWrap.cx + 10} ${ropeWrap.topY}
+        ${ropeWrap.rightX} ${ropeWrap.topY + 5}
+        ${ropeWrap.rightX} ${ropeWrap.sideY}
+
+        L ${weightX} ${ropeWeightAttachY}
     `;
 
     return (
@@ -82,8 +104,15 @@ export default function ElevatorRig({
             data-active-section={activeId}
             style={{
                 '--ride-y': `${rideY}%`,
+                '--station-y': `${stationY}%`,
                 '--weight-y': `${weightY}%`,
                 '--load': loadT,
+                '--cab-x': `${cabX}%`,
+                '--weight-x': `${weightX}%`,
+                '--gear-left-x': `${gearLeftX}%`,
+                '--gear-center-x': `${gearCenterX}%`,
+                '--gear-right-x': `${gearRightX}%`,
+                '--gear-main-x': `${gearMainX}%`,
                 '--gear-left-rotation': `${bigGearRotation}deg`,
                 '--gear-center-rotation': `${centerGearRotation}deg`,
                 '--gear-right-rotation': `${bigGearRotation}deg`,
@@ -102,50 +131,43 @@ export default function ElevatorRig({
             </svg>
 
             <div className="ElevatorRig_gearDeck">
-                <img
-                    className="ElevatorRig_gear ElevatorRig_gear--left"
-                    src={gearL}
-                    alt=""
-                />
+                <div className="ElevatorRig_gearSlot ElevatorRig_gearSlot--left">
+                    <img
+                        className="ElevatorRig_gearImg ElevatorRig_gearImg--left"
+                        src={gearL}
+                        alt=""
+                    />
+                </div>
 
-                <img
-                    className="ElevatorRig_gear ElevatorRig_gear--center"
-                    src={gearCenter}
-                    alt=""
-                />
+                <div className="ElevatorRig_gearSlot ElevatorRig_gearSlot--right">
+                    <img
+                        className="ElevatorRig_gearImg ElevatorRig_gearImg--right"
+                        src={gearL}
+                        alt=""
+                    />
+                </div>
+                <div className="ElevatorRig_gearSlot ElevatorRig_gearSlot--center">
+                    <img
+                        className="ElevatorRig_gearImg ElevatorRig_gearImg--center"
+                        src={gearCenter}
+                        alt=""
+                    />
+                </div>
 
-                <img
-                    className="ElevatorRig_gear ElevatorRig_gear--right"
-                    src={gearL}
-                    alt=""
-                />
-
-                <img
-                    className="ElevatorRig_gear ElevatorRig_gear--main"
-                    src={gearMain}
-                    alt=""
-                />
+                <div className="ElevatorRig_gearSlot ElevatorRig_gearSlot--main">
+                    <img
+                        className="ElevatorRig_gearImg ElevatorRig_gearImg--main"
+                        src={gearMain}
+                        alt=""
+                    />
+                </div>
             </div>
 
             <div className="ElevatorRig_weight">
                 <img src={weight} alt="" />
             </div>
 
-            <div className="ElevatorRig_rideStack">
-                <div className="ElevatorRig_guideStack">
-                    <img
-                        className="ElevatorRig_guideBase"
-                        src={guideBase}
-                        alt=""
-                    />
-
-                    <img
-                        className="ElevatorRig_guideActive"
-                        src={guideImage}
-                        alt=""
-                    />
-                </div>
-
+            <div className="ElevatorRig_movingRide">
                 <div className="ElevatorRig_cab">
                     <img
                         className="ElevatorRig_ride ElevatorRig_ride--open"
@@ -176,20 +198,40 @@ export default function ElevatorRig({
                         src={rideClosed}
                         alt=""
                     />
-
-                    <img
-                        className="ElevatorRig_door ElevatorRig_door--left"
-                        src={doorL}
-                        alt=""
-                    />
-
-                    <img
-                        className="ElevatorRig_door ElevatorRig_door--right"
-                        src={doorR}
-                        alt=""
-                    />
                 </div>
             </div>
+
+            <div className="ElevatorRig_station">
+    <div className="ElevatorRig_guideStack">
+        <img
+            className="ElevatorRig_guideBase"
+            src={guideBase}
+            alt=""
+        />
+
+        <img
+            className="ElevatorRig_guideActive"
+            src={guideImage}
+            alt=""
+        />
+            </div>
+
+            <div className="ElevatorRig_stationDoors">
+                <img
+                    className="ElevatorRig_door ElevatorRig_door--left"
+                    src={doorL}
+                    alt=""
+                />
+
+                <img
+                    className="ElevatorRig_door ElevatorRig_door--right"
+                    src={doorR}
+                    alt=""
+                />
+            </div>
+        </div>
+
+   
         </div>
     );
 }
