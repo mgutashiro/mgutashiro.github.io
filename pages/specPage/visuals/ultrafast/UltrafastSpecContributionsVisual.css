@@ -1,0 +1,94 @@
+.UltrafastSpecContributions_Figure {
+    width: 100%;
+    margin: 0;
+}
+
+.UltrafastSpecContributions_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.UltrafastSpecContributions_BGFrame {
+    stroke: color-mix(in oklab, var(--c-glow-1) 32%, transparent);
+    stroke-width: 1.4;
+}
+
+.UltrafastSpecContributions_SplitLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 34%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 5 8;
+    vector-effect: non-scaling-stroke;
+}
+
+.UltrafastSpecContributions_AxisLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 70%, white 15%);
+    stroke-width: 1.35;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.UltrafastSpecContributions_TickLine {
+    stroke: color-mix(in oklab, var(--c-glow-1) 70%, white 15%);
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.UltrafastSpecContributions_AxisLabel {
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.06em;
+    fill: color-mix(in oklab, var(--c-glow-1) 70%, white 15%);
+    opacity: 0.86;
+    pointer-events: none;
+}
+
+.UltrafastSpecContributions_ZeroLabel {
+    font-family: var(--font-tech);
+    font-size: 0.58rem;
+    font-weight: var(--w-regular);
+    letter-spacing: 0.035em;
+    fill: color-mix(in oklab, var(--c-glow-1) 74%, white 12%);
+    opacity: 0.84;
+    pointer-events: none;
+}
+
+.UltrafastSpecContributions_PeakGlow,
+.UltrafastSpecContributions_PeakPath {
+    pointer-events: none;
+}
+
+.UltrafastSpecContributions_CenterArrow {
+    stroke: color-mix(in oklab, var(--c-metal-2) 78%, white 10%);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.88;
+}
+
+.UltrafastSpecContributions_Caption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.45rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+}

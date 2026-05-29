@@ -21,8 +21,9 @@ body {
     height: 100vh;
     height: 100svh;
     overflow: hidden;
-    --elevator-lane-w: 25%;
-    --main-space-w: 75%;
+    --elevator-lane-w: 24%;
+    --main-space-w: 76%;
+    --elevator-visual-w: 33.333vw;
 }
 
 
@@ -39,7 +40,7 @@ body {
     width: var(--elevator-lane-w);
     min-width: 0;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .elevatorLane::before {
@@ -65,6 +66,7 @@ body {
 /* PAGE SHELL */
 .HomePageMainSpace {
     position: relative;
+    z-index: 1;
     flex: 1 1 var(--main-space-w);
     width: var(--main-space-w);
     min-width: 0;
@@ -380,23 +382,27 @@ body {
         0 0 0 1px color-mix(in oklab, var(--bg) 38%, transparent);
     transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
+
 .aboutNavButton__triangle {
     display: block;
     inline-size: 0;
     block-size: 0;
 }
+
 .aboutNavButton__triangle--right {
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left: 12px solid var(--about-btn-arrow);
     margin-left: 3px;
 }
+
 .aboutNavButton__triangle--left {
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-right: 12px solid var(--about-btn-arrow);
     margin-right: 3px;
 }
+
 .aboutNavButton__label {
     font-family: var(--font-tech);
     font-size: 0.95rem;
@@ -406,38 +412,48 @@ body {
     white-space: nowrap;
     opacity: 0.92;
 }
+
 .aboutNavButton__label--left {
     order: -1;
 }
+
 .aboutNavButton__label--right {
     order: 1;
 }
+
 .aboutNavButton:hover .aboutNavButton__glow,
 .aboutNavButton:focus-visible .aboutNavButton__glow {
     opacity: 1;
     transform: scale(1);
 }
+
 .aboutNavButton:hover .aboutNavButton__circle,
 .aboutNavButton:focus-visible .aboutNavButton__circle {
     transform: translateY(-1px);
 }
+
 .aboutNavButton:focus-visible {
     outline: none;
 }
+
 .aboutNavButton--back {
     --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent));
     --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent));
 }
+
 .aboutNavButton--back .aboutNavButton__glow {
     background: color-mix(in oklab, var(--accent) 24%, transparent);
 }
+
 .aboutNavButton--next {
     --about-btn-border: color-mix(in oklab, var(--lightMetal) 34%, var(--accent-3));
     --about-btn-arrow: color-mix(in oklab, var(--text) 88%, var(--accent-3));
 }
+
 .aboutNavButton--next .aboutNavButton__glow {
     background: color-mix(in oklab, var(--accent-3) 24%, transparent);
 }
+
 .aboutNavButton:disabled {
     cursor: default;
     opacity: 0.42;
@@ -523,15 +539,18 @@ body {
 .aboutSocialLink--linkedin {
     border-color: color-mix(in oklab, var(--c-glow-1) 34%, var(--border));
 }
+
 .aboutSocialLink--github {
     border-color: color-mix(in oklab, var(--c-glow-3) 36%, var(--border));
 }
+
 .aboutSocialLink:hover,
 .aboutSocialLink:focus-visible,
 .aboutSocialLink:active {
     transform: translateY(-2px) scale(1.05);
     outline: none;
 }
+
 .aboutSocialLink--linkedin:hover,
 .aboutSocialLink--linkedin:focus-visible,
 .aboutSocialLink--linkedin:active {

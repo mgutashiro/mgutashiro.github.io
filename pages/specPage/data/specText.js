@@ -811,16 +811,12 @@ export const spectroscopyText = [
                             },
                             {
                                 type: "text",
-                                value: String.raw`Here, the pumped sample is compared against the unpumped ground-state sample. This difference spectrum reports how the absorbing species, or chromophore, changes after excitation. In photosynthetic systems, chlorophylls and carotenoids serve as chromophores that capture light and initiate energy-transfer or charge-separation pathways.`
+                                value: `The pumped sample is compared against the unpumped ground-state sample. This difference spectrum shows how a chromophore changes after absorbing light. In photosynthetic systems, chlorophylls and carotenoids act as chromophores that capture energy and help initiate energy transfer or charge separation.`
                             },
                             {
                                 type: "text",
-                                value: String.raw`The observed \(\Delta A\) signal is usually a superposition of negative and positive contributions. Ground-state bleach appears as a negative signal because excitation depletes part of the ground-state population, reducing the original absorption. Stimulated emission also contributes negatively when the probe stimulates emission from the excited state back to the ground state; this emitted light travels with the probe and increases the detected intensity.`
+                                value: `The ΔA signal is usually a mixture of negative and positive features. Ground-state bleach and stimulated emission appear negative because the pumped sample transmits more probe light than the ground-state reference. Excited-state absorption and product absorption appear positive because new excited or transient species create new absorption pathways.`
                             },
-                            {
-                                type: "text",
-                                value: String.raw`Positive signals arise from new absorption channels. Excited-state absorption occurs when the probe promotes the excited population to higher-lying states, while product absorption reflects the formation of transient species such as triplet states, charge-separated states, radical pairs, or isomerized products. Thus, a transient absorption spectrum is best read as a time-dependent balance between depleted ground-state absorption, emitted light, and newly formed excited- or product-state absorption.`
-                            }
                         ],
                         visualKey: 'UltrafastSpecDeltaA'
                     },
@@ -830,19 +826,19 @@ export const spectroscopyText = [
                         body: [
                             {
                                 type: "text",
-                                value: String.raw`Transient absorption experiments are shaped by a compromise between temporal resolution and spectral selectivity. For a Gaussian pulse, the time-bandwidth product is approximately`
+                                value: String.raw`Transient absorption gains much of its power from ultrashort laser pulses, but pulse duration and spectral bandwidth are linked. For a transform-limited Gaussian pulse:`
                             },
                             {
                                 type: "equation",
-                                value: String.raw`\Delta t \Delta \nu \approx 0.44`
+                                value: String.raw`\Delta t \Delta \nu \approx 0.441`
                             },
                             {
                                 type: "text",
-                                value: String.raw`so an extremely short pulse provides high time resolution but also carries a broad spectral bandwidth. In photosynthetic systems, where nearby pigment or cofactor transitions may overlap, spectral narrowing can be necessary to selectively excite one site or chromophore pair. This improves excitation selectivity, but lengthens the pulse and reduces sensitivity to the fastest dynamics.`
+                                value: `A shorter pulse improves femtosecond time resolution, but broadens the excitation bandwidth. A longer or spectrally narrowed pulse improves selectivity, which can help isolate overlapping pigment or cofactor transitions, but reduces sensitivity to the fastest dynamics.`,
                             },
                             {
                                 type: "text",
-                                value: String.raw`At very early delay times, the signal may also contain contributions that do not directly represent excited-state population dynamics. These are often grouped as coherent artifacts, including cross-phase modulation, where the pump changes the refractive index of the solvent or cuvette near temporal overlap with the probe. For this reason, the first few femtoseconds of a transient trace are treated carefully: they may be excluded from kinetic interpretation, subtracted using solvent-only measurements, or modeled explicitly when their physical origin is important.`
+                                value: `This tradeoff does not weaken ultrafast spectroscopy; it defines its resolution. Pulse width shapes the instrument response, bandwidth shapes the excited-state ensemble, and careful calibration makes the resulting dynamics chemically meaningful. This is why later corrections, such as anisotropy control and chirp treatment, are essential for connecting transient signals to relaxation, energy transfer, and charge separation.`,
                             }
                         ],
                         visualKey: 'UltrafastSpecContributions'
@@ -876,15 +872,15 @@ export const spectroscopyText = [
                         body: [
                             {
                                 type: "text",
-                                value: String.raw`White-light transient absorption uses a broadband probe to follow many spectral regions at once, but the continuum is rarely temporally uniform. Chirp means that different wavelengths within the probe arrive at slightly different effective delay times, often producing a wavelength-dependent “time zero.” This dispersion can originate during white-light generation and increase as the probe passes through optics, lenses, cuvettes, or other dispersive materials.`
+                                value: `White-light ultrafast detection uses a broadband probe to follow many wavelengths at once. In a chirped-probe approach, the continuum is intentionally stretched so different wavelengths reach the sample at different delay times. A single reflected or transmitted spectrum can therefore encode part of the material’s time response.`
                             },
                             {
                                 type: "text",
-                                value: String.raw`Because of this, early-time spectra must be corrected before assigning ultrafast dynamics. Experimentally, chirp can be reduced with reflective optics or dispersion compensation; analytically, the wavelength-dependent time zero is often measured and fit with a polynomial correction before kinetic or global analysis.`
+                                value: `Because wavelength now acts partly like a time axis, the chirp must be calibrated carefully. The wavelength-dependent time zero tells which spectral region corresponds to which delay, while amplitude corrections account for changes in sample sensitivity across the probe bandwidth.`,
                             },
                             {
                                 type: "text",
-                                value: String.raw`This is where experiment begins to connect with theory. Corrected transient absorption maps show how bleach, emission, excited-state absorption, and product-state bands evolve in time, but assigning those features requires molecular models. DFT and TDDFT calculations in ORCA can help connect spectral changes to structure, orbital character, spin density, and possible transient species, turning \(\Delta A(\lambda,t)\) from a moving spectrum into a mechanistic picture.`
+                                value: `After correction, the transient map becomes mechanistic instead of only visual. In materials, the signal can be related to electronic heating, lattice heating, or strain. In molecular transient absorption, corrected bleach, emission, excited-state absorption, and product bands can then be compared with DFT, TDDFT, and electronic-structure models.`
                             },
                         ],
                         visualKey: 'UltrafastSpecChirpedProbe'

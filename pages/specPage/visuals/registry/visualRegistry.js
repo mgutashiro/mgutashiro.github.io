@@ -297,7 +297,7 @@ export const visualRegistry = {
 
         'UltrafastSpecContributions': {
             colleague: lazy(() =>
-                import('../ultrafast/UltrafastSpecSpecContributionsVisual.jsx')
+                import('../ultrafast/UltrafastSpecContributionsVisual.jsx')
             ),
         },
 

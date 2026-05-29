@@ -1,6 +1,8 @@
 .ElevatorRig {
     position: absolute;
     inset: 0;
+    width: var(--elevator-visual-w, 33.333vw);
+    height: 100%;
     overflow: hidden;
     isolation: isolate;
     pointer-events: none;

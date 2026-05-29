@@ -1,0 +1,202 @@
+.UltrafastSpecChirpedProbeVisual {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    isolation: isolate;
+}
+
+.UltrafastSpecChirpedProbeVisual_SVG {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.UltrafastSpecChirpedProbeVisual_BackgroundFrame {
+    filter: drop-shadow(
+        0 0 18px color-mix(in oklab, var(--accent-2) 18%, transparent)
+    );
+}
+
+.UltrafastSpecChirpedProbeVisual_BackgroundFrame rect:first-child {
+    opacity: 0.96;
+}
+
+.UltrafastSpecChirpedProbeVisual_BackgroundFrame rect:last-child {
+    opacity: 0.82;
+    stroke-linejoin: round;
+    filter: drop-shadow(
+        0 0 8px color-mix(in oklab, var(--accent) 36%, transparent)
+    );
+}
+
+.ChirpedBase_Label {
+    font-family: var(--stack-tech, "Space Grotesk", system-ui, sans-serif);
+    font-size: 13px;
+    font-weight: var(--w-semibold, 600);
+    letter-spacing: 0.035em;
+    fill: color-mix(in oklab, var(--text, white) 88%, var(--accent-2) 12%);
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--bg, #080a10) 82%, transparent);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    text-shadow:
+        0 0 6px color-mix(in oklab, var(--accent-2) 38%, transparent),
+        0 0 12px color-mix(in oklab, var(--accent) 24%, transparent);
+    pointer-events: none;
+    user-select: none;
+}
+
+.ChirpedBeamAnimated {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: 0;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+.ChirpedBeamLine {
+    opacity: 0;
+}
+
+.ChirpedBeamHalo {
+    opacity: 0;
+}
+
+.ChirpedPacket {
+    opacity: 0;
+    filter: drop-shadow(0 0 6px currentColor);
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+/* segment assignments */
+.BeamSeg1 { animation-name: beamSeg1; }
+.BeamSeg2 { animation-name: beamSeg2; }
+.BeamSeg3 { animation-name: beamSeg3; }
+.BeamSeg4 { animation-name: beamSeg4; }
+.BeamSeg5 { animation-name: beamSeg5; }
+.BeamSeg6 { animation-name: beamSeg6; }
+.BeamSeg7 { animation-name: beamSeg7; }
+
+.Packet1 { animation-name: packet1; }
+.Packet2 { animation-name: packet2; }
+.Packet3 { animation-name: packet3; }
+.Packet4 { animation-name: packet4; }
+
+
+.UltrafastSpecChirpedProbe_Caption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.45rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+}
+
+
+@keyframes beamSeg1 {
+    0%, 1%   { stroke-dashoffset: 100; opacity: 0; }
+    2%       { opacity: var(--beam-opacity, 1); }
+    10%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg2 {
+    0%, 10%  { stroke-dashoffset: 100; opacity: 0; }
+    11%      { opacity: var(--beam-opacity, 1); }
+    22%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg3 {
+    0%, 22%  { stroke-dashoffset: 100; opacity: 0; }
+    23%      { opacity: var(--beam-opacity, 1); }
+    34%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg4 {
+    0%, 34%  { stroke-dashoffset: 100; opacity: 0; }
+    35%      { opacity: var(--beam-opacity, 1); }
+    46%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg5 {
+    0%, 46%  { stroke-dashoffset: 100; opacity: 0; }
+    47%      { opacity: var(--beam-opacity, 1); }
+    58%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg6 {
+    0%, 58%  { stroke-dashoffset: 100; opacity: 0; }
+    59%      { opacity: var(--beam-opacity, 1); }
+    70%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg7 {
+    0%, 70%  { stroke-dashoffset: 100; opacity: 0; }
+    71%      { opacity: var(--beam-opacity, 1); }
+    84%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    96%      { stroke-dashoffset: 0; opacity: var(--beam-opacity, 1); }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes beamSeg7Visible {
+    0%, 71%  { opacity: 0; }
+    74%, 96% { opacity: 1; }
+    100%     { opacity: 0; }
+}
+
+@keyframes packet1 {
+    0%, 71%  { opacity: 0; }
+    74%, 78% { opacity: 1; }
+    80%, 100% { opacity: 0; }
+}
+
+@keyframes packet2 {
+    0%, 78%  { opacity: 0; }
+    80%, 84% { opacity: 1; }
+    86%, 100% { opacity: 0; }
+}
+
+@keyframes packet3 {
+    0%, 84%  { opacity: 0; }
+    86%, 90% { opacity: 1; }
+    92%, 100% { opacity: 0; }
+}
+
+@keyframes packet4 {
+    0%, 90%  { opacity: 0; }
+    92%, 96% { opacity: 1; }
+    100%     { opacity: 0; }
+}

@@ -1,0 +1,101 @@
+.UltrafastDAVisual {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-family: var(--font-tech);
+}
+
+.UltrafastDAVisual_SVG {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.UltrafastDAVisual_BGFrame {
+    stroke: color-mix(in oklab, var(--text) 14%, transparent);
+    stroke-width: 1.2;
+}
+
+.UltrafastDAVisual_CenterGuide {
+    stroke: color-mix(in oklab, var(--c-glow-1) 42%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 7 8;
+    opacity: 0.55;
+}
+
+.UltrafastDAVisual_SectionLine {
+    stroke: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+    stroke-width: 1.5;
+    opacity: 0.92;
+}
+
+.UltrafastDAVisual_SectionTitle {
+    fill: color-mix(in oklab, var(--text) 84%, var(--c-glow-2) 16%);
+    font-family: var(--font-tech);
+    font-size: 20px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.015em;
+}
+
+.UltrafastDAVisual_DeltaALabel {
+    fill: color-mix(in oklab, var(--text) 84%, var(--c-glow-2) 16%);
+    font-family: var(--font-tech);
+    font-size: 22px;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.01em;
+}
+
+.UltrafastDAVisual_SectionAxis {
+    stroke: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+    stroke-width: 2;
+    opacity: 0.95;
+}
+
+.UltrafastDAVisual_Trace {
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.98;
+}
+
+.UltrafastDAVisual_Trace.is-bleach {
+    stroke: var(--accent-2);
+}
+
+.UltrafastDAVisual_Trace.is-emission {
+    stroke: var(--accent-3);
+}
+
+.UltrafastDAVisual_Trace.is-esa {
+    stroke: var(--accent);
+}
+
+.UltrafastDAVisual_Trace.is-product {
+    stroke: var(--accent-4);
+    stroke-width: 5.4;
+}
+
+.UltrafastDAVisual_Caption {
+    display: block;
+    width: min(32rem, 92%);
+    margin: 0.45rem auto 0;
+    padding-inline: 0;
+
+    text-align: justify;
+    text-wrap: pretty;
+
+    font-family: var(--font-tech);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    line-height: 1.42;
+    letter-spacing: 0.002em;
+
+    background: var(--grad-neon-dim);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+}
