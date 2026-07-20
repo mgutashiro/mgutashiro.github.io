@@ -50,6 +50,8 @@
     --text-dim: color-mix(in oklab, var(--text) 72%, var(--bg));
     --text-muted: color-mix(in oklab, var(--text) 55%, var(--bg));
 
+    --c-paper: #f4ead9;
+
     --primary: var(--c-primary-1);
     --primary-deep: var(--c-primary-2);
 
