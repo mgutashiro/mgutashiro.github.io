@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import ElevatorRig from '../ui/ElevatorRig';
 import './HomeLoadingScreen.css';
 
 const BOOT_TOTAL_MS = 10000;
@@ -88,14 +87,6 @@ export default function HomeLoadingScreen({ onComplete }) {
 
     return (
         <div className="HomePageGrid HomeBootGrid" data-loading="true">
-            <aside id="elevatorSpace" className="elevatorLane HomeBootElevatorLane">
-                <ElevatorRig
-                    phase="loading"
-                    activeId="intro"
-                    progress={0}
-                    loadingProgress={elapsed / BOOT_TOTAL_MS}
-                />
-            </aside>
 
             <div className="HomePageMainSpace HomeBootMainSpace">
                 <main className="HomeBootTerminal" aria-label="Boot loading sequence">

@@ -5,9 +5,9 @@ import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { range } from '../scroll/mapProgress'
 
-import fontBlackUrl from '/src/assets/fonts/monsterrat/MontserratBlack_Regular.typeface.json?url'
-import fontSemiUrl from '/src/assets/fonts/monsterrat/MontserratSemiBold_Regular.typeface.json?url'
-import fontRegularUrl from '/src/assets/fonts/monsterrat/Montserrat_Regular.typeface.json?url'
+
+import fontBoldUrl from '/src/assets/fonts/Basteleur/Basteleur_Bold.json'
+import fontMoonlightUrl from '/src/assets/fonts/Basteleur/Basteleur_Moonlight.json'
 
 const materialTitle = new THREE.MeshMatcapMaterial()
 
@@ -71,52 +71,62 @@ export default function TitleRig({
 
   return (
     <group ref={titleGroup}>
-      <group position={[0, -0.08, 0]}>
-        <Center position={[0.5, 1.14, -0.5]}>
-          <Text3D
-            material={materialTitle}
-            font={fontSemiUrl}
-            size={0.58}
-            height={0.08}
-            curveSegments={10}
-            bevelEnabled
-            bevelThickness={0.008}
-            bevelSize={0.004}
-            bevelSegments={3}
-          >
-            {`GRAVEYARD`}
-          </Text3D>
-        </Center>
-        <Center position={[0.5, -0.10, -0.5]}>
-          <Text3D
-            material={materialTitle}
-            font={fontBlackUrl}
-            size={0.76}
-            height={0.09}
-            curveSegments={10}
-            bevelEnabled
-            bevelThickness={0.008}
-            bevelSize={0.004}
-            bevelSegments={3}
-          >
-            {`CHEMIST`}
-          </Text3D>
-        </Center>
-        <Center position={[0.5, -1, -0.5]}>
-          <Text3D
-            material={materialTitle}
-            font={fontRegularUrl}
-            size={0.34}
-            height={0.06}
-            curveSegments={10}
-            bevelEnabled
-            bevelThickness={0.006}
-            bevelSize={0.003}
-            bevelSegments={2}
-          >
-            {`PORTAL`}
-          </Text3D>
-        </Center>
+      <group position={[0, -0.22, 0]}>
+
+        <group position={[0, 1.0, 0]}>
+          <Center precise disableY disableZ>
+            <Text3D
+              material={materialTitle}
+              font={fontBoldUrl}
+              size={0.46}
+              height={0.07}
+              curveSegments={10}
+              bevelEnabled
+              bevelThickness={0.007}
+              bevelSize={0.0035}
+              bevelSegments={3}
+              letterSpacing={0.03}
+            >
+              {`GRAVEYARD`}
+            </Text3D>
+          </Center>
+        </group>
+        <group position={[0, -0.1, 0]}>
+            <Center precise disableY disableZ>
+              <Text3D
+                material={materialTitle}
+                font={fontBoldUrl}
+                size={0.72}
+                height={0.085}
+                curveSegments={10}
+                bevelEnabled
+                bevelThickness={0.008}
+                bevelSize={0.004}
+                bevelSegments={3}
+                letterSpacing={0.03}
+              >
+                {`CHEMIST`}
+              </Text3D>
+          </Center>
+        </group>
+        <group position={[0, -0.7, 0]} scale={[1.08, 1, 1]}>
+          <Center precise disableY disableZ>
+            <Text3D
+              material={materialTitle}
+              font={fontMoonlightUrl}
+              size={0.28}
+              height={0.05}
+              curveSegments={10}
+              bevelEnabled
+              bevelThickness={0.005}
+              bevelSize={0.0025}
+              bevelSegments={2}
+              letterSpacing={0.035}
+            >
+              {`PORTAL`}
+            </Text3D>
+          </Center>
+        </group>
       </group>
     </group>
   )

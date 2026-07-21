@@ -455,29 +455,58 @@ export default function DFTPage() {
                     aria-labelledby="dft-title"
                 >
                     <div className="dft-hero__copy">
-                        <p className="dft-eyebrow">Independent computational chemistry case study</p>
-                        <h1 id="dft-title">The Density Dial</h1>
-                        <p className="dft-hero__subtitle">From electron density to chemical mechanism</p>
-                        <p className="dft-hero__lede">
-                            An interactive study of how Density Functional Theory, ORCA 6, and molecular visualization can help investigate hydroquinone as a model proton-coupled electron-transfer reagent.
-                        </p>
+                        <div className="dft-hero__intro">
+                            <p className="dft-eyebrow">
+                                <span className="dft-eyebrow__lead">theoretical chemistry</span>
+                                <span className="dft-eyebrow__divider" aria-hidden="true">
+                                    /
+                                </span>
+                                <span className="dft-eyebrow__rest">
+                                    Case Study
+                                </span>
+                            </p>
 
-                        <div className="dft-hero__actions">
-                            <button
-                                type="button"
-                                className="dft-button dft-button--primary"
-                                onClick={beginStudy}
-                            >
-                                Start from Beginning
-                            </button>
+                            <h1 id="dft-title">
+                                <span className="dft-hero__title-row">
+                                    <span className="dft-hero__title-prefix">The</span>
+                                    <span className="dft-hero__title-line">Density</span>
+                                </span>
 
-                            <button
-                                type="button"
-                                className="dft-button"
-                                onClick={() => openChapter(3)}
-                            >
-                                View Calculation Results
-                            </button>
+                                <span className="dft-hero__title-line">Dial</span>
+                            </h1>
+
+                            <p className="dft-hero__subtitle">
+                                <span className="dft-hero__subtitle-connector">From</span>
+                                <span className="dft-hero__subtitle-subject">electron density</span>
+                                <span className="dft-hero__subtitle-connector">to</span>
+                                <span className="dft-hero__subtitle-subject">chemical mechanism</span>
+                            </p>
+                        </div>
+
+                        <div className="dft-hero__details">
+                            <p className="dft-hero__lede">
+                                Explore how DFT, ORCA 6, and molecular visualization reveal
+                                hydroquinone’s structure, electron density, and proton-coupled
+                                electron-transfer behavior.
+                            </p>
+
+                            <div className="dft-hero__actions">
+                                <button
+                                    type="button"
+                                    className="dft-button dft-button--primary"
+                                    onClick={beginStudy}
+                                >
+                                    Begin the Case Study
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="dft-button"
+                                    onClick={() => openChapter(3)}
+                                >
+                                    Jump to Results
+                                </button>
+                            </div>
                         </div>
                     </div>
 

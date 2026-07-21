@@ -5,7 +5,7 @@ const text = (s) => s.trim()
 export const HOME_COPY = {
     about: {
         // section 2 (About Me) with multiple panels (next/back UI)
-        title: 'About M.G.Utashiro (M.S.)',
+        title: 'About Graveyard Chemist',
 
         panels: [
             {

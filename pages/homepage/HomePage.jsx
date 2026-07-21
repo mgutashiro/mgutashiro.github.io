@@ -1,16 +1,15 @@
 import './home.css'
 import './hud/HUDFrame.css'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Center } from '@react-three/drei'
 import { HOME_SECTIONS } from './home.sections'
 import { HOME_COPY } from './home.copy'
 import { useCallback, useEffect, useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
 
 import HomeScene from './scene/HomeScene'
 import HUDFrame from './hud/HUDFrame'
 import AboutButtons from './ui/AboutButtons'
-import ElevatorRig from './ui/ElevatorRig'
+import SectionLinkButton from './ui/SectionLinkButton'
 
 import useHomeScroll from './scroll/useHomeScroll'
 import useActiveSection from './scroll/useActiveSection'
@@ -89,13 +88,6 @@ function HomePageContent() {
             </div>
 
             <div className="HomePageGrid" data-active-section={activeId}>
-                <aside id="elevatorSpace" className="elevatorLane">
-                        <ElevatorRig
-                            phase="home"
-                            progress={p}
-                            activeId={activeId}
-                        />
-                </aside> 
 
                 <div className="HomePageMainSpace">
                     <main
@@ -132,17 +124,29 @@ function HomePageContent() {
                                         className='homeSection framedSection aboutSection'
                                     >
                                         <div className="sectionPanelShell aboutPanel">
-                                            <div className="aboutFrameTarget sectionFrameTarget">
-                                                <HUDFrame
-                                                    activeSection="about"
-                                                    className={`sectionFrame aboutFrame ${activeId === 'about' ? 'isActive' : ''}`}
-                                                />
-                                                <div className="aboutText">
-                                                    <h2 className="aboutTitle">{aboutTitle}</h2>
-                                                    <p className="aboutBody">{currentPanel.body}</p>
+                                            <div className="sectionContentStack">
+                                                <header className="sectionHeading">
+                                                    <h2 className="aboutTitle">
+                                                        {aboutTitle}
+                                                    </h2>
+                                                </header>
+
+                                                <div className="aboutFrameTarget sectionFrameTarget">
+                                                    <HUDFrame
+                                                        activeSection="about"
+                                                        className={`sectionFrame aboutFrame ${
+                                                            activeId === 'about' ? 'isActive' : ''
+                                                        }`}
+                                                    />
+
+                                                    <div className="aboutText">
+                                                        <p className="aboutBody">
+                                                            {currentPanel.body}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                    
                                             </div>
+
                                             <div className="aboutControls">
                                                 <AboutButtons
                                                     index={aboutIndex}
@@ -167,27 +171,40 @@ function HomePageContent() {
                                     className={`homeSection framedSection ${s.id}Section`}
                                 >
                                     <div className={`${s.id}Panel sectionPanelShell`}>
-                                        <div className={`${s.id}FrameTarget sectionFrameTarget`}>
-                                            <HUDFrame
-                                                activeSection={s.id}
-                                                className={`sectionFrame ${s.id}Frame ${activeId === s.id ? 'isActive' : ''}`}
-                                            />
-                            
-                                            <div className={`${s.id}Text sectionText`}>
-                                                <header className="sectionTextHeader">
-                                                    <h2 className = "sectionTitle">{sectionCopy.title}</h2>
-                                                </header>
-                        
-                                                <div className={`sectionBodyWrap`}>
-                                                    <p className="sectionBody">{sectionCopy.body}</p>
+                                        <div className="sectionContentStack">
+                                            <header className="sectionHeading">
+                                                <h2 className="sectionTitle">
+                                                    {sectionCopy.title}
+                                                </h2>
+                                            </header>
+
+                                            <div className={`${s.id}FrameTarget sectionFrameTarget`}>
+                                                <HUDFrame
+                                                    activeSection={s.id}
+                                                    className={`sectionFrame ${s.id}Frame ${
+                                                        activeId === s.id ? 'isActive' : ''
+                                                    }`}
+                                                />
+
+                                                <div className={`${s.id}Text sectionText`}>
+                                                    <div className="sectionBodyWrap">
+                                                        <p className="sectionBody">
+                                                            {sectionCopy.body}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         {s.hasCTA && s.route ? (
                                             <div className={`${s.id}Actions LinkToSubPage`}>
-                                                <Link to={s.route} className={`sectionCTA ${s.id}CTA`}>
-                                                    {s.ctaLabel}
-                                                </Link>
+                                                <SectionLinkButton 
+                                                    to={s.route}
+                                                    label={s.ctaLabel}
+                                                    variant={s.id}
+                                                    kind="primary"
+                                                    icon="→"
+                                                />
                                             </div>
                                         ) : null}
                                     </div>
@@ -195,7 +212,9 @@ function HomePageContent() {
                             )
                         })}
                     </main>
-                    <div className="aboutSocials" aria-label="External links">
+                </div>
+                <div className="homePageChrome">
+                    <nav className="aboutSocials" aria-label="External links">
                         <a
                             className="aboutSocialLink aboutSocialLink--linkedin"
                             href="https://www.linkedin.com/in/monica-utashiro-hahn-450748171/"
@@ -203,7 +222,7 @@ function HomePageContent() {
                             rel="noreferrer"
                             aria-label="LinkedIn"
                         >
-                            <img src={linkedinLogo} alt="LinkedIn" />
+                            <img src={linkedinLogo} alt="" />
                         </a>
 
                         <a
@@ -213,9 +232,10 @@ function HomePageContent() {
                             rel="noreferrer"
                             aria-label="GitHub"
                         >
-                            <img src={githubLogo} alt="GitHub" />
+                            <img src={githubLogo} alt="" />
                         </a>
-                    </div>
+                    </nav>
+
                     <div className="homePageMGUMark" aria-hidden="true">
                         <p>© M.G.U</p>
                     </div>

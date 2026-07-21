@@ -1,3 +1,9 @@
+:root {
+    --section-gap: clamp(1.25rem, 2.4vh, 1.8rem);
+    --hud-bottom-overhang: clamp(0.75rem, 1.4vh, 1.05rem);
+    --home-footer-reserve: clamp(4.75rem, 8vh, 6rem);
+}
+
 html, body, #root {
     height: 100%;
     margin: 0;
@@ -16,50 +22,11 @@ body {
 }
 
 .HomePageGrid {
-    display: flex;
+    position: relative;
     width: 100%;
     height: 100vh;
     height: 100svh;
     overflow: hidden;
-    --elevator-lane-w: 24%;
-    --main-space-w: 76%;
-    --elevator-visual-w: 33.333vw;
-}
-
-
-
-/* ELEVATOR */
-#elevatorSpace {
-    display: block;
-}
-
-.elevatorLane {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 var(--elevator-lane-w);
-    width: var(--elevator-lane-w);
-    min-width: 0;
-    min-height: 0;
-    overflow: visible;
-}
-
-.elevatorLane::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(
-            circle at 28% 82%,
-            color-mix(in oklab, var(--c-glow-2) 18%, transparent) 0%,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 36% 58%,
-            color-mix(in oklab, var(--c-glow-1) 9%, transparent) 0%,
-            transparent 26%
-        );
-    opacity: 0.9;
 }
 
 
@@ -67,24 +34,22 @@ body {
 .HomePageMainSpace {
     position: relative;
     z-index: 1;
-    flex: 1 1 var(--main-space-w);
-    width: var(--main-space-w);
+    width: 100%;
+    height: 100%;
     min-width: 0;
-    min-height: 100%;
+    min-height: 0;
     margin: 0;
     padding: 0;
 
-    display: grid;
-    place-items: center;
-
-    overflow: clip;
+    overflow: hidden;
     isolation: isolate;
 }
 
 
 #page-home {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100svh;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -129,205 +94,444 @@ body {
 .framedSection > .sectionPanelShell,
 .framedSection > .aboutPanel {
     position: relative;
+
     width: 100%;
     height: 100%;
     min-height: 100%;
+
     margin: 0;
-    padding: 0;
+    padding:
+        clamp(0.75rem, 2vh, 1.5rem)
+        0
+        var(--home-footer-reserve);
+
     box-sizing: border-box;
+
     display: grid;
-    place-items: center;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    align-content: center;
+
+    row-gap: calc(
+        var(--section-gap) + var(--hud-bottom-overhang)
+    );
 }
 
 .introPanel {
-    height: 100svh;
-    min-height: 100svh;
+    position: relative;
     width: 100%;
+    height: 100svh;
 }
 
 /* INTRO SECTION */
 .titleAnchor {
     position: absolute;
-    top: 52%;
-    left: clamp(2rem, 5vw, 5rem);
-    right: clamp(2rem, 6vw, 6rem);
-    max-width: 980px;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(980px, calc(100vw - clamp(2rem, 10vw, 8rem)));
     height: clamp(140px, 18vh, 220px);
-    margin-inline: auto;
-    transform: translateY(-50%);
+
+    margin: 0;
+    transform: translate(-50%, -50%);
+
     pointer-events: none;
+}
+
+.sectionFrameTarget {
+    position: relative;
+
+    width: min(
+        900px,
+        calc(100% - clamp(2rem, 10vw, 8rem))
+    );
+
+    min-height: clamp(300px, 52vh, 560px);
+
+    margin-inline: auto;
+
+    display: grid;
+    place-items: center;
+
+    transform: translateY(
+        var(--section-frame-target-y, 0)
+    );
 }
 
 .sectionText,
 .aboutText {
+    position: relative;
     z-index: 3;
+
+    width: min(680px, 100%);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     text-align: center;
 }
 
+.sectionTextHeader,
+.sectionBodyWrap {
+    width: 100%;
+}
 
 .sectionTitle,
 .aboutTitle {
-    margin: 0 1rem 1rem;
-    font-family: var(--font-display);
-    font-weight: var(--w-black);
-    line-height: 1.15;
-    letter-spacing: 0.055em;
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+
+    font-family: var(--font-heading);
+    font-weight: var(--w-bold, 700);
+    font-size: clamp(2rem, 3vw, 3.05rem);
+    line-height: 0.98;
+
+    /*
+     * Keep this modest. Basteleur already has irregular,
+     * expressive internal spacing.
+     */
+    letter-spacing: 0.018em;
+
     text-align: center;
-    margin-bottom: 1rem;
-    font-size: clamp(1.55rem, 2.7vw, 2.35rem);
-    line-height: 1.05;
+    text-wrap: balance;
+
     color: var(--section-title-color, var(--text));
-    text-shadow: var(--section-title-shadow, none);
+
+    /*
+     * Copper registration shadow = steampunk.
+     * Section glow = cyberpunk.
+     */
+    text-shadow:
+        0.045em 0.055em 0
+        color-mix(in oklab, var(--copper) 34%, transparent),
+
+        var(
+            --section-title-shadow,
+            0 0 12px
+            color-mix(in oklab, var(--accent) 22%, transparent)
+        );
 }
 
 .sectionBody,
 .aboutBody {
-    margin: 0;
     width: 100%;
-    max-width: 100%;
-    margin: 0;
+    max-width: 56ch;
+    margin: 0 auto;
 
     white-space: pre-line;
     overflow-wrap: break-word;
+    text-wrap: pretty;
+
     font-family: var(--font-body);
-    font-size: clamp(0.92rem, 1vw, 1rem);
-    line-height: 1.75;
-    color: var(--section-body-color, color-mix(in oklab, var(--text) 82%, var(--bg)));
+    font-weight: var(--w-regular);
+    font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+    line-height: 1.65;
+    letter-spacing: 0.012em;
+
+    text-align: left;
+
+    color: var(
+        --section-body-color,
+        color-mix(in oklab, var(--text) 84%, var(--bg))
+    );
+
     text-shadow: var(--section-body-shadow, none);
 }
 
 .aboutSection .aboutTitle {
-    margin-bottom: 1rem;
-    font-size: clamp(1.55rem, 2.7vw, 2.35rem);
-    line-height: 1.05;
+    font-size: clamp(1.85rem, 3.2vw, 3.1rem);
 }
 
 .aboutSection .aboutBody {
-    line-height: 1.55;
-    font-size: clamp(0.92rem, 1vw, 1rem);
+    max-width: 54ch;
+    font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+    line-height: 1.62;
+}
+
+.LinkToSubPage {
+    position: relative;
+    z-index: 10;
+
+    display: grid;
+    place-items: center;
+
+    min-width: 0;
+    min-height: 3rem;
+
+    margin: 0;
+    padding: 0;
+
+    pointer-events: auto;
 }
 
 .sectionPanelShell > .aboutControls,
 .sectionPanelShell > .LinkToSubPage {
-    position: absolute;
-    left: 50%;
-    bottom: var(--section-action-bottom, clamp(1.5rem, 5vh, 4rem));
-    transform:
-        translate(
-            -50%,
-            var(--section-action-y, 0px)
-        );
+    position: static;
+
+    left: auto;
+    bottom: auto;
+    transform: none;
+
     z-index: 6;
+
     margin: 0;
     padding: 0;
 }
 
-.sectionCTA {
+.sectionLinkButton {
+    --slb-accent: var(--accent);
+    --slb-accent-soft:
+        color-mix(in oklab, var(--slb-accent) 20%, transparent);
+
+    position: relative;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 220px;
-    padding: 0.9rem 1.35rem;
+    gap: 0.75rem;
+
+    min-width: clamp(11.5rem, 18vw, 14rem);
+
+    padding:
+        clamp(0.72rem, 1.3vh, 0.88rem)
+        clamp(1.2rem, 2.2vw, 1.65rem);
+
+    box-sizing: border-box;
+
+    border: 1px solid
+        color-mix(
+            in oklab,
+            var(--slb-accent) 62%,
+            var(--text) 38%
+        );
+
     border-radius: 999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(
+                in oklab,
+                var(--surface) 78%,
+                var(--slb-accent) 22%
+            ),
+            color-mix(
+                in oklab,
+                var(--bg) 86%,
+                var(--slb-accent) 14%
+            )
+        );
+
+    color: color-mix(
+        in oklab,
+        var(--text) 82%,
+        var(--slb-accent) 18%
+    );
+
     text-decoration: none;
+
     font-family: var(--font-tech);
     font-size: 0.9rem;
     font-weight: var(--w-semibold);
-    letter-spacing: 0.08em;
-    color: var(--text);
-    background: color-mix(in oklab, var(--surface) 78%, var(--bg));
+    line-height: 1;
+    letter-spacing: 0.075em;
+
+    box-shadow:
+        inset 0 1px 0
+            color-mix(in oklab, var(--text) 15%, transparent),
+        0 0 0 1px
+            color-mix(in oklab, var(--bg) 44%, transparent),
+        0 0 0.65rem var(--slb-accent-soft),
+        0 0 1.5rem
+            color-mix(
+                in oklab,
+                var(--slb-accent) 12%,
+                transparent
+            );
+
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.sectionLinkButton:hover,
+.sectionLinkButton:focus-visible {
+    transform: translateY(-2px);
+
+    border-color: color-mix(
+        in oklab,
+        var(--slb-accent) 82%,
+        var(--text) 18%
+    );
+
+    box-shadow:
+        inset 0 1px 0
+            color-mix(in oklab, var(--text) 18%, transparent),
+        0 0 0 1px
+            color-mix(in oklab, var(--slb-accent) 28%, transparent),
+        0 0 0.9rem
+            color-mix(in oklab, var(--slb-accent) 38%, transparent),
+        0 0 2rem
+            color-mix(in oklab, var(--slb-accent) 20%, transparent);
+
+    outline: none;
+}
+
+.slbLabel {
+    position: relative;
+    z-index: 1;
+}
+
+.slbIcon {
+    position: relative;
+    z-index: 1;
+
+    font-size: 1.05em;
+    line-height: 1;
+
+    transition: transform 160ms ease;
+}
+
+.sectionLinkButton:hover .slbIcon,
+.sectionLinkButton:focus-visible .slbIcon {
+    transform: translateX(0.2rem);
+}
+
+.sectionLinkButton[data-variant="spec"] {
+    --slb-accent: var(--accent-2);
+}
+
+.sectionLinkButton[data-variant="dft"] {
+    --slb-accent: var(--lightMetal);
+}
+
+.sectionLinkButton[data-variant="philosophy"] {
+    --slb-accent: var(--accent-3);
 }
 
 /* Section Layout  */
 .aboutSection {
-    --section-frame-stroke: color-mix(in oklab, var(--c-primary-1) 70%, var(--text));
-    --section-frame-pad-x: 2.2rem;
-    --section-frame-pad-y: 2.4rem;
-    
+    --section-frame-stroke:
+        color-mix(in oklab, var(--c-glow-2) 66%, var(--text));
 
-    --section-frame-target-y: -7vh;
-
-    --section-action-bottom: clamp(1.2rem, 4vh, 3rem);
-    --section-action-y: 0px;
-
-    --section-title-color: var(--text);
-    --section-body-color: color-mix(in oklab, var(--text) 82%, var(--bg));
+    --section-title-color:
+        color-mix(in oklab, var(--c-glow-2) 68%, var(--text) 32%);
 
     --section-title-shadow:
-        0 0 10px color-mix(in oklab, var(--accent) 18%, transparent);
+        0.045em 0.055em 0
+            color-mix(in oklab, var(--c-primary-2) 80%, transparent),
+        0 0 0.35rem
+            color-mix(in oklab, var(--c-glow-2) 48%, transparent),
+        0 0 1.2rem
+            color-mix(in oklab, var(--c-glow-2) 24%, transparent);
 
-    --section-body-shadow:
-        0 1px 1px color-mix(in oklab, var(--bg) 65%, transparent);
+    --section-body-color:
+        color-mix(in oklab, var(--text) 82%, var(--c-glow-2) 18%);
 }
 
+.aboutSection .sectionFrameTarget {
+    min-height: clamp(430px, 50vh, 540px);
+}
+
+
+.aboutSection > .aboutPanel {
+    /*
+     * More top padding and less bottom reserve shifts the
+     * complete title/frame/control composition downward.
+     */
+    padding:
+        clamp(2.4rem, 4.5vh, 3.4rem)
+        0
+        clamp(1.75rem, 3vh, 2.4rem);
+
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-items: center;
+
+    row-gap: var(--section-gap);
+}
+
+
 .specSection {
-    --section-frame-stroke: color-mix(in oklab, var(--c-glow-1) 75%, var(--text));
-    --section-frame-pad-x: 2.2rem;
-    --section-frame-pad-y: 1.8rem;
+    --section-frame-stroke:
+        color-mix(in oklab, var(--c-glow-1) 76%, var(--text));
 
-    --section-frame-target-y: -7vh;
-
-    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-    --section-action-y: 0px;
-    --section-title-color: color-mix(in oklab, var(--text) 88%, var(--c-glow-1) 12%);
-
-    --section-body-color: color-mix(in oklab, var(--text) 78%, var(--c-glow-1) 22%);
+    --section-title-color:
+        color-mix(in oklab, var(--c-glow-1) 70%, var(--text) 30%);
 
     --section-title-shadow:
-        0 0 12px color-mix(in oklab, var(--c-glow-1) 24%, transparent),
-        0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+        0.045em 0.055em 0
+            color-mix(in oklab, var(--c-primary-2) 80%, transparent),
+        0 0 0.35rem
+            color-mix(in oklab, var(--c-glow-1) 46%, transparent),
+        0 0 1.2rem
+            color-mix(in oklab, var(--c-glow-1) 22%, transparent);
 
-    --section-body-shadow:
-        0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
+    --section-body-color:
+        color-mix(in oklab, var(--text) 80%, var(--c-glow-1) 20%);
 }
 
 .dftSection {
-    --section-frame-stroke: color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
+    --section-frame-stroke:
+        color-mix(in oklab, var(--c-metal-1) 80%, var(--text));
 
-    /* --section-text-w: min(650px, 74vw); */
-    --section-frame-pad-x: 2rem;
-    --section-frame-pad-y: 1.5rem;
-
-    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-    --section-frame-target-y: -7vh;
-
-    --section-title-color: color-mix(in oklab, var(--text) 84%, var(--c-metal-1) 16%);
-
-    --section-body-color: color-mix(in oklab, var(--text) 76%, var(--lightMetal) 24%);
+    --section-title-color:
+        color-mix(in oklab, var(--c-metal-1) 72%, var(--text) 28%);
 
     --section-title-shadow:
-        0 0 12px color-mix(in oklab, var(--c-metal-1) 26%, transparent),
-        0 1px 2px color-mix(in oklab, var(--bg) 80%, transparent);
+        0.045em 0.055em 0
+            color-mix(in oklab, var(--copper) 70%, transparent),
+        0 0 0.35rem
+            color-mix(in oklab, var(--c-metal-1) 42%, transparent),
+        0 0 1.1rem
+            color-mix(in oklab, var(--c-metal-1) 20%, transparent);
 
-    --section-body-shadow:
-        0 1px 2px color-mix(in oklab, var(--bg) 74%, transparent);
+    --section-body-color:
+        color-mix(in oklab, var(--text) 80%, var(--c-metal-1) 20%);
 }
 
 .philosophySection {
-    --section-frame-stroke: color-mix(in oklab, var(--c-glow-3) 75%, var(--text));
-    /* --section-text-w: min(650px, 74vw); */
-    --section-frame-pad-x: 2rem;
-    --section-frame-pad-y: 1.5rem;
-    --section-frame-target-y: -7vh;
-    --section-action-bottom: clamp(2.2rem, 6vh, 4.5rem);
-    --section-action-y: 0px;
+    --section-frame-stroke:
+        color-mix(in oklab, var(--c-glow-3) 76%, var(--text));
 
-    --section-title-color: color-mix(in oklab, var(--text) 86%, var(--c-glow-3) 14%);
-    --section-body-color: color-mix(in oklab, var(--text) 76%, var(--c-glow-3) 24%);
+    --section-title-color:
+        color-mix(in oklab, var(--c-glow-3) 68%, var(--text) 32%);
+
     --section-title-shadow:
-        0 0 14px color-mix(in oklab, var(--c-glow-3) 24%, transparent),
-        0 1px 2px color-mix(in oklab, var(--bg) 78%, transparent);
+        0.045em 0.055em 0
+            color-mix(in oklab, var(--c-emo-1) 78%, transparent),
+        0 0 0.35rem
+            color-mix(in oklab, var(--c-glow-3) 46%, transparent),
+        0 0 1.2rem
+            color-mix(in oklab, var(--c-glow-3) 22%, transparent);
 
-    --section-body-shadow:
-        0 1px 2px color-mix(in oklab, var(--bg) 72%, transparent);
+    --section-body-color:
+        color-mix(in oklab, var(--text) 80%, var(--c-glow-3) 20%);
+}
+
+.sectionBody,
+.aboutBody {
+    max-width: 52ch;
+    line-height: 1.6;
 }
 
 /* ABOUT SECTION */
 .aboutControls {
-    padding: 0 0 2rem;
-    margin-top: -2.5rem;
-    transform: none;
-    align-self: start;
+    margin: 0;
+    padding: 0;
+
+    align-self: auto;
+    justify-self: center;
 }
 
 .aboutButtons {
@@ -459,56 +663,31 @@ body {
     opacity: 0.42;
 }
 
-/* SPEC SECTION */
-.specCTA {
-    border: 1px solid color-mix(in oklab, var(--accent-2) 45%, var(--lightMetal));
-    box-shadow: var(--glow-cyan);
-}
-
-/* DFT SECTION */
-.dftCTA {
-    border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--lightMetal));
-    box-shadow: var(--glow-violet);
-}
-
-/* Philosophy SECTION */
-.philosophyCTA {
-    border: 1px solid color-mix(in oklab, var(--accent-3) 45%, var(--lightMetal));
-    box-shadow: var(--glow-pink);
-}
 
 /* FOOTER MARK */
-.homePageMGUMark {
-    position: absolute;
-    left: 50%;
-    bottom: 5px;
-    transform: translateX(-50%);
-    z-index: 1;
+.homePageChrome {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+
     pointer-events: none;
-    opacity: 0.88;
-}
-.homePageMGUMark p {
-    margin: 0;
-    font-family: var(--font-jester);
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
 }
 
 .aboutSocials {
     position: absolute;
-    top: clamp(1.25rem, 4vh, 3rem);
-    right: clamp(1.25rem, 4vw, 3.5rem);
-    z-index: 8;
+    top: clamp(1rem, 3vh, 2rem);
+    right: clamp(1rem, 3vw, 2.5rem);
 
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0.85rem;
+    gap: 0.75rem;
 
-    transform: none;
+    margin: 0;
+    padding: 0;
+
+    pointer-events: auto;
 }
+
 .aboutSocialLink {
     width: 58px;
     height: 58px;
@@ -570,6 +749,229 @@ body {
         0 0 52px color-mix(in oklab, var(--c-glow-2) 22%, transparent);
 }
 
+.homePageMGUMark {
+    position: absolute;
+    left: 50%;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+    opacity: 0.88;
+}
+
+.homePageMGUMark p {
+    margin: 0;
+
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal;
+    font-synthesis: none;
+
+    font-size: 1rem;
+    line-height: 1;
+    letter-spacing: 0.09em;
+    color: var(--text);
+}
+
+/* =================================
+   SECTION TITLE + FRAME COMPOSITION
+================================= */
+
+.sectionContentStack {
+    position: relative;
+    z-index: 3;
+
+    width: min(
+        900px,
+        calc(100% - clamp(2rem, 10vw, 8rem))
+    );
+
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+
+    gap: var(--section-gap);
+
+    transform: none;
+}
+
+.sectionHeading {
+    position: relative;
+    z-index: 6;
+
+    width: min(820px, calc(100% - 2rem));
+    padding-inline: 0;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+/*
+ * Small neon-metal rule beneath the ornamental heading.
+ * It connects the title visually to the HUD without putting
+ * the title back inside the frame.
+ */
+.sectionHeading::after {
+    content: "";
+
+    display: block;
+    width: clamp(4.5rem, 9vw, 7.5rem);
+    height: 1px;
+
+    margin: clamp(0.6rem, 1.2vh, 0.9rem) auto 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--section-frame-stroke, var(--accent)),
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px
+        color-mix(
+            in oklab,
+            var(--section-frame-stroke, var(--accent)) 42%,
+            transparent
+        );
+
+    opacity: 0.78;
+}
+
+.aboutSection .sectionHeading {
+    width: min(780px, calc(100% - 1.5rem));
+}
+
+/*
+ * Higher specificity than the .sectionFrameTarget rules
+ * imported later from HUDFrame.css.
+ */
+.sectionContentStack > .sectionFrameTarget {
+    width: 100%;
+    min-height: clamp(390px, 47vh, 510px);
+    margin: 0;
+
+    transform: translate(
+        var(--section-frame-target-x, 0),
+        var(--section-frame-target-y, 0)
+    );
+}
+
+.aboutSection .sectionContentStack {
+    width: min(
+        860px,
+        calc(100% - clamp(2rem, 10vw, 8rem))
+    );
+
+    gap: var(--section-gap);
+}
+
+/*
+ * Higher specificity than the shared title selector.
+ * The title currently dominates too much vertically.
+ */
+.aboutSection
+.sectionHeading
+> .aboutTitle {
+    font-size: clamp(2rem, 2.85vw, 2.8rem);
+    line-height: 0.96;
+    letter-spacing: 0.012em;
+}
+
+/* Make the little title rule less spacious */
+.aboutSection .sectionHeading::after {
+    width: clamp(4rem, 7vw, 6rem);
+    margin-top: clamp(0.35rem, 0.7vh, 0.55rem);
+}
+
+/*
+ * Higher specificity than:
+ * .sectionContentStack > .sectionFrameTarget
+ */
+.aboutSection
+.sectionContentStack
+> .sectionFrameTarget {
+    width: min(860px, 100%);
+    min-height: clamp(410px, 45vh, 475px);
+}
+
+/* Give the copy a little more internal breathing room */
+.aboutSection .aboutText {
+    width: min(650px, 100%);
+
+    padding-inline: clamp(1.75rem, 4vw, 3.25rem);
+}
+
+.aboutSection .aboutBody {
+    max-width: 50ch;
+
+    font-size: clamp(0.96rem, 1.05vw, 1.04rem);
+    line-height: 1.55;
+}
+
+/* Controls form a deliberate third tier below the frame */
+.aboutSection .aboutControls {
+    margin: 0;
+    padding: 0;
+}
+
+.aboutSection .aboutButtons {
+    justify-content: center;
+
+    gap: clamp(0.85rem, 1.7vw, 1.25rem);
+}
+
+/* Slightly quieter control labels */
+.aboutSection .aboutNavButton__label {
+    font-size: 0.88rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.04em;
+}
+
+.homeSection .sectionHeading > .sectionTitle,
+.homeSection .sectionHeading > .aboutTitle {
+    width: 100%;
+    margin: 0;
+
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-style: normal;
+    font-synthesis: none;
+
+    font-size: clamp(2.15rem, 3.2vw, 3.25rem);
+    line-height: 0.98;
+    letter-spacing: 0.018em;
+
+    text-align: center;
+    text-wrap: balance;
+
+    color: var(--section-title-color, var(--text));
+
+    text-shadow:
+        0.045em 0.055em 0
+        color-mix(in oklab, var(--copper) 34%, transparent),
+        var(--section-title-shadow, none);
+}
+
+/* Prevent margins from changing the shared visual gap */
+.framedSection .aboutControls,
+.framedSection .LinkToSubPage {
+    margin: 0;
+    padding: 0;
+    align-self: auto;
+    justify-self: center;
+}
+
+/* Prevent section-specific action wrappers from adding another gap */
+.specActions,
+.dftActions,
+.philosophyActions {
+    margin-block: 0;
+    padding-block: 0;
+    transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #page-home {
         scroll-behavior: auto;
@@ -577,13 +979,36 @@ body {
 }
 
 @media (max-width: 700px) {
-    .elevatorLane {
-        flex-basis: 25%;
-        width: 25%;
+    :root {
+        --section-gap: clamp(0.85rem, 1.7vh, 1.2rem);
+        --home-footer-reserve: 4.25rem;
     }
 
-    .HomePageMainSpace {
-        flex-basis: 75%;
-        width: 75%;
+    .sectionContentStack {
+        width: calc(100% - 1.5rem);
+        gap: clamp(1.6rem, 3.5vh, 2.4rem);
+        transform: translateY(-0.75rem);
+    }
+
+    .sectionContentStack {
+        width: calc(100% - 1.5rem);
+        gap: var(--section-gap);
+        transform: translateY(-0.75rem);
+    }
+
+    .sectionLinkButton {
+        min-width: min(12rem, calc(100vw - 3rem));
+    }
+
+    .sectionTitle,
+    .aboutTitle {
+        font-size: clamp(1.75rem, 8vw, 2.55rem);
+        line-height: 1;
+    }
+
+    .sectionBody,
+    .aboutBody {
+        font-size: 0.95rem;
+        line-height: 1.58;
     }
 }

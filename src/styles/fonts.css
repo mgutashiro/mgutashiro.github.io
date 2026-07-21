@@ -1,92 +1,70 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url("./assets/fonts/monsterrat/Montserrat-Regular.ttf") format("ttf");
+    font-family: "Basteleur Bold";
+    src: url("/src/assets/fonts/Basteleur/Basteleur-Bold.ttf")
+        format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Basteleur Moonlight";
+    src: url("/src/assets/fonts/Basteleur/Basteleur-Moonlight.ttf")
+        format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
-    font-family: "Montserrat";
-    src: url("./assets/fonts/monsterrat/Montserrat-SemiBold.ttf") format("ttf");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Montserrat";
-    src: url("./assets/fonts/monsterrat/Montserrat-Black.ttf") format("ttf");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Comorant Mystic Typeface */
-@font-face {
-    font-family: "Cormorant";
-    src: url("./assets/fonts/comorant/Cormorant-Regular.ttf") format("ttf");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Cormorant";
-    src: url("./assets/fonts/comorant/Cormorant-SemiBold.ttf") format("ttf");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Cormorant";
-    src: url("./assets/fonts/comorant/Cormorant-Italic.ttf") format("ttf");
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
-/* Space Grotesk for Tech Writing Typeface */
 @font-face {
     font-family: "Space Grotesk";
-    src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-Regular.ttf") format("ttf");
+    src: url("/src/assets/fonts/spaceGrotesk/SpaceGrotesk-Light.ttf")
+        format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("/src/assets/fonts/spaceGrotesk/SpaceGrotesk-Regular.ttf")
+        format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: "Space Grotesk";
-    src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-Medium.ttf") format("ttf");
+    src: url("/src/assets/fonts/spaceGrotesk/SpaceGrotesk-Medium.ttf")
+        format("truetype");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: "Space Grotesk";
-    src: url("./assets/fonts/spaceGrotesk/SpaceGrotesk-SemiBold.ttf") format("ttf");
+    src: url("/src/assets/fonts/spaceGrotesk/SpaceGrotesk-SemiBold.ttf")
+        format("truetype");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
-/* Baloo 2 for jester pop typeface */
 @font-face {
-    font-family: "Baloo 2";
-    src: url("./assets/fonts/baloo2/Baloo2-Regular.ttf") format("ttf");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Baloo 2";
-    src: url("./assets/fonts/baloo2/Baloo2-SemiBold.ttf") format("ttf");
-    font-weight: 600;
+    font-family: "Space Grotesk";
+    src: url("/src/assets/fonts/spaceGrotesk/SpaceGrotesk-Bold.ttf")
+        format("truetype");
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("./assets/fonts/notoSanJP/NotoSansJP-Regular.ttf")format("ttf");
+    src: url("/src/assets/fonts/notoSanJP/NotoSansJP-Regular.ttf")
+        format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;

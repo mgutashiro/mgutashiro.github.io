@@ -1,11 +1,21 @@
 export const PAGE_META = [
-    ["Project type", "Independent computational research case study"],
-    ["Qualification", "M.S. & B.S. in Chemistry (Focus in Photochemical Science)"],
-    ["Focus", "Hydroquinone, DFT, TDDFT, PCET, and organic radical behavior"],
-    ["Tools", "ORCA 6, Blender, Three.js, and React"],
-    ["My role", "Research, computation, interpretation, 3D, UX, and development"],
+    [
+        "Focus",
+        "Hydroquinone, DFT, TDDFT, PCET, and organic radical behavior",
+    ],
+    [
+        "Qualification",
+        "M.S. & B.S. in Chemistry, with a focus in Photochemical Science",
+    ],
+    [
+        "Tools",
+        "ORCA 6, Avogadro, Chimera, VMD, Python, Blender, Three.js, and React",
+    ],
+    [
+        "Project Purpose",
+        "Investigate hydroquinone’s role as a quenching agent in PCET reactions and translate the calculation outputs into visual and auditory experiences.",
+    ],
 ];
-
 
 export const CHAPTERS = [
     {

@@ -1,25 +1,49 @@
 :root {
     /* ====== FONT STACKS ====== */
-    --stack-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --stack-serif: Georgia, "Times New Roman", serif;
+    --stack-sans:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
 
-    --font-hero: "Montserrat", var(--stack-sans);
-    --font-mystic: "Cormorant", var(--stack-serif);
-    --font-tech: "Space Grotesk", var(--stack-sans);
-    --font-jester: "Baloo 2", var(--stack-sans);
-    --font-JP: "Noto Sans JP", sans-serif;
+    --stack-serif:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    /* ====== FONT WEIGHTS ====== */
-    --w-regular: 400;
-    --w-medium: 500;
-    --w-semibold: 600;
-    --w-black: 900;
+    --font-hero:
+        "Basteleur Bold",
+        var(--stack-serif);
+
+    --font-mystic:
+        "Basteleur Moonlight",
+        var(--stack-serif);
+
+    --font-tech:
+        "Space Grotesk",
+        var(--stack-sans);
+
+    --font-jester:
+        "Space Grotesk",
+        var(--stack-sans);
+
+    --font-JP:
+        "Noto Sans JP",
+        sans-serif;
 
     --font-body: var(--font-tech);
     --font-heading: var(--font-hero);
     --font-display: var(--font-mystic);
     --font-fun: var(--font-jester);
 
+    --w-light: 300;
+    --w-regular: 400;
+    --w-medium: 500;
+    --w-semibold: 600;
+    --w-bold: 700;
+    
     /* ====== RAW COLOR PALETTE ====== */
     --c-ink: #0B1215;        /* base core black */
     --c-shadow: #120916;     /* shadow black/purple */
