@@ -18,8 +18,8 @@
     "vite-plugin-svgr": "^4.5.0"
   },
   "dependencies": {
-    "@react-three/drei": "^10.0.4",
-    "@react-three/fiber": "^9.1.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
     "katex": "^0.16.45",
     "lil-gui": "^0.21.0",
     "react": "19.0",

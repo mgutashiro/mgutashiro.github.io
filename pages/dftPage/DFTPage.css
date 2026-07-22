@@ -56,15 +56,27 @@
 .dft-hero {
     height: 100%;
     min-height: 0;
+
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.82fr);
-    align-content: start;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(22rem, 0.96fr);
+
+    grid-template-rows: minmax(0, 1fr) auto;
+
+    align-content: stretch;
     align-items: center;
-    gap: clamp(1.5rem, 3.5vw, 4rem);
+
+    column-gap: clamp(1.25rem, 2.6vw, 3rem);
+    row-gap: 0.5rem;
 
     overflow-x: hidden;
     overflow-y: auto;
-    padding: clamp(1rem, 2.4vh, 1.75rem) clamp(0.25rem, 1.5vw, 1.5rem) 1rem;
+
+    padding:
+        clamp(1rem, 2.4vh, 1.75rem)
+        clamp(0.25rem, 1.5vw, 1.5rem)
+        1rem;
 }
 
 .dft-hero__copy {
@@ -90,7 +102,7 @@
 }
 
 .dft-eyebrow,
-.dft-kicker{
+.dft-kicker {
     margin: 0 0 0.75rem;
     color: var(--c-metal-1);
     font-size: 0.74rem;
@@ -151,41 +163,67 @@
 }
 
 .dft-hero h1 {
-    max-width: none;
+    --dft-title-width: clamp(18rem, 31vw, 30rem);
+
+    display: grid;
+    justify-items: start;
+    row-gap: 0.08rem;
+
+    width: min(var(--dft-title-width), 100%);
+    max-width: 100%;
     margin: 0 0 var(--hero-gap-subtitle);
 
     color: var(--c-metal-1);
-    font-size: clamp(4.5rem, 7.7vw, 7.65rem);
-    line-height: 0.84;
-    letter-spacing: -0.06em;
-}
-
-.dft-hero__title-line {
-    display: block;
-}
-
-
-.dft-hero__title-line:last-child {
-    margin-left: 0.015em;
+    font-size: inherit;
+    line-height: 1;
+    letter-spacing: normal;
 }
 
 .dft-hero__title-row {
-    position: relative;
+    display: grid;
+    justify-items: start;
+    row-gap: clamp(0.12rem, 0.3vw, 0.28rem);
+
+    width: 100%;
+    padding: 0;
+}
+
+
+.dft-hero__title-shape {
     display: block;
-    width: max-content;
-    padding-top: 0.15em;
+    flex: none;
+
+    background-color: currentColor;
+
+    -webkit-mask-image: var(--title-mask);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+
+    mask-image: var(--title-mask);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
 }
 
 .dft-hero__title-prefix {
-    display: block;
-    width: max-content;
+    width: 15.544%;
+    aspect-ratio: 30 / 12;
+    margin-left: 0.4%;
+}
 
-    margin: 0 0 -0.015em 0.025em;
 
-    font-family: var(--font-hero);
-    font-size: 0.21em;
-    line-height: 1;
-    letter-spacing: -0.025em;
+.dft-hero__title-density {
+    width: 100%;
+    aspect-ratio: 193 / 47;
+}
+
+.dft-hero__title-dial {
+    width: 52.332%;
+    aspect-ratio: 101 / 36;
+
+    margin-top: -0.18rem;
+    margin-left: 0.35%;
 }
 
 .dft-hero__subtitle {
@@ -341,53 +379,112 @@
 
 .dft-hero__visual {
     position: relative;
+    isolation: isolate;
+
     aspect-ratio: 1;
     width: min(100%, 26rem);
+
     place-self: center;
+    translate: -0.6rem 0.15rem;
     display: grid;
     place-items: center;
+
     overflow: hidden;
+
     border: 1px solid var(--dft-border);
     border-radius: 50%;
+
     background:
-        radial-gradient(circle, color-mix(in srgb, var(--c-glow-1) 14%, transparent), transparent 42%),
+        radial-gradient(
+            circle at 50% 48%,
+            color-mix(
+                in srgb,
+                var(--c-glow-1) 9%,
+                transparent
+            ),
+            transparent 39%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            color-mix(
+                in srgb,
+                var(--c-primary-1) 20%,
+                transparent
+            ),
+            transparent 70%
+        ),
         var(--surface);
-    box-shadow: inset 0 0 4rem color-mix(in srgb, var(--c-shadow) 70%, transparent);
+
+    box-shadow:
+        inset 0 0 4rem
+            color-mix(
+                in srgb,
+                var(--c-shadow) 70%,
+                transparent
+            ),
+        0 0 2rem
+            color-mix(
+                in srgb,
+                var(--c-primary-2) 24%,
+                transparent
+            );
 }
 
-.dft-hero__visual strong {
-    color: var(--dft-cream);
-    font-size: clamp(3rem, 8vw, 6rem);
-    letter-spacing: 0.08em;
-}
 
-.dft-hero__visual small {
+/* Static bronze/copper instrument ring */
+.dft-hero__static-ring {
     position: absolute;
-    bottom: 20%;
-    color: var(--c-text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
+    z-index: 3;
+    inset: 13%;
 
-.dft-hero__orbit {
-    position: absolute;
-    width: 74%;
-    aspect-ratio: 1;
-    border: 1px solid var(--c-metal-2);
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--c-metal-1) 48%,
+            var(--c-metal-3)
+        );
+
     border-radius: 50%;
-    animation: dft-spin 18s linear infinite;
+
+    box-shadow:
+        0 0 0.7rem
+            color-mix(
+                in srgb,
+                var(--c-metal-3) 15%,
+                transparent
+            ),
+        inset 0 0 0.65rem
+            color-mix(
+                in srgb,
+                var(--c-metal-1) 10%,
+                transparent
+            );
+
+    pointer-events: none;
 }
 
-.dft-hero__orbit::after {
-    content: "";
+
+/* WebGL area inside the circular frame */
+.dft-hero-model {
     position: absolute;
-    top: -0.35rem;
-    left: 50%;
-    width: 0.7rem;
-    aspect-ratio: 1;
+    z-index: 2;
+    inset: 8%;
+
+    overflow: hidden;
     border-radius: 50%;
-    background: var(--c-glow-1);
-    box-shadow: 0 0 1rem var(--c-glow-1);
+
+    pointer-events: none;
+}
+
+
+/* Ensure R3F completely fills the wrapper */
+.dft-hero-model canvas {
+    display: block;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    background: transparent !important;
 }
 
 .dft-meta {
@@ -457,6 +554,9 @@
 .dft-study__header h2 {
     margin-bottom: 0;
     font-size: clamp(1.9rem, 4vw, 3.25rem);
+    font-family: var(--font-mystic);
+    font-weight: var(--w-regular);
+    color: var(--c-metal-1);
 }
 
 .dft-mode__label {
@@ -563,6 +663,186 @@
         var(--surface);
 }
 
+/* ===== CHAPTER 1: STATIC HYQ VISUAL ===== */
+.dft-visual--hyq-density {
+    isolation: isolate;
+    overflow: visible;
+
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            color-mix(
+                in srgb,
+                var(--c-glow-1) 7%,
+                transparent
+            ),
+            transparent 39%
+        ),
+        radial-gradient(
+            circle,
+            color-mix(
+                in srgb,
+                var(--c-glow-2) 14%,
+                transparent
+            ),
+            transparent 68%
+        ),
+        var(--surface);
+}
+
+.dft-chapter-hyq {
+    position: absolute;
+    inset: 0;
+}
+
+
+.dft-chapter-hyq__ring {
+    position: absolute;
+    z-index: 1;
+    inset: 10.5%;
+
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--c-metal-1) 48%,
+            var(--c-metal-3)
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 0 0.65rem
+            color-mix(
+                in srgb,
+                var(--c-metal-1) 10%,
+                transparent
+            ),
+        0 0 0.7rem
+            color-mix(
+                in srgb,
+                var(--c-metal-3) 14%,
+                transparent
+            );
+
+    pointer-events: none;
+}
+
+
+
+.dft-chapter-hyq__canvas {
+    position: absolute;
+    z-index: 2;
+    inset: 9%;
+
+    overflow: hidden;
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.dft-chapter-hyq__canvas canvas {
+    display: block;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    background: transparent !important;
+}
+
+
+
+.dft-hyq-callout-lines {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+.dft-hyq-callout-line {
+    fill: none;
+
+    stroke-width: 0.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.dft-hyq-callout-line--density {
+    stroke: var(--c-glow-1);
+}
+
+.dft-hyq-callout-line--molecule {
+    stroke: var(--c-metal-1);
+}
+
+.dft-hyq-callout-point--density {
+    fill: var(--c-glow-1);
+    filter: drop-shadow(
+        0 0 0.3rem
+        var(--c-glow-1)
+    );
+}
+
+.dft-hyq-callout-point--molecule {
+    fill: var(--c-metal-1);
+    filter: drop-shadow(
+        0 0 0.25rem
+        var(--c-metal-1)
+    );
+}
+
+
+.dft-hyq-callout {
+    position: absolute;
+    z-index: 4;
+
+    padding: 0.32rem 0.46rem;
+
+    border: 1px solid currentColor;
+    border-radius: 999px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--c-shadow) 88%,
+            transparent
+        );
+
+    font-family: var(--font-tech);
+    font-size: clamp(
+        0.55rem,
+        0.8vw,
+        0.66rem
+    );
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.dft-hyq-callout--density {
+    top: 13%;
+    left: 5%;
+
+    color: var(--c-glow-1);
+}
+
+.dft-hyq-callout--molecule {
+    right: 5%;
+    bottom: 12%;
+
+    color: var(--c-metal-1);
+}
+
 .dft-ring__track {
     position: absolute;
     inset: 8%;
@@ -587,40 +867,6 @@
     opacity: 0.4;
 }
 
-.dft-ring__pointer {
-    position: absolute;
-    z-index: 2;
-    top: 3.2%;
-    left: 50%;
-    width: 0.8rem;
-    height: 2rem;
-    clip-path: polygon(50% 100%, 0 0, 100% 0);
-    background: var(--c-metal-1);
-    filter: drop-shadow(0 0 0.65rem var(--c-metal-1));
-    transform: translateX(-50%);
-}
-
-.dft-ring__station {
-    position: absolute;
-    z-index: 3;
-    display: grid;
-    width: 2rem;
-    aspect-ratio: 1;
-    place-items: center;
-    border: 1px solid var(--c-metal-2);
-    border-radius: 50%;
-    background: var(--c-shadow);
-    color: var(--c-text-muted);
-    font-size: 0.65rem;
-    transform: translate(-50%, -50%);
-}
-
-.dft-ring__station.is-active {
-    border-color: var(--c-metal-1);
-    color: var(--c-ink);
-    background: var(--c-metal-1);
-    box-shadow: 0 0 1.2rem color-mix(in srgb, var(--c-metal-1) 65%, transparent);
-}
 
 .dft-molecule-placeholder {
     position: relative;
@@ -1036,9 +1282,6 @@
     text-transform: uppercase;
 }
 
-@keyframes dft-spin {
-    to { transform: rotate(1turn); }
-}
 
 @keyframes dft-float {
     50% { transform: translateY(-0.55rem) rotate(3deg); }
@@ -1138,8 +1381,17 @@
     }
 
     .dft-hero h1 {
-        font-size: clamp(3.65rem, 18vw, 5.4rem);
-        line-height: 0.86;
+        --dft-title-width: min(88vw, 25rem);
+
+        row-gap: 0.28rem;
+    }
+
+    .dft-hero__visual {
+        translate: -0.6rem 0.15rem;
+    }
+
+    .dft-hero__title-row {
+        row-gap: 0.12rem;
     }
 
     .dft-hero__subtitle {
@@ -1210,6 +1462,22 @@
     .dft-step-controls button,
     .dft-chapter-controls button {
         width: 100%;
+    }
+
+    .dft-hyq-callout {
+        padding: 0.27rem 0.36rem;
+        font-size: 0.56rem;
+        letter-spacing: 0.06em;
+    }
+
+    .dft-hyq-callout--density {
+        top: 10%;
+        left: 4%;
+    }
+
+    .dft-hyq-callout--molecule {
+        right: 4%;
+        bottom: 10%;
     }
 }
 

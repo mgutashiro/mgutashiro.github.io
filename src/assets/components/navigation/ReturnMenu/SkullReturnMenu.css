@@ -1,0 +1,435 @@
+.skull-return-menu {
+    --skull-menu-text: var(--c-glow-1);
+    --skull-menu-font-size: 0.8rem;
+    --skull-menu-item-gap: clamp(0.72rem, 1.7vw, 1.2rem);
+
+    position: relative;
+    z-index: 30;
+
+    display: inline-grid;
+    grid-template-columns: max-content max-content minmax(0, max-content);
+    grid-auto-flow: column;
+    align-items: center;
+
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 2.85rem;
+
+    overflow: visible;
+    isolation: isolate;
+}
+
+.skull-return-menu .skull-return-menu__trigger {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 0.5rem;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    color: var(--skull-menu-text);
+    background: transparent;
+    cursor: pointer;
+
+    font:
+        var(--w-bold, 700)
+        var(--skull-menu-font-size) / 1.2
+        var(--font-tech, sans-serif);
+    letter-spacing: 0.04em;
+    text-align: left;
+    white-space: nowrap;
+
+    appearance: none;
+}
+
+.skull-return-menu .skull-return-menu__trigger:focus-visible {
+    outline: 1px solid
+        color-mix(in oklab, var(--skull-menu-text) 62%, transparent);
+    outline-offset: 0.3rem;
+    border-radius: 999px;
+}
+
+.skull-return-menu__logo {
+    flex: 0 0 auto;
+    transition: filter 180ms ease;
+}
+
+.skull-return-menu__label {
+    display: grid;
+    width: 5.15rem;
+    max-width: 5.15rem;
+    overflow: hidden;
+
+    opacity: 1;
+    transform: translateX(0);
+
+    transition:
+        width 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        max-width 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 150ms ease,
+        transform 220ms ease;
+}
+
+.skull-return-menu__label-default,
+.skull-return-menu__label-hover {
+    grid-area: 1 / 1;
+
+    transition:
+        opacity 150ms ease,
+        filter 180ms ease,
+        transform 180ms ease;
+}
+
+.skull-return-menu__label-hover {
+    opacity: 0;
+    transform: translateY(0.12rem);
+}
+
+.skull-return-menu:not(.is-open)
+    .skull-return-menu__trigger:is(:hover, :focus-visible)
+    .skull-return-menu__label-default {
+    opacity: 0;
+    transform: translateY(-0.12rem);
+}
+
+.skull-return-menu:not(.is-open)
+    .skull-return-menu__trigger:is(:hover, :focus-visible)
+    .skull-return-menu__label-hover {
+    opacity: 1;
+    transform: translateY(0);
+
+    filter:
+        drop-shadow(
+            0 0 0.24rem
+            color-mix(in oklab, var(--skull-menu-text) 84%, transparent)
+        )
+        drop-shadow(
+            0 0 0.62rem
+            color-mix(in oklab, var(--c-glow-2) 42%, transparent)
+        );
+}
+
+.skull-return-menu:not(.is-open)
+    .skull-return-menu__trigger:is(:hover, :focus-visible)
+    .skull-return-menu__logo {
+    filter:
+        drop-shadow(
+            0 0 0.4rem
+            color-mix(in oklab, var(--skull-menu-text) 28%, transparent)
+        );
+}
+
+.skull-return-menu.is-open .skull-return-menu__label {
+    width: 0;
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-0.28rem);
+    pointer-events: none;
+}
+
+.skull-return-menu__pour {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+
+    width: 0;
+    height: 0.19rem;
+    margin-inline: 0;
+
+    overflow: visible;
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--c-glow-1),
+            var(--c-glow-2) 42%,
+            var(--c-glow-3) 72%,
+            var(--c-emo-1)
+        );
+
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.skull-return-menu__pour-drop {
+    position: absolute;
+    top: 50%;
+    right: -0.2rem;
+
+    width: 0.34rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    background: var(--c-glow-3, #ff3cac);
+    opacity: 0;
+    transform: translateY(-50%) scale(0.35);
+
+    box-shadow:
+        0 0 0.35rem
+        color-mix(in oklab, var(--c-glow-3, #ff3cac) 64%, transparent);
+}
+
+.skull-return-menu.is-open .skull-return-menu__pour {
+    animation:
+        skull-return-pour-sideways 620ms 110ms
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+.skull-return-menu.is-open .skull-return-menu__pour-drop {
+    animation:
+        skull-return-pour-drop 520ms 170ms ease-out
+        forwards;
+}
+
+/*
+   Use an explicit one-row grid instead of relying on flex direction.
+   The !important declarations intentionally protect this reusable navigation
+   from broad page rules such as `nav { display: grid; }`,
+   `nav a { display: block; }`, or mobile button width overrides.
+*/
+.skull-return-menu > .skull-return-menu__options {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: max-content !important;
+    grid-template-columns: none !important;
+    grid-template-rows: minmax(0, auto) !important;
+    align-items: center;
+    justify-content: start;
+    column-gap: var(--skull-menu-item-gap);
+    row-gap: 0;
+
+    width: auto !important;
+    max-width: 0;
+    min-width: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    white-space: nowrap;
+
+    transition:
+        max-width 760ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 180ms ease,
+        visibility 0s linear 760ms;
+}
+
+.skull-return-menu.is-open > .skull-return-menu__options {
+    max-width: min(38rem, calc(100vw - 5rem));
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transition:
+        max-width 760ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 180ms 250ms ease,
+        visibility 0s linear 0s;
+}
+
+.skull-return-menu .skull-return-menu__option {
+    position: relative;
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    grid-row: 1 !important;
+
+    width: max-content !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    margin: 0;
+    padding: 0.12rem 0;
+    border: 0;
+
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+
+    font:
+        var(--w-bold, 700)
+        var(--skull-menu-font-size) / 1.2
+        var(--font-tech, sans-serif);
+    letter-spacing: 0.04em;
+    text-align: left;
+    white-space: nowrap;
+
+    opacity: 0;
+    filter: blur(0.28rem);
+    transform: translateX(-0.7rem) scale(0.98);
+
+    transition:
+        filter 180ms ease,
+        transform 180ms ease;
+}
+
+.skull-return-menu.is-open .skull-return-menu__option {
+    animation:
+        skull-return-option-pour 420ms
+        calc(280ms + (var(--skull-option-index) * 115ms))
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+.skull-return-menu .skull-return-menu__option--liquid {
+    color: transparent !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--c-glow-1),
+            var(--c-glow-2) 40%,
+            var(--c-glow-3) 76%,
+            var(--c-emo-2)
+        );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skull-return-menu .skull-return-menu__option--cyan {
+    color: var(--c-glow-1) !important;
+}
+
+.skull-return-menu .skull-return-menu__option--violet {
+    color: var(--c-glow-2) !important;
+}
+
+.skull-return-menu .skull-return-menu__option--pink {
+    color: var(--c-glow-3) !important;
+}
+
+.skull-return-menu .skull-return-menu__option--wine {
+    color: var(--c-emo-2) !important;
+}
+
+.skull-return-menu__option::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.08rem;
+    left: 0;
+
+    height: 1px;
+    content: "";
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--c-glow-1),
+            var(--c-glow-2),
+            var(--c-glow-3)
+        );
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+}
+
+.skull-return-menu .skull-return-menu__option:is(:hover, :focus-visible) {
+    outline: none;
+    transform: translateY(-0.06rem);
+
+    filter:
+        drop-shadow(
+            0 0 0.26rem
+            color-mix(in oklab, var(--c-glow-2) 64%, transparent)
+        )
+        drop-shadow(
+            0 0 0.62rem
+            color-mix(in oklab, var(--c-glow-1) 42%, transparent)
+        );
+}
+
+.skull-return-menu__option:is(:hover, :focus-visible)::after {
+    transform: scaleX(1);
+}
+
+@keyframes skull-return-pour-sideways {
+    0% {
+        width: 0;
+        margin-inline: 0;
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    58% {
+        width: clamp(1.5rem, 3.2vw, 2.8rem);
+        margin-inline: 0.28rem 0.42rem;
+        opacity: 0.9;
+        transform: scaleX(1);
+    }
+
+    100% {
+        width: 0.58rem;
+        margin-inline: 0.2rem 0.48rem;
+        opacity: 0.62;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes skull-return-pour-drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-1.1rem) scale(0.35);
+    }
+
+    42% {
+        opacity: 0.95;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(0.55rem) scale(0.5);
+    }
+}
+
+@keyframes skull-return-option-pour {
+    from {
+        opacity: 0;
+        filter: blur(0.28rem);
+        transform: translateX(-0.7rem) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0) scale(1);
+    }
+}
+
+@media (max-width: 42rem) {
+    .skull-return-menu {
+        --skull-menu-font-size: 0.72rem;
+        --skull-menu-item-gap: 0.72rem;
+    }
+
+    .skull-return-menu__label {
+        width: 4.55rem;
+        max-width: 4.55rem;
+    }
+
+    .skull-return-menu.is-open > .skull-return-menu__options {
+        max-width: calc(100vw - 4.3rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skull-return-menu.is-open .skull-return-menu__pour,
+    .skull-return-menu.is-open .skull-return-menu__pour-drop,
+    .skull-return-menu.is-open .skull-return-menu__option {
+        animation-duration: 1ms !important;
+        animation-delay: 0ms !important;
+    }
+
+    .skull-return-menu__label,
+    .skull-return-menu__options {
+        transition-duration: 1ms !important;
+    }
+}

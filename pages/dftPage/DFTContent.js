@@ -22,16 +22,15 @@ export const CHAPTERS = [
         id: "density",
         nav: "DFT",
         number: "01",
-        visual: "Structure → density → properties",
         content: {
             friends: {
                 eyebrow: "Why DFT exists",
-                title: "How can we study many electrons without tracking every detail?",
+                title: "Studying complex systems without tracking every detail",
                 summary:
-                "Electrons influence one another, so a complete many-electron description becomes difficult very quickly. Density functional theory replaces that overwhelming object with a more manageable map of where electron density is distributed.",
+                "Electrons influence properties and behavior of one another. Therefore, a complete many-electron (or complex system mechanistic) description becomes difficult very quickly. Density Functional Theory (DFT) replaces that overwhelming task with a more manageable map of where electron density is distributed.",
             },
             colleague: {
-                eyebrow: "Density functional theory",
+                eyebrow: "Density Functional Theory",
                 title: "From the many-electron wavefunction to an electron-density framework",
                 summary:
                 "DFT reformulates the ground-state electronic-structure problem around the three-dimensional density ρ(r). Hohenberg–Kohn establishes the density as the governing variable; Kohn–Sham theory makes the framework computationally practical through a noninteracting reference system and an approximate exchange-correlation functional.",
@@ -123,12 +122,11 @@ export const CHAPTERS = [
 export const THEORY_STEPS = [
     {
         id: "many-electron",
-        short: "Many-electron problem",
-        visual: "Ball-and-stick HYQ placeholder",
+        short: "many-electron problem",
         friends: {
             title: "The full problem grows too quickly",
             body:
-                "Every electron responds to the nuclei and to every other electron. A complete wavefunction contains far more information than most practical chemical questions require.",
+                "Each electron moves under the influence of the nuclei and every other electron around it. The wavefunction is the mathematical description of all those electrons; this includes possible positions, motions, and interactions. But as more electrons enter the picture, that story becomes far too complicated to follow directly. DFT takes a simpler route by focusing on where the electrons are most likely to be found.",
             bullets: ["Many interacting particles", "Too much information to visualize directly", "Density offers a smaller description"],
         },
         colleague: {
@@ -146,7 +144,7 @@ export const THEORY_STEPS = [
         friends: {
             title: "The density contains the ground-state story",
             body:
-                "In principle, the ground-state electron density determines the system’s ground-state properties. The correct density is the one that gives the lowest energy.",
+                "That simpler route gained its foundation in 1964, when Pierre Hohenberg and Walter Kohn showed that the electron density contains everything needed to describe a system in its ground state. In other words, all ground-state properties are uniquely determined by the density. They also showed that the correct density is the one that gives the lowest possible energy, giving DFT a practical way to sea",
             bullets: ["Density determines the system", "Energy is a functional of density", "The ground state minimizes that energy"],
         },
         colleague: {
@@ -159,12 +157,12 @@ export const THEORY_STEPS = [
     },
     {
         id: "ks",
-        short: "Kohn–Sham DFT",
+        short: "Kohn–Sham",
         visual: "Orbital / density layer placeholder",
         friends: {
             title: "A practical stand-in makes DFT usable",
             body:
-                "Kohn and Sham introduced easier, noninteracting electrons that reproduce the same density. The difficult leftover physics is collected into an exchange-correlation approximation.",
+                "In 1965, Walter Kohn and Lu Jeu Sham found a way to make DFT practical, helping it become one of the most widely used methods in computational chemistry. Instead of following every electron interaction directly, they imagined a simpler system where each electron moves on its own but still feels the combined pull of the nuclei, the repulsion from the other electrons, and the remaining many-electron effects. This simpler model reproduces the electron density of the real system.",
             bullets: ["Solve simpler orbital equations", "Recover the target density", "Approximate the missing interactions"],
         },
         colleague: {

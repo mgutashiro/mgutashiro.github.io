@@ -1,4 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+    Suspense,
+    useEffect,
+    useLayoutEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
+
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Bounds, useGLTF } from "@react-three/drei";
+import hyqLandingModelUrl from "/src/assets/models/HYQModels/DFTPageLandingHYQAnimation.glb?url";
+
+import titleTheUrl from "/src/assets/SVG/DFTPageTitle/The.svg?url";
+import titleDensityUrl from "/src/assets/SVG/DFTPageTitle/Density.svg?url";
+import titleDialUrl from "/src/assets/SVG/DFTPageTitle/Dial.svg?url";
+
 import {
     CHAPTERS,
     DFT_SCOPE,
@@ -13,6 +29,8 @@ import {
     SUPPORTS,
     THEORY_STEPS,
 } from "./DFTContent";
+
+import SkullReturnMenu from "/src/assets/components/navigation/ReturnMenu/SkullReturnMenu";
 import "./DFTPage.css";
 
 const MODE_LABELS = {
@@ -20,6 +38,266 @@ const MODE_LABELS = {
     colleague: "Colleague",
 };
 
+function HYQModel({
+    animate = false,
+    densityOpacity = 0.28,
+    rotation = [0, 0, 0],
+}) {
+    const { scene } = useGLTF(hyqLandingModelUrl);
+
+    const model = useMemo(
+        () => scene.clone(true),
+        [scene]
+    );
+
+    const modelRoot = useRef(null);
+
+
+    useLayoutEffect(() => {
+        let webDensityMaterial = null;
+
+        model.traverse((object) => {
+            if (!object.isMesh) return;
+
+            const isDensity =
+                object.name === "ElectronDensity" ||
+                object.material?.name === "ElectronCloud";
+
+            if (!isDensity) return;
+
+            webDensityMaterial = object.material.clone();
+
+            webDensityMaterial.name = "ElectronCloud_Web";
+            webDensityMaterial.transparent = true;
+            webDensityMaterial.opacity = densityOpacity;
+            webDensityMaterial.depthWrite = false;
+            webDensityMaterial.color.set("#7446B8");
+            webDensityMaterial.needsUpdate = true;
+
+            object.material = webDensityMaterial;
+            object.renderOrder = 2;
+        });
+
+        return () => {
+            webDensityMaterial?.dispose();
+        };
+    }, [model, densityOpacity]);
+
+    useFrame((_, delta) => {
+        if (!animate || !modelRoot.current) return;
+
+        modelRoot.current.rotation.y += delta * 0.12;
+    });
+
+    return (
+        <group
+            ref={modelRoot}
+            rotation={rotation}
+        >
+            <primitive
+                object={model}
+                dispose={null}
+            />
+        </group>
+    );
+}
+
+function HYQLandingVisual() {
+    return (
+        <div
+            className="dft-hero-model"
+            aria-hidden="true"
+        >
+            <Canvas
+                frameloop="always"
+                dpr={[1, 1.5]}
+                camera={{
+                    position: [0, 0, 8],
+                    fov: 28,
+                    near: 0.1,
+                    far: 100,
+                }}
+                gl={{
+                    alpha: true,
+                    antialias: true,
+                    powerPreference: "high-performance",
+                }}
+            >
+                <ambientLight intensity={0.85} />
+
+                <directionalLight
+                    position={[4, 5, 7]}
+                    intensity={3.6}
+                />
+
+                <directionalLight
+                    position={[-4, 1, 5]}
+                    color="#9B5CFF"
+                    intensity={0.65}
+                />
+
+                <directionalLight
+                    position={[0, -4, 4]}
+                    color="#C19A3F"
+                    intensity={0.45}
+                />
+
+                <Suspense fallback={null}>
+                    <Bounds
+                        fit
+                        clip
+                        observe
+                        margin={1.13}
+                    >
+                        <HYQModel
+                            animate
+                            densityOpacity={0.28}
+                        />
+                    </Bounds>
+                </Suspense>
+            </Canvas>
+        </div>
+    );
+}
+
+function HYQDensityChapterVisual({
+    showFriendsLabels,
+}) {
+    return (
+        <div className="dft-chapter-hyq">
+            <span
+                className="dft-chapter-hyq__ring"
+                aria-hidden="true"
+            />
+
+            <div
+                className="dft-chapter-hyq__canvas"
+                aria-hidden="true"
+            >
+                <Canvas
+                    frameloop="demand"
+                    dpr={[1, 1.5]}
+                    camera={{
+                        position: [0, 0, 8],
+                        fov: 28,
+                        near: 0.1,
+                        far: 100,
+                    }}
+                    gl={{
+                        alpha: true,
+                        antialias: true,
+                        powerPreference: "high-performance",
+                    }}
+                >
+                    <ambientLight intensity={0.85} />
+
+                    <directionalLight
+                        position={[4, 5, 7]}
+                        intensity={3.6}
+                    />
+
+                    <directionalLight
+                        position={[-4, 1, 5]}
+                        color="#9B5CFF"
+                        intensity={0.65}
+                    />
+
+                    <directionalLight
+                        position={[0, -4, 4]}
+                        color="#C19A3F"
+                        intensity={0.45}
+                    />
+
+                    <Suspense fallback={null}>
+                        <Bounds
+                            fit
+                            clip
+                            observe
+                            margin={1.18}
+                        >
+                            <HYQModel
+                                animate={false}
+                                densityOpacity={0.24}
+                                rotation={[
+                                    0.12,
+                                    -0.08,
+                                    -0.05,
+                                ]}
+                            />
+                        </Bounds>
+                    </Suspense>
+                </Canvas>
+            </div>
+
+            {showFriendsLabels && (
+                <>
+                    <svg
+                        className="dft-hyq-callout-lines"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                    >
+                        <polyline
+                            className="
+                                dft-hyq-callout-line
+                                dft-hyq-callout-line--density
+                            "
+                            points="25,20 37,35"
+                        />
+
+                        <circle
+                            className="
+                                dft-hyq-callout-point
+                                dft-hyq-callout-point--density
+                            "
+                            cx="37"
+                            cy="35"
+                            r="1.15"
+                        />
+
+                        <polyline
+                            className="
+                                dft-hyq-callout-line
+                                dft-hyq-callout-line--molecule
+                            "
+                            points="75,85 57,59"
+                        />
+
+                        <circle
+                            className="
+                                dft-hyq-callout-point
+                                dft-hyq-callout-point--molecule
+                            "
+                            cx="57"
+                            cy="59"
+                            r="1.15"
+                        />
+                    </svg>
+
+                    <span
+                        className="
+                            dft-hyq-callout
+                            dft-hyq-callout--density
+                        "
+                    >
+                        Electron Density
+                    </span>
+
+                    <span
+                        className="
+                            dft-hyq-callout
+                            dft-hyq-callout--molecule
+                        "
+                    >
+                        Molecule
+                    </span>
+                </>
+            )}
+        </div>
+    );
+}
+
+useGLTF.preload(hyqLandingModelUrl);
 
 function wrapIndex(index, length) {
     return (index + length) % length;
@@ -45,76 +323,68 @@ function ModeToggle({ mode, onChange }) {
         </div>
     );
 }
-
-function VisualPlaceholder({ chapter, activeChapter, evidenceTab }) {
+function VisualPlaceholder({
+    chapter,
+    activeChapter,
+    evidenceTab,
+    mode,
+}) {
     const visualLabel =
         chapter.id === "evidence"
             ? evidenceTab.visual
             : chapter.visual;
 
+    const isDensityChapter =
+        chapter.id === "density";
+
     return (
         <figure
             className="dft-visual-stack"
-            aria-label={`${chapter.nav} visual placeholder`}
+            aria-label={`${chapter.nav} visual`}
         >
-            <div className="dft-visual">
-                <div
-                    className="dft-ring__track"
-                    style={{
-                        "--ring-rotation": `${activeChapter * -72}deg`,
-                    }}
-                    aria-hidden="true"
-                />
-
-                <span
-                    className="dft-ring__pointer"
-                    aria-hidden="true"
-                />
-
-                {CHAPTERS.map((item, index) => {
-                    const angle =
-                        (index / CHAPTERS.length) * Math.PI * 2 -
-                        Math.PI / 2;
-
-                    const left = 50 + Math.cos(angle) * 43;
-                    const top = 50 + Math.sin(angle) * 43;
-
-                    return (
-                        <span
-                            key={item.id}
-                            className={`dft-ring__station ${
-                                index === activeChapter
-                                    ? "is-active"
-                                    : ""
-                            }`}
+            <div
+                className={`dft-visual ${
+                    isDensityChapter
+                        ? "dft-visual--hyq-density"
+                        : ""
+                }`}
+            >
+                {isDensityChapter ? (
+                    <HYQDensityChapterVisual
+                        showFriendsLabels={
+                            mode === "friends"
+                        }
+                    />
+                ) : (
+                    <>
+                        <div
+                            className="dft-ring__track"
                             style={{
-                                left: `${left}%`,
-                                top: `${top}%`,
+                                "--ring-rotation":
+                                    `${activeChapter * -72}deg`,
                             }}
                             aria-hidden="true"
+                        />
+
+                        <div
+                            className="dft-molecule-placeholder"
+                            aria-hidden="true"
                         >
-                            {item.number}
-                        </span>
-                    );
-                })}
+                            <span className="dft-atom dft-atom--one" />
+                            <span className="dft-atom dft-atom--two" />
+                            <span className="dft-atom dft-atom--three" />
+                            <span className="dft-atom dft-atom--four" />
 
-                <div
-                    className="dft-molecule-placeholder"
-                    aria-hidden="true"
-                >
-                    <span className="dft-atom dft-atom--one" />
-                    <span className="dft-atom dft-atom--two" />
-                    <span className="dft-atom dft-atom--three" />
-                    <span className="dft-atom dft-atom--four" />
+                            <span className="dft-bond dft-bond--one" />
+                            <span className="dft-bond dft-bond--two" />
+                            <span className="dft-bond dft-bond--three" />
+                        </div>
 
-                    <span className="dft-bond dft-bond--one" />
-                    <span className="dft-bond dft-bond--two" />
-                    <span className="dft-bond dft-bond--three" />
-                </div>
-
-                <div className="dft-visual__placeholder-note">
-                    Three.js / Blender placeholder
-                </div>
+                        <div className="dft-visual__placeholder-note">
+                            Three.js / Blender placeholder
+                        </div>
+                    </>
+                )}
             </div>
 
             <figcaption className="dft-visual__label">
@@ -176,20 +446,6 @@ function TheoryPanel({ mode, theoryIndex, setTheoryIndex }) {
                 label="Move through DFT history"
             />
 
-            <details className="dft-details">
-                <summary>What DFT can and cannot do</summary>
-                <div className="dft-scope-grid">
-                    <div>
-                        <h4>Strong for</h4>
-                        <ul>{DFT_SCOPE.strong.map((item) => <li key={item}>{item}</li>)}</ul>
-                    </div>
-                    <div>
-                        <h4>Model-dependent</h4>
-                        <ul>{DFT_SCOPE.dependent.map((item) => <li key={item}>{item}</li>)}</ul>
-                    </div>
-                </div>
-                <p className="dft-callout">{DFT_SCOPE.limit}</p>
-            </details>
         </div>
     );
 }
@@ -301,7 +557,7 @@ function EvidencePanel({ mode, evidenceIndex, setEvidenceIndex }) {
             </div>
 
             <article className="dft-card dft-card--accent-cyan">
-                <p className="dft-kicker">Visual state: {tab.visual}</p>
+                {/* <p className="dft-kicker">Visual state: {tab.visual}</p> */}
                 <h3>{copy.title}</h3>
                 <p>{copy.body}</p>
                 <dl className="dft-metrics">
@@ -466,13 +722,46 @@ export default function DFTPage() {
                                 </span>
                             </p>
 
-                            <h1 id="dft-title">
-                                <span className="dft-hero__title-row">
-                                    <span className="dft-hero__title-prefix">The</span>
-                                    <span className="dft-hero__title-line">Density</span>
+                            <h1
+                                id="dft-title"
+                                className="dft-hero__title"
+                                aria-label="The Density Dial"
+                            >
+                                <span
+                                    className="dft-hero__title-row"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        className="
+                                            dft-hero__title-shape
+                                            dft-hero__title-prefix
+                                        "
+                                        style={{
+                                            "--title-mask": `url("${titleTheUrl}")`,
+                                        }}
+                                    />
+
+                                    <span
+                                        className="
+                                            dft-hero__title-shape
+                                            dft-hero__title-density
+                                        "
+                                        style={{
+                                            "--title-mask": `url("${titleDensityUrl}")`,
+                                        }}
+                                    />
                                 </span>
 
-                                <span className="dft-hero__title-line">Dial</span>
+                                <span
+                                    className="
+                                        dft-hero__title-shape
+                                        dft-hero__title-dial
+                                    "
+                                    aria-hidden="true"
+                                    style={{
+                                        "--title-mask": `url("${titleDialUrl}")`,
+                                    }}
+                                />
                             </h1>
 
                             <p className="dft-hero__subtitle">
@@ -510,10 +799,17 @@ export default function DFTPage() {
                         </div>
                     </div>
 
-                    <div className="dft-hero__visual" aria-label="HYQ molecule placeholder">
-                        <span className="dft-hero__orbit" aria-hidden="true" />
-                        <strong>HYQ</strong>
-                        <small>optimized structure placeholder</small>
+                    <div
+                        className="dft-hero__visual"
+                        role="img"
+                        aria-label="Optimized hydroquinone structure with electron-density surface"
+                    >
+                        <span
+                            className="dft-hero__static-ring"
+                            aria-hidden="true"
+                        />
+
+                        <HYQLandingVisual />
                     </div>
 
                     <dl className="dft-meta">
@@ -535,15 +831,25 @@ export default function DFTPage() {
                 >
                     <header className="dft-study__header">
                         <div>
-                            <button
-                                type="button"
-                                className="dft-text-button"
-                                onClick={() => setActiveScreen("intro")}
-                            >
-                                ← Project overview
-                            </button>
-                            <p className="dft-eyebrow">Independent computational chemistry case study</p>
-                            <h2>The guided calculation</h2>
+                            <SkullReturnMenu
+                                className="dft-study__return-menu"
+                                label="Return"
+                                hoverLabel="Click Me!"
+                                logoSize="nav"
+                                items={[
+                                    {
+                                        label: "Project Overview",
+                                        tone: "liquid",
+                                        onSelect: () => setActiveScreen("intro"),
+                                    },
+                                    {
+                                        label: "Graveyard Chemist Main",
+                                        tone: "liquid",
+                                        to: "/",
+                                    },
+                                ]}
+                            />
+                            <h2>The Density Dial</h2>
                         </div>
 
                         <ModeToggle mode={mode} onChange={setMode} />
@@ -569,6 +875,7 @@ export default function DFTPage() {
                             chapter={chapter}
                             activeChapter={activeChapter}
                             evidenceTab={evidenceTab}
+                            mode={mode}
                         />
 
                         <div className="dft-reading" key={`${chapter.id}-${mode}`}>

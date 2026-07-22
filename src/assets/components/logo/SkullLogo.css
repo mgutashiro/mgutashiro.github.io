@@ -1,0 +1,322 @@
+.skull-logo {
+    --skull-logo-metal-shadow:
+        color-mix(in oklab, var(--c-shadow) 72%, var(--c-metal-2));
+    --skull-logo-metal-copper: var(--c-metal-3);
+    --skull-logo-metal-brass: var(--c-metal-1);
+    --skull-logo-metal-flash:
+        color-mix(in oklab, var(--c-paper) 38%, var(--c-metal-1));
+
+    --skull-logo-liquid-cyan: var(--c-glow-1);
+    --skull-logo-liquid-violet: var(--c-glow-2);
+    --skull-logo-liquid-purple: var(--c-primary-1);
+    --skull-logo-liquid-pink: var(--c-glow-3);
+    --skull-logo-liquid-wine: var(--c-emo-1);
+
+    --skull-logo-glass-highlight:
+        color-mix(in oklab, var(--text) 82%, var(--c-glow-1));
+    --skull-logo-glass-mid: var(--text);
+    --skull-logo-glass-shadow: var(--c-primary-2);
+
+    --skull-logo-detail:
+        color-mix(in oklab, var(--c-metal-3) 72%, var(--c-paper));
+    --skull-logo-cavity:
+        color-mix(in oklab, var(--c-shadow) 84%, transparent);
+    --skull-logo-cavity-edge:
+        color-mix(in oklab, var(--c-glow-2) 35%, var(--c-metal-3));
+
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    isolation: isolate;
+    line-height: 0;
+}
+
+.skull-logo--tiny {
+    width: 1.45rem;
+}
+
+.skull-logo--small {
+    width: clamp(1.9rem, 2.8vw, 2.35rem);
+}
+
+.skull-logo--nav {
+    width: clamp(2.35rem, 3.6vw, 2.85rem);
+}
+
+.skull-logo--medium {
+    width: clamp(3.5rem, 6vw, 5rem);
+}
+
+.skull-logo--large {
+    width: clamp(7rem, 20vw, 16rem);
+}
+
+.skull-logo__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    shape-rendering: geometricPrecision;
+
+    filter:
+        drop-shadow(
+            0 0.18rem 0.3rem
+            color-mix(in oklab, var(--c-shadow) 64%, transparent)
+        )
+        drop-shadow(
+            0 0 0.42rem
+            color-mix(in oklab, var(--skull-logo-liquid-violet) 16%, transparent)
+        );
+}
+
+.skull-logo__artboard {
+    transform-box: fill-box;
+    transform-origin: 53% 55%;
+    will-change: transform;
+}
+
+.skull-logo__asset [id$="-SkullBase"] {
+    fill: var(--skull-glass-gradient);
+    stroke: var(--skull-metal-gradient);
+    stroke-width: 1.35px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    paint-order: fill stroke;
+    vector-effect: non-scaling-stroke;
+}
+
+.skull-logo__asset [id$="-SkullDetails"],
+.skull-logo__asset [id$="-Teeth"] {
+    fill: none;
+    stroke: var(--skull-logo-detail);
+    stroke-width: 0.72px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.7;
+    vector-effect: non-scaling-stroke;
+}
+
+.skull-logo__asset [id$="-Teeth"] {
+    stroke-width: 0.62px;
+    opacity: 0.58;
+}
+
+.skull-logo__asset [id$="-SkullEyeL"],
+.skull-logo__asset [id$="-SkullEyeR"],
+.skull-logo__asset [id$="-SkullNose"] {
+    fill: var(--skull-logo-cavity);
+    stroke: var(--skull-logo-cavity-edge);
+    stroke-width: 0.78px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    paint-order: fill stroke;
+    vector-effect: non-scaling-stroke;
+}
+
+.skull-logo__liquid-mask {
+    pointer-events: none;
+}
+
+
+.skull-logo__liquid {
+    transform-box: fill-box;
+    transform-origin: 88% 58%;
+    will-change: transform, opacity;
+}
+
+.skull-logo__liquid-body {
+    opacity: 0.72;
+}
+
+.skull-logo__liquid-surface {
+    fill: none;
+    stroke: var(--skull-logo-liquid-cyan);
+    stroke-width: 1.15px;
+    stroke-linecap: round;
+    opacity: 0.88;
+    vector-effect: non-scaling-stroke;
+
+    filter:
+        drop-shadow(
+            0 0 0.18rem
+            color-mix(in oklab, var(--skull-logo-liquid-cyan) 64%, transparent)
+        )
+        drop-shadow(
+            0 0 0.42rem
+            color-mix(in oklab, var(--skull-logo-liquid-violet) 32%, transparent)
+        );
+}
+
+
+.skull-logo__inner-wall {
+    fill: none;
+    stroke:
+        color-mix(
+            in oklab,
+            var(--skull-logo-metal-shadow) 72%,
+            transparent
+        );
+    stroke-width: 0.72px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.62;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+}
+
+.skull-logo__shell-highlight {
+    fill: none;
+    stroke:
+        color-mix(
+            in oklab,
+            var(--skull-logo-glass-highlight) 64%,
+            transparent
+        );
+    stroke-width: 0.78px;
+    stroke-linecap: round;
+    opacity: 0.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.skull-logo__shell-highlight--warm {
+    stroke:
+        color-mix(
+            in oklab,
+            var(--skull-logo-metal-flash) 62%,
+            transparent
+        );
+    opacity: 0.38;
+}
+
+.skull-logo__spill-stream {
+    fill: none;
+    stroke-width: 5.5px;
+    stroke-linecap: round;
+    stroke-dasharray: 1020;
+    stroke-dashoffset: 1020;
+    opacity: 0;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 0 0.2rem
+            color-mix(in oklab, var(--skull-logo-liquid-violet) 58%, transparent)
+        );
+}
+
+.skull-logo--tiny .skull-logo__asset [id$="-SkullDetails"] {
+    opacity: 0.36;
+}
+
+.skull-logo--tiny .skull-logo__asset [id$="-Teeth"] {
+    opacity: 0.32;
+}
+
+.skull-logo[data-state="shake"] .skull-logo__artboard {
+    animation: skull-logo-attention-shake 430ms ease-in-out both;
+}
+
+.skull-logo[data-state="spill"] .skull-logo__artboard {
+    animation:
+        skull-logo-side-tip 720ms cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+.skull-logo[data-state="spill"] .skull-logo__liquid {
+    animation:
+        skull-logo-liquid-drain 690ms 90ms cubic-bezier(0.4, 0, 0.2, 1)
+        forwards;
+}
+
+.skull-logo[data-state="spill"] .skull-logo__spill-stream {
+    animation:
+        skull-logo-side-stream 720ms 140ms ease-out
+        forwards;
+}
+
+@keyframes skull-logo-attention-shake {
+    0%,
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+
+    18% {
+        transform: rotate(-5deg) translate3d(-0.02rem, 0, 0);
+    }
+
+    38% {
+        transform: rotate(5deg) translate3d(0.025rem, -0.015rem, 0);
+    }
+
+    58% {
+        transform: rotate(-3.5deg) translate3d(-0.018rem, 0.012rem, 0);
+    }
+
+    78% {
+        transform: rotate(2.5deg) translate3d(0.012rem, 0, 0);
+    }
+}
+
+@keyframes skull-logo-side-tip {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+
+    48% {
+        transform: rotate(64deg) translate3d(0.05rem, -0.03rem, 0);
+    }
+
+    100% {
+        transform: rotate(58deg) translate3d(0.08rem, 0, 0);
+    }
+}
+
+@keyframes skull-logo-liquid-drain {
+    0% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+
+    58% {
+        opacity: 0.7;
+        transform: scale(0.72, 0.82);
+    }
+
+    100% {
+        opacity: 0.08;
+        transform: scale(0.18, 0.46);
+    }
+}
+
+@keyframes skull-logo-side-stream {
+    0% {
+        opacity: 0;
+        stroke-dashoffset: 1020;
+    }
+
+    18% {
+        opacity: 0.9;
+    }
+
+    72% {
+        opacity: 0.72;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        opacity: 0;
+        stroke-dashoffset: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skull-logo[data-state="shake"] .skull-logo__artboard,
+    .skull-logo[data-state="spill"] .skull-logo__artboard,
+    .skull-logo[data-state="spill"] .skull-logo__liquid,
+    .skull-logo[data-state="spill"] .skull-logo__spill-stream {
+        animation-duration: 1ms !important;
+        animation-delay: 0ms !important;
+    }
+}
