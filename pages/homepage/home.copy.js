@@ -11,25 +11,25 @@ export const HOME_COPY = {
             {
                 id: 'about-01',
                 body: text(`
-I am a theoretical chemist in training with a background in spectroscopy, computation, and scientific communication. My work focuses on how light, energy, and electronic structure interact to shape the physical and chemical behavior we observe, from molecular spectroscopy to quantum-level processes.
+Graveyard Chemist is a platform that bridges science, computation, and visual design together to make complex scientific ideas more understandle and accessible by integrating different mediums. 
 
-This portfolio gathers my work at the intersection of chemistry, computation, and visual design, with the goal of making complex scientific ideas more understandable, engaging, and meaningful.
-                `),
+The goal is to translate abstract concepts into experiences that invite curiosity.                
+            `),
             },
             {
                 id: 'about-02',
                 body: text(`
-My projects explore the behavior of matter through theoretical modeling, computational analysis, and interactive visualization, with a particular interest in how structure, energy, and motion shape chemical behavior.
+Across my work, I use different disciplines and mediums to strengthen my theoretical thinking and communicate ideas through a modernist lens.
 
-An additional passion for philosophy and classical literature has also shaped the way I think about abstraction, interpretation, and theory. Across chemistry, mathematics, coding, and design, I enjoy studying difficult problems and translating abstract ideas into forms that can be seen, explored, and more easily understood.
+Philosophy, classical literature, illustration, and design also shape how I approach abstraction; reminding me that understanding depends not only on finding an answer, but on expressing it clearly and meaningfully.
                 `),
             },
             {
                 id: 'about-03',
                 body: text(`
-                    This space was built for both technical and non-technical visitors: for those looking at my research and professional work, and for those who simply want to know how I think, build, and learn. I hope it offers a welcoming glimpse into the questions that move me, the work I care about, and the idea that both science and art begin in the same place; a desire to understand what it means to see the world clearly.
-                    
-                    Thank you for stopping by!
+Let science, philosophy, technology, and creativity meet; guided by curiosity, dedication, and a little room for wonder.
+
+Thank you for stopping by!
                     ～(*'∀'*)ﾉ"♡
                     `),
             },

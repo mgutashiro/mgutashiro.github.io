@@ -48,22 +48,7 @@ function ReturnDestination({ item, index, isOpen, onSelect }) {
     );
 }
 
-/**
- * Reusable horizontal skull navigation.
- *
- * Closed:  [skull] Return
- * Hover:   [shaking skull] Click Me!
- * Open:    [tilted skull] Project Overview  Graveyard Chemist Main
- *
- * Item shape:
- * {
- *   label: string,
- *   tone?: "liquid" | "cyan" | "violet" | "pink" | "wine",
- *   to?: string,
- *   href?: string,
- *   onSelect?: (event) => void,
- * }
- */
+
 export default function SkullReturnMenu({
     className = "",
     label = "Return",

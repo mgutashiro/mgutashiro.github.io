@@ -1,15 +1,4 @@
-import {
-    Suspense,
-    useEffect,
-    useLayoutEffect,
-    useMemo,
-    useRef,
-    useState,
-} from "react";
-
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Bounds, useGLTF } from "@react-three/drei";
-import hyqLandingModelUrl from "/src/assets/models/HYQModels/DFTPageLandingHYQAnimation.glb?url";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import titleTheUrl from "/src/assets/SVG/DFTPageTitle/The.svg?url";
 import titleDensityUrl from "/src/assets/SVG/DFTPageTitle/Density.svg?url";
@@ -17,7 +6,6 @@ import titleDialUrl from "/src/assets/SVG/DFTPageTitle/Dial.svg?url";
 
 import {
     CHAPTERS,
-    DFT_SCOPE,
     EVIDENCE_TABS,
     LIMITS,
     ORCA_LAYERS,
@@ -31,273 +19,14 @@ import {
 } from "./DFTContent";
 
 import SkullReturnMenu from "/src/assets/components/navigation/ReturnMenu/SkullReturnMenu";
+import HYQLandingVisual from "./visuals/HYQLandingVisual";
+import StudyVisualPanel from "./visuals/study/StudyVisualPanel";
 import "./DFTPage.css";
 
 const MODE_LABELS = {
     friends: "Friends",
     colleague: "Colleague",
 };
-
-function HYQModel({
-    animate = false,
-    densityOpacity = 0.28,
-    rotation = [0, 0, 0],
-}) {
-    const { scene } = useGLTF(hyqLandingModelUrl);
-
-    const model = useMemo(
-        () => scene.clone(true),
-        [scene]
-    );
-
-    const modelRoot = useRef(null);
-
-
-    useLayoutEffect(() => {
-        let webDensityMaterial = null;
-
-        model.traverse((object) => {
-            if (!object.isMesh) return;
-
-            const isDensity =
-                object.name === "ElectronDensity" ||
-                object.material?.name === "ElectronCloud";
-
-            if (!isDensity) return;
-
-            webDensityMaterial = object.material.clone();
-
-            webDensityMaterial.name = "ElectronCloud_Web";
-            webDensityMaterial.transparent = true;
-            webDensityMaterial.opacity = densityOpacity;
-            webDensityMaterial.depthWrite = false;
-            webDensityMaterial.color.set("#7446B8");
-            webDensityMaterial.needsUpdate = true;
-
-            object.material = webDensityMaterial;
-            object.renderOrder = 2;
-        });
-
-        return () => {
-            webDensityMaterial?.dispose();
-        };
-    }, [model, densityOpacity]);
-
-    useFrame((_, delta) => {
-        if (!animate || !modelRoot.current) return;
-
-        modelRoot.current.rotation.y += delta * 0.12;
-    });
-
-    return (
-        <group
-            ref={modelRoot}
-            rotation={rotation}
-        >
-            <primitive
-                object={model}
-                dispose={null}
-            />
-        </group>
-    );
-}
-
-function HYQLandingVisual() {
-    return (
-        <div
-            className="dft-hero-model"
-            aria-hidden="true"
-        >
-            <Canvas
-                frameloop="always"
-                dpr={[1, 1.5]}
-                camera={{
-                    position: [0, 0, 8],
-                    fov: 28,
-                    near: 0.1,
-                    far: 100,
-                }}
-                gl={{
-                    alpha: true,
-                    antialias: true,
-                    powerPreference: "high-performance",
-                }}
-            >
-                <ambientLight intensity={0.85} />
-
-                <directionalLight
-                    position={[4, 5, 7]}
-                    intensity={3.6}
-                />
-
-                <directionalLight
-                    position={[-4, 1, 5]}
-                    color="#9B5CFF"
-                    intensity={0.65}
-                />
-
-                <directionalLight
-                    position={[0, -4, 4]}
-                    color="#C19A3F"
-                    intensity={0.45}
-                />
-
-                <Suspense fallback={null}>
-                    <Bounds
-                        fit
-                        clip
-                        observe
-                        margin={1.13}
-                    >
-                        <HYQModel
-                            animate
-                            densityOpacity={0.28}
-                        />
-                    </Bounds>
-                </Suspense>
-            </Canvas>
-        </div>
-    );
-}
-
-function HYQDensityChapterVisual({
-    showFriendsLabels,
-}) {
-    return (
-        <div className="dft-chapter-hyq">
-            <span
-                className="dft-chapter-hyq__ring"
-                aria-hidden="true"
-            />
-
-            <div
-                className="dft-chapter-hyq__canvas"
-                aria-hidden="true"
-            >
-                <Canvas
-                    frameloop="demand"
-                    dpr={[1, 1.5]}
-                    camera={{
-                        position: [0, 0, 8],
-                        fov: 28,
-                        near: 0.1,
-                        far: 100,
-                    }}
-                    gl={{
-                        alpha: true,
-                        antialias: true,
-                        powerPreference: "high-performance",
-                    }}
-                >
-                    <ambientLight intensity={0.85} />
-
-                    <directionalLight
-                        position={[4, 5, 7]}
-                        intensity={3.6}
-                    />
-
-                    <directionalLight
-                        position={[-4, 1, 5]}
-                        color="#9B5CFF"
-                        intensity={0.65}
-                    />
-
-                    <directionalLight
-                        position={[0, -4, 4]}
-                        color="#C19A3F"
-                        intensity={0.45}
-                    />
-
-                    <Suspense fallback={null}>
-                        <Bounds
-                            fit
-                            clip
-                            observe
-                            margin={1.18}
-                        >
-                            <HYQModel
-                                animate={false}
-                                densityOpacity={0.24}
-                                rotation={[
-                                    0.12,
-                                    -0.08,
-                                    -0.05,
-                                ]}
-                            />
-                        </Bounds>
-                    </Suspense>
-                </Canvas>
-            </div>
-
-            {showFriendsLabels && (
-                <>
-                    <svg
-                        className="dft-hyq-callout-lines"
-                        viewBox="0 0 100 100"
-                        preserveAspectRatio="none"
-                        aria-hidden="true"
-                    >
-                        <polyline
-                            className="
-                                dft-hyq-callout-line
-                                dft-hyq-callout-line--density
-                            "
-                            points="25,20 37,35"
-                        />
-
-                        <circle
-                            className="
-                                dft-hyq-callout-point
-                                dft-hyq-callout-point--density
-                            "
-                            cx="37"
-                            cy="35"
-                            r="1.15"
-                        />
-
-                        <polyline
-                            className="
-                                dft-hyq-callout-line
-                                dft-hyq-callout-line--molecule
-                            "
-                            points="75,85 57,59"
-                        />
-
-                        <circle
-                            className="
-                                dft-hyq-callout-point
-                                dft-hyq-callout-point--molecule
-                            "
-                            cx="57"
-                            cy="59"
-                            r="1.15"
-                        />
-                    </svg>
-
-                    <span
-                        className="
-                            dft-hyq-callout
-                            dft-hyq-callout--density
-                        "
-                    >
-                        Electron Density
-                    </span>
-
-                    <span
-                        className="
-                            dft-hyq-callout
-                            dft-hyq-callout--molecule
-                        "
-                    >
-                        Molecule
-                    </span>
-                </>
-            )}
-        </div>
-    );
-}
-
-useGLTF.preload(hyqLandingModelUrl);
 
 function wrapIndex(index, length) {
     return (index + length) % length;
@@ -306,7 +35,7 @@ function wrapIndex(index, length) {
 function ModeToggle({ mode, onChange }) {
     return (
         <div className="dft-mode" aria-label="Explanation level">
-            <span className="dft-mode__label">Explanation level</span>
+            <span className="dft-mode__label">Explanation Mode</span>
             <div className="dft-mode__buttons" role="group" aria-label="Choose explanation level">
                 {Object.entries(MODE_LABELS).map(([value, label]) => (
                     <button
@@ -323,85 +52,46 @@ function ModeToggle({ mode, onChange }) {
         </div>
     );
 }
-function VisualPlaceholder({
-    chapter,
-    activeChapter,
-    evidenceTab,
-    mode,
-}) {
-    const visualLabel =
-        chapter.id === "evidence"
-            ? evidenceTab.visual
-            : chapter.visual;
-
-    const isDensityChapter =
-        chapter.id === "density";
-
-    return (
-        <figure
-            className="dft-visual-stack"
-            aria-label={`${chapter.nav} visual`}
-        >
-            <div
-                className={`dft-visual ${
-                    isDensityChapter
-                        ? "dft-visual--hyq-density"
-                        : ""
-                }`}
-            >
-                {isDensityChapter ? (
-                    <HYQDensityChapterVisual
-                        showFriendsLabels={
-                            mode === "friends"
-                        }
-                    />
-                ) : (
-                    <>
-                        <div
-                            className="dft-ring__track"
-                            style={{
-                                "--ring-rotation":
-                                    `${activeChapter * -72}deg`,
-                            }}
-                            aria-hidden="true"
-                        />
-
-                        <div
-                            className="dft-molecule-placeholder"
-                            aria-hidden="true"
-                        >
-                            <span className="dft-atom dft-atom--one" />
-                            <span className="dft-atom dft-atom--two" />
-                            <span className="dft-atom dft-atom--three" />
-                            <span className="dft-atom dft-atom--four" />
-
-                            <span className="dft-bond dft-bond--one" />
-                            <span className="dft-bond dft-bond--two" />
-                            <span className="dft-bond dft-bond--three" />
-                        </div>
-
-                        <div className="dft-visual__placeholder-note">
-                            Three.js / Blender placeholder
-                        </div>
-                    </>
-                )}
-            </div>
-
-            <figcaption className="dft-visual__label">
-                {visualLabel}
-            </figcaption>
-        </figure>
-    );
-}
 
 function StepControls({ index, count, onChange, label }) {
+    const current = String(index + 1).padStart(2, "0");
+    const total = String(count).padStart(2, "0");
+
     return (
         <div className="dft-step-controls" aria-label={label}>
-            <button type="button" onClick={() => onChange(wrapIndex(index - 1, count))}>
+            <button
+                type="button"
+                onClick={() =>
+                    onChange(wrapIndex(index - 1, count))
+                }
+            >
                 ← Previous
             </button>
-            <span>{String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}</span>
-            <button type="button" onClick={() => onChange(wrapIndex(index + 1, count))}>
+
+            <span
+                className="dft-step-controls__index"
+                aria-label={`Step ${index + 1} of ${count}`}
+            >
+                <strong>{current}</strong>
+
+                <span
+                    className="dft-step-controls__divider"
+                    aria-hidden="true"
+                >
+                    /
+                </span>
+
+                <span className="dft-step-controls__total">
+                    {total}
+                </span>
+            </span>
+
+            <button
+                type="button"
+                onClick={() =>
+                    onChange(wrapIndex(index + 1, count))
+                }
+            >
                 Next →
             </button>
         </div>
@@ -429,13 +119,22 @@ function TheoryPanel({ mode, theoryIndex, setTheoryIndex }) {
                 ))}
             </div>
 
-            <article className="dft-card dft-card--accent-violet">
-                <p className="dft-kicker">Visual state: {step.visual}</p>
+            <article
+                className="
+                    dft-card
+                    dft-card--accent-violet
+                    dft-theory-card
+                "
+            >
                 <h3>{copy.title}</h3>
                 <p>{copy.body}</p>
                 {copy.equation && <p className="dft-equation">{copy.equation}</p>}
                 <ul className="dft-chip-list">
-                    {copy.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                    {copy.bullets.map((bullet) => (
+                        <li key={bullet}>
+                            <span>{bullet}</span>
+                        </li>
+                    ))}
                 </ul>
             </article>
 
@@ -617,6 +316,15 @@ function ChapterDetails({ chapterId, mode, state }) {
     }
 }
 
+function MGUMark({ variant = "study" }) {
+    return (
+        <div
+            className={`dft-mgu-mark dft-mgu-mark--${variant}`}
+        >
+            <p>©M.G.U</p>
+        </div>
+    );
+}
 
 export default function DFTPage() {
     const initialRoute = useMemo(() => {
@@ -820,6 +528,7 @@ export default function DFTPage() {
                             </div>
                         ))}
                     </dl>
+                    <MGUMark variant="intro" />
                 </section>
             )}
 
@@ -830,7 +539,7 @@ export default function DFTPage() {
                     aria-labelledby="chapter-title"
                 >
                     <header className="dft-study__header">
-                        <div>
+                        <div className="dft-study__identity">
                             <SkullReturnMenu
                                 className="dft-study__return-menu"
                                 label="Return"
@@ -871,16 +580,25 @@ export default function DFTPage() {
                     </nav>
 
                     <div ref={stageRef} className="dft-stage">
-                        <VisualPlaceholder
+                        <StudyVisualPanel
                             chapter={chapter}
                             activeChapter={activeChapter}
                             evidenceTab={evidenceTab}
                             mode={mode}
+                            state={{
+                                theoryIndex,
+                                pathway,
+                                evidenceIndex,
+                            }}
                         />
 
                         <div className="dft-reading" key={`${chapter.id}-${mode}`}>
                             <h2 id="chapter-title">
-                                {copy.title}
+                                {copy.title.split("\n").map((line) => (
+                                    <span key={line}>
+                                        {line}
+                                    </span>
+                                ))}
                             </h2>
 
                             <p className="dft-reading__summary">
@@ -899,36 +617,17 @@ export default function DFTPage() {
                                     setEvidenceIndex,
                                 }}
                             />
-
-                            <div className="dft-chapter-controls">
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        changeChapter(
-                                            wrapIndex(activeChapter - 1, CHAPTERS.length)
-                                        )
-                                    }
-                                >
-                                    ← {CHAPTERS[wrapIndex(activeChapter - 1, CHAPTERS.length)].nav}
-                                </button>
-
-                                {activeChapter === CHAPTERS.length - 1 ? (
-                                    <button
-                                        type="button"
-                                        onClick={() => setActiveScreen("conclusion")}
-                                    >
-                                        Research position →
-                                    </button>
-                                ) : (
-                                    <button
-                                        type="button"
-                                        onClick={() => changeChapter(activeChapter + 1)}
-                                    >
-                                        {CHAPTERS[activeChapter + 1].nav} →
-                                    </button>
-                                )}
-                            </div>
                         </div>
+                        <footer className="dft-stage__footer">
+                            <span
+                                className="dft-stage__metal-line"
+                                aria-hidden="true"
+                            />
+
+                            <p className="dft-stage__mgu">
+                                ©M.G.U
+                            </p>
+                        </footer>
                     </div>
                 </section>
             )}

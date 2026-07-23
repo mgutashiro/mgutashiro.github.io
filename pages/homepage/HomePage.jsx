@@ -1,5 +1,5 @@
-import './home.css'
 import './hud/HUDFrame.css'
+import './home.css'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Center } from '@react-three/drei'
 import { HOME_SECTIONS } from './home.sections'
@@ -17,19 +17,16 @@ import useActiveSection from './scroll/useActiveSection'
 import linkedinLogo from '../../src/assets/SVG/linkedinLogo.svg'
 import githubLogo from '../../src/assets/SVG/githubLogo.svg'
 import HomeLoadingScreen from './loading/HomeLoadingScreen'
+import HomeSectionNav from './ui/HomeSectionNav'
 
 export default function HomePage() {
     const [isLoading, setIsLoading] = useState(() => {
-        // return sessionStorage.getItem('homeBootSeen') !== 'true';
         const params = new URLSearchParams(window.location.search);
         const forceBoot = params.get('boot') === '1';
-
         if (forceBoot) {
             sessionStorage.removeItem('homeBootSeen');
         }
-
         return forceBoot || sessionStorage.getItem('homeBootSeen') !== 'true';
-
     });
 
     const handleLoadingComplete = useCallback(() => {
@@ -88,7 +85,6 @@ function HomePageContent() {
             </div>
 
             <div className="HomePageGrid" data-active-section={activeId}>
-
                 <div className="HomePageMainSpace">
                     <main
                         id="page-home"
@@ -110,7 +106,6 @@ function HomePageContent() {
                                                 className="titleAnchor"
                                                 aria-hidden="true"
                                             />
-
                                         </div>
                                     </section>
                                 )
@@ -121,10 +116,10 @@ function HomePageContent() {
                                         key={s.id}
                                         id={s.id}
                                         aria-label={s.label}
-                                        className='homeSection framedSection aboutSection'
+                                        className="homeSection framedSection aboutSection"
                                     >
                                         <div className="sectionPanelShell aboutPanel">
-                                            <div className="sectionContentStack">
+                                            <div className="sectionContentStack aboutContentStack">
                                                 <header className="sectionHeading">
                                                     <h2 className="aboutTitle">
                                                         {aboutTitle}
@@ -145,15 +140,15 @@ function HomePageContent() {
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="aboutControls">
-                                                <AboutButtons
-                                                    index={aboutIndex}
-                                                    total={HOME_COPY.about.panels.length}
-                                                    onBack={goAboutBack}
-                                                    onNext={goAboutNext}
-                                                />
+                                                <div className="aboutControls">
+                                                    <AboutButtons
+                                                        index={aboutIndex}
+                                                        total={HOME_COPY.about.panels.length}
+                                                        onBack={goAboutBack}
+                                                        onNext={goAboutNext}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
@@ -214,27 +209,33 @@ function HomePageContent() {
                     </main>
                 </div>
                 <div className="homePageChrome">
-                    <nav className="aboutSocials" aria-label="External links">
-                        <a
-                            className="aboutSocialLink aboutSocialLink--linkedin"
-                            href="https://www.linkedin.com/in/monica-utashiro-hahn-450748171/"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="LinkedIn"
+                    <div className="homePageTopBar">
+                        <HomeSectionNav activeId={activeId} tLocal={tLocal} />
+                        <nav
+                            className="aboutSocials"
+                            aria-label="External links"
                         >
-                            <img src={linkedinLogo} alt="" />
-                        </a>
+                            <a
+                                className="aboutSocialLink aboutSocialLink--linkedin"
+                                href="https://www.linkedin.com/in/monica-utashiro-hahn-450748171/"
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="LinkedIn"
+                            >
+                                <img src={linkedinLogo} alt="" />
+                            </a>
 
-                        <a
-                            className="aboutSocialLink aboutSocialLink--github"
-                            href="https://github.com/mgutashiro"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="GitHub"
-                        >
-                            <img src={githubLogo} alt="" />
-                        </a>
-                    </nav>
+                            <a
+                                className="aboutSocialLink aboutSocialLink--github"
+                                href="https://github.com/mgutashiro"
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="GitHub"
+                            >
+                                <img src={githubLogo} alt="" />
+                            </a>
+                        </nav>
+                    </div>
 
                     <div className="homePageMGUMark" aria-hidden="true">
                         <p>© M.G.U</p>

@@ -104,6 +104,7 @@ body {
         clamp(0.75rem, 2vh, 1.5rem)
         0
         var(--home-footer-reserve);
+    padding-top: clamp(4.5rem, 7vh, 5.5rem);
 
     box-sizing: border-box;
 
@@ -439,28 +440,6 @@ body {
         color-mix(in oklab, var(--text) 82%, var(--c-glow-2) 18%);
 }
 
-.aboutSection .sectionFrameTarget {
-    min-height: clamp(430px, 50vh, 540px);
-}
-
-
-.aboutSection > .aboutPanel {
-    /*
-     * More top padding and less bottom reserve shifts the
-     * complete title/frame/control composition downward.
-     */
-    padding:
-        clamp(2.4rem, 4.5vh, 3.4rem)
-        0
-        clamp(1.75rem, 3vh, 2.4rem);
-
-    grid-template-rows: auto auto;
-    align-content: center;
-    justify-items: center;
-
-    row-gap: var(--section-gap);
-}
-
 
 .specSection {
     --section-frame-stroke:
@@ -519,8 +498,7 @@ body {
         color-mix(in oklab, var(--text) 80%, var(--c-glow-3) 20%);
 }
 
-.sectionBody,
-.aboutBody {
+.sectionBody, .aboutBody {
     max-width: 52ch;
     line-height: 1.6;
 }
@@ -673,14 +651,40 @@ body {
     pointer-events: none;
 }
 
-.aboutSocials {
+.homePageTopBar {
     position: absolute;
-    top: clamp(1rem, 3vh, 2rem);
-    right: clamp(1rem, 3vw, 2.5rem);
+    top: clamp(0.75rem, 1.8vh, 1.25rem);
+    right: clamp(1rem, 2.5vw, 2.25rem);
+    left: clamp(1rem, 2.5vw, 2.25rem);
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(7rem, 1fr);
+    align-items: center;
+    column-gap: clamp(1rem, 2vw, 2rem);
+
+    pointer-events: none;
+}
+
+.homePageTopBar > * {
+    pointer-events: auto;
+}
+
+.home-section-nav {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.aboutSocials {
+    position: static;
+    grid-column: 3;
+    justify-self: end;
 
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
 
     margin: 0;
     padding: 0;
@@ -689,8 +693,8 @@ body {
 }
 
 .aboutSocialLink {
-    width: 58px;
-    height: 58px;
+    width: 50px;
+    height: 50px;
     display: grid;
     place-items: center;
     border-radius: 999px;
@@ -710,8 +714,8 @@ body {
         background 180ms ease;
 }
 .aboutSocialLink img {
-    width: 39px;
-    height: 39px;
+    width: 34px;
+    height: 34px;
     display: block;
     object-fit: contain;
 }
@@ -774,9 +778,6 @@ body {
     color: var(--text);
 }
 
-/* =================================
-   SECTION TITLE + FRAME COMPOSITION
-================================= */
 
 .sectionContentStack {
     position: relative;
@@ -807,11 +808,7 @@ body {
     text-align: center;
 }
 
-/*
- * Small neon-metal rule beneath the ornamental heading.
- * It connects the title visually to the HUD without putting
- * the title back inside the frame.
- */
+
 .sectionHeading::after {
     content: "";
 
@@ -843,10 +840,7 @@ body {
     width: min(780px, calc(100% - 1.5rem));
 }
 
-/*
- * Higher specificity than the .sectionFrameTarget rules
- * imported later from HUDFrame.css.
- */
+
 .sectionContentStack > .sectionFrameTarget {
     width: 100%;
     min-height: clamp(390px, 47vh, 510px);
@@ -858,76 +852,6 @@ body {
     );
 }
 
-.aboutSection .sectionContentStack {
-    width: min(
-        860px,
-        calc(100% - clamp(2rem, 10vw, 8rem))
-    );
-
-    gap: var(--section-gap);
-}
-
-/*
- * Higher specificity than the shared title selector.
- * The title currently dominates too much vertically.
- */
-.aboutSection
-.sectionHeading
-> .aboutTitle {
-    font-size: clamp(2rem, 2.85vw, 2.8rem);
-    line-height: 0.96;
-    letter-spacing: 0.012em;
-}
-
-/* Make the little title rule less spacious */
-.aboutSection .sectionHeading::after {
-    width: clamp(4rem, 7vw, 6rem);
-    margin-top: clamp(0.35rem, 0.7vh, 0.55rem);
-}
-
-/*
- * Higher specificity than:
- * .sectionContentStack > .sectionFrameTarget
- */
-.aboutSection
-.sectionContentStack
-> .sectionFrameTarget {
-    width: min(860px, 100%);
-    min-height: clamp(410px, 45vh, 475px);
-}
-
-/* Give the copy a little more internal breathing room */
-.aboutSection .aboutText {
-    width: min(650px, 100%);
-
-    padding-inline: clamp(1.75rem, 4vw, 3.25rem);
-}
-
-.aboutSection .aboutBody {
-    max-width: 50ch;
-
-    font-size: clamp(0.96rem, 1.05vw, 1.04rem);
-    line-height: 1.55;
-}
-
-/* Controls form a deliberate third tier below the frame */
-.aboutSection .aboutControls {
-    margin: 0;
-    padding: 0;
-}
-
-.aboutSection .aboutButtons {
-    justify-content: center;
-
-    gap: clamp(0.85rem, 1.7vw, 1.25rem);
-}
-
-/* Slightly quieter control labels */
-.aboutSection .aboutNavButton__label {
-    font-size: 0.88rem;
-    font-weight: var(--w-semibold);
-    letter-spacing: 0.04em;
-}
 
 .homeSection .sectionHeading > .sectionTitle,
 .homeSection .sectionHeading > .aboutTitle {
@@ -954,7 +878,6 @@ body {
         var(--section-title-shadow, none);
 }
 
-/* Prevent margins from changing the shared visual gap */
 .framedSection .aboutControls,
 .framedSection .LinkToSubPage {
     margin: 0;
@@ -963,13 +886,184 @@ body {
     justify-self: center;
 }
 
-/* Prevent section-specific action wrappers from adding another gap */
 .specActions,
 .dftActions,
 .philosophyActions {
     margin-block: 0;
     padding-block: 0;
     transform: none;
+}
+
+
+
+.homeSection.aboutSection > .aboutPanel {
+    display: grid;
+    grid-template-rows: 1fr;
+    place-items: center;
+
+    padding:
+        clamp(6.25rem, 9vh, 7.25rem)
+        0
+        clamp(4rem, 6vh, 5rem);
+
+    row-gap: 0;
+}
+
+
+.homeSection.aboutSection .aboutContentStack {
+    width: min(760px, calc(100% - 3rem));
+
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+
+    gap: 0;
+
+    transform: translateY(0.35rem);
+}
+
+
+.homeSection.aboutSection .sectionHeading {
+    width: 100%;
+    margin: 0 0 clamp(1.35rem, 2.2vh, 1.75rem);
+    padding: 0;
+
+    text-align: center;
+}
+
+.homeSection.aboutSection .sectionHeading::after {
+    display: none;
+}
+
+.homeSection.aboutSection
+.sectionHeading
+> .aboutTitle {
+    width: 100%;
+    margin: 0;
+
+    font-size: clamp(2.05rem, 2.45vw, 2.55rem);
+    line-height: 0.98;
+    letter-spacing: 0.008em;
+
+    text-align: center;
+
+    text-shadow:
+        0.035em 0.045em 0
+            color-mix(
+                in oklab,
+                var(--c-primary-2) 64%,
+                transparent
+            ),
+        0 0 0.3rem
+            color-mix(
+                in oklab,
+                var(--c-glow-2) 40%,
+                transparent
+            ),
+        0 0 0.8rem
+            color-mix(
+                in oklab,
+                var(--c-glow-2) 17%,
+                transparent
+            );
+}
+
+
+
+.homeSection.aboutSection
+.aboutFrameTarget.sectionFrameTarget {
+    --section-frame-pad-y:
+        clamp(2.25rem, 3.8vh, 2.8rem);
+
+    --section-frame-pad-x:
+        clamp(3rem, 5vw, 4.5rem);
+
+    width: min(740px, 100%);
+    height: clamp(330px, 36vh, 365px);
+    min-height: 0;
+
+    margin: 0;
+    padding:
+        var(--section-frame-pad-y)
+        var(--section-frame-pad-x);
+
+    transform: none;
+}
+
+
+.homeSection.aboutSection .aboutFrame {
+    opacity: 1;
+}
+
+.homeSection.aboutSection .aboutText {
+    width: min(560px, 100%);
+    max-width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+}
+
+.homeSection.aboutSection .aboutBody {
+    width: 100%;
+    max-width: 48ch;
+
+    margin: 0 auto;
+
+    font-size: clamp(0.96rem, 1vw, 1.02rem);
+    line-height: 1.58;
+    letter-spacing: 0.008em;
+
+    text-align: left;
+}
+
+.homeSection.aboutSection .aboutControls {
+    position: relative;
+    z-index: 7;
+
+    width: 100%;
+
+    display: grid;
+    place-items: center;
+
+    margin: clamp(1.35rem, 2.2vh, 1.75rem) 0 0;
+    padding: 0;
+
+    transform: none;
+}
+
+.homeSection.aboutSection .aboutButtons {
+    width: max-content;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(0.75rem, 1.2vw, 1rem);
+}
+
+.homeSection.aboutSection .aboutNavButton {
+    --about-btn-size: 50px;
+
+    gap: 0.55rem;
+}
+
+.homeSection.aboutSection .aboutNavButton__label {
+    font-size: 0.84rem;
+    font-weight: var(--w-semibold);
+    letter-spacing: 0.04em;
+    opacity: 0.82;
+}
+
+.homeSection.aboutSection .aboutNavButton__triangle--right {
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 10px;
+}
+
+.homeSection.aboutSection .aboutNavButton__triangle--left {
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+    border-right-width: 10px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -996,6 +1090,33 @@ body {
         transform: translateY(-0.75rem);
     }
 
+    .homePageTopBar {
+        right: 0.75rem;
+        left: 0.75rem;
+
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 0.5rem;
+    }
+
+    .home-section-nav {
+        grid-column: 1;
+        justify-self: center;
+    }
+
+    .aboutSocials {
+        grid-column: 2;
+    }
+
+    .aboutSocialLink {
+        width: 44px;
+        height: 44px;
+    }
+
+    .aboutSocialLink img {
+        width: 29px;
+        height: 29px;
+    }
+
     .sectionLinkButton {
         min-width: min(12rem, calc(100vw - 3rem));
     }
@@ -1010,5 +1131,36 @@ body {
     .aboutBody {
         font-size: 0.95rem;
         line-height: 1.58;
+    }
+
+    .homeSection.aboutSection > .aboutPanel {
+        padding:
+            6.25rem
+            0
+            3.75rem;
+    }
+
+    .homeSection.aboutSection .aboutContentStack {
+        width: calc(100% - 1.5rem);
+        transform: none;
+    }
+
+    .homeSection.aboutSection
+    .aboutFrameTarget.sectionFrameTarget {
+        --section-frame-pad-x: clamp(2rem, 8vw, 3rem);
+
+        width: 100%;
+        height: clamp(335px, 44vh, 390px);
+    }
+
+    .homeSection.aboutSection
+    .sectionHeading
+    > .aboutTitle {
+        font-size: clamp(1.85rem, 7vw, 2.3rem);
+    }
+
+    .homeSection.aboutSection .aboutBody {
+        font-size: 0.94rem;
+        line-height: 1.54;
     }
 }

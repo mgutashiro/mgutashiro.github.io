@@ -25,7 +25,7 @@ export const CHAPTERS = [
         content: {
             friends: {
                 eyebrow: "Why DFT exists",
-                title: "Studying complex systems without tracking every detail",
+                title: "Studying Complex Systems\nWithout Tracking\nEvery Detail",
                 summary:
                 "Electrons influence properties and behavior of one another. Therefore, a complete many-electron (or complex system mechanistic) description becomes difficult very quickly. Density Functional Theory (DFT) replaces that overwhelming task with a more manageable map of where electron density is distributed.",
             },
@@ -127,7 +127,7 @@ export const THEORY_STEPS = [
             title: "The full problem grows too quickly",
             body:
                 "Each electron moves under the influence of the nuclei and every other electron around it. The wavefunction is the mathematical description of all those electrons; this includes possible positions, motions, and interactions. But as more electrons enter the picture, that story becomes far too complicated to follow directly. DFT takes a simpler route by focusing on where the electrons are most likely to be found.",
-            bullets: ["Many interacting particles", "Too much information to visualize directly", "Density offers a smaller description"],
+            bullets: ["Many interacting particles", "Cannot understand all of its detailed behavior", "DFT offers a good approximate solution"],
         },
         colleague: {
             title: "The many-electron Schrödinger equation",
@@ -140,7 +140,6 @@ export const THEORY_STEPS = [
     {
         id: "hk",
         short: "Hohenberg–Kohn",
-        visual: "Electron-density cloud placeholder",
         friends: {
             title: "The density contains the ground-state story",
             body:
@@ -158,7 +157,6 @@ export const THEORY_STEPS = [
     {
         id: "ks",
         short: "Kohn–Sham",
-        visual: "Orbital / density layer placeholder",
         friends: {
             title: "A practical stand-in makes DFT usable",
             body:

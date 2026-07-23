@@ -88,7 +88,7 @@
 
 .skull-logo__asset [id$="-SkullDetails"],
 .skull-logo__asset [id$="-Teeth"] {
-    fill: none;
+    fill: var(--skull-logo-cavity);
     stroke: var(--skull-logo-detail);
     stroke-width: 0.72px;
     stroke-linecap: round;
@@ -98,6 +98,7 @@
 }
 
 .skull-logo__asset [id$="-Teeth"] {
+    fill: var(--c-paper);
     stroke-width: 0.62px;
     opacity: 0.58;
 }
@@ -132,7 +133,7 @@
 .skull-logo__liquid-surface {
     fill: none;
     stroke: var(--skull-logo-liquid-cyan);
-    stroke-width: 1.15px;
+    stroke-width: 0.7px;
     stroke-linecap: round;
     opacity: 0.88;
     vector-effect: non-scaling-stroke;

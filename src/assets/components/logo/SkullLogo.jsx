@@ -47,14 +47,7 @@ function namespaceSvgMarkup(svgText, prefix) {
         );
 }
 
-/**
- * Reusable, inline SVG skull mark.
- *
- * state:
- * - idle: resting state
- * - shake: attention animation
- * - spill: tilt and liquid-pour animation
- */
+
 export default function SkullLogo({
     className = "",
     size = "nav",
@@ -243,12 +236,6 @@ export default function SkullLogo({
                             fill="black"
                         />
 
-                        {/*
-                            The black stroke cuts a narrow channel out of the
-                            white silhouette. That gap acts as the visible
-                            glass wall and prevents the liquid from touching or
-                            crossing the skull outline while it drains.
-                        */}
                         <path
                             d={skullBasePath}
                             fill="white"
@@ -278,7 +265,6 @@ export default function SkullLogo({
                         </g>
                     </g>
 
-                    {/* A fixed inner rim keeps the vessel edge legible. */}
                     <path
                         className="skull-logo__inner-wall"
                         d={skullBasePath}
