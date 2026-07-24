@@ -1,3 +1,5 @@
+import "katex/dist/katex.min.css";
+import { BlockMath } from "react-katex";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import titleTheUrl from "/src/assets/SVG/DFTPageTitle/The.svg?url";
@@ -126,16 +128,48 @@ function TheoryPanel({ mode, theoryIndex, setTheoryIndex }) {
                     dft-theory-card
                 "
             >
-                <h3>{copy.title}</h3>
-                <p>{copy.body}</p>
-                {copy.equation && <p className="dft-equation">{copy.equation}</p>}
-                <ul className="dft-chip-list">
-                    {copy.bullets.map((bullet) => (
-                        <li key={bullet}>
-                            <span>{bullet}</span>
-                        </li>
-                    ))}
-                </ul>
+                <h3>{copy?.title}</h3>
+
+                <div className="dft-theory-card__body">
+                    {Array.isArray(copy?.body) ? (
+                        copy.body.map((block, index) => {
+                            if (block.type === "equation") {
+                                return (
+                                    <div
+                                        className="dft-equation"
+                                        key={`equation-${index}`}
+                                    >
+                                        <BlockMath math={block.value} />
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <p key={`text-${index}`}>
+                                    {block.value}
+                                </p>
+                            );
+                        })
+                    ) : (
+                        <p>{copy?.body}</p>
+                    )}
+                </div>
+
+                {copy?.equation && (
+                    <p className="dft-equation">
+                        {copy.equation}
+                    </p>
+                )}
+
+                {copy?.bullets?.length > 0 && (
+                    <ul className="dft-chip-list">
+                        {copy.bullets.map((bullet, index) => (
+                            <li key={`${bullet}-${index}`}>
+                                <span>{bullet}</span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </article>
 
             <StepControls

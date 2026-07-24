@@ -729,14 +729,23 @@
 .dft-card--compact { min-height: 11rem; }
 
 .dft-equation {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+
     overflow-x: auto;
-    padding: 0.9rem;
-    border: 1px solid color-mix(in srgb, var(--c-glow-2) 40%, transparent);
-    border-radius: 0.7rem;
-    color: var(--dft-cream) !important;
-    background: var(--c-shadow);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    white-space: nowrap;
+
+    border: 1px solid rgba(155, 92, 255, 0.45);
+    border-radius: 1rem;
+    background: rgba(8, 4, 14, 0.55);
+}
+
+.dft-equation .katex-display {
+    margin: 0;
+    text-align: left;
+}
+
+.dft-equation .katex {
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
 }
 
 .dft-chip-list {

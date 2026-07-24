@@ -31,9 +31,9 @@ export const CHAPTERS = [
             },
             colleague: {
                 eyebrow: "Density Functional Theory",
-                title: "From the many-electron wavefunction to an electron-density framework",
+                title: "From Wavefunctions to\nElectron Density",
                 summary:
-                "DFT reformulates the ground-state electronic-structure problem around the three-dimensional density ρ(r). Hohenberg–Kohn establishes the density as the governing variable; Kohn–Sham theory makes the framework computationally practical through a noninteracting reference system and an approximate exchange-correlation functional.",
+                "Molecular states and their energies arise from a system’s electronic structure, which is formally described by the many-electron wavefunction obtained from the Schrödinger equation. Because this wavefunction becomes too complex to solve directly for most molecules, density functional theory uses the electron density as a more manageable central variable for interpreting experiments, comparing structures, and predicting chemical behavior.",
             },
         },
     },
@@ -130,11 +130,34 @@ export const THEORY_STEPS = [
             bullets: ["Many interacting particles", "Cannot understand all of its detailed behavior", "DFT offers a good approximate solution"],
         },
         colleague: {
-            title: "The many-electron Schrödinger equation",
-            body:
-                "Within the Born–Oppenheimer approximation, the electronic wavefunction still depends on 3N spatial variables before spin is considered. The computational burden rises steeply with electron number, motivating a reformulation in terms of ρ(r).",
-            bullets: ["Interacting-electron Hamiltonian", "High-dimensional Ψ", "Three-dimensional ρ(r)"],
-            equation: "Ĥₑ Ψ = Eₑ Ψ",
+            title: "The Many-Electron Problem",
+            body: [
+                {
+                    type: "text",
+                    value:
+                        "Under the Born–Oppenheimer approximation, the nuclei are treated as fixed while the electrons adjust to their positions:",
+                },
+                {
+                    type: "equation",
+                    value: String.raw`\hat{H}_{\mathrm{BO}}\Psi = \hat{E}\Psi`,
+                },
+                {
+                    type: "text",
+                    value:
+                        "The Hamiltonian includes electron kinetic energy, electron–nuclear attraction, electron–electron repulsion, and nuclear repulsion. Electron–electron repulsion creates the central difficulty because every electron responds to all the others.",
+                },
+                {
+                    type: "text",
+                    value:
+                        "For N electrons, the wavefunction depends on every electron’s position and spin while also satisfying the Pauli principle. This prevents exact solutions for systems with more than one electron.",
+                },
+                {
+                    type: "text",
+                    value:
+                        "Electronic-structure methods therefore require approximations. DFT simplifies the problem by using the three-dimensional electron density instead of the full many-electron wavefunction.",
+                },
+            ],
+            bullets: [],
         },
     },
     {
@@ -147,11 +170,22 @@ export const THEORY_STEPS = [
             bullets: ["Density determines the system", "Energy is a functional of density", "The ground state minimizes that energy"],
         },
         colleague: {
-            title: "The Hohenberg–Kohn theorems",
-            body:
-                "The ground-state density determines the external potential up to an additive constant, and therefore determines the Hamiltonian and ground-state observables. A variational principle identifies the ground-state density through minimization of E[ρ].",
-            bullets: ["ρ(r) ↔ vₑₓₜ(r)", "Ground-state observables are density functionals", "E[ρ] is variational"],
-            equation: "E₀ = minρ E[ρ]",
+            title: "The Hohenberg–Kohn Theorems",
+            body: [
+                {
+                    type: "text",
+                    value: "In 1964, Pierre Hohenberg and Walter Kohn placed density-based electronic structure on a rigorous foundation. Nearly four decades after the Thomas–Fermi model first treated electron density as the central variable, their work showed that this choice was exact in principle rather than merely convenient."
+                },
+                {
+                    type: "text",
+                    value: "The first theorem states that the ground-state electron density uniquely determines the external potential and, therefore, the Hamiltonian and all ground-state properties, up to an additive constant. The second theorem establishes a variational principle: among all physically valid trial densities, the true ground-state density minimizes the energy functional.",
+                },
+                {
+                    type: "text",
+                    value: "Together, the theorems define the foundation of ground-state DFT. They prove that the exact energy can be obtained from the density, although they do not provide the exact form of the universal functional required to calculate it.",
+                }
+            ],
+            bullets: [],
         },
     },
     {

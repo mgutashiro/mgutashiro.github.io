@@ -19,15 +19,14 @@ The goal is to translate abstract concepts into experiences that invite curiosit
             {
                 id: 'about-02',
                 body: text(`
-Across my work, I use different disciplines and mediums to strengthen my theoretical thinking and communicate ideas through a modernist lens.
+On here, different disciplines are used through various mediums to help strengthen theoretical thinking and to better communicate the understanding and the learning process through a modernistic lens.
 
-Philosophy, classical literature, illustration, and design also shape how I approach abstraction; reminding me that understanding depends not only on finding an answer, but on expressing it clearly and meaningfully.
-                `),
+The entwinement of Philosophy, Literature, Art, and Design also are some of the topics explored here.`)
             },
             {
                 id: 'about-03',
                 body: text(`
-Let science, philosophy, technology, and creativity meet; guided by curiosity, dedication, and a little room for wonder.
+Clashing science, mathematics, art, technology, and creativity into a symphony; guided by curiosity, dedication, and a a whimsy touch.
 
 Thank you for stopping by!
                     ～(*'∀'*)ﾉ"♡

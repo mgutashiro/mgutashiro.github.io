@@ -237,7 +237,7 @@ body {
     line-height: 1.65;
     letter-spacing: 0.012em;
 
-    text-align: left;
+    text-align: center;
 
     color: var(
         --section-body-color,
@@ -902,16 +902,17 @@ body {
     place-items: center;
 
     padding:
-        clamp(6.25rem, 9vh, 7.25rem)
+        clamp(5.4rem, 8vh, 6.1rem)
         0
-        clamp(4rem, 6vh, 5rem);
+        clamp(5rem, 7vh, 5.8rem);
 
+    place-items: center;
     row-gap: 0;
 }
 
 
 .homeSection.aboutSection .aboutContentStack {
-    width: min(760px, calc(100% - 3rem));
+    width: min(700px, calc(100% - 3rem));
 
     display: grid;
     grid-template-rows: auto auto auto;
@@ -919,13 +920,14 @@ body {
 
     gap: 0;
 
-    transform: translateY(0.35rem);
+    transform: translateY(-0.5rem);
 }
 
 
 .homeSection.aboutSection .sectionHeading {
     width: 100%;
     margin: 0 0 clamp(1.35rem, 2.2vh, 1.75rem);
+    margin-bottom: clamp(2.02rem, 3.2vh, 2.6rem);
     padding: 0;
 
     text-align: center;
@@ -993,6 +995,9 @@ body {
 
 .homeSection.aboutSection .aboutFrame {
     opacity: 1;
+    filter:
+        saturate(0.88)
+        brightness(0.92);
 }
 
 .homeSection.aboutSection .aboutText {
@@ -1005,15 +1010,15 @@ body {
 
 .homeSection.aboutSection .aboutBody {
     width: 100%;
-    max-width: 48ch;
+    max-width: 52ch;
 
     margin: 0 auto;
 
-    font-size: clamp(0.96rem, 1vw, 1.02rem);
+    font-size: clamp(0.93rem, 0.98vw, 0.99rem);
     line-height: 1.58;
     letter-spacing: 0.008em;
 
-    text-align: left;
+    text-align: center;
 }
 
 .homeSection.aboutSection .aboutControls {
@@ -1026,6 +1031,7 @@ body {
     place-items: center;
 
     margin: clamp(1.35rem, 2.2vh, 1.75rem) 0 0;
+    margin-top: clamp(2rem, 3.5vh, 2.75rem);
     padding: 0;
 
     transform: none;
